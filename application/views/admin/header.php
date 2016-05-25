@@ -6,10 +6,36 @@
 
 <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
-<link href="<?php echo base_url('themes/default/assets/css/fonts.css');?>" rel="stylesheet" type="text/css" />
-<link href="<?php echo base_url('themes/default/assets/css/pure.min.css');?>" rel="stylesheet" type="text/css" />
-<link href="<?php echo base_url('themes/default/assets/css/icono.min.css');?>" rel="stylesheet" type="text/css" />
-<link href="<?php echo base_url('themes/default/assets/css/styles.css');?>" rel="stylesheet" type="text/css" />
+
+<?php
+$_css = new CSSCrunch();
+
+$_css->addFile('fonts');
+$_css->addFile('animate.min');
+$_css->addFile('pure.min');
+$_css->addFile('icono.min');
+$_css->addFile('styles');
+$_css->addFile('profiler');
+
+$_js = new JSCrunch();
+
+if (true) { //Dev Mode
+//in development mode keep all the css files separate
+    $_css->crunch(true);
+    $_js->crunch(true);
+} else {
+    //combine all css files in live mode
+    $_css->crunch();
+    $_js->crunch();
+}
+
+
+//with this I can put header data in the header instead of in the body.
+if (isset($additional_header_info)) {
+    echo $additional_header_info;
+}
+?>
+
 <link href="<?php echo base_url('assets/css/bootstrap.min.css');?>" rel="stylesheet" type="text/css" />
 <link href="<?php echo base_url('assets/css/admin.css');?>" rel="stylesheet" type="text/css" />
 <link href="<?php echo base_url('assets/css/font-awesome.css');?>" rel="stylesheet" type="text/css" />

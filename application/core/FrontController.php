@@ -12,7 +12,6 @@ class Front extends \Avonlea\Controller
         \CI::load()->model(array('Pages', 'Login'));
 
         //load in some base information
-        \CI::load()->helper('theme');
         \CI::lang()->load('common');
         $this->pages = \CI::Pages()->get_pages_tiered();
 

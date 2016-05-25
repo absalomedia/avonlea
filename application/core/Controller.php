@@ -9,7 +9,7 @@ class Controller
 
     public function __construct()
     {
-        \CI::load()->helper('form');
+        \CI::load()->helper(['form','theme']);
         \CI::load()->library('breadcrumbs');
         
         $this->views = View::getInstance();
