@@ -10,7 +10,7 @@
  * @link        http://Avonleadv.com
  */
 
-class AdminController extends \Avonlea\Controller
+class Admin extends \Avonlea\Controller
 {
 
     public function __construct()

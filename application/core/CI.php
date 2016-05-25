@@ -44,7 +44,6 @@ class CI
         }
 
         return self::$i;
-        $this->output->clear_all_cache();
     }
 
     public static function __callStatic($method, $parameters)
@@ -56,6 +55,6 @@ class CI
             self::$i->$method = new $method;
             return self::$i->$method;
         }
-        $this->output->clear_all_cache();
+        
     }
 }

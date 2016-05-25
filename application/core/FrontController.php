@@ -1,6 +1,6 @@
 <?php namespace Avonlea\Controller;
 
-class FrontController extends \Avonlea\Controller
+class Front extends \Avonlea\Controller
 {
 
     public function __construct()

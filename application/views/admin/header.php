@@ -9,6 +9,7 @@
 <link href="<?php echo base_url('themes/default/assets/css/fonts.css');?>" rel="stylesheet" type="text/css" />
 <link href="<?php echo base_url('themes/default/assets/css/pure.min.css');?>" rel="stylesheet" type="text/css" />
 <link href="<?php echo base_url('themes/default/assets/css/icono.min.css');?>" rel="stylesheet" type="text/css" />
+<link href="<?php echo base_url('themes/default/assets/css/styles.css');?>" rel="stylesheet" type="text/css" />
 <link href="<?php echo base_url('assets/css/bootstrap.min.css');?>" rel="stylesheet" type="text/css" />
 <link href="<?php echo base_url('assets/css/admin.css');?>" rel="stylesheet" type="text/css" />
 <link href="<?php echo base_url('assets/css/font-awesome.css');?>" rel="stylesheet" type="text/css" />

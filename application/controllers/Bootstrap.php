@@ -1,6 +1,10 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+use Exception as BaseException;
+use Whoops\Handler\PrettyPageHandler;
+use Whoops\Run;
+
 class Bootstrap extends CI_Controller
 {
 
@@ -171,13 +175,13 @@ class Bootstrap extends CI_Controller
                 header('WWW-Authenticate: Basic realm="Login to restricted area"');
                 header('HTTP/1.0 401 Unauthorized');
                 echo config_item('company_name').' Restricted Location';
-                exit;
+                exit(401);
             } else {
                 if (config_item('stage_username') != $_SERVER['PHP_AUTH_USER'] || config_item('stage_password') != $_SERVER['PHP_AUTH_PW']) {
                     header('WWW-Authenticate: Basic realm="Login to restricted area"');
                     header('HTTP/1.0 401 Unauthorized');
                     echo 'Restricted Location';
-                    exit;
+                    exit(401);
                 }
             }
         }
