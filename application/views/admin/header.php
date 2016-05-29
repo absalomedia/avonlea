@@ -91,7 +91,7 @@ $(document).ready(function(){
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="<?php echo site_url('admin');?>">AVL</a>
+                <a class="navbar-brand" href="<?php echo site_url('admin');?>">Avonlea</a>
             </div>
 
 
@@ -158,6 +158,8 @@ $(document).ready(function(){
         </div>
     </nav>
 <?php endif;?>
+<div class="cover-image manager"></div>
+
 <div class="container">
     <?php
     //lets have the flashdata overright "$message" if it exists
@@ -195,6 +197,3 @@ $(document).ready(function(){
             <?php echo $error; ?>
         </div>
     <?php endif; ?>
-</div>
-
-<div class="container">

@@ -2,7 +2,7 @@
     <a class="hiddenanchor" id="toregister"></a>
     <a class="hiddenanchor" id="tologin"></a>
 
-    <div class="cover-image client"></div>
+      <div class="cover-image client"></div>
 
         <div id="wrapper">
         <div id="login" data-cols="1/2" class="animate form">

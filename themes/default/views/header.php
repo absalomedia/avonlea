@@ -76,7 +76,7 @@ if (isset($additional_header_info)) {
 
 <header class="header" roler="banner">
     <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
-        <a class="pure-menu-heading" href="<?php echo base_url();?>">AVL</a>
+        <a class="pure-menu-heading" href="<?php echo base_url();?>">Avonlea</a>
 
         <ul class="pure-menu-list" role="navigation">
             <?php if (CI::Login()->isLoggedIn(false, false)) :?>
