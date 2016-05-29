@@ -6,7 +6,7 @@
  * @package     Avonlea
  * @subpackage  Controllers
  * @category    AdminLocations
- * @author      Clear Sky Designs
+ * @author      Absalom Media
  * @link        http://Avonleadv.com
  */
 

@@ -6,7 +6,7 @@
  * @package     Avonlea
  * @subpackage  Controllers
  * @category    FlatRate
- * @author      Clear Sky Designs
+ * @author      Absalom Media
  * @link        http://Avonleadv.com
  */
 

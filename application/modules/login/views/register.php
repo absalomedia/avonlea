@@ -1,9 +1,9 @@
-
+    <div class="cover-image client"></div>
 <div class="col" data-cols="1/2" data-push="1/4">
     <div class="page-header">
         <h1><?php echo lang('form_register');?></h1>
     </div>
-    
+
     <?php echo form_open('register', 'id="registration_form"'); ?>
         <input type="hidden" name="submitted" value="submitted" />
         <input type="hidden" name="redirect" value="<?php echo $redirect; ?>" />
@@ -28,7 +28,7 @@
                 <label for="account_email"><?php echo lang('account_email');?></label>
                 <?php echo form_input(['name'=>'email', 'value'=>assign_value('email')]);?>
             </div>
-        
+
             <div class="col" data-cols="1/2">
                 <label for="account_phone"><?php echo lang('account_phone');?></label>
                 <?php echo form_input(['name'=>'phone', 'value'=> assign_value('phone')]);?>
@@ -50,7 +50,7 @@
                 <input type="password" name="confirm" autocomplete="off" />
             </div>
         </div>
-        
+
         <input type="submit" value="<?php echo lang('form_register');?>" class="blue" />
     </form>
 
@@ -64,7 +64,7 @@
     $errors = \CI::form_validation()->get_error_array(); ?>
 
     var formErrors = <?php echo json_encode($errors);?>
-    
+
     for (var key in formErrors) {
         if (formErrors.hasOwnProperty(key)) {
             $('#registration_form [name="'+key+'"]').parent().append('<div class="form-error text-red">'+formErrors[key]+'</div>')

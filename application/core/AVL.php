@@ -1,11 +1,11 @@
 <?php
 /**
- * GC Class
+ * AVL Class
  *
  * @package     Avonlea
  * @subpackage  Facade
- * @category    GC
- * @author      Clear Sky Designs
+ * @category    AVL
+ * @author      Absalom Media
  * @link        http://Avonleadv.com
  */
 
@@ -38,5 +38,5 @@ class AVL
     }
 }
 
-/* End of file GC.php */
-/* Location: ./Avonlea/libraries/GC.php */
+/* End of file AVL.php */
+/* Location: ./Avonlea/libraries/AVL.php */

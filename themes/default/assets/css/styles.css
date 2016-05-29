@@ -985,12 +985,12 @@ a.hiddenanchor{
     position: relative;
 }
 
-#register, 
+#register,
 #login{
     position: absolute;
     top: 0px; width:100%;
 }
-#register{  
+#register{
     z-index: 21;
     opacity: 0; width:100%;
 }
@@ -1257,7 +1257,7 @@ login_content form input[type="submit"],#content form .submit{float: left; margi
 
         .button-xlarge {
             font-size: 125%;
-        }  
+        }
 
 
 /* Menu */
@@ -1306,11 +1306,22 @@ login_content form input[type="submit"],#content form .submit{float: left; margi
 
 .cover-image
 {
-    background-image:url(../img/bg_1024.jpg);
     background-size:cover;
     background-position:center;
     height:100%;
     width:100%;
     top:0;
     position:fixed;
+}
+
+.install {
+      background-image:url(../img/rainbow-by-denisbin-2016.jpg);
+}
+
+.client {
+     background-image:url(../img/mallee-tree-by-andy-farnsworth-2005.jpg);
+}
+
+.manager {
+     background-image:url(../img/lake-fyans-by-john-gayler-2012.jpg);
 }

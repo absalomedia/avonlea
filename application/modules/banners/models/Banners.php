@@ -5,7 +5,7 @@
  * @package     Avonlea
  * @subpackage  Models
  * @category    Banners
- * @author      Clear Sky Designs
+ * @author      Absalom Media
  * @link        http://Avonleadv.com
  */
 

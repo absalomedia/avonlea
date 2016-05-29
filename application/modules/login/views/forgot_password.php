@@ -1,4 +1,5 @@
 <div id="wrapper">
+    <div class="cover-image client"></div>
     <div id="forgot" data-cols="1/2" class="animate form">
     <section class="login_content">
         <h1><?php echo lang('forgot_password');?></h1>
@@ -8,7 +9,7 @@
             <?php echo validation_errors();?>
         </div>
     <?php endif;
-    
+
         $attributes = array('class' => 'pure-form pure-form-stacked');
         echo form_open('forgot-password', $attributes); ?>
 
@@ -16,7 +17,7 @@
                 <label for="email"><?php echo lang('email');?></label>
                 <input type="email" name="email"/>
             </div>
-   
+
         <input type="hidden" value="submitted" name="submitted"/>
 
         <input type="submit" value="<?php echo lang('reset_password');?>" class="pure-button pure-button-primary"/>

@@ -6,7 +6,7 @@
  * @package     Emails
  * @subpackage  Library
  * @category    Avonlea
- * @author      Clear Sky Designs
+ * @author      Absalom Media
  * @link        http://Avonleadv.com
  */
 class Emails

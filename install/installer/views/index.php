@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Install AVL</title>
+<title>Install Avonlea Invoicing</title>
 <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
 <link href="<?php echo base_url('../themes/default/assets/css/fonts.css');?>" rel="stylesheet" type="text/css" />
@@ -16,17 +16,17 @@
 </head>
 
 <body>
-<div class="cover-image"></div>
+<div class="cover-image install"></div>
 <div id="wrapper">
     <div id="login" data-cols="1/2" class="animate form">
         <section class="login_content">
-        <h1>AVL Installer</h1>
-   
+        <h1>Avonlea Installer</h1>
+
     <?php if (isset($errors)) {
         echo $errors;
 } ?>
 
-    <form action="<?php echo base_url();?>" method="post" class="pure-form pure-form-stacked" accept-charset="utf-8">              
+    <form action="<?php echo base_url();?>" method="post" class="pure-form pure-form-stacked" accept-charset="utf-8">
                 <div class="pure-control-group">
                     <label for="hostname-label">Host Name</label>
                     <?php echo form_input(['name'=>'hostname', 'class'=>'form-control', 'value'=>set_value('hostname')]);?>

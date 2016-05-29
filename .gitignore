@@ -49,3 +49,4 @@ Temporary Items
 .apdisk
 ### END SPECIAL MAC ###
 application/config/manifest.php
+application/config/database.php

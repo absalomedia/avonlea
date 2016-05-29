@@ -5,7 +5,7 @@
  * @package     Avonlea
  * @subpackage  Libraries
  * @category    Breadcrumbs
- * @author      Clear Sky Designs
+ * @author      Absalom Media
  * @link        http://Avonleadv.com
  */
 

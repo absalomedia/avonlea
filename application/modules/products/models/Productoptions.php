@@ -5,7 +5,7 @@
  * @package     Avonlea
  * @subpackage  Models
  * @category    ProductOptions
- * @author      Clear Sky Designs
+ * @author      Absalom Media
  * @link        http://Avonleadv.com
  */
 

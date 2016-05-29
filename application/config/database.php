@@ -1,4 +1,4 @@
-<?php  defined('BASEPATH') or exit('No direct script access allowed');
+<?php  defined('BASEPATH') OR exit('No direct script access allowed');
 /*
 | -------------------------------------------------------------------
 | DATABASE CONNECTIVITY SETTINGS
@@ -58,7 +58,7 @@
 */
 
 $active_group = 'default';
-$query_builder = true;
+$query_builder = TRUE;
 
 $db['default'] = array(
     'dsn'   => '',
@@ -68,16 +68,16 @@ $db['default'] = array(
     'database' => 'avltest2',
     'dbdriver' => 'mysqli',
     'dbprefix' => 'avl_',
-    'pconnect' => false,
-    'db_debug' => true,
-    'cache_on' => false,
+    'pconnect' => FALSE,
+    'db_debug' => TRUE,
+    'cache_on' => FALSE,
     'cachedir' => '',
     'char_set' => 'utf8',
     'dbcollat' => 'utf8_general_ci',
     'swap_pre' => '',
-    'encrypt' => false,
-    'compress' => false,
-    'stricton' => false,
+    'encrypt' => FALSE,
+    'compress' => FALSE,
+    'stricton' => FALSE,
     'failover' => array(),
-    'save_queries' => true
+    'save_queries' => TRUE
 );
