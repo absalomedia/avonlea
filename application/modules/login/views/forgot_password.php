@@ -1,5 +1,5 @@
-<div id="wrapper">
     <div class="cover-image client"></div>
+    <div id="wrapper">
     <div id="forgot" data-cols="1/2" class="animate form">
     <section class="login_content">
         <h1><?php echo lang('forgot_password');?></h1>
