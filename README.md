@@ -1,0 +1,2 @@
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/de38a7810dec4138b5ed2ddf3ab7ba3b)](https://www.codacy.com/app/media/avonlea?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=absalomedia/avonlea&amp;utm_campaign=Badge_Grade)

@@ -1,6 +1,7 @@
 {
     "description" : "Avonlea",
-    "name" : "avonlea/Avonlea",
+    "name" : "avonlea/avonlea",
+    "license": "OSL-3.0",
     "require": {
         "php": ">=5.4",
         "altorouter/altorouter": "1.1.0",
