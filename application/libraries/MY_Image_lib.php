@@ -1,6 +1,6 @@
 <?php  if (! defined('BASEPATH')) {
      exit('No direct script access allowed');
- }
+}
 
 class MY_Image_lib extends CI_Image_lib
 {
@@ -31,11 +31,11 @@ class MY_Image_lib extends CI_Image_lib
 
         $ratio        = (($this->orig_height/$this->orig_width) - ($this->height/$this->width));
 
-        if ($this->master_dim != 'width' and $this->master_dim != 'height') {
+        if ($this->master_dim != 'width' && $this->master_dim != 'height') {
             $this->master_dim    = ($ratio < 0) ? 'width' : 'height';
         }
 
-        if (($this->width != $new_width) and ($this->height != $new_height)) {
+        if (($this->width != $new_width) && ($this->height != $new_height)) {
             if ($this->master_dim    == 'height') {
                 $this->width    = $new_width;
             } else {

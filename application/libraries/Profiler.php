@@ -1,17 +1,17 @@
 <?php  if (! defined('BASEPATH')) {
      exit('No direct script access allowed');
- }
+}
 /**
  * CodeIgniter
  *
  * An open source application development framework for PHP 5.1.6 or newer
  *
- * @package		CodeIgniter
- * @author		ExpressionEngine Dev Team
- * @copyright	Copyright (c) 2008 - 2011, EllisLab, Inc.
- * @license		http://codeigniter.com/user_guide/license.html
- * @link		http://codeigniter.com
- * @since		Version 1.0
+ * @package         CodeIgniter
+ * @author      ExpressionEngine Dev Team
+ * @copyright   Copyright (c) 2008 - 2011, EllisLab, Inc.
+ * @license         http://codeigniter.com/user_guide/license.html
+ * @link        http://codeigniter.com
+ * @since       Version 1.0
  * @filesource
  */
 
@@ -26,11 +26,11 @@
  * Note: At some point it would be good to move all the HTML in this class
  * into a set of template files in order to allow customization.
  *
- * @package		CodeIgniter
- * @subpackage	Libraries
- * @category	Libraries
- * @author		ExpressionEngine Dev Team
- * @link		http://codeigniter.com/user_guide/general/profiling.html
+ * @package         CodeIgniter
+ * @subpackage  Libraries
+ * @category    Libraries
+ * @author      ExpressionEngine Dev Team
+ * @link        http://codeigniter.com/user_guide/general/profiling.html
  */
 class CI_Profiler extends CI_Loader
 {
@@ -98,8 +98,8 @@ class CI_Profiler extends CI_Loader
      *
      * Sets the private _compile_* properties to enable/disable Profiler sections
      *
-     * @param	mixed
-     * @return	void
+     * @param   mixed
+     * @return  void
      */
     public function set_sections($config)
     {
@@ -121,7 +121,7 @@ class CI_Profiler extends CI_Loader
      * and "_end" respectively).  It then compiles the execution times for
      * all points and returns it as an array
      *
-     * @return	array
+     * @return  array
      */
     protected function _compile_benchmarks()
     {
@@ -132,7 +132,7 @@ class CI_Profiler extends CI_Loader
             // We match the "end" marker so that the list ends
             // up in the order that it was defined
             if (preg_match("/(.+?)_end/i", $key, $match)) {
-                if (isset($this->CI->benchmark->marker[$match[1].'_end']) and isset($this->CI->benchmark->marker[$match[1].'_start'])) {
+                if (isset($this->CI->benchmark->marker[$match[1].'_end']) && isset($this->CI->benchmark->marker[$match[1].'_start'])) {
                     $profile[$match[1]] = $this->CI->benchmark->elapsed_time($match[1].'_start', $key);
                 }
             }
@@ -155,7 +155,7 @@ class CI_Profiler extends CI_Loader
     /**
      * Compile Queries
      *
-     * @return	string
+     * @return  string
      */
     protected function _compile_queries()
     {
@@ -210,7 +210,7 @@ class CI_Profiler extends CI_Loader
     /**
      * Compile $_GET Data
      *
-     * @return	string
+     * @return  string
      */
     protected function _compile_get()
     {
@@ -238,7 +238,7 @@ class CI_Profiler extends CI_Loader
     /**
      * Compile $_POST Data
      *
-     * @return	string
+     * @return  string
      */
     protected function _compile_post()
     {
@@ -268,7 +268,7 @@ class CI_Profiler extends CI_Loader
     /**
      * Show query string
      *
-     * @return	string
+     * @return  string
      */
     protected function _compile_uri_string()
     {
@@ -286,7 +286,7 @@ class CI_Profiler extends CI_Loader
     /**
      * Show the controller and function that were called
      *
-     * @return	string
+     * @return  string
      */
     protected function _compile_controller_info()
     {
@@ -302,7 +302,7 @@ class CI_Profiler extends CI_Loader
      *
      * Display total used memory
      *
-     * @return	string
+     * @return  string
      */
     protected function _compile_memory_usage()
     {
@@ -322,7 +322,7 @@ class CI_Profiler extends CI_Loader
      *
      * Lists HTTP headers
      *
-     * @return	string
+     * @return  string
      */
     protected function _compile_http_headers()
     {
@@ -343,13 +343,13 @@ class CI_Profiler extends CI_Loader
      *
      * Lists developer config variables
      *
-     * @return	string
+     * @return  string
      */
     protected function _compile_config()
     {
         $output = array();
 
-        foreach ($this->CI->config->config as $config=>$val) {
+        foreach ($this->CI->config->config as $config => $val) {
             if (is_array($val)) {
                 $val = print_r($val, true);
             }
@@ -479,7 +479,7 @@ class CI_Profiler extends CI_Loader
     /**
      * Run the Profiler
      *
-     * @return	string
+     * @return  string
      */
     public function run()
     {
