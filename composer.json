@@ -8,6 +8,7 @@
         "swiftmailer/swiftmailer": "@stable",
         "twig/twig": "~1.0",
         "omnipay/common": "^2.3",
+        "digitalnature/php-ref": "dev-master",
         "filp/whoops": "^2.1"
     },
     "require-dev": {
