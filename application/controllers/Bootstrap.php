@@ -10,6 +10,9 @@ class Bootstrap extends CI_Controller
 
     public function init()
     {
+        $run     = new Run();
+        $handler = new PrettyPageHandler();
+
         $this->load->helper('url');
         if (!file_exists(APPPATH.'/config/database.php')) {
             redirect('install');
@@ -200,7 +203,7 @@ class Bootstrap extends CI_Controller
                 $class = new $target[0];
                 call_user_func_array([$class, $target[1]], $match['params']);
             } catch (Exception $e) {
-                var_dump($e);
+                r($e);
                 throw_404();
             }
         } // throw a 404 error
