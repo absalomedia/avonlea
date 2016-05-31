@@ -8,7 +8,7 @@ class MY_Image_lib extends CI_Image_lib
     //stop images from enlarging
     public function image_reproportion()
     {
-        if (!is_numeric($this->width) || !is_numeric($this->height) or $this->width === 0 or $this->height === 0) {
+        if (!is_numeric($this->width) || !is_numeric($this->height) || $this->width === 0 || $this->height === 0) {
             return;
         }
 

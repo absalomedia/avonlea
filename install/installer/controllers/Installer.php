@@ -26,7 +26,7 @@ class Installer extends CI_Controller
         $this->form_validation->set_rules('prefix', 'Database Prefix', 'trim');
         $this->form_validation->set_rules('admin-password', 'Admin Password', 'trim|required');
 
-        if ($this->form_validation->run() == false || $errors != '') {
+        if ($this->form_validation->run() === false || $errors != '') {
             $this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
             $errors .= validation_errors();
 
