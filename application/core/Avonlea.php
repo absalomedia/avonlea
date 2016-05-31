@@ -874,7 +874,7 @@ class Avonlea
         CI::Orders()->removeItem($this->cart->id, $id);
         $numitem = count($this->items);
 
-        for ($i=0; $i < $numitem); $i++) {
+        for ($i=0; $i < $numitem; $i++) {
             if ($this->items[$i]->id === $id) {
                 unset($this->items[$i]);
             }

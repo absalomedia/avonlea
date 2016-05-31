@@ -87,7 +87,7 @@ class AdminUsers extends Admin
         \CI::form_validation()->set_rules('lastname', 'lang:lastname', 'trim|max_length[32]');
         \CI::form_validation()->set_rules('email', 'lang:email', 'trim|required|valid_email|max_length[128]');
         \CI::form_validation()->set_rules('username', 'lang:username', ['trim', 'required', 'max_length[128]', ['username_callable', function ($str) {
-            $email = \CI::auth()->check_username($str, $this->admin_id);
+            $email = \CI::auth()->checkUsername($str, $this->admin_id);
             if ($email) {
                 \CI::form_validation()->set_message('username_callable', lang('error_username_taken'));
                 return false;

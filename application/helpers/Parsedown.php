@@ -529,7 +529,7 @@ class Parsedown
 
     protected function addToQuote($Line, array $Block)
     {
-        if ($Line['text'][0] === '>' and preg_match('/^>[ ]?(.*)/', $Line['text'], $matches)) {
+        if ($Line['text'][0] === '>' && preg_match('/^>[ ]?(.*)/', $Line['text'], $matches)) {
             if (isset($Block['interrupted'])) {
                 $Block['element']['text'] []= '';
 
@@ -569,7 +569,7 @@ class Parsedown
 
     protected function identifySetext($Line, array $Block = null)
     {
-        if (! isset($Block) or isset($Block['type']) or isset($Block['interrupted'])) {
+        if (! isset($Block) || isset($Block['type']) || isset($Block['interrupted'])) {
             return;
         }
 
@@ -645,7 +645,7 @@ class Parsedown
             return;
         }
 
-        if (strpos($Block['element']['text'], '|') !== false and chop($Line['text'], ' -:|') === '') {
+        if (strpos($Block['element']['text'], '|') !== false && chop($Line['text'], ' -:|') === '') {
             $alignments = [];
 
             $divider = $Line['text'];
@@ -740,7 +740,7 @@ class Parsedown
 
     protected function addToTable($Line, array $Block)
     {
-        if ($Line['text'][0] === '|' or strpos($Line['text'], '|')) {
+        if ($Line['text'][0] === '|' || strpos($Line['text'], '|')) {
             $Elements = [];
 
             $row = $Line['text'];
@@ -928,7 +928,7 @@ class Parsedown
 
                 # The identified span can be ahead of the marker.
 
-                if (isset($Span['position']) and $Span['position'] > $markerPosition) {
+                if (isset($Span['position']) && $Span['position'] > $markerPosition) {
                     continue;
                 }
 
@@ -969,7 +969,7 @@ class Parsedown
 
     protected function identifyUrl($Excerpt)
     {
-        if (! isset($Excerpt['text'][1]) or $Excerpt['text'][1] !== '/') {
+        if (! isset($Excerpt['text'][1]) || $Excerpt['text'][1] !== '/') {
             return;
         }
 
@@ -1106,7 +1106,7 @@ class Parsedown
     {
         $extent = $Excerpt['text'][0] === '!' ? 1 : 0;
 
-        if (strpos($Excerpt['text'], ']') and preg_match('/\[((?:[^][]|(?R))*)\]/', $Excerpt['text'], $matches)) {
+        if (strpos($Excerpt['text'], ']') && preg_match('/\[((?:[^][]|(?R))*)\]/', $Excerpt['text'], $matches)) {
             $Link = array('text' => $matches[1], 'label' => strtolower($matches[1]));
 
             $extent += strlen($matches[0]);

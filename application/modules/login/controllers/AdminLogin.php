@@ -34,7 +34,7 @@ class AdminLogin extends \Avonlea\Controller
             $password  = \CI::input()->post('password');
             $remember  = \CI::input()->post('remember');
             $redirect  = \CI::input()->post('redirect');
-            $login = \CI::auth()->login_admin($username, $password, $remember);
+            $login = \CI::auth()->loginAdmin($username, $password, $remember);
             if ($login) {
                 if ($redirect === '') {
                     $redirect = 'admin/dashboard';

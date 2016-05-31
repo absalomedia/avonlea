@@ -93,7 +93,7 @@ class Auth
     /*
     this function does the logging in.
     */
-    public function login_admin($username, $password, $remember = false)
+    public function loginAdmin($username, $password, $remember = false)
     {
         // make sure the username doesn't go into the query as false or 0
         if (!$username) {
@@ -239,7 +239,7 @@ class Auth
         }
     }
     
-    public function check_username($str, $id = false)
+    public function checkUsername($str, $id = false)
     {
         CI::db()->select('username');
         CI::db()->from('admin');
