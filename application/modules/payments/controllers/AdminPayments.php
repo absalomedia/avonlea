@@ -23,7 +23,7 @@ class AdminPayments extends Admin
         global $paymentModules;
 
         $data['payment_modules'] = $paymentModules;
-        $data['enabled_modules'] = \CI::Settings()->get_settings('payment_modules');
+        $data['enabled_modules'] = \CI::Settings()->getSettings('payment_modules');
 
         $data['page_title'] = lang('common_payment_modules');
         $this->view('payment_index', $data);

@@ -118,7 +118,7 @@ class AdminSettings extends Admin
         \CI::form_validation()->set_rules('tax_shipping', 'lang:tax_shipping');
 
         // get the values from the DB
-        $data = array_merge($data, \CI::Settings()->get_settings('Avonlea'));
+        $data = array_merge($data, \CI::Settings()->getSettings('Avonlea'));
 
         $data['config'] = $data;
         //break out order statuses to an array
@@ -188,7 +188,7 @@ class AdminSettings extends Admin
             $save['tax_shipping'] = (bool)\CI::input()->post('tax_shipping');
             $save['homepage'] = \CI::input()->post('homepage');
 
-            \CI::Settings()->save_settings('Avonlea', $save);
+            \CI::Settings()->saveSettings('Avonlea', $save);
 
             redirect('admin/settings');
         }

@@ -28,7 +28,7 @@ class AdminGiftCards extends Admin
         $data['page_title'] = lang('gift_cards');
         $data['cards'] = \CI::GiftCards()->getAllNew();
 
-        $gc_settings = \CI::Settings()->get_settings('gift_cards');
+        $gc_settings = \CI::Settings()->getSettings('gift_cards');
         if (isset($gc_settings['enabled'])) {
             $data['gift_cards']['enabled'] = $gc_settings['enabled'];
         } else {

@@ -150,7 +150,7 @@ class Bootstrap extends CI_Controller
         }
 
         //get settings from the DB
-        $settings = $this->Settings->get_settings('avl');
+        $settings = $this->Settings->getSettings('avl');
 
         //loop through the settings and set them in the config library
         foreach ($settings as $key => $setting) {

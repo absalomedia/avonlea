@@ -2,7 +2,7 @@
 class Settings
 {
 
-    public function get_settings($code)
+    public function getSettings($code)
     {
         CI::db()->where('code', $code);
         $result = CI::db()->get('settings');
@@ -20,22 +20,21 @@ class Settings
     $code is the item that is calling it
     ex. any shipping settings have the code "shipping"
     */
-    public function save_settings($code, $values)
+    public function saveSettings($code, $values)
     {
         //get the settings first, this way, we can know if we need to update or insert settings
         //we're going to create an array of keys for the requested code
-        $settings   = $this->get_settings($code);
+        $settings   = $this->getSettings($code);
 
         //loop through the settings and add each one as a new row
-        foreach ($values as $key=>$value) {
+        foreach ($values as $key => $value) {
             //if the key currently exists, update the setting
             if (array_key_exists($key, $settings)) {
                 $update = array('setting'=>$value);
                 CI::db()->where('code', $code);
                 CI::db()->where('setting_key', $key);
                 CI::db()->update('settings', $update);
-            }
-            //if the key does not exist, add it
+            } //if the key does not exist, add it
             else {
                 $insert = array('code'=>$code, 'setting_key'=>$key, 'setting'=>$value);
                 CI::db()->insert('settings', $insert);
@@ -44,14 +43,14 @@ class Settings
     }
 
     //delete any settings having to do with this particular code
-    public function delete_settings($code)
+    public function deleteSettings($code)
     {
         CI::db()->where('code', $code);
         CI::db()->delete('settings');
     }
 
     //this deletes a specific setting
-    public function delete_setting($code, $setting_key)
+    public function deleteSetting($code, $setting_key)
     {
         CI::db()->where('code', $code);
         CI::db()->where('setting_key', $setting_key);

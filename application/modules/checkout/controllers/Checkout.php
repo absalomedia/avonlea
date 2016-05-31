@@ -156,7 +156,7 @@ class Checkout extends Front
 
         $modules = [];
 
-        $enabled_modules = \CI::Settings()->get_settings('payment_modules');
+        $enabled_modules = \CI::Settings()->getSettings('payment_modules');
 
         foreach ($paymentModules as $paymentModule) {
             if (array_key_exists($paymentModule['key'], $enabled_modules)) {

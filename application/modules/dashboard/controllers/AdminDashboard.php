@@ -30,8 +30,8 @@ class AdminDashboard extends Admin
     public function index()
     {
         //check to see if shipping and payment modules are installed
-        $data['payment_module_installed'] = (bool)count(\CI::Settings()->get_settings('payment_modules'));
-        $data['shipping_module_installed'] = (bool)count(\CI::Settings()->get_settings('shipping_modules'));
+        $data['payment_module_installed'] = (bool)count(\CI::Settings()->getSettings('payment_modules'));
+        $data['shipping_module_installed'] = (bool)count(\CI::Settings()->getSettings('shipping_modules'));
 
         $data['page_title'] =  lang('dashboard');
 
