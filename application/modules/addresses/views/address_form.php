@@ -1,6 +1,6 @@
 <div id="addressFormWrapper">
     <div class="page-header">
-        <?php if ($addressCount > 0):?>
+        <?php if ($addressCount > 0) :?>
             <button class="red pull-right input-xs" type="cancel" onclick="closeAddressForm();"><?php echo lang('form_cancel');?></button>
         <?php endif;?>
         <h3><?php echo lang('address_form');?></h3>
@@ -68,7 +68,7 @@
             </div>
         </div>
 
-        <button class="blue" type="submit"><?php echo lang('save_address');?></button>
+        <button class="blue" type="submit"><?php echo lang('saveAddress');?></button>
     </form>
 
     <script>
@@ -81,7 +81,7 @@
             $('.addressFormWrapper').spin();
             event.preventDefault();
             $.post($(this).attr('action'), $(this).serialize(), function(data){
-                if(data == 1)
+                if(data ===1)
                 {
                     closeAddressForm();
                 }
@@ -93,7 +93,7 @@
         })
     });
 
-    <?php if (validation_errors()):
+    <?php if (validation_errors()) :
         $errors = \CI::form_validation()->get_error_array(); ?>
 
         var formErrors = <?php echo json_encode($errors);?>

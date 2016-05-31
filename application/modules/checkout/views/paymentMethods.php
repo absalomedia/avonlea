@@ -2,11 +2,11 @@
     <h3><?php echo lang('payment_methods');?></h3>
 </div>
 
-<?php if (count($modules) == 0) :?>
+<?php if (count($modules) === 0) :?>
     <div class="alert">
         <?php echo lang('error_no_payment_method');?>
     </div>
-<?php elseif (AVL::getGrandTotal() == 0) :?>
+<?php elseif (AVL::getGrandTotal() === 0) :?>
     <div class="alert">
         <?php echo lang('no_payment_needed');?>
     </div>

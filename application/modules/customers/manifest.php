@@ -11,7 +11,7 @@ $routes[] = ['GET|POST', '/admin/customers/group_form/[i:id]?', 'Avonlea\Control
 $routes[] = ['GET|POST', '/admin/customers/delete_group/[i:id]?', 'Avonlea\Controller\AdminCustomers#deleteGroup'];
 $routes[] = ['GET|POST', '/admin/customers/address_list/[i:id]?', 'Avonlea\Controller\AdminCustomers#addressList'];
 $routes[] = ['GET|POST', '/admin/customers/address_form/[i:customer_id]/[i:id]?', 'Avonlea\Controller\AdminCustomers#addressForm'];
-$routes[] = ['GET|POST', '/admin/customers/delete_address/[i:customer_id]/[i:id]', 'Avonlea\Controller\AdminCustomers#deleteAddress'];
+$routes[] = ['GET|POST', '/admin/customers/deleteAddress/[i:customer_id]/[i:id]', 'Avonlea\Controller\AdminCustomers#deleteAddress'];
 $routes[] = ['GET|POST', '/admin/customers/[:order_by]?/[:direction]?/[i:page]?', 'Avonlea\Controller\AdminCustomers#index'];
 
 //manifest

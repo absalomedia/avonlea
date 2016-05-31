@@ -56,7 +56,7 @@ class AdminBanners extends Admin
         
         \CI::form_validation()->set_rules('name', 'lang:name', 'trim|required');
         
-        if (\CI::form_validation()->run() == false) {
+        if (\CI::form_validation()->run() === false) {
             $this->view('banner_collection_form', $data);
         } else {
             $save['banner_collection_id'] = $banner_collection_id;
@@ -134,7 +134,7 @@ class AdminBanners extends Admin
         \CI::form_validation()->set_rules('link', 'lang:link', 'trim');
         \CI::form_validation()->set_rules('new_window', 'lang:new_window', 'trim');
         
-        if (\CI::form_validation()->run() == false) {
+        if (\CI::form_validation()->run() === false) {
             $data['error'] = validation_errors();
             $this->view('banner_form', $data);
         } else {

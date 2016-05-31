@@ -3,33 +3,33 @@
 </div>
 <?php
     //set "code" for searches
-    if (!$code) {
-        $code = '';
-    } else {
-        $code = '/'.$code;
-    }
-    function sort_url($lang, $by, $sort, $sorder, $code)
-    {
-        if ($sort == $by) {
-            if ($sorder == 'asc') {
-                $sort = 'desc';
-                $icon = ' <i class="icon-chevron-up"></i>';
-            } else {
-                $sort = 'asc';
-                $icon = ' <i class="icon-chevron-down"></i>';
-            }
+if (!$code) {
+    $code = '';
+} else {
+    $code = '/'.$code;
+}
+function sort_url($lang, $by, $sort, $sorder, $code)
+{
+    if ($sort === $by) {
+        if ($sorder === 'asc') {
+            $sort = 'desc';
+            $icon = ' <i class="icon-chevron-up"></i>';
         } else {
             $sort = 'asc';
-            $icon = '';
+            $icon = ' <i class="icon-chevron-down"></i>';
         }
-
-
-        $return = site_url('admin/orders/index/'.$by.'/'.$sort.'/'.$code);
-
-        echo '<a href="'.$return.'">'.lang($lang).$icon.'</a>';
+    } else {
+        $sort = 'asc';
+        $icon = '';
     }
 
-if ($term):?>
+
+    $return = site_url('admin/orders/index/'.$by.'/'.$sort.'/'.$code);
+
+    echo '<a href="'.$return.'">'.lang($lang).$icon.'</a>';
+}
+
+if ($term) :?>
 
 <div class="alert alert-info">
     <?php echo sprintf(lang('search_returned'), intval($total));?>
@@ -78,7 +78,7 @@ if ($term):?>
 
     <tbody>
     <?php echo (count($orders) < 1)?'<tr><td style="text-align:center;">'.lang('no_orders') .'</td></tr>':''?>
-    <?php foreach ($orders as $order): ?>
+    <?php foreach ($orders as $order) : ?>
     <tr>
         <td style="white-space:nowrap">
             <strong><a href="<?php echo site_url('admin/orders/order/'.$order->order_number);?>"><?php echo $order->order_number; ?></a></strong>
@@ -126,7 +126,7 @@ if ($term):?>
                         <span class="sr-only">Toggle Dropdown</span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
-                        <?php foreach (config_item('order_statuses') as $os):?>
+                        <?php foreach (config_item('order_statuses') as $os) :?>
                             <li><a onclick="$('#status_form_<?php echo $order->id;?>').val('<?php echo $os;?>'); return false;"><?php echo $os;?></a></li>
                         <?php endforeach;?>
                     </ul>
@@ -180,7 +180,7 @@ function save_status(id)
     var status = $('#status_form_'+id).val();
 
 
-    if($.trim(status.toLowerCase()) == 'cart')
+    if($.trim(status.toLowerCase()) === 'cart')
     {
         alert('<?php echo lang('cart_status_error');?>');
         $('#status_form_'+id).val($('#status_form_'+id).attr('data-original'));

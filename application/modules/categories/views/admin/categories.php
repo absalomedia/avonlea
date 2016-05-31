@@ -34,7 +34,7 @@ function areyousure()
                 <td><?php echo $sub.$cat->name;
             ?></td>
                 <?php foreach ($groups as $group) :?>
-                    <td><?php echo ($cat->{'enabled'.$group->id} == '1') ? lang('enabled') : lang('disabled');
+                    <td><?php echo ($cat->{'enabled'.$group->id} === '1') ? lang('enabled') : lang('disabled');
             ?></td>
                 <?php endforeach;
             ?>

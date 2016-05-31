@@ -17,7 +17,7 @@ class AdminSitemap extends Admin
     {
         parent::__construct();
 
-        \CI::auth()->check_access('Admin', true);
+        \CI::auth()->checkAccess('Admin', true);
         \CI::load()->model(['Categories', 'Products', 'Pages']);
         \CI::lang()->load('sitemap');
     }
@@ -101,7 +101,7 @@ class AdminSitemap extends Admin
 
         foreach($searchEngines as $url=>$method)
         {
-            if($method == 'GET')
+            if($method === 'GET')
             {
                 $ch = curl_init();
                 curl_setopt($ch, CURLOPT_CONNECTTIMEOUT,2);

@@ -48,7 +48,7 @@ class AdminFlatRate extends Admin
         \CI::form_validation()->set_rules('enabled', 'lang:enabled', 'trim|numeric');
         \CI::form_validation()->set_rules('rate', 'lang:rate', 'trim|floatval');
 
-        if (\CI::form_validation()->run() == false) {
+        if (\CI::form_validation()->run() === false) {
             $settings = \CI::Settings()->get_settings('FlatRate');
 
             $this->view('flat_rate_form', $settings);

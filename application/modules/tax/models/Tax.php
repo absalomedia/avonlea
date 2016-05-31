@@ -17,13 +17,13 @@ class Tax extends CI_Model
         
         if ($taxType =='ship') {
             if ((bool)$order->shipping_address_id) {
-                $this->address = CI::Customers()->get_address($order->shipping_address_id);
+                $this->address = CI::Customers()->getAddress($order->shipping_address_id);
             } else {
                 return 0;
             }
         } else {
             if ((bool)$order->billing_address_id) {
-                $this->address = CI::Customers()->get_address($order->billing_address_id);
+                $this->address = CI::Customers()->getAddress($order->billing_address_id);
             } else {
                 return 0;
             }

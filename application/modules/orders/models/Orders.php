@@ -101,7 +101,7 @@ class Orders extends CI_Model
         foreach ($term as $t) {
             $not = '';
             $operator = 'OR';
-            if (substr($t, 0, 1) == '-') {
+            if (substr($t, 0, 1) === '-') {
                 $not = 'NOT ';
                 $operator = 'AND';
                 //trim the - sign off

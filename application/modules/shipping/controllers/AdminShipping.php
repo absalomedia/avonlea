@@ -15,7 +15,7 @@ class AdminShipping extends Admin
 
     public function index()
     {
-        \CI::auth()->check_access('Admin', true);
+        \CI::auth()->checkAccess('Admin', true);
 
         \CI::lang()->load('settings');
         \CI::load()->helper('inflector');

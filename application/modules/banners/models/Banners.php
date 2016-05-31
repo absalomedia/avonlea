@@ -30,7 +30,7 @@ class Banners extends CI_Model
         if ($only_active) {
             $return = [];
             foreach ($banners as $banner) {
-                if ($banner->enable_date == '0000-00-00') {
+                if ($banner->enable_date === '0000-00-00') {
                     $enable_test    = false;
                     $enable         = '';
                 } else {
@@ -39,7 +39,7 @@ class Banners extends CI_Model
                     $enable         = $eo[1].'-'.$eo[2].'-'.$eo[0];
                 }
 
-                if ($banner->disable_date == '0000-00-00') {
+                if ($banner->disable_date === '0000-00-00') {
                     $disable_test   = false;
                     $disable        = '';
                 } else {
@@ -54,7 +54,7 @@ class Banners extends CI_Model
                     $return[]   = $banner;
                 }
 
-                if (count($return) == $limit) {
+                if (count($return) === $limit) {
                     break;
                 }
             }
@@ -72,11 +72,11 @@ class Banners extends CI_Model
         $result = $result->row();
         
         if ($result) {
-            if ($result->enable_date == '0000-00-00') {
+            if ($result->enable_date === '0000-00-00') {
                 $result->enable_date = '';
             }
             
-            if ($result->disable_date == '0000-00-00') {
+            if ($result->disable_date === '0000-00-00') {
                 $result->disable_date = '';
             }
         
@@ -112,7 +112,7 @@ class Banners extends CI_Model
         $banners    = CI::db()->order_by('sequence ASC')->get('banners')->result();
         $count  = 1;
         foreach ($banners as &$banner) {
-            if ($banner->enable_date == '0000-00-00') {
+            if ($banner->enable_date === '0000-00-00') {
                 $enable_test    = false;
                 $enable         = '';
             } else {
@@ -121,7 +121,7 @@ class Banners extends CI_Model
                 $enable         = $eo[1].'-'.$eo[2].'-'.$eo[0];
             }
 
-            if ($banner->disable_date == '0000-00-00') {
+            if ($banner->disable_date === '0000-00-00') {
                 $disable_test   = false;
                 $disable        = '';
             } else {

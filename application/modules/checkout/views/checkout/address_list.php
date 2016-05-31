@@ -16,13 +16,13 @@
                         </td>
                         <td>
                             <label><?php
-                                $checked = (AVL::getCart()->billing_address_id == $a['id'])?true:false;
+                                $checked = (AVL::getCart()->billing_address_id === $a['id'])?true:false;
                                 echo form_radio(['name'=>'billing_address', 'value'=>$a['id'], 'checked'=>$checked]);
                             ?><?php echo lang('billing');?></label>
                         </td>
                         <td>
                             <label><?php
-                                $checked = (AVL::getCart()->shipping_address_id == $a['id'])?true:false;
+                                $checked = (AVL::getCart()->shipping_address_id === $a['id'])?true:false;
                                 echo form_radio(['name'=>'shipping_address', 'value'=>$a['id'], 'checked'=>$checked]);
                             ?>
                             <?php echo lang('shipping');?></label>
@@ -57,7 +57,7 @@ function editAddress(id)
 
 function deleteAddress(id)
 {
-    if( confirm('<?php echo lang('delete_address_confirmation');?>') )
+    if( confirm('<?php echo lang('deleteAddress_confirmation');?>') )
     {
         $.post('<?php echo site_url('addresses/delete');?>/'+id, function(){
             closeAddressForm();
@@ -105,12 +105,12 @@ $('[name="shipping_address"]').change(function(){
 var billingAddresses = $('[name="billing_address"]');
 var shippingAddresses = $('[name="shipping_address"]');
 
-if(billingAddresses.length == 1)
+if(billingAddresses.length ===1)
 {
     billingAddresses.attr('checked', true).change();
 }
 
-if(shippingAddresses.length == 1)
+if(shippingAddresses.length ===1)
 {
     shippingAddresses.attr('checked', true).change();
 }

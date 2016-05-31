@@ -169,7 +169,7 @@ class CI_Profiler extends CI_Loader
             }
         }
 
-        if (count($dbs) == 0) {
+        if (count($dbs) === 0) {
             return $this->CI->lang->line('profiler_no_db');
         }
 
@@ -194,7 +194,7 @@ class CI_Profiler extends CI_Loader
             }
         }
 
-        if (count($output) == 0) {
+        if (count($output) === 0) {
             $output = $this->CI->lang->line('profiler_no_queries');
         } else {
             $total = number_format($total, 4);
@@ -218,7 +218,7 @@ class CI_Profiler extends CI_Loader
 
         $get = $this->CI->input->get();
 
-        if (count($get) == 0 || $get === false) {
+        if (count($get) === 0 || $get === false) {
             $output = $this->CI->lang->line('profiler_no_get');
         } else {
             foreach ($get as $key => $val) {
@@ -244,7 +244,7 @@ class CI_Profiler extends CI_Loader
     {
         $output = array();
 
-        if (count($_POST) == 0) {
+        if (count($_POST) === 0) {
             $output = $this->CI->lang->line('profiler_no_post');
         } else {
             foreach ($_POST as $key => $val) {
@@ -272,7 +272,7 @@ class CI_Profiler extends CI_Loader
      */
     protected function _compile_uri_string()
     {
-        if ($this->CI->uri->uri_string == '') {
+        if ($this->CI->uri->uri_string === '') {
             $output = $this->CI->lang->line('profiler_no_uri');
         } else {
             $output = $this->CI->uri->uri_string;
@@ -379,9 +379,9 @@ class CI_Profiler extends CI_Loader
 
         if ($logs['console']) {
             foreach ($logs['console'] as $key => $log) {
-                if ($log['type'] == 'log') {
+                if ($log['type'] === 'log') {
                     $logs['console'][$key]['data'] = print_r($log['data'], true);
-                } elseif ($log['type'] == 'memory') {
+                } elseif ($log['type'] === 'memory') {
                     $logs['console'][$key]['data'] = $this->get_file_size($log['data']);
                 }
             }
@@ -468,7 +468,7 @@ class CI_Profiler extends CI_Loader
             }
         }
 
-        if ($sizestring == $sizes[0]) {
+        if ($sizestring === $sizes[0]) {
             $retstring = '%01d %s';
         } // Bytes aren't normally fractional
         return sprintf($retstring, $size, $sizestring);
@@ -490,7 +490,7 @@ class CI_Profiler extends CI_Loader
         foreach ($this->_available_sections as $section) {
             if ($this->_compile_{$section} !== false) {
                 $func = "_compile_{$section}";
-                if ($section == 'http_headers') {
+                if ($section === 'http_headers') {
                     $section = 'headers';
                 }
                 $this->_sections[$section] = $this->{$func}();

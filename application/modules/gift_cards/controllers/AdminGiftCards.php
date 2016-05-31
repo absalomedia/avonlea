@@ -48,7 +48,7 @@ class AdminGiftCards extends Admin
 
         $data['page_title'] = lang('add_gift_card');
 
-        if (\CI::form_validation()->run() == false) {
+        if (\CI::form_validation()->run() === false) {
             $this->view('gift_card_form', $data);
         } else {
             $save['code'] = generate_code(); // from the string helper

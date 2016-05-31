@@ -3,7 +3,7 @@
 
         <div class="checkoutAddress">
         <?php if (!empty($addresses)) {
-    $this->show('checkout/address_list', ['addresses'=>$addresses]);
+            $this->show('checkout/address_list', ['addresses'=>$addresses]);
 } else {
     ?>
             <script>
@@ -38,20 +38,20 @@
 
         $.each(errors, function(key,val) {
 
-            if(key == 'inventory')
+            if(key === 'inventory')
             {
                 setInventoryErrors(val);
                 $('#summaryErrors').text('<?php echo lang('some_items_are_out_of_stock');?>').show();
             }
-            else if(key == 'shipping')
+            else if(key === 'shipping')
             {
                 showShippingError(val);
             }
-            else if(key == 'shippingAddress')
+            else if(key === 'shippingAddress')
             {
                 $('#addressError').text('<?php echo lang('error_shipping_address')?>').show();
             }
-            else if(key == 'billingAddress')
+            else if(key === 'billingAddress')
             {
                 $('#addressError').text('<?php echo lang('error_billing_address')?>').show();
             }

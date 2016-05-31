@@ -22,7 +22,7 @@ function areyousure()
         </tr>
     </thead>
     <tbody>
-<?php foreach ($areas as $location):?>
+<?php foreach ($areas as $location) :?>
         <tr>
             <td><?php echo $location->code; ?></td>
             <td><?php echo $location->tax+0;?>%</td>
@@ -34,7 +34,7 @@ function areyousure()
             </td>
       </tr>
 <?php endforeach; ?>
-<?php if (count($areas) == 0):?>
+<?php if (count($areas) === 0) :?>
         <tr>
             <td colspan="3">
                 <?php echo lang('no_zone_areas');?>

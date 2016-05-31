@@ -29,7 +29,7 @@ class Checkout extends Front
     public function index()
     {
         if (\AVL::totalItems() > 0) {
-            $data['addresses'] = \CI::Customers()->get_address_list($this->customer->id);
+            $data['addresses'] = \CI::Customers()->getAddressList($this->customer->id);
             $this->view('checkout', $data);
         } else {
             $this->view('emptyCart');
@@ -69,8 +69,8 @@ class Checkout extends Front
     public function orderComplete($orderNumber)
     {
         $order = \CI::Orders()->getOrder($orderNumber);
-        $orderCustomer = \CI::Customers()->get_customer($order->customer_id);
-        if ($orderCustomer->is_guest || $orderCustomer->id == $this->customer->id) {
+        $orderCustomer = \CI::Customers()->getCustomer($order->customer_id);
+        if ($orderCustomer->is_guest || $orderCustomer->id === $this->customer->id) {
             $this->view('orderComplete', ['order'=>$order]);
         } else {
             if (!\CI::Login()->isLoggedIn(false, false)) {
@@ -89,7 +89,7 @@ class Checkout extends Front
 
     public function addressList()
     {
-        $data['addresses'] = \CI::Customers()->get_address_list($this->customer->id);
+        $data['addresses'] = \CI::Customers()->getAddressList($this->customer->id);
         $this->partial('checkout/address_list', $data);
     }
 
@@ -98,14 +98,14 @@ class Checkout extends Front
         $type = \CI::input()->post('type');
         $id = \CI::input()->post('id');
 
-        $address = \CI::Customers()->get_address($id);
+        $address = \CI::Customers()->getAddress($id);
 
         if ($address['customer_id'] != $this->customer->id) {
             echo json_encode(['error'=>lang('error_address_not_found')]);
         } else {
-            if ($type == 'shipping') {
+            if ($type === 'shipping') {
                 \AVL::setAttribute('shipping_address_id', $id);
-            } elseif ($type == 'billing') {
+            } elseif ($type === 'billing') {
                 \AVL::setAttribute('billing_address_id', $id);
             }
 
@@ -135,7 +135,7 @@ class Checkout extends Front
 
         foreach ($rates as $key => $rate) {
             $test = md5(json_encode(['key'=>$key, 'rate'=>$rate]));
-            if ($hash == $test) {
+            if ($hash === $test) {
                 \AVL::setShippingMethod($key, $rate, $hash);
 
                 //save the cart

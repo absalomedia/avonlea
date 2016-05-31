@@ -15,9 +15,9 @@ class Emails
     public static function sendEmail($email)
     {
         $mailType = config_item('email_method');
-        if ($mailType == 'smtp') {
+        if ($mailType === 'smtp') {
             $transport = \Swift_SmtpTransport::newInstance(config_item('smtp_server'), config_item('smtp_port'))->setUsername(config_item('smtp_username'))->setPassword(config_item('smtp_password'));
-        } elseif ($mailType == 'sendmail') {
+        } elseif ($mailType === 'sendmail') {
             $transport = \Swift_SendmailTransport::newInstance(config_item('sendmail_path'));
         } else {
             //Mail

@@ -51,7 +51,7 @@ class AdminDigitalProducts extends Admin
         \CI::form_validation()->set_rules('title', 'lang:title', 'trim|required');
 
 
-        if (\CI::form_validation()->run() == false) {
+        if (\CI::form_validation()->run() === false) {
             $this->view('digital_product_form', $data);
         } else {
             if ($id==0) {

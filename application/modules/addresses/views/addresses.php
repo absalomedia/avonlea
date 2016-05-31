@@ -8,7 +8,7 @@
     });
     function deleteAddress(id)
     {
-        if( confirm('<?php echo lang('delete_address_confirmation');?>') )
+        if( confirm('<?php echo lang('deleteAddress_confirmation');?>') )
         {
             $.post('<?php echo site_url('addresses/delete');?>/'+id, function(){
                 loadAddresses();
@@ -19,10 +19,10 @@
 
 <h3><?php echo lang('address_manager');?></h3>
 
-<?php if (count($addresses) > 0):?>
+<?php if (count($addresses) > 0) :?>
     
     <table class="table zebra">
-    <?php foreach ($addresses as $a):?>
+    <?php foreach ($addresses as $a) :?>
         <tr>
             <td>
                 <?php echo format_address($a, true);?>

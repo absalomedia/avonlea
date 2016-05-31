@@ -14,9 +14,9 @@
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#product_info" data-toggle="tab"><?php echo lang('details');?></a></li>
                     <?php //if there aren't any files uploaded don't offer the client the tab
-                    if (count($file_list) > 0):?>
+                    if (count($file_list) > 0) :?>
                     <li><a href="#product_downloads" data-toggle="tab"><?php echo lang('digital_content');?></a></li>
-                    <?php endif;?>
+                    <?php                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         endif;?>
                     <li><a href="#product_categories" data-toggle="tab"><?php echo lang('categories');?></a></li>
                     <li><a href="#ProductOptions" data-toggle="tab"><?php echo lang('options');?></a></li>
                     <li><a href="#product_related" data-toggle="tab"><?php echo lang('related_products');?></a></li>
@@ -104,7 +104,7 @@
                             </thead>
                             <tbody>
                             <?php echo (count($file_list) < 1)?'<tr><td style="text-align:center;" colspan="6">'.lang('no_files').'</td></tr>':''?>
-                            <?php foreach ($file_list as $file):?>
+                            <?php foreach ($file_list as $file) :?>
                                 <tr>
                                     <td><?php echo $file->filename ?></td>
                                     <td><?php echo $file->title ?></td>
@@ -118,30 +118,30 @@
                 </div>
 
                 <div class="tab-pane" id="product_categories">
-                    <?php if (isset($categories[0])):?>
+                    <?php if (isset($categories[0])) :?>
                         <label><strong><?php echo lang('select_a_category');?></strong></label>
                         <table class="table table-striped">
                             <thead>
                                 <tr>
                                     <th><i class="icon-eye-slash"></i></th>
                                     <th><?php echo lang('name')?></th>
-                                    <?php foreach ($groups as $group):?>
+                                    <?php foreach ($groups as $group) :?>
                                         <th><?php echo $group->name;?></th>
                                     <?php endforeach;?>
                                     <th class="text-center"><?php echo lang('in').'/'.lang('main'); ?></th>
                                 </tr>
                             </thead>
                         <?php
-                        function list_categories($parent_id, $cats, $sub='', $product_categories, $primary_category, $groups, $hidden)
+                        function list_categories($parent_id, $cats, $sub = '', $product_categories, $primary_category, $groups, $hidden)
                         {
                             if (isset($cats[$parent_id])) {
-                                foreach ($cats[$parent_id] as $cat):?>
+                                foreach ($cats[$parent_id] as $cat) :?>
                                 <tr>
                                     <td><?php echo ($hidden)?'<i class="icon-eye-slash">':'';
                                 ?></i></td>
                                     <td><?php echo  $sub.$cat->name;
                                 ?></td>
-                                    <?php foreach ($groups as $group):?>
+                                    <?php foreach ($groups as $group) :?>
                                         <td><?php echo ($cat->{'enabled'.$group->id})?'<i class="icon-check"></i>':'';
                                 ?></td>
                                     <?php endforeach;
@@ -152,7 +152,7 @@
                                 ?>/>
                                         &nbsp;&nbsp;
                                         <input type="radio" name="primary_category" value="<?php echo $cat->id;
-                                ?>" <?php echo ($primary_category == $cat->id)?'checked="checked"':'';
+                                ?>" <?php echo ($primary_category === $cat->id)?'checked="checked"':'';
                                 ?>/>
                                     </td>
                                 </tr>
@@ -171,7 +171,7 @@
                         ?>
 
                     </table>
-                <?php else:?>
+                <?php else :?>
                     <div class="alert"><?php echo lang('no_available_categories');?></div>
                 <?php endif;?>
 
@@ -252,7 +252,7 @@
 
                                         $.each(data, function(index, value){
 
-                                            if($('#related_product_'+index).length == 0)
+                                            if($('#related_product_'+index).length === 0)
                                             {
                                                 $('#product_list').append('<option id="product_item_'+index+'" value="'+index+'">'+value+'</option>');
                                             }
@@ -306,7 +306,7 @@
                 <?php echo form_input(['name'=>'weight', 'value'=>assign_value('weight', $weight), 'class'=>'form-control']);?>
             </div>
 
-            <?php foreach ($groups as $group):?>
+            <?php foreach ($groups as $group) :?>
                 <fieldset>
                     <legend>
                         <?php echo $group->name;?>
@@ -491,7 +491,7 @@ $(document).ready(function() {
 
     $.each(options, function(key, val) {
         isText = null;
-        if(val.type == 'textfield' || val.type == 'textarea')
+        if(val.type === 'textfield' || val.type === 'textarea')
         {
             isText = true;
         }
@@ -506,7 +506,7 @@ $(document).ready(function() {
         {
             isText = null;
 
-            if(type == 'textfield' || type == 'textarea')
+            if(type === 'textfield' || type === 'textarea')
             {
                 isText = true;
             }
@@ -639,7 +639,7 @@ function add_related_product(id, name)
     }
     else
     {
-        if($('#related_product_'+$('#product_list').val()).length == 0 && $('#product_list').val() != null)
+        if($('#related_product_'+$('#product_list').val()).length === 0 && $('#product_list').val() != null)
         {
             view = {
                 id:$('#product_list').val(),
@@ -656,7 +656,7 @@ function add_related_product(id, name)
     }
     else
     {
-        if($('#product_list').val() == null)
+        if($('#product_list').val() ===null)
         {
             alert('<?php echo lang('alert_select_product');?>');
         }

@@ -47,7 +47,7 @@ class Page extends Front
 
         //this means there's a slug, lets see what's going on.
         foreach ($this->pages['all'] as $p) {
-            if ($p->slug == $slug) {
+            if ($p->slug === $slug) {
                 $page = $p;
                 continue;
             }

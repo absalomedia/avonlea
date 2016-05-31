@@ -142,7 +142,7 @@ function remove_option(id)
                                 </td>
                                 <td>
                                     <input type="radio" name="primary_category" value="<?php echo $cat->id;
-                            ?>" <?php echo ($primary_category == $cat->id)?'checked="checked"':'';
+                            ?>" <?php echo ($primary_category === $cat->id)?'checked="checked"':'';
                             ?>/>
                                 </td>
                             </tr>
@@ -189,7 +189,7 @@ function remove_option(id)
                                             $po->required = false;
                                         }
 
-                                        if ($po->type == 'droplist') {
+                                        if ($po->type === 'droplist') {
                                             if ($po->values) :
                                                 foreach ($po->values as $value) {
                                                     $value = (object)$value;
@@ -285,7 +285,7 @@ function add_image($photo_id, $filename, $alt, $caption, $primary = false)
                             <input type="radio" name="primary_image" value="<?php echo $photo_id;
     ?>" <?php if ($primary) {
     echo 'checked="checked"';
-}
+    }
     ?>/> <?php echo lang('main_image');
     ?>
                         </label>

@@ -11,10 +11,10 @@ $charges['products'] = [];
 $charges['shipping'] = [];
 
 foreach ($order->items as $item) {
-    if ($item->type == 'shipping') {
+    if ($item->type === 'shipping') {
         $charges['shipping'][] = $item;
         continue;
-    } elseif ($item->type == 'product') {
+    } elseif ($item->type === 'product') {
         $charges['products'][] = $item;
     }
 }
@@ -66,13 +66,13 @@ foreach ($order->items as $item) {
         <tr>
             <td style="border-top:1px solid #000;">
                 <strong><?php echo lang('payment_method');?></strong>
-                <?php foreach ($order->payments as $payment):?>
+                <?php foreach ($order->payments as $payment) :?>
                     <div><?php echo $payment->description;?></div>
                 <?php endforeach;?>
             </td>
             <td style="border-top:1px solid #000;">
                 <strong><?php echo lang('shipping');?> </strong>
-                <?php foreach ($charges['shipping'] as $shipping):?>
+                <?php foreach ($charges['shipping'] as $shipping) :?>
                     <div>
                         <?php echo $shipping->name; ?>
                     </div>
@@ -80,7 +80,7 @@ foreach ($order->items as $item) {
             </td>
         </tr>
 
-        <?php if (!empty($order->gift_message)):?>
+        <?php if (!empty($order->gift_message)) :?>
         <tr>
             <td colspan="3" style="border-top:1px solid #000;">
                 <strong><?php echo lang('gift_note');?></strong>
@@ -89,7 +89,7 @@ foreach ($order->items as $item) {
         </tr>
         <?php endif;?>
 
-        <?php if (!empty($order->shipping_notes)):?>
+        <?php if (!empty($order->shipping_notes)) :?>
             <tr>
                 <td colspan="3" style="border-top:1px solid #000;">
                     <strong><?php echo lang('shipping_notes');?></strong><br/><?php echo $order->shipping_notes;?>
@@ -113,7 +113,7 @@ foreach ($order->items as $item) {
             </tr>
         </thead>
         <tbody>
-        <?php foreach ($charges['products'] as $product):?>
+        <?php foreach ($charges['products'] as $product) :?>
             <tr>
                 <td style="text-align:center; font-size:20px; font-weight:bold;"><?php echo $product->quantity;?></td>
                 <td>
@@ -121,11 +121,11 @@ foreach ($order->items as $item) {
                     <?php echo (!empty($product->sku))?'<small>'.lang('sku').': '.$product->sku.'</small>':''?>
                 </td>
                 <td>
-                    <?php if (isset($order->options[$product->id])):
-                        foreach ($order->options[$product->id] as $option):?>
+                    <?php if (isset($order->options[$product->id])) :
+                        foreach ($order->options[$product->id] as $option) :?>
                             <div><strong><?php echo ($product->is_giftcard) ? lang('gift_card_'.$option->option_name) : $option->option_name;?></strong> : <?php echo $option->value;?></div>
-                        <?php endforeach;
-                    endif;?>
+                        <?php                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 endforeach;
+endif;?>
                 </td>
             </tr>
         <?php endforeach; ?>

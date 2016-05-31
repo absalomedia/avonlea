@@ -20,7 +20,7 @@ class AdminCoupons extends Admin
     {
         parent::__construct();
         
-        \CI::auth()->check_access('Admin', true);
+        \CI::auth()->checkAccess('Admin', true);
         \CI::load()->model('Coupons');
         \CI::load()->model('products');
         \CI::lang()->load('coupons');
@@ -107,7 +107,7 @@ class AdminCoupons extends Admin
         \CI::form_validation()->set_rules('start_date', 'lang:start_date');
         \CI::form_validation()->set_rules('end_date', 'lang:end_date');
     
-        if (\CI::form_validation()->run() == false) {
+        if (\CI::form_validation()->run() === false) {
             if (\CI::input()->post()) {
                 $data['products'] = json_decode(json_encode(\CI::input()->post('product')));
             }

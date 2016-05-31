@@ -10,7 +10,7 @@
         $hash = md5(json_encode(['key'=>$key, 'rate'=>$rate]));?>
 
         <tr onclick="$(this).find('input').prop('checked', true).trigger('change');">
-            <td style="width:20px;"><input type="radio" name="shippingMethod" value="<?php echo $hash;?>" <?php echo (is_object($selectedShippingMethod) && $hash == $selectedShippingMethod->description)?'checked':'';?>></td>
+            <td style="width:20px;"><input type="radio" name="shippingMethod" value="<?php echo $hash;?>" <?php echo (is_object($selectedShippingMethod) && $hash === $selectedShippingMethod->description)?'checked':'';?>></td>
             <td><?php echo $key;?></td>
             <td><?php echo format_currency($rate);?>
         </tr>

@@ -15,24 +15,24 @@
     $charges['products'] = [];
 
     foreach ($cartItems as $item) {
-        if ($item->type == 'gift card') {
+        if ($item->type === 'gift card') {
             $charges['giftCards'][] = $item;
             continue;
-        } elseif ($item->type == 'coupon') {
+        } elseif ($item->type === 'coupon') {
             $charges['coupons'][] = $item;
             continue;
-        } elseif ($item->type == 'tax') {
+        } elseif ($item->type === 'tax') {
             $charges['tax'][] = $item;
             continue;
-        } elseif ($item->type == 'shipping') {
+        } elseif ($item->type === 'shipping') {
             $charges['shipping'][] = $item;
             continue;
-        } elseif ($item->type == 'product') {
+        } elseif ($item->type === 'product') {
             $charges['products'][] = $item;
         }
     }
 
-    if (count($charges['products']) == 0) {
+    if (count($charges['products']) === 0) {
         echo '<script>location.reload();</script>';
     }
 
@@ -99,7 +99,7 @@
                     <strong><small><?php echo $product->quantity.' &times; '.format_currency($product->total_price)?></small></strong>
                 </div>
                 <div class="col text-right" data-cols="1/4">
-                    <?php if (CI::uri()->segment(1) == 'cart' && !$product->fixed_quantity) : ?>
+                    <?php if (CI::uri()->segment(1) === 'cart' && !$product->fixed_quantity) : ?>
                         <input class="input-sm quantityInput" style="margin:0;" <?php echo($product->fixed_quantity)?'disabled':''?> data-product-id="<?php echo $product->id;?>" data-orig-val="<?php echo $product->quantity ?>" id="qtyInput<?php echo $product->id;?>" value="<?php echo $product->quantity ?>" type="text">
                     <?php else : ?>
                         &times; <?php echo $product->quantity; ?>
@@ -250,7 +250,7 @@ if(newGrandTotalTest != grandTotalTest)
 }
 
 $('.quantityInput').bind('blur keyup', function(e){
-    if(e.type == 'blur' || e.which == 13)
+    if(e.type === 'blur' || e.which ===13)
     {
         updateItem($(this).attr('data-product-id'), $(this).val(), $(this).attr('data-orig-val'));
     }
@@ -266,7 +266,7 @@ function updateItem(id, newQuantity, oldQuantity)
     {
         var active = $(document.activeElement).attr('id');
 
-        if(newQuantity == 0)
+        if(newQuantity === 0)
         {
             if(!confirm('<?php echo lang('remove_item');?>')){
                 return false;
@@ -302,14 +302,14 @@ function updateItem(id, newQuantity, oldQuantity)
 
 $('#coupon').keyup(function(event){
     var code = event.keyCode || event.which;
-    if(code == 13) {
+    if(code ===13) {
         submitCoupon();
     }
 });
 
 $('#giftCard').keyup(function(event){
     var code = event.keyCode || event.which;
-    if(code == 13) {
+    if(code ===13) {
         submitGiftCard();
     }
 });

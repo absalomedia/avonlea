@@ -18,7 +18,7 @@ class AdminReports extends Admin
     public function __construct()
     {
         parent::__construct();
-        \CI::auth()->check_access('Admin', true);
+        \CI::auth()->checkAccess('Admin', true);
         \CI::load()->model(['Orders', 'Search']);
         \CI::load()->helper(array('formatting'));
         \CI::lang()->load('reports');

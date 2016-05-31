@@ -17,7 +17,7 @@ class AdminSettings extends Admin
     {
         parent::__construct();
 
-        \CI::auth()->check_access('Admin', true);
+        \CI::auth()->checkAccess('Admin', true);
         \CI::load()->model(['Messages', 'Pages', 'Locations']);
         \CI::lang()->load('settings');
         \CI::load()->helper('inflector');
@@ -84,12 +84,12 @@ class AdminSettings extends Admin
         \CI::form_validation()->set_rules('email_to', 'lang:email_to', 'required|valid_email');
         \CI::form_validation()->set_rules('email_method', 'lang:email_method', 'required');
 
-        if (\CI::input()->post('email_method') == 'smtp') {
+        if (\CI::input()->post('email_method') === 'smtp') {
             \CI::form_validation()->set_rules('smtp_server', 'lang:smtp_server', 'required');
             \CI::form_validation()->set_rules('smtp_username', 'lang:smtp_username', 'required');
             \CI::form_validation()->set_rules('smtp_password', 'lang:smtp_password', 'required');
             \CI::form_validation()->set_rules('smtp_port', 'lang:smtp_port', 'required');
-        } elseif (\CI::input()->post('email_method') == 'sendmail') {
+        } elseif (\CI::input()->post('email_method') === 'sendmail') {
             \CI::form_validation()->set_rules('sendmail_path', 'lang:sendmail_path', 'required');
         }
 
@@ -173,7 +173,7 @@ class AdminSettings extends Admin
         }
 
 
-        if (\CI::form_validation()->run() == false) {
+        if (\CI::form_validation()->run() === false) {
             $data['error'] = validation_errors();
             $this->view('settings', $data);
         } else {
@@ -224,7 +224,7 @@ class AdminSettings extends Admin
         \CI::form_validation()->set_rules('subject', 'lang:subject', 'trim|required|max_length[100]');
         \CI::form_validation()->set_rules('content', 'lang:message_content', 'trim|required');
 
-        if (\CI::form_validation()->run() == false) {
+        if (\CI::form_validation()->run() === false) {
             $data['errors'] = validation_errors();
 
             $this->view('canned_message_form', $data);

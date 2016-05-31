@@ -23,7 +23,7 @@ class Crunch
 class CSSCrunch extends Crunch
 {
 
-    public function crunch($dev=false)
+    public function crunch($dev = false)
     {
         $filename = md5(serialize($this->files)).'.css';
 
@@ -65,7 +65,7 @@ class CSSCrunch extends Crunch
 class JSCrunch extends Crunch
 {
 
-    public function crunch($dev=false)
+    public function crunch($dev = false)
     {
         $filename = md5(serialize($this->files)).'.js';
 

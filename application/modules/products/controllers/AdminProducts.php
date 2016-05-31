@@ -17,7 +17,7 @@ class AdminProducts extends Admin
     {
         parent::__construct();
 
-        \CI::auth()->check_access('Admin', true);
+        \CI::auth()->checkAccess('Admin', true);
 
         \CI::load()->model(['Products', 'Categories']);
         \CI::load()->helper('form');
@@ -286,7 +286,7 @@ class AdminProducts extends Admin
             $data['product_files'] = \CI::input()->post('downloads');
         }
 
-        if (\CI::form_validation()->run() == false) {
+        if (\CI::form_validation()->run() === false) {
             $this->view('product_form', $data);
         } else {
             \CI::load()->helper('text');
@@ -333,7 +333,7 @@ class AdminProducts extends Admin
             if ($primary = \CI::input()->post('primary_image')) {
                 if ($post_images) {
                     foreach ($post_images as $key => &$pi) {
-                        if ($primary == $key) {
+                        if ($primary === $key) {
                             $pi['primary']  = true;
                             continue;
                         }
@@ -515,7 +515,7 @@ class AdminProducts extends Admin
             $data['images'] = \CI::input()->post('images');
         }
 
-        if (\CI::form_validation()->run() == false) {
+        if (\CI::form_validation()->run() === false) {
             $this->view('giftcard_product_form', $data);
         } else {
             \CI::load()->helper('text');
@@ -559,7 +559,7 @@ class AdminProducts extends Admin
             if ($primary = \CI::input()->post('primary_image')) {
                 if ($post_images) {
                     foreach ($post_images as $key => &$pi) {
-                        if ($primary == $key) {
+                        if ($primary === $key) {
                             $pi['primary'] = true;
                             continue;
                         }

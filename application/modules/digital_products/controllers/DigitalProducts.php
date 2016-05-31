@@ -28,8 +28,8 @@ class DigitalProducts extends Front
         $file = \CI::db()->where('order_item_files.id', $fileId)->join('digital_products', 'digital_products.id = order_item_files.file_id')->get('order_item_files')->row();
         
         if ($order && $file) {
-            if ($order->is_guest || $order->customer_id == $this->customer->id) {
-                if ($file->max_downloads == 0 || $file->downloads_used < $file->max_downloads) {
+            if ($order->is_guest || $order->customer_id === $this->customer->id) {
+                if ($file->max_downloads === 0 || $file->downloads_used < $file->max_downloads) {
                     \CI::DigitalProducts()->touchDownload($fileId);
                     \CI::DigitalProducts()->downloadFile($file->filename);
                 }

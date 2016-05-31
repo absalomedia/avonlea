@@ -20,7 +20,7 @@ class AdminUsers extends Admin
     public function __construct()
     {
         parent::__construct();
-        \CI::auth()->check_access('Admin', true);
+        \CI::auth()->checkAccess('Admin', true);
 
         //load the admin language file in
         \CI::lang()->load('users');
@@ -39,7 +39,7 @@ class AdminUsers extends Admin
     public function delete($id)
     {
         //even though the link isn't displayed for an admin to delete themselves, if they try, this should stop them.
-        if ($this->current_admin['id'] == $id) {
+        if ($this->current_admin['id'] === $id) {
             \CI::session()->set_flashdata('message', lang('error_self_delete'));
             redirect('admin/users');
         }
@@ -103,7 +103,7 @@ class AdminUsers extends Admin
             \CI::form_validation()->set_rules('confirm', 'lang:confirm_password', 'required|matches[password]');
         }
         
-        if (\CI::form_validation()->run() == false) {
+        if (\CI::form_validation()->run() === false) {
             $this->view('user_form', $data);
         } else {
             $save['id'] = $id;

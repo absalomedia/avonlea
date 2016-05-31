@@ -178,7 +178,7 @@ class Productoptions extends CI_Model
             
             // process checklist items specially
             // multi-valued
-            if ($option->type == 'checklist') {
+            if ($option->type === 'checklist') {
                 $opts = [];
                 // tally our adjustments
 
@@ -188,7 +188,7 @@ class Productoptions extends CI_Model
                         //$val = $this->get_value($check_value);
 
                         foreach ($option->values as $check_match) {
-                            if ($check_match->id == $check_value) {
+                            if ($check_match->id === $check_value) {
                                 $val = $check_match;
                             }
                         }
@@ -210,7 +210,7 @@ class Productoptions extends CI_Model
                     $product['options'][$option->name] = $opts;
                 }
             } // handle text fields
-            elseif ($option->type == 'textfield' || $option->type == 'textarea') {
+            elseif ($option->type === 'textfield' || $option->type === 'textarea') {
                 //get the value and weight of the textfield/textarea and add it!
 
                 if ($optionValue) {
@@ -237,7 +237,7 @@ class Productoptions extends CI_Model
                     //$val = $this->get_value($optionValue);
 
                     foreach ($option->values as $check_match) {
-                        if ($check_match->id == $optionValue) {
+                        if ($check_match->id === $optionValue) {
                             $val = $check_match;
                         }
                     }

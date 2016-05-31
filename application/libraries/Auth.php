@@ -1,10 +1,10 @@
 <?php  if (! defined('BASEPATH')) {
      exit('No direct script access allowed');
- }
+}
 
 class Auth
 {
-    public function check_access($access, $defaultRedirect = false, $redirect = false)
+    public function checkAccess($access, $defaultRedirect = false, $redirect = false)
     {
         /*
         we could store this in the session, but by accessing it this way
@@ -28,7 +28,7 @@ class Auth
         }
     //  echo $result->access;
         if ($access) {
-            if ($access == $result->access) {
+            if ($access === $result->access) {
                 return true;
             } else {
                 if ($redirect) {
@@ -106,7 +106,7 @@ class Auth
         $result = CI::db()->get('admin');
         $result = $result->row_array();
         
-        if (password_verify($password, $result['password']) == true && sizeof($result) > 0) {
+        if (password_verify($password, $result['password']) ===true && sizeof($result) > 0) {
             if ($remember) {
                 //generate a remember cookie
                 $loginCred =  sha1($username.$result['password']);

@@ -4,7 +4,7 @@ include('crunch.php');
 include('Parsedown.php');
 include('content_filter.php');
 
-function category_loop($parent = 0, $ulattribs=false, $ul=true)
+function category_loop($parent = 0, $ulattribs = false, $ul = true)
 {
     $cats = CI::Categories()->get_categories_tiered();
 
@@ -16,7 +16,7 @@ function category_loop($parent = 0, $ulattribs=false, $ul=true)
     if ($items) {
         echo ($ul)?'<ul '.$ulattribs.'>':'';
         foreach ($items as $item) {
-            $selected = (CI::uri()->segment(2) == $item->slug)?'class="selected"':'';
+            $selected = (CI::uri()->segment(2) === $item->slug)?'class="selected"':'';
             
             //add the chevron if this has a drop menu
             $name = $item->name;
@@ -34,7 +34,7 @@ function category_loop($parent = 0, $ulattribs=false, $ul=true)
     }
 }
 
-function page_loop($parent = 0, $ulattribs=false, $ul=true)
+function page_loop($parent = 0, $ulattribs = false, $ul = true)
 {
     $pages = CI::Pages()->get_pages_tiered();
 
@@ -49,7 +49,7 @@ function page_loop($parent = 0, $ulattribs=false, $ul=true)
             echo '<li>';
             $chevron = ' <i class="icon-chevron-down dropdown"></i>';
             
-            if ($item->slug == '') {
+            if ($item->slug === '') {
                 //add the chevron if this has a drop menu
                 $name = $item->title;
                 if (isset($pages[$item->id])) {
@@ -64,7 +64,7 @@ function page_loop($parent = 0, $ulattribs=false, $ul=true)
                 if (isset($pages[$item->id])) {
                     $name .= $chevron;
                 }
-                $selected = (CI::uri()->segment(2) == $item->slug)?'class="selected"':'';
+                $selected = (CI::uri()->segment(2) === $item->slug)?'class="selected"':'';
                 $anchor = anchor('page/'.$item->slug, $name, $selected);
             }
 

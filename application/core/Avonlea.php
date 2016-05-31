@@ -27,8 +27,9 @@ class Avonlea
 
     public function saveCart()
     {
+        $numitem = count($this->items);
         //calculate coupon discounts first
-        $this->calculateCouponDiscounts();
+        $this->calculateCouponDiscounts($numitem);
 
         //add up the subtotal (coupon discounts included at line items)
         $this->getSubtotal();
@@ -54,7 +55,7 @@ class Avonlea
     public function addGiftCard($giftCard)
     {
         foreach ($this->items as $item) {
-            if ($item->description == $giftCard->code && $item->type == 'gift card') {
+            if ($item->description === $giftCard->code && $item->type === 'gift card') {
                 return ['success'=>false, 'error'=>lang('gift_card_already_applied')];
             }
         }
@@ -90,7 +91,7 @@ class Avonlea
     public function isCouponApplied($coupon)
     {
         foreach ($this->items as $item) {
-            if ($item->type == 'coupon' && $item->description == $coupon->code) {
+            if ($item->type === 'coupon' && $item->description === $coupon->code) {
                 return true;
             }
         }
@@ -102,13 +103,13 @@ class Avonlea
         $timesAvailable = -1;
         if ($coupon->max_uses > 0 && $coupon->max_product_instances > 0) {
             $timesAvailable = min(($coupon->max_uses - $coupon->num_uses), $coupon->max_product_instances); //maximum times supported per order & max uses in genreral
-        } elseif ($coupon->max_uses == 0 && $coupon->max_product_instances > 0) {
+        } elseif ($coupon->max_uses === 0 && $coupon->max_product_instances > 0) {
             $timesAvailable = $coupon->max_product_instances;
-        } elseif ($coupon->max_uses > 0 && $coupon->max_product_instances == 0) {
+        } elseif ($coupon->max_uses > 0 && $coupon->max_product_instances === 0) {
             $usesLeft = max($coupon->max_uses - $coupon->num_uses, 0);
 
             //if there are more than 0 return -1 so the coupon can be used on the whole order
-            if ($usesLeft == 0) {
+            if ($usesLeft === 0) {
                 $timesAvailable = 0;
             }
         }
@@ -116,14 +117,14 @@ class Avonlea
         return $timesAvailable;
     }
 
-    private function calculateCouponDiscounts()
+    private function calculateCouponDiscounts($numitem)
     {
         $coupons = [];
         $discounts = [];
-        for ($i=0; $i<count($this->items); $i++) {
-            if ($this->items[$i]->type == 'coupon') {
+        for ($i=0; $i < $numitem; $i++) {
+            if ($this->items[$i]->type === 'coupon') {
                 $coupons[] = $this->items[$i];
-            } elseif ($this->items[$i]->type == 'product') {
+            } elseif ($this->items[$i]->type === 'product') {
                 //remove all discounts
                 $this->items[$i]->coupon_code = '';
                 $this->items[$i]->coupon_discount = '';
@@ -142,9 +143,9 @@ class Avonlea
                 //store the timesAvailable with the coupon to access shortly
                 $couponsByCode[$coupon->code]->timesAvailable = $timesAvailable;
 
-                for ($i=0; $i < count($this->items); $i++) {
+                for ($i=0; $i < $numitem; $i++) {
                     if ($coupon->whole_order_coupon || in_array($this->items[$i]->product_id, $coupon->product_list)) {
-                        if ($this->items[$i]->type == 'product') {
+                        if ($this->items[$i]->type === 'product') {
                             if ($timesAvailable < 0) {
                                 $quantity = $this->items[$i]->quantity;
                             } else {
@@ -153,7 +154,7 @@ class Avonlea
 
                             $key = json_encode(['code'=>$coupon->code, 'itemId'=>$this->items[$i]->id]);
 
-                            if ($coupon->reduction_type == 'percent') {
+                            if ($coupon->reduction_type === 'percent') {
                                 $percent = ($coupon->reduction_amount/100);
                                 $discount = $this->items[$i]->total_price * $percent;
 
@@ -180,8 +181,8 @@ class Avonlea
 
             $coupon = $couponsByCode[$code];
 
-            for ($i=0; $i<count($this->items); $i++) {
-                if ($this->items[$i]->id == $item) {
+            for ($i=0; $i < $numitem; $i++) {
+                if ($this->items[$i]->id === $item) {
                     if ($coupon->timesAvailable < 0) {
                         $quantity = $this->items[$i]->quantity;
                     } else {
@@ -190,7 +191,7 @@ class Avonlea
 
                     $discount = 0; // reset discount
 
-                    if ($coupon->reduction_type == 'percent') {
+                    if ($coupon->reduction_type === 'percent') {
                         $percent = ($coupon->reduction_amount/100);
                         $discount = $this->items[$i]->total_price * $percent;
                     } else {
@@ -216,8 +217,8 @@ class Avonlea
         }
 
         //loop through and resave all items.
-        for ($i=0; $i<count($this->items); $i++) {
-            if ($this->items[$i]->type == 'product') {
+        for ($i=0; $i < $numitem; $i++) {
+            if ($this->items[$i]->type === 'product') {
                 $this->insertItem(['product'=>$this->items[$i], 'quantity'=>$this->items[$i]->quantity]);
             }
         }
@@ -302,7 +303,7 @@ class Avonlea
     public function getCartItem($id)
     {
         foreach ($this->items as $item) {
-            if ($item->id == $id) {
+            if ($item->id === $id) {
                 return $item;
             }
         }
@@ -371,13 +372,13 @@ class Avonlea
         $this->getCartItems(); // refresh the cart items
 
         foreach ($this->items as $item) {
-            if (intval($item->product_id) == intval($product->product_id)) {
+            if (intval($item->product_id) === intval($product->product_id)) {
                 if ($item->hash != $product->hash) { //if the hashes match, skip this step (this is an update)
                     $qty_count = $qty_count + $item->quantity;
                 }
             }
 
-            if ($item->hash == $product->hash && !$update) { //if this is an update skip this step
+            if ($item->hash === $product->hash && !$update) { //if this is an update skip this step
             //if the item is already in the cart, send back a message
                 return json_encode(['message'=>lang('item_already_added')]);
             }
@@ -436,11 +437,11 @@ class Avonlea
                 }
 
                 //create options to save to the database in case we get past the errors
-                if ($productOption->type == 'checklist') {
+                if ($productOption->type === 'checklist') {
                     if (is_array($optionValue)) {
                         foreach ($optionValue as $ov) {
                             foreach ($productOption->values as $productOptionValue) {
-                                if ($productOptionValue->id == $ov) {
+                                if ($productOptionValue->id === $ov) {
                                     $saveOptions[] = [
                                         'option_name'=>$productOption->name,
                                         'value'=>$productOptionValue->value,
@@ -457,14 +458,14 @@ class Avonlea
                     //every other form type we support
 
                     $saveOption = [];
-                    if ($productOption->type == 'textfield' || $productOption->type == 'textarea') {
+                    if ($productOption->type === 'textfield' || $productOption->type === 'textarea') {
                         $productOptionValue = $productOption->values[0];
                         $productOptionValue->value = $optionValue;
                     } else {
                         //radios and checkboxes
 
                         foreach ($productOption->values as $ov) {
-                            if ($ov->id == $optionValue) {
+                            if ($ov->id === $optionValue) {
                                 $productOptionValue = $ov;
                                 break;
                             }
@@ -503,7 +504,7 @@ class Avonlea
         }
         if ($update) {
             foreach ($this->items as $key => $item) {
-                if ($item->id == $product_id) {
+                if ($item->id === $product_id) {
                     $this->items[$key] = $product;
                 }
             }
@@ -538,7 +539,7 @@ class Avonlea
         //if we do not allow overstock sale, then check stock otherwise return an empty array
         if (!config_item('allow_os_purchase')) {
             foreach ($this->items as $item) {
-                if ($item->type == 'product') {
+                if ($item->type === 'product') {
                     $stock = \CI::Products()->getProduct($item->product_id);
                     if ((bool)$stock->track_stock && $stock->quantity < $item->quantity) {
                         if ($stock->quantity < 1) {
@@ -555,10 +556,11 @@ class Avonlea
 
     public function checkCoupons()
     {
+        $numitem = count($this->items);
         $errors = [];
         $coupons = [];
-        for ($i=0; $i<count($this->items); $i++) {
-            if ($this->items[$i]->type == 'coupon') {
+        for ($i=0; $i < $numitem; $i++) {
+            if ($this->items[$i]->type === 'coupon') {
                 $coupons[] = $this->items[$i];
             }
         }
@@ -585,12 +587,12 @@ class Avonlea
         $errors = [];
 
         $cart = new stdClass();
-        $addresses = \CI::Customers()->get_address_list($this->customer->id);
+        $addresses = \CI::Customers()->getAddressList($this->customer->id);
         foreach ($addresses as $address) {
-            if ($address['id'] == $this->cart->shipping_address_id) {
+            if ($address['id'] === $this->cart->shipping_address_id) {
                 $cart->shippingAddress = (object)$address;
             }
-            if ($address['id'] == $this->cart->billing_address_id) {
+            if ($address['id'] === $this->cart->billing_address_id) {
                 $cart->billingAddress = (object)$address;
             }
         }
@@ -631,15 +633,15 @@ class Avonlea
     public function submitOrder($transaction = false)
     {
         foreach ($this->items as $item) {
-            if ($item->type == 'gift card') {
+            if ($item->type === 'gift card') {
                 //touch giftcard
                 \CI::GiftCards()->updateAmountUsed($item->description, $item->total_price);
                 continue;
-            } elseif ($item->type == 'coupon') {
+            } elseif ($item->type === 'coupon') {
                 //touch coupon
                 \CI::Coupons()->touchCoupon($item->description);
                 continue;
-            } elseif ($item->type == 'product') {
+            } elseif ($item->type === 'product') {
                 //update inventory
                 if ($item->track_stock) {
                     \CI::Products()->touchInventory($item->product_id, $item->quantity);
@@ -652,7 +654,7 @@ class Avonlea
 
                     $giftCard = [];
                     foreach ($options[$item->id] as $option) {
-                        if ($option->option_name == 'gift_card_amount') {
+                        if ($option->option_name === 'gift_card_amount') {
                             $giftCard[$option->option_name] = $option->price;
                         } else {
                             $giftCard[$option->option_name] = $option->value;
@@ -738,7 +740,7 @@ class Avonlea
     {
         $total = 0;
         foreach ($this->items as $item) {
-            if ($item->type == 'product') {
+            if ($item->type === 'product') {
                 $total += ($item->total_price * $item->quantity) - ($item->coupon_discount * $item->coupon_discount_quantity);
             }
         }
@@ -752,7 +754,7 @@ class Avonlea
     {
         $total = 0;
         foreach ($this->items as $item) {
-            if ($item->type == 'product') {
+            if ($item->type === 'product') {
                 $total += ($item->total_weight * $item->quantity);
             }
         }
@@ -806,7 +808,7 @@ class Avonlea
     public function getShippingMethod()
     {
         foreach ($this->items as $item) {
-            if ($item->type == 'shipping') {
+            if ($item->type === 'shipping') {
                 return $item;
             }
         }
@@ -847,7 +849,7 @@ class Avonlea
                 $shippingMethods = $this->getShippingMethodOptions();
                 foreach ($shippingMethods as $key => $rate) {
                     $hash = md5(json_encode(['key'=>$key, 'rate'=>$rate]));
-                    if ($hash == $shippingMethod->description) {
+                    if ($hash === $shippingMethod->description) {
                         $shippingExists = true;
                     }
                 }
@@ -861,7 +863,7 @@ class Avonlea
     public function removeItemsOfType($type)
     {
         foreach ($this->items as $item) {
-            if ($item->type == $type) {
+            if ($item->type === $type) {
                 $this->removeItem($item->id);
             }
         }
@@ -870,9 +872,10 @@ class Avonlea
     public function removeItem($id)
     {
         CI::Orders()->removeItem($this->cart->id, $id);
+        $numitem = count($this->items);
 
-        for ($i=0; $i < count($this->items); $i++) {
-            if ($this->items[$i]->id == $id) {
+        for ($i=0; $i < $numitem); $i++) {
+            if ($this->items[$i]->id === $id) {
                 unset($this->items[$i]);
             }
         }
@@ -886,7 +889,7 @@ class Avonlea
         $count = 0;
         /*
         foreach ($this->items as $item) {
-            if ($item->type == 'product') {
+            if ($item->type === 'product') {
                 $count += $item->quantity;
             }
         }
@@ -902,7 +905,7 @@ class Avonlea
         $options = CI::Orders()->getItemOptions(AVL::getCart()->id);
 
         foreach ($this->items as $item) {
-            if ($item->type == 'product') {
+            if ($item->type === 'product') {
                 //grab the product from the database
                 $product = \CI::Products()->getProduct($item->product_id);
                 

@@ -38,7 +38,7 @@ function reverse_format($date)
 
 function format_ymd($date)
 {
-    if (empty($date) || $date == '00-00-0000') {
+    if (empty($date) || $date === '00-00-0000') {
         return '';
     } else {
         $d = explode('-', $date);
@@ -48,7 +48,7 @@ function format_ymd($date)
 
 function format_mdy($date)
 {
-    if (empty($date) || $date == '0000-00-00') {
+    if (empty($date) || $date === '0000-00-00') {
         return '';
     } else {
         return date('m-d-Y', strtotime($date));

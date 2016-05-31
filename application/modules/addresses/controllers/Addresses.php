@@ -28,14 +28,14 @@ class Addresses extends Front
         //make sure they're logged in
         \CI::Login()->isLoggedIn('my_account/');
         $data['customer'] = $this->customer;
-        $data['addresses'] = \CI::Customers()->get_address_list($this->customer->id);
+        $data['addresses'] = \CI::Customers()->getAddressList($this->customer->id);
 
         $this->partial('addresses', $data);
     }
 
     public function form($id = 0)
     {
-        $data['addressCount'] = \CI::Customers()->count_addresses($this->customer->id);
+        $data['addressCount'] = \CI::Customers()->countAddresses($this->customer->id);
         $customer = \CI::Login()->customer();
 
         //grab the address if it's available
@@ -54,7 +54,7 @@ class Addresses extends Front
 
 
         if ($id != 0) {
-            $a  = \CI::Customers()->get_address($id);
+            $a  = \CI::Customers()->getAddress($id);
 
             if ($a['customer_id'] != $this->customer->id) {
                 redirect('addresses/form'); // don't allow cross-customer editing
@@ -87,7 +87,7 @@ class Addresses extends Front
         \CI::form_validation()->set_rules('zone_id', 'lang:address_state', 'trim|required|numeric');
         \CI::form_validation()->set_rules('zip', 'lang:address_zip', 'trim|required|max_length[32]');
 
-        if (\CI::form_validation()->run() == false) {
+        if (\CI::form_validation()->run() === false) {
             $this->partial('address_form', $data);
         } else {
             $a = [];
@@ -114,14 +114,14 @@ class Addresses extends Front
                 $a['zone_id'] = \CI::input()->post('zone_id');
             }
 
-            \CI::Customers()->save_address($a);
+            \CI::Customers()->saveAddress($a);
             echo 1;
         }
     }
 
     public function delete($id)
     {
-        \CI::Customers()->delete_address($id, $this->customer->id);
+        \CI::Customers()->deleteAddress($id, $this->customer->id);
         echo 1;
     }
 

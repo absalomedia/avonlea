@@ -2,7 +2,7 @@
 
 use Avonlea\Libraries\View as View;
 
-class content_filter
+class ContentFilter
 {
 
     public $content = '';

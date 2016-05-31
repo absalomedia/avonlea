@@ -33,7 +33,7 @@ class Categories
     public function getBySlug($slug)
     {
         foreach ($this->tiered['all'] as $c) {
-            if ($c->slug == $slug) {
+            if ($c->slug === $slug) {
                 return $c;
                 break;
             }
@@ -102,7 +102,7 @@ class Categories
         foreach ($categories as $category) {
 
             // Set a class to active, so we can highlight our current category
-            if (CI::uri()->segment(2) == $category->slug && CI::uri()->segment(1) == 'category') {
+            if (CI::uri()->segment(2) === $category->slug && CI::uri()->segment(1) === 'category') {
                 $category->active = true;
             } else {
                 $category->active = false;

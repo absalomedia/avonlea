@@ -70,7 +70,7 @@ var ci_profiler_bar = {
 
 	// toggle a toolbar section
 	show : function(obj, el) {
-		if (obj == ci_profiler_bar.current) {
+		if (obj === ci_profiler_bar.current) {
 			ci_profiler_bar.off(obj);
 			ci_profiler_bar.current = null;
 		} else {
@@ -96,11 +96,11 @@ var ci_profiler_bar = {
 
 	// toggle an element
 	toggle : function(obj) {
-		if (typeof obj == 'string')
+		if (typeof obj === 'string')
 			obj = document.getElementById(obj);
 
 		if (obj)
-			obj.style.display = obj.style.display == 'none' ? '' : 'none';
+			obj.style.display = obj.style.display === 'none' ? '' : 'none';
 	},
 
 	// open the toolbar
@@ -135,8 +135,8 @@ var ci_profiler_bar = {
 		var ca = document.cookie.split(';');
 		for (var i=0; i < ca.length; i++) {
 			var c = ca[i];
-			while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-			if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+			while (c.charAt(0) === '') c = c.substring(1, c.length);
+			if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
 		}
 		return null;
 	},
@@ -152,7 +152,7 @@ var ci_profiler_bar = {
 	set_load_state : function() {
 		var cookie_state = this.read_cookie();
 
-		if (cookie_state == 'open') {
+		if (cookie_state === 'open') {
 			this.open();
 		} else {
 			this.close();
@@ -160,12 +160,12 @@ var ci_profiler_bar = {
 	},
 
 	toggle_data_table : function(obj) {
-		if (typeof obj == 'string') {
+		if (typeof obj === 'string') {
 			obj = document.getElementById(obj + '_table');
 		}
 
 		if (obj) {
-			obj.style.display = obj.style.display == 'none' ? '' : 'none';
+			obj.style.display = obj.style.display === 'none' ? '' : 'none';
 		}
 	}
 };
@@ -238,13 +238,13 @@ window.onload = function() {
 				<table class="main">
 				<?php foreach ($sections['console']['console'] as $log) : ?>
 
-					<?php if ($log['type'] == 'log') : ?>
+					<?php if ($log['type'] === 'log') : ?>
 						<tr>
 							<td><?php echo $log['type'] ?></td>
 							<td class="faded"><pre><?php echo $log['data'] ?></pre></td>
 							<td></td>
 						</tr>
-					<?php elseif ($log['type'] == 'memory')  :?>
+					<?php elseif ($log['type'] === 'memory') :  ?>
 						<tr>
 							<td><?php echo $log['type'] ?></td>
 							<td>
@@ -275,7 +275,7 @@ window.onload = function() {
 				<table class="main">
 				<?php foreach ($sections['console']['console'] as $log) : ?>
 
-					<?php if ($log['type'] == 'memory')  :?>
+					<?php if ($log['type'] === 'memory') :  ?>
 						<tr>
 							<td><?php echo $log['type'] ?></td>
 							<td>
@@ -326,7 +326,7 @@ window.onload = function() {
 
 				<table class="main" cellspacing="0">
 				<?php foreach ($sections['queries'] as $key => $queries) : ?>
-					<?php foreach ($queries as $time => $query): ?>
+					<?php foreach ($queries as $time => $query) : ?>
 						<tr><td class="hilight"><?php echo $time ?></td><td><?php echo $query ?></td></tr>
 					<?php endforeach; ?>
 				<?php endforeach; ?>
@@ -382,7 +382,7 @@ window.onload = function() {
 
 				<?php if (isset($sections[$section])) :?>
 
-					<?php $append = ($section == 'get' || $section == 'post') ? '_data' : '' ?>
+					<?php $append = ($section === 'get' || $section === 'post') ? '_data' : '' ?>
 					<a href="#" onclick="ci_profiler_bar.toggle_data_table('<?php echo $section ?>'); return false;">
 						<h2><?php echo lang('profiler_' . $section . $append) ?></h2>
 					</a>
@@ -431,7 +431,7 @@ window.onload = function() {
 	<?php endif; ?>
 
 
-<?php else: ?>
+<?php else : ?>
 
 	<p class="ci-profiler-box"><?php echo lang('profiler_no_profiles') ?></p>
 

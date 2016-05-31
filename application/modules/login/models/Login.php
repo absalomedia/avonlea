@@ -55,7 +55,7 @@ class Login extends CI_Model
                         limit(1)->
                         get('customers')->row();
 
-        if ($customer && !(bool)$customer->is_guest && password_verify($password, $customer->password) == true) {
+        if ($customer && !(bool)$customer->is_guest && password_verify($password, $customer->password) ===true) {
             // Set up any group discount
             if ($customer->group_id != 0) {
                 $group = CI::Customers()->get_group($customer->group_id);
@@ -94,7 +94,7 @@ class Login extends CI_Model
             return false;
         }
 
-        if (isset($customer->is_guest) && $customer->is_guest == 1) {
+        if (isset($customer->is_guest) && $customer->is_guest ===1) {
             if ($redirect) {
                 redirect($default_redirect);
             } else {

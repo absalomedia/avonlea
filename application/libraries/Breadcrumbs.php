@@ -43,20 +43,20 @@ class Breadcrumbs
         if (!$type || !$slug) {
             return; //return blank
         }
-        if ($type == 'category') {
+        if ($type === 'category') {
             $category = CI::Categories()->slug($slug);
             if (!$category) {
                 return;
             }
             $this->trace_categories($category->id);
-        } elseif ($type == 'product') {
+        } elseif ($type === 'product') {
             $product = CI::Products()->slug($slug);
             if (!$product) {
                 return;
             }
             array_unshift($this->breadcrumbs, ['link'=>site_url('product/'.$product->slug), 'name'=>$product->name]);
             $this->trace_categories($product->primary_category);
-        } elseif ($type == 'page') {
+        } elseif ($type === 'page') {
             $page = CI::Pages()->slug($slug);
             if (!$page) {
                 return;

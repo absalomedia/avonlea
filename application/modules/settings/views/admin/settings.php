@@ -358,11 +358,11 @@
 
 
         $('#new_order_status_field').on('keyup', function(event){
-            if (event.which == 13) {
+            if (event.which ===13) {
                 add_status();
             }
         }).keypress(function(event){
-            if (event.which  == 13) {
+            if (event.which  ===13) {
                 event.preventDefault();
                 return false;
             }

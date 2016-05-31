@@ -49,7 +49,7 @@ $lang['error_not_found'] = 'The requested customer could not be found.';
 $lang['error_address_not_found'] = 'The requested address could not be found.';
 $lang['error_email_in_use'] = 'The requested email is already in use.';
 
-$lang['confirm_delete_address'] = 'Are you sure you want to delete this address?';
+$lang['confirm_deleteAddress'] = 'Are you sure you want to delete this address?';
 $lang['confirm_delete_group'] = 'Are you sure you want to delete this group?';
 $lang['confirm_delete_customer'] = 'Are you sure you want to delete this customer?';
 $lang['add_new_address'] = 'Add New Address';

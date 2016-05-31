@@ -66,8 +66,8 @@ function areyousure()
     foreach ($banners as $banner):
 
         $disabled = '';
-        $enableOn = ($banner->enable_date == '0000-00-00')?'':date('m/d/y', strtotime($banner->enable_date));
-        $disableOn = ($banner->disable_date == '0000-00-00')?'':date('m/d/y', strtotime($banner->disable_date));
+        $enableOn = ($banner->enable_date === '0000-00-00')?'':date('m/d/y', strtotime($banner->enable_date));
+        $disableOn = ($banner->disable_date === '0000-00-00')?'':date('m/d/y', strtotime($banner->disable_date));
 
         if (
             (!empty($enableOn) && strtotime($banner->enable_date) > time()) ||

@@ -19,7 +19,7 @@ class Customers extends CI_Model
         ]);
     }
 
-    public function get_customers($limit = 0, $offset = 0, $order_by = 'id', $direction = 'DESC')
+    public function getCustomers($limit = 0, $offset = 0, $order_by = 'id', $direction = 'DESC')
     {
         CI::db()->where('is_guest', 0)->order_by($order_by, $direction);
         if ($limit>0) {
@@ -30,23 +30,23 @@ class Customers extends CI_Model
         return $result->result();
     }
 
-    public function get_customer_export($limit = 0, $offset = 0, $order_by = 'id', $direction = 'DESC')
+    public function getCustomerExport($limit = 0, $offset = 0, $order_by = 'id', $direction = 'DESC')
     {
         return CI::db()->where('is_guest', 0)->get('customers')->result();
     }
 
-    public function count_customers()
+    public function countCustomers()
     {
         return CI::db()->where('is_guest', 0)->count_all_results('customers');
     }
 
-    public function get_customer($id)
+    public function getCustomer($id)
     {
         $result = CI::db()->get_where('customers', array('id'=>$id));
         return $result->row();
     }
 
-    public function get_address_list($id)
+    public function getAddressList($id)
     {
         return CI::db()->where('deleted', 0)->
                 order_by('country', 'ASC')->
@@ -61,17 +61,17 @@ class Customers extends CI_Model
                 get('customers_address_bank')->result_array();
     }
 
-    public function count_addresses($id)
+    public function countAddresses($id)
     {
         return CI::db()->where('deleted', 0)->where('customer_id', $id)->from('customers_address_bank')->count_all_results();
     }
 
-    public function get_address($address_id)
+    public function getAddress($address_id)
     {
         return CI::db()->where('id', $address_id)->get('customers_address_bank')->row_array();
     }
 
-    public function save_address($data)
+    public function saveAddress($data)
     {
         if (!empty($data['id'])) {
             /***************************
@@ -98,7 +98,7 @@ class Customers extends CI_Model
         }
     }
 
-    public function delete_address($id, $customer_id)
+    public function deleteAddress($id, $customer_id)
     {
         CI::db()->where(array('id'=>$id, 'customer_id'=>$customer_id))->update('customers_address_bank', ['deleted'=>1]);
         return $id;

@@ -7,19 +7,19 @@ $charges['shipping'] = [];
 $charges['products'] = [];
 
 foreach ($order->items as $item) {
-    if ($item->type == 'gift card') {
+    if ($item->type === 'gift card') {
         $charges['giftCards'][] = $item;
         continue;
-    } elseif ($item->type == 'coupon') {
+    } elseif ($item->type === 'coupon') {
         $charges['coupons'][] = $item;
         continue;
-    } elseif ($item->type == 'tax') {
+    } elseif ($item->type === 'tax') {
         $charges['tax'][] = $item;
         continue;
-    } elseif ($item->type == 'shipping') {
+    } elseif ($item->type === 'shipping') {
         $charges['shipping'][] = $item;
         continue;
-    } elseif ($item->type == 'product') {
+    } elseif ($item->type === 'product') {
         $charges['products'][] = $item;
     }
 }
@@ -78,7 +78,7 @@ $addressCell = 'style="border:1px solid #d6d4d4; padding:10px;background-color:#
     <tr>
         <td colspan="2" <?php echo $addressCell;?>>
             <strong><?php echo lang('payment_information');?></strong>
-            <?php foreach ($order->payments as $payment):?>
+            <?php foreach ($order->payments as $payment) :?>
             <div><?php echo $payment->description;?></div>
             <?php endforeach;?>
         </td>
@@ -88,18 +88,18 @@ $addressCell = 'style="border:1px solid #d6d4d4; padding:10px;background-color:#
 
 <table <?php echo $table;?>>
     <tbody>
-        <?php foreach ($charges['products'] as $product):?>
+        <?php foreach ($charges['products'] as $product) :?>
             <tr>
                 <td <?php echo $productCell;?>>
                     <strong><?php echo $product->name; ?></strong> <br>
                     <?php echo (!empty($product->sku))?'<small>'.lang('sku').': '.$product->sku.'</small>':''?>
                 </td>
                 <td <?php echo $productCellOptions;?>>
-                    <?php if (isset($order->options[$product->id])):
-                        foreach ($order->options[$product->id] as $option):?>
+                    <?php if (isset($order->options[$product->id])) :
+                        foreach ($order->options[$product->id] as $option) :?>
                             <div><strong><?php echo ($product->is_giftcard) ? lang('gift_card_'.$option->option_name) : $option->option_name;?></strong> : <?php echo($option->price > 0)?'['.format_currency($option->price).']':'';?> <?php echo $option->value;?></div>
-                        <?php endforeach;
-                    endif;?>
+                        <?php                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 endforeach;
+endif;?>
                     <?php
                     if (isset($order->files[$product->id])) {
                         foreach ($order->files[$product->id] as $file) {
@@ -110,7 +110,9 @@ $addressCell = 'style="border:1px solid #d6d4d4; padding:10px;background-color:#
                 </td>
                 <td <?php echo $productCellPrice;?>>
                     <div style="font-size:11px; color:#bbb;">(<?php echo $product->quantity.'  &times; '.format_currency($product->total_price);?>)</div>
-                    <?php if (!empty($product->coupon_code)):?><div style="color:#990000; font-size:11px;"><?php echo lang('coupon');?>: <?php echo '-'.format_currency(($product->coupon_discount * $product->coupon_discount_quantity));?></div><?php endif;?>
+                    <?php if (!empty($product->coupon_code)) :
+?><div style="color:#990000; font-size:11px;"><?php echo lang('coupon');?>: <?php echo '-'.format_currency(($product->coupon_discount * $product->coupon_discount_quantity));?></div><?php
+endif;?>
                     <?php echo format_currency(($product->total_price * $product->quantity) - ($product->coupon_discount * $product->coupon_discount_quantity)); ?>
                 </td>
             </tr>
@@ -120,7 +122,7 @@ $addressCell = 'style="border:1px solid #d6d4d4; padding:10px;background-color:#
             <td <?php echo $totalsCell;?>><?php echo format_currency($order->subtotal); ?></td>
         </tr>
 
-        <?php foreach ($charges['shipping'] as $shipping):?>
+        <?php foreach ($charges['shipping'] as $shipping) :?>
             <tr>
                 <td colspan="2" <?php echo $totalsCell;?>>
                     <?php echo lang('shipping');?>: <?php echo $shipping->name; ?>
@@ -131,7 +133,7 @@ $addressCell = 'style="border:1px solid #d6d4d4; padding:10px;background-color:#
             </tr>
         <?php endforeach;?>
 
-        <?php foreach ($charges['tax'] as $tax):?>
+        <?php foreach ($charges['tax'] as $tax) :?>
             <tr>
                 <td colspan="2" <?php echo $totalsCell;?>>
                     <?php echo lang('taxes');?>: <?php echo $tax->name; ?>
@@ -142,7 +144,7 @@ $addressCell = 'style="border:1px solid #d6d4d4; padding:10px;background-color:#
             </tr>
         <?php endforeach;?>
 
-        <?php foreach ($charges['giftCards'] as $giftCard):?>
+        <?php foreach ($charges['giftCards'] as $giftCard) :?>
             <tr>
                 <td colspan="2" <?php echo $totalsCell;?>>
                     <?php echo $giftCard->name; ?><br>

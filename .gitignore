@@ -16,20 +16,6 @@ application/cache/*
 
 composer.lock
 
-
-# IDE
-.idea
-nbproject/
-
-### SPECIAL MAC ###
-.DS_Store
-.AppleDouble
-.LSOverride
-
-# Icon must end with two \r
-Icon
-
-
 # Thumbnails
 ._*
 

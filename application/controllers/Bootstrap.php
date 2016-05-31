@@ -78,8 +78,8 @@ class Bootstrap extends CI_Controller
                     if (!is_dir($file)) {
                         $ext = pathinfo($file, PATHINFO_EXTENSION);
                         $filename = pathinfo($file, PATHINFO_FILENAME);
-                        if ($ext == 'php') {
-                            if ($filename == 'manifest') {
+                        if ($ext === 'php') {
+                            if ($filename === 'manifest') {
                                 include($file);
                             }
                             $this->getPhpClasses((string)$file);
@@ -133,7 +133,7 @@ class Bootstrap extends CI_Controller
         spl_autoload_register(function ($class) use ($classes) {
 
             if (isset($classes[$class])) {
-                include($classes[$class]);
+                include_once($classes[$class]);
             }
         });
 
@@ -144,7 +144,7 @@ class Bootstrap extends CI_Controller
 
 
         if (defined('ENVIRONMENT')) {
-            if (ENVIRONMENT == 'development') {
+            if (ENVIRONMENT === 'development') {
                 $this->output->enable_profiler(true);
             }
         }
@@ -155,7 +155,7 @@ class Bootstrap extends CI_Controller
         //loop through the settings and set them in the config library
         foreach ($settings as $key => $setting) {
             //special for the order status settings
-            if ($key == 'order_statuses') {
+            if ($key === 'order_statuses') {
                 $setting = json_decode($setting, true);
             }
 
@@ -166,7 +166,7 @@ class Bootstrap extends CI_Controller
         date_default_timezone_set(config_item('timezone'));
 
         //if SSL is enabled in config force it here.
-        if (config_item('ssl_support') && (!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] == 'off')) {
+        if (config_item('ssl_support') && (!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] === 'off')) {
             $this->config->set_item('base_url', str_replace('http://', 'https://', config_item('base_url')));
             redirect(\CI::uri()->uri_string());
         }
@@ -221,7 +221,7 @@ class Bootstrap extends CI_Controller
         $count = count($tokens);
         $dlm = false;
         for ($i = 2; $i < $count; $i++) {
-            if ((isset($tokens[$i - 2][1]) && ($tokens[$i - 2][1] == "phpnamespace" || $tokens[$i - 2][1] == "namespace")) || ($dlm && $tokens[$i - 1][0] == T_NS_SEPARATOR && $tokens[$i][0] == T_STRING)) {
+            if ((isset($tokens[$i - 2][1]) && ($tokens[$i - 2][1] ==="phpnamespace" || $tokens[$i - 2][1] ==="namespace")) || ($dlm && $tokens[$i - 1][0] ===T_NS_SEPARATOR && $tokens[$i][0] ===T_STRING)) {
                 if (!$dlm) {
                     $namespace = 0;
                 }
@@ -232,7 +232,7 @@ class Bootstrap extends CI_Controller
             } elseif ($dlm && ($tokens[$i][0] != T_NS_SEPARATOR) && ($tokens[$i][0] != T_STRING)) {
                 $dlm = false;
             }
-            if (($tokens[$i - 2][0] == T_CLASS || (isset($tokens[$i - 2][1]) && $tokens[$i - 2][1] == "phpclass")) && $tokens[$i - 1][0] == T_WHITESPACE && $tokens[$i][0] == T_STRING) {
+            if (($tokens[$i - 2][0] ===T_CLASS || (isset($tokens[$i - 2][1]) && $tokens[$i - 2][1] ==="phpclass")) && $tokens[$i - 1][0] ===T_WHITESPACE && $tokens[$i][0] ===T_STRING) {
                 $class_name = $tokens[$i][1];
                 
                 if ($namespace != '') {

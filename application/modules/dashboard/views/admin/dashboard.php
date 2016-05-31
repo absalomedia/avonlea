@@ -106,8 +106,8 @@
             <td><?php echo  $customer->lastname; ?></td>
             <td><a href="mailto:<?php echo  $customer->email;?>"><?php echo  $customer->email; ?></a></td>
             <td>
-                <?php if ($customer->active == 1) {
-    echo lang('yes');
+                <?php if ($customer->active ===1) {
+                    echo lang('yes');
 } else {
     echo lang('no');
 }

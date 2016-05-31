@@ -28,7 +28,7 @@ class AdminOrders extends Admin
     {
 
         //if they submitted an export form do the export
-        if (\CI::input()->post('submit') == 'export') {
+        if (\CI::input()->post('submit') === 'export') {
             \CI::load()->model('Customers');
             \CI::load()->helper('download_helper');
             $post = \CI::input()->post(null, false);
@@ -133,7 +133,7 @@ class AdminOrders extends Admin
         \CI::form_validation()->set_rules('notes', 'lang:notes');
         \CI::form_validation()->set_rules('status', 'lang:status', 'required');
 
-        if (\CI::form_validation()->run() == true) {
+        if (\CI::form_validation()->run() ===true) {
             $save = [
                 'id' => $data['order']->id,
                 'notes' => \CI::input()->post('notes'),

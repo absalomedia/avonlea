@@ -60,7 +60,7 @@
         <div class="productDetails">
 
             <div class="productExcerpt">
-                <?php echo(new content_filter($product->excerpt))->display();?>
+                <?php echo(new ContentFilter($product->excerpt))->display();?>
             </div>
 
             <?php echo form_open('cart/add-to-cart', 'id="add-to-cart"');?>
@@ -80,7 +80,7 @@
                             </div>
                             <div class="col" data-cols="2/3">
                         <?php
-                        if ($option->type == 'checklist') {
+                        if ($option->type === 'checklist') {
                             $value  = [];
                             if ($posted_options && isset($posted_options[$option->id])) {
                                 $value  = $posted_options[$option->id];
@@ -96,17 +96,17 @@
                             }
                         }
 
-                        if ($option->type == 'textfield') :?>
+                        if ($option->type === 'textfield') :?>
                             <input type="text" name="option[<?php echo $option->id;?>]" value="<?php echo $value;?>"/>
-                        <?php                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 elseif ($option->type == 'textarea') :?>
+                        <?php                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 elseif ($option->type === 'textarea') :?>
                             <textarea name="option[<?php echo $option->id;?>]"><?php echo $value;?></textarea>
-                        <?php elseif ($option->type == 'droplist') :?>
+                        <?php elseif ($option->type === 'droplist') :?>
                             <select name="option[<?php echo $option->id;?>]">
                                 <option value=""><?php echo lang('choose_option');?></option>
 
                             <?php foreach ($option->values as $values) :
                                 $selected   = '';
-                                if ($value == $values->id) {
+                                if ($value === $values->id) {
                                     $selected   = ' selected="selected"';
                                 }?>
 
@@ -123,12 +123,12 @@
 
                             <?php endforeach;?>
                             </select>
-                        <?php elseif ($option->type == 'radiolist') :?>
+                        <?php elseif ($option->type === 'radiolist') :?>
                             <label class="radiolist">
                             <?php foreach ($option->values as $values) :
 
                                 $checked = '';
-                                if ($value == $values->id) {
+                                if ($value === $values->id) {
                                     $checked = ' checked="checked"';
                                 }?>
                                 <div>
@@ -138,7 +138,7 @@
                                 </div>
                             <?php endforeach;?>
                             </label>
-                        <?php elseif ($option->type == 'checklist') :?>
+                        <?php elseif ($option->type === 'checklist') :?>
                             <label class="checklist"<?php echo $required;?>>
                             <?php foreach ($option->values as $values) :
 
@@ -174,7 +174,7 @@
             </form>
 
             <div class="productDescription">
-                <?php echo(new content_filter($product->description))->display();?>
+                <?php echo(new ContentFilter($product->description))->display();?>
             </div>
 
         </div>

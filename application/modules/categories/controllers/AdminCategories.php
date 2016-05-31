@@ -18,7 +18,7 @@ class AdminCategories extends Admin
     {
         parent::__construct();
         
-        \CI::auth()->check_access('Admin', true);
+        \CI::auth()->checkAccess('Admin', true);
         \CI::lang()->load('categories');
         \CI::load()->model('Categories');
     }
@@ -115,7 +115,7 @@ class AdminCategories extends Admin
         }
         
         // validate the form
-        if (\CI::form_validation()->run() == false) {
+        if (\CI::form_validation()->run() === false) {
             $this->view('category_form', $data);
         } else {
             $uploaded = \CI::upload()->do_upload('image');

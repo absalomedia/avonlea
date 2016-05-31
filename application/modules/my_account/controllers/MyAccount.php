@@ -28,9 +28,9 @@ class MyAccount extends Front
         //make sure they're logged in
         \CI::Login()->isLoggedIn('my-account');
 
-        $data['customer'] = (array)\CI::Customers()->get_customer($this->customer->id);
-        $data['addresses'] = \CI::Customers()->get_address_list($this->customer->id);
-        $data['customer_addresses'] = \CI::Customers()->get_address_list($this->customer->id);
+        $data['customer'] = (array)\CI::Customers()->getCustomer($this->customer->id);
+        $data['addresses'] = \CI::Customers()->getAddressList($this->customer->id);
+        $data['customer_addresses'] = \CI::Customers()->getAddressList($this->customer->id);
 
         // load other page content
         //\CI::load()->model('banner_model');
@@ -93,7 +93,7 @@ class MyAccount extends Front
         }
 
 
-        if (\CI::form_validation()->run() == false) {
+        if (\CI::form_validation()->run() === false) {
             $this->view('my_account', $data);
         } else {
             $customer = [];

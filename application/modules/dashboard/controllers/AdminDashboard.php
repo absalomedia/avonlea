@@ -17,7 +17,7 @@ class AdminDashboard extends Admin
     {
         parent::__construct();
 
-        if (\CI::auth()->check_access('Orders')) {
+        if (\CI::auth()->checkAccess('Orders')) {
             redirect(config_item('admin_folder').'/orders');
         }
 
@@ -39,7 +39,7 @@ class AdminDashboard extends Admin
         $data['orders'] = \CI::Orders()->getOrders(false, 'ordered_on', 'DESC', 5);
 
         // get 5 latest customers
-        $data['customers'] = \CI::Customers()->get_customers(5);
+        $data['customers'] = \CI::Customers()->getCustomers(5);
 
         $this->view('dashboard', $data);
     }

@@ -32,31 +32,31 @@ lang('january')
 		<?php
 
         $fields = ['couponDiscounts', 'giftCardDiscounts', 'products', 'shipping', 'tax'];
-        for ($i=0; $i<12; $i++):
+        for ($i=0; $i<12; $i++) :
 
         ?>
 		<tr>
 			<th><?php echo $m[$i];?></th>
 			<?php
                 $total = 0;
-                foreach ($fields as $field) {
-                    echo '<td>';
-                    if (isset($orders[$field][$i])) {
-                        if ($field == 'couponDiscounts' || $field == 'giftCardDiscounts') {
-                            echo format_currency((abs($orders[$field][$i])*-1));
-                            $total = $total - abs($orders[$field][$i]);
-                        } else {
-                            echo format_currency($orders[$field][$i]);
-                            $total = $total + $orders[$field][$i];
-                        }
+            foreach ($fields as $field) {
+                echo '<td>';
+                if (isset($orders[$field][$i])) {
+                    if ($field === 'couponDiscounts' || $field === 'giftCardDiscounts') {
+                        echo format_currency((abs($orders[$field][$i])*-1));
+                        $total = $total - abs($orders[$field][$i]);
                     } else {
-                        echo format_currency(0);
+                        echo format_currency($orders[$field][$i]);
+                        $total = $total + $orders[$field][$i];
                     }
-                    echo '</td>';
+                } else {
+                    echo format_currency(0);
                 }
+                echo '</td>';
+            }
                 echo '<td>'.format_currency($total).'</td>';
             ?>
 		</tr>
-		<?php endfor;?>
+		<?php                                                                                                                                                                                                                 endfor;?>
 	</tbody>
 </table>

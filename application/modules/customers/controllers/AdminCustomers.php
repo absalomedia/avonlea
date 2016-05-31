@@ -30,12 +30,12 @@ class AdminCustomers extends Admin
         //\CI::session()->set_flashdata('message', 'this is our message');
 
         $data['page_title'] = lang('customers');
-        $data['customers'] = \CI::Customers()->get_customers(50, $page, $field, $by);
+        $data['customers'] = \CI::Customers()->getCustomers(50, $page, $field, $by);
         
         \CI::load()->library('pagination');
 
         $config['base_url'] = site_url('/admin/customers/index/'.$field.'/'.$by.'/');
-        $config['total_rows'] = \CI::Customers()->count_customers();
+        $config['total_rows'] = \CI::Customers()->countCustomers();
         $config['per_page'] = 50;
         $config['uri_segment'] = 6;
         $config['first_link'] = 'First';
@@ -72,7 +72,7 @@ class AdminCustomers extends Admin
     
     public function export()
     {
-        $customers = \CI::Customers()->get_customer_export();
+        $customers = \CI::Customers()->getCustomerExport();
         
         \CI::load()->helper('download_helper');
         force_download('customers.json', json_encode($customers));
@@ -105,7 +105,7 @@ class AdminCustomers extends Admin
         
         if ($id) {
             $this->customer_id = $id;
-            $customer = \CI::Customers()->get_customer($id);
+            $customer = \CI::Customers()->getCustomer($id);
             //if the customer does not exist, redirect them to the customer list with an error
             if (!$customer) {
                 \CI::session()->set_flashdata('error', lang('error_not_found'));
@@ -148,7 +148,7 @@ class AdminCustomers extends Admin
         }
         
                 
-        if (\CI::form_validation()->run() == false) {
+        if (\CI::form_validation()->run() === false) {
             $this->view('customer_form', $data);
         } else {
             $save['id'] = $id;
@@ -177,7 +177,7 @@ class AdminCustomers extends Admin
     
     public function addresses($id = false)
     {
-        $data['customer'] = \CI::Customers()->get_customer($id);
+        $data['customer'] = \CI::Customers()->getCustomer($id);
 
         //if the customer does not exist, redirect them to the customer list with an error
         if (!$data['customer']) {
@@ -185,7 +185,7 @@ class AdminCustomers extends Admin
             redirect('admin/customers');
         }
         
-        $data['addresses'] = \CI::Customers()->get_address_list($id);
+        $data['addresses'] = \CI::Customers()->getAddressList($id);
         
         $data['page_title'] = sprintf(lang('addresses_for'), $data['customer']->firstname.' '.$data['customer']->lastname);
         
@@ -195,7 +195,7 @@ class AdminCustomers extends Admin
     public function delete($id = false)
     {
         if ($id) {
-            $customer = \CI::Customers()->get_customer($id);
+            $customer = \CI::Customers()->getCustomer($id);
             //if the customer does not exist, redirect them to the customer list with an error
             if (!$customer) {
                 \CI::session()->set_flashdata('error', lang('error_not_found'));
@@ -243,7 +243,7 @@ class AdminCustomers extends Admin
         
         \CI::form_validation()->set_rules('name', 'lang:group_name', 'trim|required|max_length[50]');
 
-        if (\CI::form_validation()->run() == false) {
+        if (\CI::form_validation()->run() === false) {
             $this->view('customer_group_form', $data);
         } else {
             if ($id) {
@@ -274,7 +274,7 @@ class AdminCustomers extends Admin
     
     public function addressList($customer_id)
     {
-        $data['address_list'] = \CI::Customers()->get_address_list($customer_id);
+        $data['address_list'] = \CI::Customers()->getAddressList($customer_id);
         
         $this->view('address_list', $data);
     }
@@ -301,7 +301,7 @@ class AdminCustomers extends Admin
         $data['countries_menu'] = \CI::Locations()->get_countries_menu();
         
         if ($id) {
-            $address = \CI::Customers()->get_address($id);
+            $address = \CI::Customers()->getAddress($id);
             
             //fully escape the address
             form_decode($address);
@@ -328,7 +328,7 @@ class AdminCustomers extends Admin
         \CI::form_validation()->set_rules('zone_id', 'lang:state', 'trim|required');
         \CI::form_validation()->set_rules('zip', 'lang:zip', 'trim|required|max_length[32]');
         
-        if (\CI::form_validation()->run() == false) {
+        if (\CI::form_validation()->run() === false) {
             $this->view('customer_address_form', $data);
         } else {
             $a['customer_id'] = $customer_id; // this is needed for new records
@@ -354,7 +354,7 @@ class AdminCustomers extends Admin
             $a['field_data']['country'] = $country->name; // some shipping libraries require country name
             $a['field_data']['country_code'] = $country->iso_code_2; // some shipping libraries require the code
 
-            \CI::Customers()->save_address($a);
+            \CI::Customers()->saveAddress($a);
             \CI::session()->set_flashdata('message', lang('message_saved_address'));
             
             redirect('admin/customers/addresses/'.$customer_id);
@@ -365,7 +365,7 @@ class AdminCustomers extends Admin
     public function deleteAddress($customer_id = false, $id = false)
     {
         if ($id) {
-            $address = \CI::Customers()->get_address($id);
+            $address = \CI::Customers()->getAddress($id);
             //if the customer does not exist, redirect them to the customer list with an error
             if (!$address) {
                 \CI::session()->set_flashdata('error', lang('error_address_not_found'));
@@ -377,7 +377,7 @@ class AdminCustomers extends Admin
                 }
             } else {
                 //if the customer is legit, delete them
-                \CI::Customers()->delete_address($id, $customer_id);
+                \CI::Customers()->deleteAddress($id, $customer_id);
                 \CI::session()->set_flashdata('message', lang('message_address_deleted'));
                 
                 if ($customer_id) {

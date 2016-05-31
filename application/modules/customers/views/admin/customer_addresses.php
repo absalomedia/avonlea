@@ -3,7 +3,7 @@
 <script type="text/javascript">
 function areyousure()
 {
-    return confirm('<?php echo lang('confirm_delete_address');?>');
+    return confirm('<?php echo lang('confirm_deleteAddress');?>');
 }
 </script>
 
@@ -21,7 +21,7 @@ function areyousure()
     </thead>
     <tbody>
     <?php echo (count($addresses) < 1)?'<tr><td style="text-align:center;" colspan="6">'.lang('no_addresses').'</td></tr>':''?>
-<?php foreach ($addresses as $address):?>
+<?php foreach ($addresses as $address) :?>
         <tr>
             <td>
                 <?php echo $address['lastname']; ?>, <?php echo $address['firstname']; ?>
@@ -47,7 +47,7 @@ function areyousure()
             <td class="text-right">
                 <div class="btn-group">
                     <a class="btn btn-default" href="<?php echo site_url('admin/customers/address_form/'.$customer->id.'/'.$address['id']);?>"><i class="icon-pencil"></i></a>
-                    <a class="btn btn-danger" href="<?php echo site_url('admin/customers/delete_address/'.$customer->id.'/'.$address['id']);?>" onclick="return areyousure();"><i class="icon-times"></i></a>
+                    <a class="btn btn-danger" href="<?php echo site_url('admin/customers/deleteAddress/'.$customer->id.'/'.$address['id']);?>" onclick="return areyousure();"><i class="icon-times"></i></a>
                 </div>
             </td>
         </tr>

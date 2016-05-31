@@ -20,26 +20,26 @@ function areyousure()
     </thead>
     
     <?php echo (count($pages) < 1)?'<tr><td style="text-align:center;" colspan="2">'.lang('no_pages_or_links').'</td></tr>':''?>
-    <?php if ($pages):?>
+    <?php if ($pages) :?>
     <tbody>
         
         <?php
-        function list_pages($parent_id, $pages, $sub='')
+        function list_pages($parent_id, $pages, $sub = '')
         {
-            foreach ($pages[$parent_id] as $page):?>
+            foreach ($pages[$parent_id] as $page) :?>
             <tr>
-                <td style="width:20px;"><?php echo ($page->parent_id == -1)?'<i class="icon-eye-slash"></i>':'';
+                <td style="width:20px;"><?php echo ($page->parent_id ===-1)?'<i class="icon-eye-slash"></i>':'';
             ?></td>
                 <td><?php echo  $sub.$page->title;
             ?></td>
                 <td class="text-right">
                     <div class="btn-group">
-                        <?php if (!empty($page->url)): ?>
+                        <?php if (!empty($page->url)) : ?>
                             <a class="btn btn-default" href="<?php echo site_url('admin/pages/link_form/'.$page->id);
             ?>"><i class="icon-pencil"></i></a>
                             <a class="btn btn-default" href="<?php echo $page->url;
             ?>" target="_blank"><i class="icon-link"></i></a>
-                        <?php else: ?>
+                        <?php else : ?>
                             <a class="btn btn-default" href="<?php echo site_url('admin/pages/form/'.$page->id);
             ?>"><i class="icon-pencil"></i></a>
                             <a class="btn btn-default" href="<?php echo site_url('page/'.$page->slug);

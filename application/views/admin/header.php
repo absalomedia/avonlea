@@ -101,7 +101,7 @@ $(document).ready(function(){
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php echo lang('common_sales'); ?> <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="<?php echo site_url('admin/orders');?>"><?php echo lang('common_orders'); ?></a></li>
-                            <?php if (CI::auth()->check_access('Admin')) : ?>
+                            <?php if (CI::auth()->checkAccess('Admin')) : ?>
                                 <li><a href="<?php echo site_url('admin/customers');?>"><?php echo lang('common_customers'); ?></a></li>
                                 <li><a href="<?php echo site_url('admin/customers/groups');?>"><?php echo lang('common_groups'); ?></a></li>
                                 <li><a href="<?php echo site_url('admin/reports');?>"><?php echo lang('common_reports'); ?></a></li>
@@ -113,7 +113,7 @@ $(document).ready(function(){
 
                     <?php
                     // Restrict access to Admins only
-                    if (CI::auth()->check_access('Admin')) : ?>
+                    if (CI::auth()->checkAccess('Admin')) : ?>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php echo lang('common_catalog'); ?> <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">

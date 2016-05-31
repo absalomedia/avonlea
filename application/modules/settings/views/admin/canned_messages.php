@@ -4,7 +4,7 @@
     <a class="btn btn-primary" href="<?php echo site_url('admin/settings/canned_message_form/');?>"><i class="icon-plus"></i> <?php echo lang('add_canned_message');?></a>
 </div>
 
-<?php if (count($canned_messages) > 0): ?>
+<?php if (count($canned_messages) > 0) : ?>
 <table class="table table-striped">
     <thead>
         <tr>
@@ -13,13 +13,13 @@
         </tr>
     </thead>
     <tbody>
-    <?php foreach ($canned_messages as $message): ?>
+    <?php foreach ($canned_messages as $message) : ?>
         <tr>
             <td><?php echo $message['name']; ?></td>
             <td class="text-right">
                 <span class="btn-group">
                     <a class="btn btn-default" href="<?php echo site_url('admin/settings/canned_message_form/'.$message['id']);?>"><i class="icon-pencil"></i></a>
-                    <?php if ($message['deletable'] == 1) : ?>   
+                    <?php if ($message['deletable'] ===1) : ?>   
                         <a class="btn btn-danger" href="<?php echo site_url('admin/settings/delete_message/'.$message['id']);?>" onclick="return areyousure();"><i class="icon-times"></i></a>
                     <?php endif; ?>
                 </span>

@@ -41,7 +41,7 @@ class Login extends Front
             }
         }]]);
 
-        if (\CI::form_validation()->run() == false) {
+        if (\CI::form_validation()->run() === false) {
             $this->view('login', ['redirect'=>$redirect, 'loginErrors'=>\CI::form_validation()->get_error_array()]);
         } else {
             redirect($redirect);
@@ -74,7 +74,7 @@ class Login extends Front
             ]
         ]);
 
-        if (\CI::form_validation()->run() == false) {
+        if (\CI::form_validation()->run() === false) {
             $this->view('forgot_password', $data);
         } else {
             \CI::session()->set_flashdata('message', lang('message_new_password'));
@@ -120,7 +120,7 @@ class Login extends Front
         \CI::form_validation()->set_rules('confirm', 'lang:account_confirm', 'required|matches[password]');
 
         
-        if (\CI::form_validation()->run() == false) {
+        if (\CI::form_validation()->run() === false) {
             //if they have submitted the form already and it has returned with errors, reset the redirect
             if (\CI::input()->post('submitted')) {
                 $data['redirect'] = \CI::input()->post('redirect');
@@ -148,7 +148,7 @@ class Login extends Front
             $redirect  = \CI::input()->post('redirect');
             
             //if we don't have a value for redirect
-            if ($redirect == '') {
+            if ($redirect === '') {
                 $redirect = 'my-account';
             }
             

@@ -15,11 +15,11 @@ $tax2 = 0;
 
 <h3><?php echo $this->lang->line('reports_yearly_income').' '.$current_year;?></h3>
 <p>
-  <?php
-  foreach ($years as $year) {
-      echo anchor('reports/index/'.$year, $year) . ' ';
-  }
-  ?>
+    <?php
+    foreach ($years as $year) {
+        echo anchor('reports/index/'.$year, $year) . ' ';
+    }
+    ?>
 </p>
 <fieldset id="graph_legend">
   <legend><?php echo $this->lang->line('reports_legend');?></legend>
@@ -35,20 +35,20 @@ $tax2 = 0;
 
       var dataset = {
         '<?php echo $this->lang->line('menu_invoices');?>':   [<?php
-foreach ($month_invoices as $key => $value) {
-    if ($value == '') {
-        $value = 0;
-    }
-    echo '[' . ($key-1) . ', ' . $value . ']';
-    if ($key <= 11) {
-        echo ",";
-    }
-}
+        foreach ($month_invoices as $key => $value) {
+            if ($value === '') {
+                $value = 0;
+            }
+            echo '[' . ($key-1) . ', ' . $value . ']';
+            if ($key <= 11) {
+                echo ",";
+            }
+        }
 ?>]<?php
 if (max($month_tax1) != 0) {
     echo ",\n'" . $this->settings_model->get_setting('tax1_desc') . "':   [";
     foreach ($month_tax1 as $key => $value) {
-        if ($value == '') {
+        if ($value === '') {
             $value = 0;
         }
         echo '[' . ($key-1) . ', ' . $value . ']';
@@ -61,7 +61,7 @@ if (max($month_tax1) != 0) {
 if (max($month_tax2) != 0) {
     echo ",\n'" . $this->settings_model->get_setting('tax2_desc') . "':   [";
     foreach ($month_tax2 as $key => $value) {
-        if ($value == '') {
+        if ($value === '') {
             $value = 0;
         }
         echo '[' . ($key-1) . ', ' . $value . ']';
@@ -107,20 +107,24 @@ if (max($month_tax2) != 0) {
 -->
 
 <h3><?php echo $this->lang->line('invoice_overdue');?></h3>
-<p><?php echo $this->lang->line('invoice_there_are_currently');?> <?php echo $overdueInvoicesCount;?> <?php echo $this->lang->line('invoice_overdue_invoices');?><?php if ($overdueInvoicesCount > 0):?>.  <?php echo $this->lang->line('invoice_total');?> <?php echo $this->settings_model->get_setting('currency_symbol');?><?php echo $overdueInvoicesAmount;?><?php endif; ?></p>
+<p><?php echo $this->lang->line('invoice_there_are_currently');?> <?php echo $overdueInvoicesCount;?> <?php echo $this->lang->line('invoice_overdue_invoices');?><?php if ($overdueInvoicesCount > 0) :
+?>.  <?php echo $this->lang->line('invoice_total');?> <?php echo $this->settings_model->get_setting('currency_symbol');?><?php echo $overdueInvoicesAmount;?><?php
+endif; ?></p>
 
 <h3><?php echo $this->lang->line('invoice_open');?></h3>
-<p><?php echo $this->lang->line('invoice_there_are_currently');?> <?php echo $openInvoicesCount;?>. <?php if ($openInvoicesCount > 0):?><?php echo $this->lang->line('invoice_total');?>: <?php echo $this->settings_model->get_setting('currency_symbol');?><?php echo $openInvoicesAmount;?><?php endif; ?></p>
+<p><?php echo $this->lang->line('invoice_there_are_currently');?> <?php echo $openInvoicesCount;?>. <?php if ($openInvoicesCount > 0) :
+?><?php echo $this->lang->line('invoice_total');?>: <?php echo $this->settings_model->get_setting('currency_symbol');?><?php echo $openInvoicesAmount;?><?php
+endif; ?></p>
 
 <h3><?php echo $this->lang->line('reports_year_to_date').' : '.$current_year;?></h3>
 <ul>
 <li><?php echo $yearToDateCount;?></li>
-<?php if ($yearToDateCount > 0):?>
+<?php if ($yearToDateCount > 0) :?>
 <li><?php echo $yearToDateAmount;?></li>
-<?php if ($yearToDateTax1 != ''):?>
+<?php if ($yearToDateTax1 != '') :?>
 <li><?php echo $yearToDateTax1 . ' ' . $this->settings_model->get_setting('tax1_desc');?></li>
 <?php endif; ?>
-<?php if ($yearToDateTax2 != ''):?>
+<?php if ($yearToDateTax2 != '') :?>
 <li><?php echo $yearToDateTax2 . ' ' . $this->settings_model->get_setting('tax2_desc');?></li>
 <?php endif; ?>
 <?php endif; ?>

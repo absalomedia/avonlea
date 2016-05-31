@@ -110,7 +110,7 @@ class Invoice extends CI_Model
         $this->db->group_by('invoice_id');
 
         foreach ($this->db->get('invoice_items')->result() as $short_desc) {
-            $short_descriptions[$short_desc->invoice_id] = ($limit == 0) ? '' : '['.character_limiter($short_desc->work_description, $limit).']';
+            $short_descriptions[$short_desc->invoice_id] = ($limit === 0) ? '' : '['.character_limiter($short_desc->work_description, $limit).']';
         }
 
         return $short_descriptions;
@@ -193,11 +193,11 @@ class Invoice extends CI_Model
             $this->db->where('client_id IS NOT NULL');
         }
 
-        if ($status == 'overdue') {
+        if ($status === 'overdue') {
             $this->db->having("daysOverdue <= -$days_payment_due AND (ROUND(amount_paid, 2) < ROUND(subtotal, 2) OR amount_paid is null)", '', false);
-        } elseif ($status == 'open') {
+        } elseif ($status === 'open') {
             $this->db->having('(ROUND(amount_paid, 2) < ROUND(subtotal, 2) or amount_paid is null)', '', false);
-        } elseif ($status == 'closed') {
+        } elseif ($status === 'closed') {
             $this->db->having('ROUND(amount_paid, 2) >= ROUND(subtotal, 2)', '', false);
         }
 
@@ -249,7 +249,7 @@ class Invoice extends CI_Model
 
         $num_rows = $query->num_rows();
 
-        if ($num_rows == 0) {
+        if ($num_rows === 0) {
             return true;
         } else {
             return false;
@@ -266,7 +266,7 @@ class Invoice extends CI_Model
 
         $num_rows = $query->num_rows();
 
-        if ($num_rows == 0) {
+        if ($num_rows === 0) {
             return true;
         } else {
             return false;

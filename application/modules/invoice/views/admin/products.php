@@ -2,13 +2,13 @@
 
 <?php
 //set "code" for searches
-if (!empty($term)):
+if (!empty($term)) :
     $term = json_decode($term);
-    if (!empty($term->term) || !empty($term->category_id)):?>
+    if (!empty($term->term) || !empty($term->category_id)) :?>
         <div class="alert alert-info">
             <?php echo sprintf(lang('search_returned'), intval($total));?>
         </div>
-    <?php endif;?>
+    <?php                                                                                                         endif;?>
 <?php endif;?>
 
 <script type="text/javascript">
@@ -39,7 +39,7 @@ function areyousure()
                         if (!empty($categories)) {
                             echo '<select class="form-control" name="category_id">';
                             echo '<option value="">'.lang('filter_by_category').'</option>';
-                            foreach ($categories as $key=>$name) {
+                            foreach ($categories as $key => $name) {
                                 echo '<option value="'.$key.'">'.$name.'</option>';
                             }
                             echo '</select>';
@@ -66,27 +66,27 @@ function areyousure()
         <thead>
             <tr>
                 <?php
-                    foreach (['sku', 'name', 'quantity'] as $thead) {
-                        echo '<th>';
+                foreach (['sku', 'name', 'quantity'] as $thead) {
+                    echo '<th>';
 
-                        $uristring = 'admin/products/'.$rows.'/'.$thead.'/';
-                        $icon = '';
-                        if ($order_by == $thead) {
-                            if ($sort_order == 'asc') {
-                                $uristring .= 'desc/';
-                                $icon   = ' <i class="icon-sort-alt-up"></i>';
-                            } else {
-                                $uristring .= 'asc/';
-                                $icon   = ' <i class="icon-sort-alt-down"></i>';
-                            }
+                    $uristring = 'admin/products/'.$rows.'/'.$thead.'/';
+                    $icon = '';
+                    if ($order_by === $thead) {
+                        if ($sort_order === 'asc') {
+                            $uristring .= 'desc/';
+                            $icon   = ' <i class="icon-sort-alt-up"></i>';
                         } else {
-                            $uristring .='asc/';
+                            $uristring .= 'asc/';
+                            $icon   = ' <i class="icon-sort-alt-down"></i>';
                         }
-
-                        echo '<a href="'.site_url($uristring.$code.'/'.$page).'">'.lang($thead).$icon.'</a></th>';
+                    } else {
+                        $uristring .='asc/';
                     }
+
+                    echo '<a href="'.site_url($uristring.$code.'/'.$page).'">'.lang($thead).$icon.'</a></th>';
+                }
                 ?>
-                <?php foreach ($groups as $group):?>
+                <?php foreach ($groups as $group) :?>
                     <th><?php echo $group->name;?></th>
                 <?php endforeach; ?>
                 <th style="width:16%">
@@ -96,17 +96,17 @@ function areyousure()
         </thead>
         <tbody>
         <?php echo (count($products) < 1)?'<tr><td style="text-align:center;" colspan="7">'.lang('no_products').'</td></tr>':''?>
-    <?php foreach ($products as $product):?>
+    <?php foreach ($products as $product) :?>
             <tr>
                 <td><?php echo $product->sku;?></td>
                 <td><?php echo $product->name;?></td>
                 <td>
-                    <?php if ((bool)$product->track_stock):?>
+                    <?php if ((bool)$product->track_stock) :?>
                         <?php echo form_input(['name'=>'product['.$product->id.'][quantity]', 'value'=>assign_value('quantity', $product->quantity), 'class'=>'form-control tableInput']);?>
                     <?php endif; ?>
                 </td>
-                <?php foreach ($groups as $group):?>
-                    <td><?php echo ($product->{'enabled'.$group->id} == '1') ? lang('enabled') : lang('disabled'); ?></td>
+                <?php foreach ($groups as $group) :?>
+                    <td><?php echo ($product->{'enabled'.$group->id} === '1') ? lang('enabled') : lang('disabled'); ?></td>
                 <?php endforeach; ?>
                 <td class="text-right">
                     <div class="btn-group">

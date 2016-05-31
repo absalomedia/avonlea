@@ -36,7 +36,7 @@ class AdminLogin extends \Avonlea\Controller
             $redirect  = \CI::input()->post('redirect');
             $login = \CI::auth()->login_admin($username, $password, $remember);
             if ($login) {
-                if ($redirect == '') {
+                if ($redirect === '') {
                     $redirect = 'admin/dashboard';
                 }
                 redirect($redirect);
@@ -79,7 +79,7 @@ class AdminLogin extends \Avonlea\Controller
             ]
         );
 
-        if (\CI::form_validation()->run() == false) {
+        if (\CI::form_validation()->run() === false) {
             $this->views->show('admin/header');
             $this->views->show('admin/forgot_password');
             $this->views->show('admin/footer');

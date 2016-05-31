@@ -8,11 +8,11 @@ class MY_Image_lib extends CI_Image_lib
     //stop images from enlarging
     public function image_reproportion()
     {
-        if (!is_numeric($this->width) or !is_numeric($this->height) or $this->width == 0 or $this->height == 0) {
+        if (!is_numeric($this->width) or !is_numeric($this->height) or $this->width === 0 or $this->height === 0) {
             return;
         }
 
-        if (!is_numeric($this->orig_width) or !is_numeric($this->orig_height) or $this->orig_width == 0 or $this->orig_height == 0) {
+        if (!is_numeric($this->orig_width) or !is_numeric($this->orig_height) or $this->orig_width === 0 or $this->orig_height === 0) {
             return;
         }
 
@@ -36,7 +36,7 @@ class MY_Image_lib extends CI_Image_lib
         }
 
         if (($this->width != $new_width) && ($this->height != $new_height)) {
-            if ($this->master_dim    == 'height') {
+            if ($this->master_dim    === 'height') {
                 $this->width    = $new_width;
             } else {
                 $this->height    = $new_height;

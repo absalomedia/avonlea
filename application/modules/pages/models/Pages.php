@@ -23,7 +23,7 @@ class Pages extends CI_Model
         foreach ($result as $page) {
 
             // Set a class to active, so we can highlight our current page
-            if ($this->uri->segment(1) == $page->slug) {
+            if ($this->uri->segment(1) === $page->slug) {
                 $page->active = true;
             } else {
                 $page->active = false;
@@ -51,7 +51,7 @@ class Pages extends CI_Model
         foreach ($pages as $page) {
 
             // Set a class to active, so we can highlight our current page
-            if ($this->uri->segment(2) == $page->slug && $this->uri->segment(1) == 'page') {
+            if ($this->uri->segment(2) === $page->slug && $this->uri->segment(1) === 'page') {
                 $page->active = true;
             } else {
                 $page->active = false;
@@ -102,7 +102,7 @@ class Pages extends CI_Model
         CI::db()->delete('pages');
     }
 
-    public function validate_slug($slug, $id=false, $counter=false)
+    public function validate_slug($slug, $id = false, $counter = false)
     {
         CI::db()->select('slug');
         CI::db()->from('pages');

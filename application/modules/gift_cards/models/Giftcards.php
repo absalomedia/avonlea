@@ -15,7 +15,7 @@ class Giftcards extends CI_Model
     public function isValid($card)
     {
         // check for zero balance
-        if ($this->getBalance($card) == 0) {
+        if ($this->getBalance($card) === 0) {
             return false;
         }
         return true;

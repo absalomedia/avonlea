@@ -17,7 +17,7 @@ class AdminLocations extends Admin
     {
         parent::__construct();
         
-        \CI::auth()->check_access('Admin', true);
+        \CI::auth()->checkAccess('Admin', true);
         \CI::load()->model('Locations');
         \CI::lang()->load('locations');
     }
@@ -74,7 +74,7 @@ class AdminLocations extends Admin
         \CI::form_validation()->set_rules('tax', 'lang:tax', 'trim|numeric');
         \CI::form_validation()->set_rules('status', 'lang:status', 'trim');
     
-        if (\CI::form_validation()->run() == false) {
+        if (\CI::form_validation()->run() === false) {
             $this->view('country_form', $data);
         } else {
             $save['id'] = $id;
@@ -186,7 +186,7 @@ class AdminLocations extends Admin
         \CI::form_validation()->set_rules('tax', 'lang:tax', 'trim|numeric');
         \CI::form_validation()->set_rules('status', 'lang:status', 'trim');
     
-        if (\CI::form_validation()->run() == false) {
+        if (\CI::form_validation()->run() === false) {
             $this->view('country_zone_form', $data);
         } else {
             $save['id'] = $id;
@@ -278,7 +278,7 @@ class AdminLocations extends Admin
         \CI::form_validation()->set_rules('code', 'lang:code', 'trim|required');
         \CI::form_validation()->set_rules('tax', 'lang:tax', 'trim|numeric');
 
-        if (\CI::form_validation()->run() == false) {
+        if (\CI::form_validation()->run() === false) {
             $this->view('country_zone_area_form', $data);
         } else {
             $save['id'] = $area_id;

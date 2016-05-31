@@ -17,7 +17,7 @@ class AdminPages extends Admin
     {
         parent::__construct();
 
-        \CI::auth()->check_access('Admin', true);
+        \CI::auth()->checkAccess('Admin', true);
         \CI::lang()->load('pages');
         \CI::load()->model('pages');
     }
@@ -82,7 +82,7 @@ class AdminPages extends Admin
         \CI::form_validation()->set_rules('content', 'lang:content', 'trim');
         
         // Validate the form
-        if (\CI::form_validation()->run() == false) {
+        if (\CI::form_validation()->run() === false) {
             $this->view('page_form', $data);
         } else {
             \CI::load()->helper('text');
@@ -112,7 +112,7 @@ class AdminPages extends Admin
             $save['slug']       = $slug;
             
             //set the menu title to the page title if if is empty
-            if ($save['menu_title'] == '') {
+            if ($save['menu_title'] === '') {
                 $save['menu_title'] = \CI::input()->post('title');
             }
             
@@ -166,7 +166,7 @@ class AdminPages extends Admin
         \CI::form_validation()->set_rules('parent_id', 'lang:parent_id', 'trim|integer');
         
         // Validate the form
-        if (\CI::form_validation()->run() == false) {
+        if (\CI::form_validation()->run() === false) {
             $this->view('link_form', $data);
         } else {
             $save = [];

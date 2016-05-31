@@ -37,7 +37,7 @@
                 <label for="reduction_amount"><?php echo lang('reduction_amount')?></label>
                 <div class="row">
                     <div class="col-md-6">
-                    <?php echo form_dropdown('reduction_type', [ 'percent'  => lang('percentage'), 'fixed' => lang('fixed') ],  $reduction_type, 'class="form-control"'); ?>
+                    <?php echo form_dropdown('reduction_type', [ 'percent'  => lang('percentage'), 'fixed' => lang('fixed') ], $reduction_type, 'class="form-control"'); ?>
                     </div>
                     <div class="col-md-6">
                         <?php echo form_input(['name'=>'reduction_amount', 'value'=>assign_value('reduction_amount', $reduction_amount), 'class'=>'form-control']);?>
@@ -49,7 +49,7 @@
         <div class="col-md-6 col-md-offset-1 well pull-right">
             <?php
                 $options = [ '1' => lang('apply_to_whole_order'), '0' => lang('apply_to_select_items') ];
-                echo form_dropdown('whole_order_coupon', $options,  assign_value(0, $whole_order_coupon), 'id="gc_coupon_appliesto_fields" class="form-control"');
+                echo form_dropdown('whole_order_coupon', $options, assign_value(0, $whole_order_coupon), 'id="gc_coupon_appliesto_fields" class="form-control"');
             ?>
             <div id="gc_coupon_products">
                 <table class="table" width="100%" border="0" style="margin-top:10px;" cellspacing="5" cellpadding="0">
@@ -110,7 +110,7 @@ function run_product_query()
     
             $.each(data, function(index, value){
     
-                if($('#related_product_'+index).length == 0)
+                if($('#related_product_'+index).length === 0)
                 {
                     $('#product_list').append('<option id="product_item_'+index+'" value="'+index+'">'+value+'</option>');
                 }
@@ -124,7 +124,7 @@ var productTemplate = $('#productTemplate').html();
 function add_product()
 {
     //if the related product is not already a related product, add it
-    if($('#related_product_'+$('#product_list').val()).length == 0 && $('#product_list').val() != null)
+    if($('#related_product_'+$('#product_list').val()).length === 0 && $('#product_list').val() != null)
     {
 
         addToProductList($('#product_list').val(), $('#product_item_'+$('#product_list').val()).html());
@@ -133,7 +133,7 @@ function add_product()
     }
     else
     {
-        if($('#product_list').val() == null)
+        if($('#product_list').val() ===null)
         {
             alert('<?php echo lang('alert_select_product');?>');
         }
@@ -175,13 +175,13 @@ $(document).ready(function(){
 
     $("#gc_tabs").tabs();
 
-    if($('#gc_coupon_type').val() == 'shipping')
+    if($('#gc_coupon_type').val() === 'shipping')
     {
         $('#gc_coupon_price_fields').hide();
     }
 
     $('#gc_coupon_type').bind('change keyup', function(){
-        if($(this).val() == 'price')
+        if($(this).val() === 'price')
         {
             $('#gc_coupon_price_fields').show();
         }
@@ -191,13 +191,13 @@ $(document).ready(function(){
         }
     });
 
-    if($('#gc_coupon_appliesto_fields').val() == '1')
+    if($('#gc_coupon_appliesto_fields').val() === '1')
     {
         $('#gc_coupon_products').hide();
     }
 
     $('#gc_coupon_appliesto_fields').bind('change keyup', function(){
-        if($(this).val() == 0)
+        if($(this).val() === 0)
         {
             $('#gc_coupon_products').show();
         }

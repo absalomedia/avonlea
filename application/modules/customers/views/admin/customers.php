@@ -20,10 +20,10 @@ function areyousure()
             foreach (['lastname', 'firstname', 'email', 'active'] as $thead) {
                 $url = 'admin/customers/'.$thead.'/';
                 $icon = '';
-                if ($field == $thead) {
+                if ($field === $thead) {
                     $icon = ' <i class="icon-chevron-down"></i>';
 
-                    if ($by == 'ASC') {
+                    if ($by === 'ASC') {
                         $url .= 'DESC/';
                         $icon = ' <i class="icon-chevron-up"></i>';
                     } else {
@@ -45,22 +45,22 @@ function areyousure()
         <?php
         $page_links = CI::pagination()->create_links();
 
-        if ($page_links != ''):?>
+        if ($page_links != '') :?>
         <tr><td colspan="5" style="text-align:center"><?php echo $page_links;?></td></tr>
-        <?php endif;?>
+        <?php                                                                                                                                                                                                                 endif;?>
         <?php echo (count($customers) < 1)?'<tr><td style="text-align:center;" colspan="5">'.lang('no_customers').'</td></tr>':''?>
-<?php foreach ($customers as $customer):?>
+<?php foreach ($customers as $customer) :?>
         <tr>
             <?php /*<td style="width:16px;"><?php echo  $customer->id; ?></td>*/?>
             <td><?php echo  $customer->lastname; ?></td>
             <td class="gc_cell_left"><?php echo  $customer->firstname; ?></td>
             <td><a href="mailto:<?php echo  $customer->email;?>"><?php echo  $customer->email; ?></a></td>
             <td>
-                <?php if ($customer->active == 1) {
-    echo 'Yes';
+                <?php if ($customer->active ===1) {
+                    echo 'Yes';
 } else {
                     echo 'No';
-                }
+}
                 ?>
             </td>
             <td class="text-right">
@@ -72,8 +72,8 @@ function areyousure()
             </td>
         </tr>
 <?php endforeach;
-        if ($page_links != ''):?>
+if ($page_links != '') :?>
         <tr><td colspan="5" style="text-align:center"><?php echo $page_links;?></td></tr>
-        <?php endif;?>
+        <?php         endif;?>
     </tbody>
 </table>
