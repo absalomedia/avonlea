@@ -61,7 +61,7 @@ class Login extends Front
         \CI::form_validation()->set_rules('email', 'lang:address_email', ['trim', 'required', 'valid_email',
             ['email_callable', function ($str) {
                 
-                    $reset = \CI::Customers()->reset_password($str);
+                    $reset = \CI::Customers()->resetPassword($str);
 
                 if (!$reset) {
                     \CI::form_validation()->set_message('email_callable', lang('error_no_account_record'));
@@ -112,7 +112,7 @@ class Login extends Front
         \CI::form_validation()->set_rules('firstname', 'lang:account_firstname', 'trim|required|max_length[32]');
         \CI::form_validation()->set_rules('lastname', 'lang:account_lastname', 'trim|required|max_length[32]');
         \CI::form_validation()->set_rules('email', 'lang:account_email', ['trim', 'required', 'valid_email', 'max_length[128]', ['check_email_callable', function ($str) {
-            return $this->check_email($str);
+            return $this->checkEmail($str);
         }]]);
         \CI::form_validation()->set_rules('phone', 'lang:account_phone', 'trim|required|max_length[32]');
         \CI::form_validation()->set_rules('email_subscribe', 'lang:email_subscribe', 'trim|numeric|max_length[1]');
@@ -179,9 +179,9 @@ class Login extends Front
         }
     }
 
-    public function check_email($str)
+    public function checkEmail($str)
     {
-        $email = \CI::Customers()->check_email($str);
+        $email = \CI::Customers()->checkEmail($str);
         
         if ($email) {
             \CI::form_validation()->set_message('check_email_callable', lang('error_email'));

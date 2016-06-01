@@ -127,7 +127,7 @@ class AdminCustomers extends Admin
         \CI::form_validation()->set_rules('firstname', 'lang:firstname', 'trim|required|max_length[32]');
         \CI::form_validation()->set_rules('lastname', 'lang:lastname', 'trim|required|max_length[32]');
         \CI::form_validation()->set_rules('email', 'lang:email', ['trim', 'required', 'valid_email', 'max_length[128]', ['email_callable', function ($str) {
-            $email = \CI::Customers()->check_email($str, $this->customer_id);
+            $email = \CI::Customers()->checkEmail($str, $this->customer_id);
             if ($email) {
                 \CI::form_validation()->set_message('email_callable', lang('error_email_in_use'));
                 return false;

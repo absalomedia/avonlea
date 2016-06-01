@@ -152,7 +152,7 @@ class Customers extends CI_Model
         CI::db()->delete('orders');
     }
 
-    public function check_email($str, $id = false)
+    public function checkEmail($str, $id = false)
     {
         CI::db()->select('email');
         CI::db()->from('customers');
@@ -169,10 +169,10 @@ class Customers extends CI_Model
         }
     }
 
-    public function reset_password($email)
+    public function resetPassword($email)
     {
         CI::load()->library('encrypt');
-        $customer = $this->get_customer_by_email($email);
+        $customer = $this->getCustomerByEmail($email);
         if ($customer) {
             CI::load()->helper('string');
             CI::load()->library('email');
@@ -189,7 +189,7 @@ class Customers extends CI_Model
         }
     }
 
-    public function get_customer_by_email($email)
+    public function getCustomerByEmail($email)
     {
         $result = CI::db()->get_where('customers', array('email'=>$email));
         return $result->row_array();

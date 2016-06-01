@@ -79,7 +79,7 @@ class MyAccount extends Front
         \CI::form_validation()->set_rules('firstname', 'lang:address_firstname', 'trim|required|max_length[32]');
         \CI::form_validation()->set_rules('lastname', 'lang:address_lastname', 'trim|required|max_length[32]');
         \CI::form_validation()->set_rules('email', 'lang:address_email', ['trim', 'required', 'valid_email', 'max_length[128]', ['check_email_callable', function ($str) {
-            return $this->check_email($str);
+            return $this->checkEmail($str);
         }]]);
         \CI::form_validation()->set_rules('phone', 'lang:address_phone', 'trim|required|max_length[32]');
         \CI::form_validation()->set_rules('email_subscribe', 'lang:account_newsletter_subscribe', 'trim|numeric|max_length[1]');
@@ -117,12 +117,12 @@ class MyAccount extends Front
         }
     }
 
-    public function check_email($str)
+    public function checkEmail($str)
     {
         if (!empty($this->customer->id)) {
-            $email = \CI::Customers()->check_email($str, $this->customer->id);
+            $email = \CI::Customers()->checkEmail($str, $this->customer->id);
         } else {
-            $email = \CI::Customers()->check_email($str);
+            $email = \CI::Customers()->checkEmail($str);
         }
 
         if ($email) {
