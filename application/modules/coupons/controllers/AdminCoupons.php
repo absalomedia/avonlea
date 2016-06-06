@@ -84,7 +84,7 @@ class AdminCoupons extends Admin
             'code',
             'lang:code',
             ['trim', 'required',
-                ['code_callable', function ($str) {
+                ['code_callable', function($str) {
                     $code = \CI::Coupons()->checkCode($str, $this->coupon_id);
                     if ($code) {
                         \CI::form_validation()->set_message('code_callable', lang('error_already_used'));

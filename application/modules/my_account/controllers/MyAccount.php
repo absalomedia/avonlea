@@ -78,7 +78,7 @@ class MyAccount extends Front
         \CI::form_validation()->set_rules('company', 'lang:address_company', 'trim|max_length[128]');
         \CI::form_validation()->set_rules('firstname', 'lang:address_firstname', 'trim|required|max_length[32]');
         \CI::form_validation()->set_rules('lastname', 'lang:address_lastname', 'trim|required|max_length[32]');
-        \CI::form_validation()->set_rules('email', 'lang:address_email', ['trim', 'required', 'valid_email', 'max_length[128]', ['check_email_callable', function ($str) {
+        \CI::form_validation()->set_rules('email', 'lang:address_email', ['trim', 'required', 'valid_email', 'max_length[128]', ['check_email_callable', function($str) {
             return $this->checkEmail($str);
         }]]);
         \CI::form_validation()->set_rules('phone', 'lang:address_phone', 'trim|required|max_length[32]');

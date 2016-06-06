@@ -3,18 +3,18 @@
         exit('No direct script access allowed');
     }
 /**
- * CodeIgniter.
- *
- * An open source application development framework for PHP 5.1.6 or newer
- *
- * @author      ExpressionEngine Dev Team
- * @copyright   Copyright (c) 2008 - 2011, EllisLab, Inc.
- * @license         http://codeigniter.com/user_guide/license.html
- *
- * @link        http://codeigniter.com
- * @since       Version 1.0
- * @filesource
- */
+     * CodeIgniter.
+     *
+     * An open source application development framework for PHP 5.1.6 or newer
+     *
+     * @author      ExpressionEngine Dev Team
+     * @copyright   Copyright (c) 2008 - 2011, EllisLab, Inc.
+     * @license         http://codeigniter.com/user_guide/license.html
+     *
+     * @link        http://codeigniter.com
+     * @since       Version 1.0
+     * @filesource
+     */
 
 // ------------------------------------------------------------------------
 
@@ -122,7 +122,7 @@ class CI_Profiler extends CI_Loader
      * and "_end" respectively).  It then compiles the execution times for
      * all points and returns it as an array
      *
-     * @return array
+     * @return string
      */
     protected function _compile_benchmarks()
     {

@@ -105,7 +105,7 @@ class Addresses extends Front
             $country = \CI::Locations()->get_country(assign_value('country_id'));
             $zone = \CI::Locations()->get_zone(assign_value('zone_id'));
             if (!empty($country)) {
-                $a['zone'] = $zone->code;  // save the state for output formatted addresses
+                $a['zone'] = $zone->code; // save the state for output formatted addresses
                 $a['country'] = $country->name; // some shipping libraries require country name
                 $a['country_code'] = $country->iso_code_2; // some shipping libraries require the code
                 $a['country_id'] = \CI::input()->post('country_id');

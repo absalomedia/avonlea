@@ -121,7 +121,7 @@ class Categories
     {
         $cats = $this->get_categories_tiered(true);
         $options = [-1 => lang('hidden'), 0 => lang('top_level_category')];
-        $listCategories = function ($parent_id, $sub = '') use (&$options, $cats, &$listCategories, $hideId) {
+        $listCategories = function($parent_id, $sub = '') use (&$options, $cats, &$listCategories, $hideId) {
             if (isset($cats[$parent_id])) {
                 foreach ($cats[$parent_id] as $cat) {
                     //if this matches the hide id, skip it and all it's children
@@ -130,7 +130,7 @@ class Categories
 
                         if (isset($cats[$cat->id]) && count($cats[$cat->id]) > 0) {
                             $sub2 = str_replace('&rarr;&nbsp;', '&nbsp;', $sub);
-                            $sub2 .=  '&nbsp;&nbsp;&nbsp;&rarr;&nbsp;';
+                            $sub2 .= '&nbsp;&nbsp;&nbsp;&rarr;&nbsp;';
                             $listCategories($cat->id, $sub2);
                         }
                     }

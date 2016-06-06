@@ -15,8 +15,8 @@
         <div class="input-group">
           <span class="input-group-addon">%</span>
               <?php
-              $data = ['name' => 'tax', 'class' => 'form-control', 'maxlength' => '10', 'value' => assign_value('tax', $tax)];
-              echo form_input($data);
+                $data = ['name' => 'tax', 'class' => 'form-control', 'maxlength' => '10', 'value' => assign_value('tax', $tax)];
+                echo form_input($data);
             ?>  
         </div>
     </div>

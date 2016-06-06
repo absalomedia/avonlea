@@ -117,6 +117,9 @@ class Avonlea
         return $timesAvailable;
     }
 
+    /**
+     * @param integer $numitem
+     */
     private function calculateCouponDiscounts($numitem)
     {
         $coupons = [];
@@ -866,6 +869,9 @@ class Avonlea
         }
     }
 
+    /**
+     * @param string $type
+     */
     public function removeItemsOfType($type)
     {
         foreach ($this->items as $item) {

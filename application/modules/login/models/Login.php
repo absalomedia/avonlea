@@ -42,6 +42,10 @@ class Login extends CI_Model
         $this->generateCookie('[]', time() - 3600);
     }
 
+    /**
+     * @param string $data
+     * @param integer $expire
+     */
     private function generateCookie($data, $expire)
     {
         setcookie('AvonleaCustomer', $data, $expire, '/', $_SERVER['HTTP_HOST'], config_item('ssl_support'), true);
@@ -114,6 +118,9 @@ class Login extends CI_Model
         CI::session()->set_userdata('customer', $customer);
     }
 
+    /**
+     * @param string $data
+     */
     private function aes256Encrypt($data)
     {
         $key = config_item('encryption_key');
@@ -126,6 +133,9 @@ class Login extends CI_Model
         return mcrypt_encrypt(MCRYPT_RIJNDAEL_128, $key, $data, MCRYPT_MODE_CBC, str_repeat("\0", 16));
     }
 
+    /**
+     * @param string $data
+     */
     private function aes256Decrypt($data)
     {
         $key = config_item('encryption_key');

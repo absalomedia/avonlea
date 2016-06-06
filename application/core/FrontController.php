@@ -21,6 +21,9 @@ class Front extends \Avonlea\Controller
         $this->isLoggedIn = \CI::Login()->isLoggedIn();
     }
 
+    /**
+     * @param string $view
+     */
     public function view($view, $vars = [], $string = false)
     {
         //pass in the controller so we can access the controllers variables
@@ -39,6 +42,9 @@ class Front extends \Avonlea\Controller
         }
     }
 
+    /**
+     * @param string $view
+     */
     public function partial($view, $vars = [], $string = false)
     {
         //$vars['this'] = $this;

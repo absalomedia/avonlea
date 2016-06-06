@@ -21,6 +21,9 @@ class Admin extends \Avonlea\Controller
         \CI::auth()->isLoggedIn(uri_string());
     }
 
+    /**
+     * @param string $view
+     */
     public function view($view, $vars = [], $string = false)
     {
         $vars['this'] = $this;
@@ -41,6 +44,10 @@ class Admin extends \Avonlea\Controller
     /*
     This function simply calls \->view()
     */
+
+    /**
+     * @param string $view
+     */
     public function partial($view, $vars = [], $string = false)
     {
         $vars['this'] = $this;
