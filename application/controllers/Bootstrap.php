@@ -14,8 +14,8 @@ class Bootstrap extends CI_Controller
 
         $run->pushHandler($handler);
 // Example: tag all frames inside a function with their function name
-        $run->pushHandler(function($exception, $inspector, $run) {
-            $inspector->getFrames()->map(function($frame) {
+        $run->pushHandler(function ($exception, $inspector, $run) {
+            $inspector->getFrames()->map(function ($frame) {
                 if ($function = $frame->getFunction()) {
                     $frame->addComment("This frame is within function '$function'", 'cpt-obvious');
                 }
@@ -143,7 +143,7 @@ class Bootstrap extends CI_Controller
         }
 
         //autoloader for Modules
-        spl_autoload_register(function($class) use ($classes) {
+        spl_autoload_register(function ($class) use ($classes) {
             if (isset($classes[$class])) {
                 include_once $classes[$class];
             }
