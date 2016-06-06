@@ -1,23 +1,23 @@
 <div class="page-header">
-    <h3><?php echo lang('payment_methods');?></h3>
+    <h3><?php echo lang('payment_methods'); ?></h3>
 </div>
 
 <?php if (count($modules) === 0) :?>
     <div class="alert">
-        <?php echo lang('error_no_payment_method');?>
+        <?php echo lang('error_no_payment_method'); ?>
     </div>
 <?php elseif (AVL::getGrandTotal() === 0) :?>
     <div class="alert">
-        <?php echo lang('no_payment_needed');?>
+        <?php echo lang('no_payment_needed'); ?>
     </div>
 
-    <button class="blue" onclick="SubmitNoPaymentOrder()"><?php echo lang('submit_order');?></button>
+    <button class="blue" onclick="SubmitNoPaymentOrder()"><?php echo lang('submit_order'); ?></button>
 
     <script>
     function SubmitNoPaymentOrder()
     {
 
-        $.post('<?php echo base_url('/checkout/submit-order');?>', function(data){
+        $.post('<?php echo base_url('/checkout/submit-order'); ?>', function(data){
             if(data.errors != undefined)
             {
                 var error = '<div class="alert red">';
@@ -33,7 +33,7 @@
             {
                 if(data.orderId != undefined)
                 {
-                    window.location = '<?php echo site_url('order-complete/');?>/'+data.orderId;
+                    window.location = '<?php echo site_url('order-complete/'); ?>/'+data.orderId;
                 }
             }
         }, 'json');
@@ -49,22 +49,22 @@
             <?php foreach ($modules as $key => $module) :?>
                 <?php if ($module['class']->isEnabled()) :?>
                     <tr onclick="$(this).find('input').prop('checked', true).trigger('change');">
-                        <td style="width:20px;"><input type="radio" name="paymentMethod" value="payment-<?php echo $key;?>"></td>
-                        <td><?php echo $module['class']->getName();?></td>
+                        <td style="width:20px;"><input type="radio" name="paymentMethod" value="payment-<?php echo $key; ?>"></td>
+                        <td><?php echo $module['class']->getName(); ?></td>
                     </tr>
-                <?php endif;?>
-            <?php endforeach;?>
+                <?php endif; ?>
+            <?php endforeach; ?>
             </table>
         </div>
         <div class="col" data-cols="2/3">
 
             <?php foreach ($modules as $key => $module) :?>
                 <?php if ($module['class']->isEnabled()) :?>
-                    <div id="payment-<?php echo $key;?>" class="paymentMethod">
-                        <?php echo $module['class']->checkoutForm();?>
+                    <div id="payment-<?php echo $key; ?>" class="paymentMethod">
+                        <?php echo $module['class']->checkoutForm(); ?>
                     </div>
-                <?php endif;?>
-            <?php endforeach;?>
+                <?php endif; ?>
+            <?php endforeach; ?>
 
         </div>
 
@@ -75,4 +75,4 @@
             $( '#'+paymentMethod.val() ).fadeIn(100);
         });
     </script>
-<?php endif;?>
+<?php endif; ?>

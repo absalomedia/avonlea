@@ -1,17 +1,15 @@
 <?php
 /**
- * Categories Class
+ * Categories Class.
  *
- * @package Avonlea
- * @subpackage Models
  * @category Categories
+ *
  * @author Absalom Media
+ *
  * @link http://Avonleadv.com
  */
-
 class Categories
 {
-
     public $tiered;
 
     public function __construct()
@@ -38,6 +36,7 @@ class Categories
                 break;
             }
         }
+
         return false;
     }
 
@@ -54,7 +53,7 @@ class Categories
         //create view variable
         $data['page_title'] = $category->name;
         $data['meta'] = $category->meta;
-        $data['seo_title'] = (!empty($category->seo_title))?$category->seo_title:$category->name;
+        $data['seo_title'] = (!empty($category->seo_title)) ? $category->seo_title : $category->name;
         $data['category'] = $category;
 
         $data['total_products'] = CI::Products()->count_products($category->id);
@@ -70,19 +69,19 @@ class Categories
         }
         CI::db()->select('id');
         CI::db()->order_by('categories.sequence', 'ASC');
-        
+
         //this will alphabetize them if there is no sequence
         CI::db()->order_by('name', 'ASC');
         $result = CI::db()->get('categories');
-        
+
         $categories = [];
         foreach ($result->result() as $cat) {
             $categories[] = $this->find($cat->id);
         }
-        
+
         return $categories;
     }
-    
+
     public function get_categories_tiered($admin = false)
     {
         if (!$admin && !empty($this->tiered)) {
@@ -92,11 +91,11 @@ class Categories
         if (!$admin && !empty($this->customer->group_id)) {
             CI::db()->where('enabled');
         }
-        
+
         CI::db()->order_by('sequence');
         CI::db()->order_by('name', 'ASC');
         $categories = CI::db()->get('categories')->result();
-        
+
         $results = [];
         $results['all'] = [];
         foreach ($categories as $category) {
@@ -110,27 +109,26 @@ class Categories
             $results['all'][$category->id] = $category;
             $results[$category->parent_id][$category->id] = $category;
         }
-        
+
         if (!$admin) {
             $this->tiered = $results;
         }
 
         return $results;
     }
-    
+
     public function getCategoryOptionsMenu($hideId = false)
     {
         $cats = $this->get_categories_tiered(true);
         $options = [-1 => lang('hidden'), 0 => lang('top_level_category')];
         $listCategories = function ($parent_id, $sub = '') use (&$options, $cats, &$listCategories, $hideId) {
-            
             if (isset($cats[$parent_id])) {
                 foreach ($cats[$parent_id] as $cat) {
                     //if this matches the hide id, skip it and all it's children
                     if (!$hideId || $cat->id != $hideId) {
                         $options[$cat->id] = $sub.$cat->name;
 
-                        if (isset($cats[$cat->id]) && sizeof($cats[$cat->id]) > 0) {
+                        if (isset($cats[$cat->id]) && count($cats[$cat->id]) > 0) {
                             $sub2 = str_replace('&rarr;&nbsp;', '&nbsp;', $sub);
                             $sub2 .=  '&nbsp;&nbsp;&nbsp;&rarr;&nbsp;';
                             $listCategories($cat->id, $sub2);
@@ -138,58 +136,57 @@ class Categories
                     }
                 }
             }
-            
         };
-        
+
         $listCategories(-1);
         $listCategories(0);
-        
+
         return $options;
     }
-    
+
     public function slug($slug)
     {
-        return CI::db()->get_where('categories', array('slug'=>$slug))->row();
+        return CI::db()->get_where('categories', ['slug' => $slug])->row();
     }
 
     public function find($id)
     {
-        return CI::db()->get_where('categories', array('id'=>$id))->row();
+        return CI::db()->get_where('categories', ['id' => $id])->row();
     }
-    
+
     public function get_category_products_admin($id)
     {
         CI::db()->order_by('sequence', 'ASC');
-        $result = CI::db()->get_where('category_products', array('category_id'=>$id));
+        $result = CI::db()->get_where('category_products', ['category_id' => $id]);
         $result = $result->result();
-        
+
         $contents = [];
         foreach ($result as $product) {
-            $result2 = CI::db()->get_where('products', array('id'=>$product->product_id));
+            $result2 = CI::db()->get_where('products', ['id' => $product->product_id]);
             $result2 = $result2->row();
-            
+
             $contents[] = $result2;
         }
-        
+
         return $contents;
     }
-    
+
     public function get_category_products($id, $limit, $offset)
     {
         CI::db()->order_by('sequence', 'ASC');
-        $result = CI::db()->get_where('category_products', array('category_id'=>$id), $limit, $offset);
+        $result = CI::db()->get_where('category_products', ['category_id' => $id], $limit, $offset);
         $result = $result->result();
-        
+
         $contents = [];
         $count = 1;
         foreach ($result as $product) {
-            $result2 = CI::db()->get_where('products', array('id'=>$product->product_id));
+            $result2 = CI::db()->get_where('products', ['id' => $product->product_id]);
             $result2 = $result2->row();
-            
+
             $contents[$count] = $result2;
             $count++;
         }
-        
+
         return $contents;
     }
 
@@ -198,14 +195,15 @@ class Categories
         if ($category['id']) {
             CI::db()->where('id', $category['id']);
             CI::db()->update('categories', $category);
-            
+
             return $category['id'];
         } else {
             CI::db()->insert('categories', $category);
+
             return CI::db()->insert_id();
         }
     }
-    
+
     public function delete($id)
     {
         CI::db()->where('id', $id);
@@ -213,7 +211,7 @@ class Categories
 
         //update child records to hidden
         CI::db()->where('parent_id', $id)->set('parent_id', -1)->update('categories');
-        
+
         //delete references to this category in the product to category table
         CI::db()->where('category_id', $id);
         CI::db()->delete('category_products');
@@ -239,6 +237,7 @@ class Categories
             } else {
                 $counter++;
             }
+
             return $this->validate_slug($slug, $id, $counter);
         } else {
             return $slug.$counter;

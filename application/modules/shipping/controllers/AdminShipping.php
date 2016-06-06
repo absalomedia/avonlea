@@ -1,18 +1,18 @@
-<?php namespace Avonlea\Controller;
+<?php
+
+namespace Avonlea\Controller;
 
 /**
- * AdminShipping Class
+ * AdminShipping Class.
  *
- * @package     Avonlea
- * @subpackage  Controllers
  * @category    AdminShipping
+ *
  * @author      Absalom Media
+ *
  * @link        http://Avonleadv.com
  */
-
 class AdminShipping extends Admin
 {
-
     public function index()
     {
         \CI::auth()->checkAccess('Admin', true);

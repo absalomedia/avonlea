@@ -56,7 +56,7 @@ $lang['quantity_in_stock_note'] = '(This figure will only be used if the product
 $lang['filter_by_category'] = 'Filter by Category';
 $lang['select_a_category'] = 'Select one or more categories';
 $lang['select_a_filter'] = 'Select filters';
-$lang['no_available_categories']= 'There are no available categories.';
+$lang['no_available_categories'] = 'There are no available categories.';
 $lang['no_available_filters'] = 'There are no available filters';
 $lang['inventory'] = 'Inventory';
 
@@ -96,7 +96,7 @@ $lang['confirm_remove_image'] = 'Are you sure you want to remove this image?';
 $lang['confirm_remove_value'] = 'Are you sure you want to remove this value?';
 $lang['confirm_remove_option'] = 'Are you sure you want to remove this option?';
 $lang['confirm_remove_related'] = 'Are you sure you want to remove this related item?';
-$lang['confirm_remove_category']= 'Are you sure you want to remove this category?';
+$lang['confirm_remove_category'] = 'Are you sure you want to remove this category?';
 $lang['confirm_delete_product'] = 'Are you sure you want to delete this product?';
 
 //alerts
@@ -107,7 +107,7 @@ $lang['alert_select_product'] = 'Please select a product to add first.';
 //messages & errors
 $lang['message_saved_product'] = 'The product has been saved.';
 $lang['message_bulk_update'] = 'Your products have been updated.';
-$lang['message_deleted_product']= 'The product has been deleted.';
+$lang['message_deleted_product'] = 'The product has been deleted.';
 $lang['error_not_found'] = 'The requested product could not be found.';
 $lang['error_bulk_no_products'] = 'There are no products selected to bulk update';
 $lang['search_returned'] = 'Your searched returned %d result(s)';

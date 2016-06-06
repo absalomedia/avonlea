@@ -1,32 +1,34 @@
 <?php
+
 class Customers extends CI_Model
 {
     public function createGuest()
     {
         return $this->save([
-            'id'=>false,
-            'firstname'=>'',
-            'lastname'=>'',
-            'email'=>'',
-            'email_subscribe'=>1,
-            'phone'=>'',
-            'company'=>'',
-            'password'=>'',
-            'active'=>1,
-            'group_id'=>1,
-            'confirmed'=>0,
-            'is_guest'=>1,
+            'id'              => false,
+            'firstname'       => '',
+            'lastname'        => '',
+            'email'           => '',
+            'email_subscribe' => 1,
+            'phone'           => '',
+            'company'         => '',
+            'password'        => '',
+            'active'          => 1,
+            'group_id'        => 1,
+            'confirmed'       => 0,
+            'is_guest'        => 1,
         ]);
     }
 
     public function getCustomers($limit = 0, $offset = 0, $order_by = 'id', $direction = 'DESC')
     {
         CI::db()->where('is_guest', 0)->order_by($order_by, $direction);
-        if ($limit>0) {
+        if ($limit > 0) {
             CI::db()->limit($limit, $offset);
         }
 
         $result = CI::db()->get('customers');
+
         return $result->result();
     }
 
@@ -42,7 +44,8 @@ class Customers extends CI_Model
 
     public function getCustomer($id)
     {
-        $result = CI::db()->get_where('customers', array('id'=>$id));
+        $result = CI::db()->get_where('customers', ['id' => $id]);
+
         return $result->row();
     }
 
@@ -82,25 +85,29 @@ class Customers extends CI_Model
 
             if ($used > 0) {
                 CI::db()->where('id', $data['id']);
-                CI::db()->update('customers_address_bank', ['deleted'=>1]);
-                
-                $data['id'] = false;// set ID to false
+                CI::db()->update('customers_address_bank', ['deleted' => 1]);
+
+                $data['id'] = false; // set ID to false
                 CI::db()->insert('customers_address_bank', $data);
+
                 return CI::db()->insert_id();
             } else {
                 CI::db()->where('id', $data['id']);
                 CI::db()->update('customers_address_bank', $data);
+
                 return $data['id'];
             }
         } else {
             CI::db()->insert('customers_address_bank', $data);
+
             return CI::db()->insert_id();
         }
     }
 
     public function deleteAddress($id, $customer_id)
     {
-        CI::db()->where(array('id'=>$id, 'customer_id'=>$customer_id))->update('customers_address_bank', ['deleted'=>1]);
+        CI::db()->where(['id' => $id, 'customer_id' => $customer_id])->update('customers_address_bank', ['deleted' => 1]);
+
         return $id;
     }
 
@@ -109,16 +116,18 @@ class Customers extends CI_Model
         if ($customer['id']) {
             CI::db()->where('id', $customer['id']);
             CI::db()->update('customers', $customer);
+
             return $customer['id'];
         } else {
             CI::db()->insert('customers', $customer);
+
             return CI::db()->insert_id();
         }
     }
 
     public function deactivate($id)
     {
-        $customer = array('id'=>$id, 'active'=>0);
+        $customer = ['id' => $id, 'active' => 0];
         $this->save_customer($customer);
     }
 
@@ -140,7 +149,7 @@ class Customers extends CI_Model
 
         //get all the orders the customer has made and delete the items from them
         CI::db()->select('id');
-        $result = CI::db()->get_where('orders', array('customer_id'=>$id));
+        $result = CI::db()->get_where('orders', ['customer_id' => $id]);
         $result = $result->result();
         foreach ($result as $order) {
             CI::db()->where('order_id', $order->id);
@@ -182,7 +191,7 @@ class Customers extends CI_Model
             $this->save($customer);
 
             Avonlea\Emails::resetPasswordCustomer($newPassword, $email);
-            
+
             return true;
         } else {
             return false;
@@ -191,7 +200,8 @@ class Customers extends CI_Model
 
     public function getCustomerByEmail($email)
     {
-        $result = CI::db()->get_where('customers', array('email'=>$email));
+        $result = CI::db()->get_where('customers', ['email' => $email]);
+
         return $result->row_array();
     }
 
@@ -216,6 +226,7 @@ class Customers extends CI_Model
     {
         if (!empty($data['id'])) {
             CI::db()->where('id', $data['id'])->update('customer_groups', $data);
+
             return $data['id'];
         } else {
             CI::db()->insert('customer_groups', $data);
@@ -224,31 +235,31 @@ class Customers extends CI_Model
             //create the new fields.
             CI::load()->dbforge();
             $fields = [
-                'enabled'.$groupId=>[
-                    'type'=>'TINYINT',
-                    'constraint'=>'1',
-                    'default'=>'1'
+                'enabled'.$groupId => [
+                    'type'       => 'TINYINT',
+                    'constraint' => '1',
+                    'default'    => '1',
                 ],
-                'price_'.$groupId=>[
-                    'type'=>'DECIMAL',
-                    'constraint'=>'10,2',
-                    'default'=>'0.00'
+                'price_'.$groupId => [
+                    'type'       => 'DECIMAL',
+                    'constraint' => '10,2',
+                    'default'    => '0.00',
                 ],
-                'saleprice_'.$groupId=>[
-                    'type'=>'DECIMAL',
-                    'constraint'=>'10,2',
-                    'default'=>'0.00'
-                ]
+                'saleprice_'.$groupId => [
+                    'type'       => 'DECIMAL',
+                    'constraint' => '10,2',
+                    'default'    => '0.00',
+                ],
             ];
             CI::dbforge()->add_column('products', $fields);
             CI::dbforge()->add_column('order_items', $fields);
 
             $fields = [
-                'enabled'.$groupId=>[
-                    'type'=>'TINYINT',
-                    'constraint'=>'1',
-                    'default'=>'1'
-                ]
+                'enabled'.$groupId => [
+                    'type'       => 'TINYINT',
+                    'constraint' => '1',
+                    'default'    => '1',
+                ],
             ];
             CI::dbforge()->add_column('categories', $fields);
         }

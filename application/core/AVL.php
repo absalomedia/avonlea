@@ -1,25 +1,24 @@
 <?php
 /**
- * AVL Class
+ * AVL Class.
  *
- * @package     Avonlea
- * @subpackage  Facade
  * @category    AVL
+ *
  * @author      Absalom Media
+ *
  * @link        http://Avonleadv.com
  */
-
 defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
- * Static Avonlea Object
+ * Static Avonlea Object.
  */
 class AVL
 {
-
     private function __construct()
     {
     }
+
     private static $i;
 
     public static function instance()
@@ -34,7 +33,8 @@ class AVL
     public static function __callStatic($method, $parameters = [])
     {
         self::instance();
-        return call_user_func_array(array(self::$i, $method), $parameters);
+
+        return call_user_func_array([self::$i, $method], $parameters);
     }
 }
 

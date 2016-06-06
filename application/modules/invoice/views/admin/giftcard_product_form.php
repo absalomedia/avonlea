@@ -1,6 +1,6 @@
 <?php echo pageHeader(lang('product_form')); ?>
 
-<?php $GLOBALS['option_value_count'] = 0;?>
+<?php $GLOBALS['option_value_count'] = 0; ?>
 <style type="text/css">
     .sortable { list-style-type: none; margin: 0; padding: 0; width: 100%; }
     .sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; height: 18px; }
@@ -29,7 +29,7 @@ function addProduct_image(data)
 {
     p   = data.split('.');
 
-    var photo = '<?php add_image("'+p[0]+'", "'+p[0]+'.'+p[1]+'", '', '', '', base_url('uploads/images/thumbnails'));?>';
+    var photo = '<?php add_image("'+p[0]+'", "'+p[0]+'.'+p[1]+'", '', '', '', base_url('uploads/images/thumbnails')); ?>';
     $('#gc_photos').append(photo);
     $('#gc_photos').sortable('destroy');
     photos_sortable();
@@ -37,7 +37,7 @@ function addProduct_image(data)
 
 function remove_image(img)
 {
-    if(confirm('<?php echo lang('confirm_remove_image');?>'))
+    if(confirm('<?php echo lang('confirm_remove_image'); ?>'))
     {
         var id  = img.attr('rel');
         $('#gc_photo_'+id).remove();
@@ -56,7 +56,7 @@ function photos_sortable()
 
 function remove_option(id)
 {
-    if(confirm('<?php echo lang('confirm_remove_option');?>'))
+    if(confirm('<?php echo lang('confirm_remove_option'); ?>'))
     {
         $('#option-'+id).remove();
     }
@@ -71,46 +71,46 @@ function remove_option(id)
         <div class="col-md-9">
             <div class="tabbable">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#product_info" data-toggle="tab"><?php echo lang('details');?></a></li>
-                    <li><a href="#product_categories" data-toggle="tab"><?php echo lang('categories');?></a></li>
-                    <li><a href="#productValues" data-toggle="tab"><?php echo lang('giftcard_values');?></a></li>
-                    <li><a href="#product_photos" data-toggle="tab"><?php echo lang('images');?></a></li>
+                    <li class="active"><a href="#product_info" data-toggle="tab"><?php echo lang('details'); ?></a></li>
+                    <li><a href="#product_categories" data-toggle="tab"><?php echo lang('categories'); ?></a></li>
+                    <li><a href="#productValues" data-toggle="tab"><?php echo lang('giftcard_values'); ?></a></li>
+                    <li><a href="#product_photos" data-toggle="tab"><?php echo lang('images'); ?></a></li>
                 </ul>
             </div>
             <div class="tab-content">
                 <div class="tab-pane active" id="product_info">
 
                     <div class="form-group">
-                        <?php echo form_input(['placeholder'=>lang('name'), 'name'=>'name', 'value'=>assign_value('name', $name), 'class'=>'form-control']); ?>
+                        <?php echo form_input(['placeholder' => lang('name'), 'name' => 'name', 'value' => assign_value('name', $name), 'class' => 'form-control']); ?>
                     </div>
 
                     <div class="form-group">
-                        <?php echo form_textarea(['name'=>'description', 'class'=>'redactor', 'value'=>assign_value('description', $description)]); ?>
+                        <?php echo form_textarea(['name' => 'description', 'class' => 'redactor', 'value' => assign_value('description', $description)]); ?>
                     </div>
 
                     <div class="form-group">
-                        <label><?php echo lang('excerpt');?></label>
-                        <?php echo form_textarea(['name'=>'excerpt', 'value'=>assign_value('excerpt', $excerpt), 'class'=>'form-control', 'rows'=>5]); ?>
+                        <label><?php echo lang('excerpt'); ?></label>
+                        <?php echo form_textarea(['name' => 'excerpt', 'value' => assign_value('excerpt', $excerpt), 'class' => 'form-control', 'rows' => 5]); ?>
                     </div>
 
                     <fieldset>
-                        <legend><?php echo lang('header_information');?></legend>
+                        <legend><?php echo lang('header_information'); ?></legend>
                         <div style="padding-top:10px;">
                             
                             <div class="form-group">
-                                <label for="slug"><?php echo lang('slug');?> </label>
-                                <?php echo form_input(['name'=>'slug', 'value'=>assign_value('slug', $slug), 'class'=>'form-control']); ?>
+                                <label for="slug"><?php echo lang('slug'); ?> </label>
+                                <?php echo form_input(['name' => 'slug', 'value' => assign_value('slug', $slug), 'class' => 'form-control']); ?>
                             </div>
 
                             <div class="form-group">
-                                <label for="seo_title"><?php echo lang('seo_title');?> </label>
-                                <?php echo form_input(['name'=>'seo_title', 'value'=>assign_value('seo_title', $seo_title), 'class'=>'form-control']); ?>
+                                <label for="seo_title"><?php echo lang('seo_title'); ?> </label>
+                                <?php echo form_input(['name' => 'seo_title', 'value' => assign_value('seo_title', $seo_title), 'class' => 'form-control']); ?>
                             </div>
 
                             <div class="form-group">
-                                <label for="meta"><?php echo lang('meta');?></label>
-                                <?php echo form_textarea(['name'=>'meta', 'value'=>assign_value('meta', html_entity_decode($meta)), 'class'=>'form-control']);?>
-                                <span class="help-block"><?php echo lang('meta_example');?></span>
+                                <label for="meta"><?php echo lang('meta'); ?></label>
+                                <?php echo form_textarea(['name' => 'meta', 'value' => assign_value('meta', html_entity_decode($meta)), 'class' => 'form-control']); ?>
+                                <span class="help-block"><?php echo lang('meta_example'); ?></span>
                             </div>
                         </div>
                     </fieldset>
@@ -119,7 +119,7 @@ function remove_option(id)
                 <div class="tab-pane" id="product_categories">
 
                     <?php if (isset($categories[0])) :?>
-                        <label><strong><?php echo lang('select_a_category');?></strong></label>
+                        <label><strong><?php echo lang('select_a_category'); ?></strong></label>
                         <table class="table table-striped">
                             <thead>
                                 <tr>
@@ -129,7 +129,7 @@ function remove_option(id)
                                 </tr>
                             </thead>
                         <?php
-                        function list_categories($parent_id, $cats, $sub = '', $product_categories, $primary_category)
+                        function list_categories($parent_id, $cats, $sub, $product_categories, $primary_category)
                         {
                             foreach ($cats[$parent_id] as $cat) :?>
                             <tr>
@@ -137,17 +137,17 @@ function remove_option(id)
                             ?></td>
                                 <td>
                                     <input type="checkbox" name="categories[]" value="<?php echo $cat->id;
-                            ?>" <?php echo(in_array($cat->id, $product_categories))?'checked="checked"':'';
+                            ?>" <?php echo(in_array($cat->id, $product_categories)) ? 'checked="checked"' : '';
                             ?>/>
                                 </td>
                                 <td>
                                     <input type="radio" name="primary_category" value="<?php echo $cat->id;
-                            ?>" <?php echo ($primary_category === $cat->id)?'checked="checked"':'';
+                            ?>" <?php echo ($primary_category === $cat->id) ? 'checked="checked"' : '';
                             ?>/>
                                 </td>
                             </tr>
                             <?php
-                            if (isset($cats[$cat->id]) && sizeof($cats[$cat->id]) > 0) {
+                            if (isset($cats[$cat->id]) && count($cats[$cat->id]) > 0) {
                                 $sub2 = str_replace('&rarr;&nbsp;', '&nbsp;', $sub);
                                 $sub2 .=  '&nbsp;&nbsp;&nbsp;&rarr;&nbsp;';
                                 list_categories($cat->id, $cats, $sub2, $product_categories, $primary_category);
@@ -162,8 +162,8 @@ function remove_option(id)
 
                     </table>
                 <?php else :?>
-                    <div class="alert"><?php echo lang('no_available_categories');?></div>
-                <?php endif;?>
+                    <div class="alert"><?php echo lang('no_available_categories'); ?></div>
+                <?php endif; ?>
 
                 </div>
 
@@ -184,7 +184,7 @@ function remove_option(id)
                                 $counter = 0;
                                 if (!empty($ProductOptions)) {
                                     foreach ($ProductOptions as $po) {
-                                        $po = (object)$po;
+                                        $po = (object) $po;
                                         if (empty($po->required)) {
                                             $po->required = false;
                                         }
@@ -192,7 +192,7 @@ function remove_option(id)
                                         if ($po->type === 'droplist') {
                                             if ($po->values) :
                                                 foreach ($po->values as $value) {
-                                                    $value = (object)$value;
+                                                    $value = (object) $value;
                                                     add_option_value($po, $counter++, $value->price);
                                                     $GLOBALS['option_value_count']++;
                                                 }
@@ -209,14 +209,14 @@ function remove_option(id)
 
                 <div class="tab-pane" id="product_photos">
                     
-                    <iframe id="iframe_uploader" src="<?php echo site_url('admin/products/product_image_form');?>" style="height:75px; width:100%; border:0px;"></iframe>
+                    <iframe id="iframe_uploader" src="<?php echo site_url('admin/products/product_image_form'); ?>" style="height:75px; width:100%; border:0px;"></iframe>
 
                     <div id="gc_photos">
 
                     <?php
                     foreach ($images as $photo_id => $photo_obj) {
                         if (!empty($photo_obj)) {
-                            $photo = (array)$photo_obj;
+                            $photo = (array) $photo_obj;
                             add_image($photo_id, $photo['filename'], $photo['alt'], $photo['caption'], isset($photo['primary']));
                         }
                     }
@@ -225,7 +225,7 @@ function remove_option(id)
 
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary"><?php echo lang('save');?></button>
+            <button type="submit" class="btn btn-primary"><?php echo lang('save'); ?></button>
         </div>
         <div class="col-md-3">
 
@@ -234,22 +234,22 @@ function remove_option(id)
             </div>
 
             <div class="form-group">
-                <label for="sku"><?php echo lang('sku');?></label>
-                <?php echo form_input(['name'=>'sku', 'value'=>assign_value('sku', $sku), 'class'=>'form-control']);?>
+                <label for="sku"><?php echo lang('sku'); ?></label>
+                <?php echo form_input(['name' => 'sku', 'value' => assign_value('sku', $sku), 'class' => 'form-control']); ?>
             </div>
 
             <?php foreach ($groups as $group) :?>
                 <fieldset>
                     <legend>
-                        <?php echo $group->name;?>
+                        <?php echo $group->name; ?>
                         <div class="checkbox pull-right" style="font-size:16px; margin-top:5px;">
                             <label>
-                                <?php echo form_checkbox('enabled'.$group->id, 1, ${'enabled'.$group->id}); ?> <?php echo lang('enabled');?>
+                                <?php echo form_checkbox('enabled'.$group->id, 1, ${'enabled'.$group->id}); ?> <?php echo lang('enabled'); ?>
                             </label>
                         </div>
                     </legend>
                 </fieldset>
-            <?php endforeach;?>
+            <?php endforeach; ?>
 
         </div>
     </div>
@@ -257,52 +257,52 @@ function remove_option(id)
 
 <?php
 function add_image($photo_id, $filename, $alt, $caption, $primary = false)
-{
-    ob_start();
-    ?>
+                    {
+                        ob_start();
+                        ?>
     <div class="row gc_photo" id="gc_photo_<?php echo $photo_id;
-    ?>" style="background-color:#fff; border-bottom:1px solid #ddd; padding-bottom:20px; margin-bottom:20px;">
+                        ?>" style="background-color:#fff; border-bottom:1px solid #ddd; padding-bottom:20px; margin-bottom:20px;">
         <div class="col-md-2">
             <input type="hidden" name="images[<?php echo $photo_id;
-    ?>][filename]" value="<?php echo $filename;
-    ?>"/>
+                        ?>][filename]" value="<?php echo $filename;
+                        ?>"/>
             <img class="gc_thumbnail" src="<?php echo base_url('uploads/images/thumbnails/'.$filename);
-    ?>" style="padding:5px; border:1px solid #ddd"/>
+                        ?>" style="padding:5px; border:1px solid #ddd"/>
         </div>
         <div class="col-md-10">
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
                         <input name="images[<?php echo $photo_id;
-    ?>][alt]" value="<?php echo $alt;
-    ?>" class="form-control" placeholder="<?php echo lang('alt_tag');
-    ?>"/>
+                        ?>][alt]" value="<?php echo $alt;
+                        ?>" class="form-control" placeholder="<?php echo lang('alt_tag');
+                        ?>"/>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="checkbox">
                         <label>
                             <input type="radio" name="primary_image" value="<?php echo $photo_id;
-    ?>" <?php if ($primary) {
-    echo 'checked="checked"';
-    }
-    ?>/> <?php echo lang('main_image');
-    ?>
+                        ?>" <?php if ($primary) {
+                            echo 'checked="checked"';
+                        }
+                        ?>/> <?php echo lang('main_image');
+                        ?>
                         </label>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <a onclick="return remove_image($(this));" rel="<?php echo $photo_id;
-    ?>" class="btn btn-danger pull-right"><i class="icon-times "></i></a>
+                        ?>" class="btn btn-danger pull-right"><i class="icon-times "></i></a>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
                     <label><?php echo lang('caption');
-    ?></label>
+                        ?></label>
                     <textarea name="images[<?php echo $photo_id;
-    ?>][caption]" class="form-control" rows="3"><?php echo $caption;
-    ?></textarea>
+                        ?>][caption]" class="form-control" rows="3"><?php echo $caption;
+                        ?></textarea>
                 </div>
             </div>
         </div>
@@ -311,15 +311,15 @@ function add_image($photo_id, $filename, $alt, $caption, $primary = false)
     <?php
     $stuff = ob_get_contents();
 
-    ob_end_clean();
+                        ob_end_clean();
 
-    echo replace_newline($stuff);
-}
+                        echo replace_newline($stuff);
+                    }
 
 //this makes it easy to use the same code for initial generation of the form as well as javascript additions
 function replace_newline($string)
 {
-    return trim((string)str_replace(array("\r", "\r\n", "\n", "\t"), ' ', $string));
+    return trim((string) str_replace(["\r", "\r\n", "\n", "\t"], ' ', $string));
 }
 ?>
 
@@ -374,12 +374,12 @@ var option_count = <?php echo $counter?>;
 function add_giftcard_values()
 {
     option_count ++;
-    $('#values_container tbody').append('<?php add_option_value('', "'+option_count+'", '');?>')
+    $('#values_container tbody').append('<?php add_option_value('', "'+option_count+'", ''); ?>')
 }
 
 function remove_giftcard_value(id)
 {
-    if(confirm('<?php echo lang('confirm_remove_giftcard_value');?>'))
+    if(confirm('<?php echo lang('confirm_remove_giftcard_value'); ?>'))
     {
         $('#giftcard_value_'+id).remove();
     }

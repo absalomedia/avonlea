@@ -1,18 +1,18 @@
-<?php namespace Avonlea\Controller;
+<?php
+
+namespace Avonlea\Controller;
 
 /**
- * Login Class
+ * Login Class.
  *
- * @package     Avonlea
- * @subpackage  Controllers
  * @category    Login
+ *
  * @author      Absalom Media
+ *
  * @link        http://Avonleadv.com
  */
-
 class Login extends Front
 {
-
     public $customer;
 
     public function __construct()
@@ -37,12 +37,13 @@ class Login extends Front
             $login = \CI::Login()->loginCustomer($email, $password, $remember);
             if (!$login) {
                 \CI::form_validation()->set_message('check_login_callable', lang('login_failed'));
+
                 return false;
             }
         }]]);
 
         if (\CI::form_validation()->run() === false) {
-            $this->view('login', ['redirect'=>$redirect, 'loginErrors'=>\CI::form_validation()->get_error_array()]);
+            $this->view('login', ['redirect' => $redirect, 'loginErrors' => \CI::form_validation()->get_error_array()]);
         } else {
             redirect($redirect);
         }
@@ -60,18 +61,18 @@ class Login extends Front
 
         \CI::form_validation()->set_rules('email', 'lang:address_email', ['trim', 'required', 'valid_email',
             ['email_callable', function ($str) {
-                
-                    $reset = \CI::Customers()->resetPassword($str);
+                $reset = \CI::Customers()->resetPassword($str);
 
                 if (!$reset) {
                     \CI::form_validation()->set_message('email_callable', lang('error_no_account_record'));
+
                     return false;
                 } else {
                     //user does exist. and the password is reset.
                     return true;
                 }
-            }
-            ]
+            },
+            ],
         ]);
 
         if (\CI::form_validation()->run() === false) {
@@ -84,28 +85,28 @@ class Login extends Front
 
     public function register()
     {
-        $redirect  = \CI::Login()->isLoggedIn(false, false);
+        $redirect = \CI::Login()->isLoggedIn(false, false);
         //if they are logged in, we send them back to the my_account by default
         if ($redirect) {
             redirect('my-account');
         }
-        
+
         \CI::load()->library('form_validation');
-        
+
         //default values are empty if the customer is new
         $data = [
-            'company' => '',
+            'company'   => '',
             'firstname' => '',
-            'lastname' => '',
-            'email' => '',
-            'phone' => '',
-            'address1' => '',
-            'address2' => '',
-            'city' => '',
-            'state' => '',
-            'zip' => '',
+            'lastname'  => '',
+            'email'     => '',
+            'phone'     => '',
+            'address1'  => '',
+            'address2'  => '',
+            'city'      => '',
+            'state'     => '',
+            'zip'       => '',
 
-            'redirect' => \CI::session()->flashdata('redirect')
+            'redirect' => \CI::session()->flashdata('redirect'),
         ];
 
         \CI::form_validation()->set_rules('company', 'lang:account_company', 'trim|max_length[128]');
@@ -119,13 +120,13 @@ class Login extends Front
         \CI::form_validation()->set_rules('password', 'lang:account_password', 'required|min_length[6]');
         \CI::form_validation()->set_rules('confirm', 'lang:account_confirm', 'required|matches[password]');
 
-        
+
         if (\CI::form_validation()->run() === false) {
             //if they have submitted the form already and it has returned with errors, reset the redirect
             if (\CI::input()->post('submitted')) {
                 $data['redirect'] = \CI::input()->post('redirect');
             }
-            
+
             // load other page content
             //\CI::load()->model('banner_model');
             \CI::load()->helper('directory');
@@ -136,36 +137,36 @@ class Login extends Front
         } else {
             $save['id'] = false;
             $save['firstname'] = \CI::input()->post('firstname');
-            $save['lastname']  = \CI::input()->post('lastname');
+            $save['lastname'] = \CI::input()->post('lastname');
             $save['email'] = \CI::input()->post('email');
             $save['phone'] = \CI::input()->post('phone');
             $save['company'] = \CI::input()->post('company');
-            $save['active'] = (bool)config_item('new_customer_status');
-            $save['email_subscribe'] = intval((bool)\CI::input()->post('email_subscribe'));
-            
-            $save['password']  =  password_hash(\CI::input()->post('password'), PASSWORD_DEFAULT);
-            
-            $redirect  = \CI::input()->post('redirect');
-            
+            $save['active'] = (bool) config_item('new_customer_status');
+            $save['email_subscribe'] = intval((bool) \CI::input()->post('email_subscribe'));
+
+            $save['password'] = password_hash(\CI::input()->post('password'), PASSWORD_DEFAULT);
+
+            $redirect = \CI::input()->post('redirect');
+
             //if we don't have a value for redirect
             if ($redirect === '') {
                 $redirect = 'my-account';
             }
-            
+
             // save the customer info and get their new id
             \CI::Customers()->save($save);
-            
+
             //send the registration email
             \Avonlea\Emails::registration($save);
 
             //load twig for this language string
             $loader = new \Twig_Loader_String();
             $twig = new \Twig_Environment($loader);
-            
+
             //if they're automatically activated log them in and send them where they need to go
             if ($save['active']) {
                 \CI::session()->set_flashdata('message', $twig->render(lang('registration_thanks'), $save));
-            
+
                 //lets automatically log them in
                 \CI::Login()->loginCustomer($save['email'], $save['password']);
 
@@ -182,9 +183,10 @@ class Login extends Front
     public function checkEmail($str)
     {
         $email = \CI::Customers()->checkEmail($str);
-        
+
         if ($email) {
             \CI::form_validation()->set_message('check_email_callable', lang('error_email'));
+
             return false;
         } else {
             return true;

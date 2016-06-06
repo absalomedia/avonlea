@@ -1,18 +1,18 @@
-<?php namespace Avonlea\Controller;
+<?php
+
+namespace Avonlea\Controller;
 
 /**
- * Product Class
+ * Product Class.
  *
- * @package     Avonlea
- * @subpackage  Controllers
  * @category    Product
+ *
  * @author      Absalom Media
+ *
  * @link        http://Avonleadv.com
  */
-
 class Product extends Front
 {
-
     public function index($slug)
     {
         $product = \CI::Products()->slug($slug);
@@ -38,7 +38,7 @@ class Product extends Front
             //create view variable
             $data['page_title'] = $product->name;
             $data['meta'] = $product->meta;
-            $data['seo_title'] = (!empty($product->seo_title))?$product->seo_title:$product->name;
+            $data['seo_title'] = (!empty($product->seo_title)) ? $product->seo_title : $product->name;
             $data['product'] = $product;
 
             //load the view

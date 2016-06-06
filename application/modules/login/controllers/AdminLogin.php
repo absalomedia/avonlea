@@ -1,18 +1,18 @@
-<?php namespace Avonlea\Controller;
+<?php
+
+namespace Avonlea\Controller;
 
 /**
- * AdminLogin Class
+ * AdminLogin Class.
  *
- * @package  Avonlea
- * @subpackage Controllers
  * @category AdminLogin
+ *
  * @author Absalom Media
+ *
  * @link http://Avonleadv.com
  */
-
 class AdminLogin extends \Avonlea\Controller
 {
-
     public function __construct()
     {
         parent::__construct();
@@ -25,15 +25,15 @@ class AdminLogin extends \Avonlea\Controller
         if ($redirect) {
             redirect('admin/dashboard');
         }
-        
+
         \CI::load()->helper('form');
-        $data['redirect']  = \CI::session()->flashdata('redirect');
+        $data['redirect'] = \CI::session()->flashdata('redirect');
         $submitted = \CI::input()->post('submitted');
         if ($submitted) {
-            $username  = \CI::input()->post('username');
-            $password  = \CI::input()->post('password');
-            $remember  = \CI::input()->post('remember');
-            $redirect  = \CI::input()->post('redirect');
+            $username = \CI::input()->post('username');
+            $password = \CI::input()->post('password');
+            $remember = \CI::input()->post('remember');
+            $redirect = \CI::input()->post('redirect');
             $login = \CI::auth()->loginAdmin($username, $password, $remember);
             if ($login) {
                 if ($redirect === '') {
@@ -51,7 +51,7 @@ class AdminLogin extends \Avonlea\Controller
         $this->views->show('admin/login', $data);
         $this->views->show('admin/footer', $data);
     }
-    
+
     public function forgotPassword()
     {
         //redirect if the user is already logged in
@@ -65,17 +65,17 @@ class AdminLogin extends \Avonlea\Controller
             'lang:username',
             ['trim', 'required',
                 ['username_callable', function ($str) {
-                    
-                        $success = \CI::auth()->resetPassword($str);
+                    $success = \CI::auth()->resetPassword($str);
                     if (!$success) {
                         \CI::form_validation()->set_message('username_callable', lang('username_doesnt_exist'));
+
                         return false;
                     } else {
                         //user does exist. and the password is reset.
                         return true;
                     }
-                }
-                ]
+                },
+                ],
             ]
         );
 
@@ -92,7 +92,7 @@ class AdminLogin extends \Avonlea\Controller
     public function logout()
     {
         \CI::auth()->logout();
-        
+
         //when someone logs out, automatically redirect them to the login page.
         \CI::session()->set_flashdata('message', lang('message_logged_out'));
         redirect('admin/login');

@@ -1,14 +1,13 @@
 <?php
 /**
- * Breadcrumbs Class
+ * Breadcrumbs Class.
  *
- * @package     Avonlea
- * @subpackage  Libraries
  * @category    Breadcrumbs
+ *
  * @author      Absalom Media
+ *
  * @link        http://Avonleadv.com
  */
-
 class Breadcrumbs
 {
     public $breadcrumbs;
@@ -22,7 +21,7 @@ class Breadcrumbs
     {
         $category = CI::Categories()->find($id);
         if ($category) {
-            array_unshift($this->breadcrumbs, ['link'=>site_url('category/'.$category->slug), 'name'=>$category->name]);
+            array_unshift($this->breadcrumbs, ['link' => site_url('category/'.$category->slug), 'name' => $category->name]);
             $this->trace_categories($category->parent_id);
         }
     }
@@ -31,7 +30,7 @@ class Breadcrumbs
     {
         if (isset($this->CI->pages['all'][$id])) {
             $page = $this->CI->pages['all'][$id];
-            array_unshift($this->breadcrumbs, ['link'=>site_url('page/'.$page->slug), 'name'=>$page->title]);
+            array_unshift($this->breadcrumbs, ['link' => site_url('page/'.$page->slug), 'name' => $page->title]);
             $this->trace_pages($page->parent_id);
         }
     }
@@ -39,7 +38,7 @@ class Breadcrumbs
     public function generate()
     {
         $type = CI::uri()->segment(1);
-        $slug   = CI::uri()->segment(2);
+        $slug = CI::uri()->segment(2);
         if (!$type || !$slug) {
             return; //return blank
         }
@@ -54,7 +53,7 @@ class Breadcrumbs
             if (!$product) {
                 return;
             }
-            array_unshift($this->breadcrumbs, ['link'=>site_url('product/'.$product->slug), 'name'=>$product->name]);
+            array_unshift($this->breadcrumbs, ['link' => site_url('product/'.$product->slug), 'name' => $product->name]);
             $this->trace_categories($product->primary_category);
         } elseif ($type === 'page') {
             $page = CI::Pages()->slug($slug);
@@ -64,6 +63,6 @@ class Breadcrumbs
             $this->trace_pages($page->id);
         }
 
-        echo Avonlea\Libraries\View::getInstance()->get('breadcrumbs', ['breadcrumbs'=>$this->breadcrumbs]);
+        echo Avonlea\Libraries\View::getInstance()->get('breadcrumbs', ['breadcrumbs' => $this->breadcrumbs]);
     }
 }

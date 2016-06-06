@@ -1,18 +1,18 @@
-<?php namespace Avonlea\Controller;
+<?php
+
+namespace Avonlea\Controller;
 
 /**
- * AdminDigitalProducts Class
+ * AdminDigitalProducts Class.
  *
- * @package     Avonlea
- * @subpackage  Controllers
  * @category    AdminDigitalProducts
+ *
  * @author      Absalom Media
+ *
  * @link        http://Avonleadv.com
  */
-
 class AdminDigitalProducts extends Admin
 {
-
     public function __construct()
     {
         parent::__construct();
@@ -23,7 +23,7 @@ class AdminDigitalProducts extends Admin
     public function index()
     {
         $data['page_title'] = lang('dgtl_pr_header');
-        $data['file_list']  = \CI::DigitalProducts()->getList();
+        $data['file_list'] = \CI::DigitalProducts()->getList();
 
         $this->view('digital_products', $data);
     }
@@ -34,15 +34,15 @@ class AdminDigitalProducts extends Admin
         \CI::load()->library('form_validation');
         \CI::form_validation()->set_error_delimiters('<div class="error">', '</div>');
 
-        $data   = [
-                    'id' =>'',
-                    'filename' =>'',
-                    'max_downloads' =>'',
-                    'title' =>'',
-                    'size' =>''
+        $data = [
+                    'id'            => '',
+                    'filename'      => '',
+                    'max_downloads' => '',
+                    'title'         => '',
+                    'size'          => '',
                   ];
         if ($id) {
-            $data = array_merge($data, (array)\CI::DigitalProducts()->getFileInfo($id));
+            $data = array_merge($data, (array) \CI::DigitalProducts()->getFileInfo($id));
         }
 
         $data['page_title'] = lang('digital_products_form');
@@ -54,12 +54,12 @@ class AdminDigitalProducts extends Admin
         if (\CI::form_validation()->run() === false) {
             $this->view('digital_product_form', $data);
         } else {
-            if ($id==0) {
+            if ($id == 0) {
                 $data['file_name'] = false;
-                $data['error']  = false;
+                $data['error'] = false;
 
                 $config['allowed_types'] = '*';
-                $config['upload_path'] = 'uploads/digital_products';//config_item('digital_products_path');
+                $config['upload_path'] = 'uploads/digital_products'; //config_item('digital_products_path');
                 $config['remove_spaces'] = true;
 
                 \CI::load()->library('upload', $config);
@@ -69,6 +69,7 @@ class AdminDigitalProducts extends Admin
                 } else {
                     $data['error'] = \CI::upload()->display_errors();
                     $this->view('digital_product_form', $data);
+
                     return;
                 }
 
@@ -78,8 +79,8 @@ class AdminDigitalProducts extends Admin
                 $save['id'] = $id;
             }
 
-            $save['max_downloads']  = \CI::input()->post('max_downloads');
-            $save['title']          = \CI::input()->post('title');
+            $save['max_downloads'] = \CI::input()->post('max_downloads');
+            $save['title'] = \CI::input()->post('title');
 
             \CI::DigitalProducts()->save($save);
 

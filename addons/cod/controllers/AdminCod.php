@@ -1,23 +1,22 @@
-<?php namespace Avonlea\Controller;
+<?php
+
+namespace Avonlea\Controller;
 
 /**
- * AdminCod Class
+ * AdminCod Class.
  *
- * @package     Avonlea
- * @subpackage  Controllers
  * @category    AdminCod
+ *
  * @author      Absalom Media
+ *
  * @link        http://Avonleadv.com
  */
-
 class AdminCod extends Admin
 {
-
-
     public function __construct()
     {
         parent::__construct();
-        
+
         \CI::auth()->check_access('Admin', true);
         \CI::lang()->load('cod');
     }
@@ -26,8 +25,8 @@ class AdminCod extends Admin
     public function install()
     {
         //set a default blank setting for flatrate shipping
-        \CI::Settings()->save_settings('payment_modules', array('cod'=>'1'));
-        \CI::Settings()->save_settings('cod', array('enabled'=>'1'));
+        \CI::Settings()->save_settings('payment_modules', ['cod' => '1']);
+        \CI::Settings()->save_settings('cod', ['enabled' => '1']);
 
         redirect('admin/payments');
     }
@@ -52,9 +51,9 @@ class AdminCod extends Admin
             $settings = \CI::Settings()->get_settings('cod');
             $enabled = $settings['enabled'];
 
-            $this->view('cod_form', ['enabled'=>$enabled]);
+            $this->view('cod_form', ['enabled' => $enabled]);
         } else {
-            \CI::Settings()->save_settings('cod', array('enabled'=>$_POST['enabled']));
+            \CI::Settings()->save_settings('cod', ['enabled' => $_POST['enabled']]);
             redirect('admin/payments');
         }
     }

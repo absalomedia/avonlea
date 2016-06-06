@@ -1,15 +1,17 @@
 <?php
+
 class Orders extends CI_Model
 {
-
     private function arrangeSalesFigures($values)
     {
         $return = [];
         foreach ($values as $val) {
             $return[$val->month] = $val->total;
         }
+
         return $return;
     }
+
     public function getGrossMonthlySales($year)
     {
         $reports = [];
@@ -19,7 +21,7 @@ class Orders extends CI_Model
         ->where('order_items.type', 'product')
         ->where('YEAR(ordered_on)', $year)
         ->group_by(['MONTH(ordered_on)'])
-        ->order_by("ordered_on", "desc")
+        ->order_by('ordered_on', 'desc')
         ->get('orders')->result();
         $reports['products'] = $this->arrangeSalesFigures($products);
 
@@ -29,7 +31,7 @@ class Orders extends CI_Model
         ->where('order_items.type', 'product')
         ->where('YEAR(ordered_on)', $year)
         ->group_by(['MONTH(ordered_on)'])
-        ->order_by("ordered_on", "desc")
+        ->order_by('ordered_on', 'desc')
         ->get('orders')->result();
 
         $reports['couponDiscounts'] = $this->arrangeSalesFigures($couponDiscounts);
@@ -40,7 +42,7 @@ class Orders extends CI_Model
         ->where('order_items.type', 'gift card')
         ->where('YEAR(ordered_on)', $year)
         ->group_by(['MONTH(ordered_on)'])
-        ->order_by("ordered_on", "desc")
+        ->order_by('ordered_on', 'desc')
         ->get('orders')->result();
 
         $reports['giftCardDiscounts'] = $this->arrangeSalesFigures($giftCardDiscounts);
@@ -51,7 +53,7 @@ class Orders extends CI_Model
         ->where('order_items.type', 'shipping')
         ->where('YEAR(ordered_on)', $year)
         ->group_by(['MONTH(ordered_on)'])
-        ->order_by("ordered_on", "desc")
+        ->order_by('ordered_on', 'desc')
         ->get('orders')->result();
         $reports['shipping'] = $this->arrangeSalesFigures($shipping);
 
@@ -61,7 +63,7 @@ class Orders extends CI_Model
         ->where('order_items.type', 'shipping')
         ->where('YEAR(ordered_on)', $year)
         ->group_by(['MONTH(ordered_on)'])
-        ->order_by("ordered_on", "desc")
+        ->order_by('ordered_on', 'desc')
         ->get('orders')->result();
         $reports['tax'] = $this->arrangeSalesFigures($tax);
 
@@ -71,7 +73,7 @@ class Orders extends CI_Model
     public function getSalesYears()
     {
         CI::db()->where('status !=', 'cart');
-        CI::db()->order_by("ordered_on", "desc");
+        CI::db()->order_by('ordered_on', 'desc');
         CI::db()->select('YEAR(ordered_on) as year');
         CI::db()->group_by('YEAR(ordered_on)');
         $records = CI::db()->get('orders')->result();
@@ -79,6 +81,7 @@ class Orders extends CI_Model
         foreach ($records as $r) {
             $years[] = $r->year;
         }
+
         return $years;
     }
 
@@ -109,13 +112,13 @@ class Orders extends CI_Model
             }
 
             $like = '';
-            $like .= "( `order_number` ".$not."LIKE '%".CI::db()->escape_like_str($t)."%' " ;
-            $like .= $operator." `billing`.`firstname` ".$not."LIKE '%".CI::db()->escape_like_str($t)."%'  ";
-            $like .= $operator." `billing`.`lastname` ".$not."LIKE '%".CI::db()->escape_like_str($t)."%'  ";
-            $like .= $operator." `shipping`.`firstname` ".$not."LIKE '%".CI::db()->escape_like_str($t)."%'  ";
-            $like .= $operator." `shipping`.`lastname` ".$not."LIKE '%".CI::db()->escape_like_str($t)."%'  ";
-            $like .= $operator." `status` ".$not."LIKE '%".CI::db()->escape_like_str($t)."%' ";
-            $like .= $operator." `notes` ".$not."LIKE '%".CI::db()->escape_like_str($t)."%' )";
+            $like .= '( `order_number` '.$not."LIKE '%".CI::db()->escape_like_str($t)."%' ";
+            $like .= $operator.' `billing`.`firstname` '.$not."LIKE '%".CI::db()->escape_like_str($t)."%'  ";
+            $like .= $operator.' `billing`.`lastname` '.$not."LIKE '%".CI::db()->escape_like_str($t)."%'  ";
+            $like .= $operator.' `shipping`.`firstname` '.$not."LIKE '%".CI::db()->escape_like_str($t)."%'  ";
+            $like .= $operator.' `shipping`.`lastname` '.$not."LIKE '%".CI::db()->escape_like_str($t)."%'  ";
+            $like .= $operator.' `status` '.$not."LIKE '%".CI::db()->escape_like_str($t)."%' ";
+            $like .= $operator.' `notes` '.$not."LIKE '%".CI::db()->escape_like_str($t)."%' )";
 
             CI::db()->where($like);
         }
@@ -140,14 +143,14 @@ class Orders extends CI_Model
             if (!empty($search->end_date)) {
                 //increase by 1 day to make this include the final day
                 //I tried <= but it did not public function. Any ideas why?
-                $search->end_date = date('Y-m-d', strtotime($search->end_date)+86400);
+                $search->end_date = date('Y-m-d', strtotime($search->end_date) + 86400);
                 CI::db()->where('ordered_on <', $search->end_date);
             }
         }
 
 
 
-        if ($limit>0) {
+        if ($limit > 0) {
             CI::db()->limit($limit, $offset);
         }
         if (!empty($sort_by)) {
@@ -192,12 +195,14 @@ class Orders extends CI_Model
     {
         CI::db()->where('status', 'cart');
         CI::db()->where('customer_id', $customerID);
+
         return CI::db()->get('orders')->row();
     }
 
     public function countCustomerOrders($id)
     {
         CI::db()->where(['customer_id' => $id, 'status !=' => 'cart']);
+
         return CI::db()->count_all_results('orders');
     }
 
@@ -242,7 +247,7 @@ class Orders extends CI_Model
             if (!isset($return[$file->order_item_id])) {
                 $return[$file->order_item_id] = [];
             }
-            
+
             $return[$file->order_item_id][] = $file;
         }
 
@@ -253,7 +258,7 @@ class Orders extends CI_Model
     {
         $optionValues = CI::db()->where('order_id', $order_id)->get('order_item_options')->result();
 
-        $return =[];
+        $return = [];
 
         foreach ($optionValues as $optionValue) {
             if (!isset($return[$optionValue->order_item_id])) {
@@ -308,9 +313,11 @@ class Orders extends CI_Model
         if (isset($data['id'])) {
             CI::db()->where('id', $data['id']);
             CI::db()->update('order_items', $data);
+
             return $data['id'];
         } else {
             CI::db()->insert('order_items', $data);
+
             return CI::db()->insert_id();
         }
     }
@@ -320,9 +327,11 @@ class Orders extends CI_Model
         if (isset($data['id'])) {
             CI::db()->where('id', $data['id']);
             CI::db()->update('order_item_options', $data);
+
             return $data['id'];
         } else {
             CI::db()->insert('order_item_options', $data);
+
             return CI::db()->insert_id();
         }
     }
@@ -373,6 +382,7 @@ class Orders extends CI_Model
                 CI::db()->insert('order_items', $save);
             }
         }
+
         return $id;
     }
 

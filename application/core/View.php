@@ -1,15 +1,16 @@
-<?php namespace Avonlea\Libraries;
+<?php
+
+namespace Avonlea\Libraries;
 
 /**
- * View Class
+ * View Class.
  *
- * @package     Avonlea
- * @subpackage  Libraries
  * @category    View
+ *
  * @author      Absalom Media
+ *
  * @link        http://Avonleadv.com
  */
-
 class View
 {
     private $view_paths;
@@ -21,7 +22,7 @@ class View
         //default view paths
         $this->view_paths = [
             APPPATH.'views/',
-            FCPATH.'themes/'.config_item('theme').'/views/'
+            FCPATH.'themes/'.config_item('theme').'/views/',
         ];
 
         //module view paths
@@ -54,7 +55,7 @@ class View
 
             if (file_exists($file)) {
                 $found = true;
-                include($file);
+                include $file;
                 break;
             }
         }
@@ -69,6 +70,7 @@ class View
         //return the view as a string
         ob_start();
         $this->show($view, $vars);
+
         return ob_get_clean();
     }
 }

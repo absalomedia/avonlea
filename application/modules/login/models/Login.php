@@ -1,7 +1,7 @@
 <?php
+
 class Login extends CI_Model
 {
-
     public function __construct()
     {
         $customer = CI::session()->userdata('customer');
@@ -15,7 +15,7 @@ class Login extends CI_Model
 
                 if (is_object($cred)) {
                     $this->loginCustomer($cred->email, $cred->password, true);
-                    if (! $this->isLoggedIn()) {
+                    if (!$this->isLoggedIn()) {
                         // cookie data isn't letting us login.
                         $this->logoutCustomer();
                         $this->createGuest();
@@ -39,7 +39,7 @@ class Login extends CI_Model
         CI::session()->unset_userdata('customer');
 
         //force expire the cookie
-        $this->generateCookie('[]', time()-3600);
+        $this->generateCookie('[]', time() - 3600);
     }
 
     private function generateCookie($data, $expire)
@@ -55,7 +55,7 @@ class Login extends CI_Model
                         limit(1)->
                         get('customers')->row();
 
-        if ($customer && !(bool)$customer->is_guest && password_verify($password, $customer->password) ===true) {
+        if ($customer && !(bool) $customer->is_guest && password_verify($password, $customer->password) === true) {
             // Set up any group discount
             if ($customer->group_id != 0) {
                 $group = CI::Customers()->get_group($customer->group_id);
@@ -65,7 +65,7 @@ class Login extends CI_Model
             }
 
             if ($remember) {
-                $loginCred = json_encode(array('email'=>$customer->email, 'password'=>$customer->password));
+                $loginCred = json_encode(['email' => $customer->email, 'password' => $customer->password]);
                 $loginCred = base64_encode($this->aes256Encrypt($loginCred));
                 //remember the user for 6 months
                 $this->generateCookie($loginCred, strtotime('+6 months'));
@@ -77,6 +77,7 @@ class Login extends CI_Model
                 CI::session()->set_userdata('customer', $customer);
                 \AVL::combineCart($oldCustomer); // send the logged-in customer data
             }
+
             return true;
         } else {
             return false;
@@ -94,7 +95,7 @@ class Login extends CI_Model
             return false;
         }
 
-        if (isset($customer->is_guest) && $customer->is_guest ===1) {
+        if (isset($customer->is_guest) && $customer->is_guest === 1) {
             if ($redirect) {
                 redirect($default_redirect);
             } else {
@@ -121,6 +122,7 @@ class Login extends CI_Model
         }
         $padding = 16 - (strlen($data) % 16);
         $data .= str_repeat(chr($padding), $padding);
+
         return mcrypt_encrypt(MCRYPT_RIJNDAEL_128, $key, $data, MCRYPT_MODE_CBC, str_repeat("\0", 16));
     }
 
@@ -132,6 +134,7 @@ class Login extends CI_Model
         }
         $data = mcrypt_decrypt(MCRYPT_RIJNDAEL_128, $key, $data, MCRYPT_MODE_CBC, str_repeat("\0", 16));
         $padding = ord($data[strlen($data) - 1]);
+
         return substr($data, 0, -$padding);
     }
 }

@@ -1,7 +1,7 @@
 <?php
+
 class Pages extends CI_Model
 {
-
     public $tiered;
 
     public function __construct()
@@ -10,6 +10,7 @@ class Pages extends CI_Model
         $this->tiered = [];
         $this->get_pages_tiered();
     }
+
     /********************************************************************
     Page functions
      ********************************************************************/
@@ -29,8 +30,8 @@ class Pages extends CI_Model
                 $page->active = false;
             }
 
-            $return[$page->id]              = $page;
-            $return[$page->id]->children    = $this->get_pages($page->id);
+            $return[$page->id] = $page;
+            $return[$page->id]->children = $this->get_pages($page->id);
         }
 
         return $return;
@@ -46,7 +47,7 @@ class Pages extends CI_Model
         CI::db()->order_by('title', 'ASC');
         $pages = CI::db()->get('pages')->result();
 
-        $results    = [];
+        $results = [];
         $results['all'] = [];
         foreach ($pages as $page) {
 
@@ -59,7 +60,7 @@ class Pages extends CI_Model
             $results['all'][$page->id] = $page;
             $results[$page->parent_id][$page->id] = $page;
         }
-        
+
         $this->tiered = $results;
 
         return $results;
@@ -69,7 +70,7 @@ class Pages extends CI_Model
     {
         return CI::db()->where('id', $id)->get('pages')->row();
     }
-    
+
     public function slug($slug)
     {
         return  CI::db()->where('slug', $slug)->get('pages')->row();
@@ -88,9 +89,11 @@ class Pages extends CI_Model
         if ($data['id']) {
             CI::db()->where('id', $data['id']);
             CI::db()->update('pages', $data);
+
             return $data['id'];
         } else {
             CI::db()->insert('pages', $data);
+
             return CI::db()->insert_id();
         }
     }
@@ -114,10 +117,11 @@ class Pages extends CI_Model
 
         if ($count > 0) {
             if (!$counter) {
-                $counter    = 1;
+                $counter = 1;
             } else {
                 $counter++;
             }
+
             return $this->validate_slug($slug, $id, $counter);
         } else {
             return $slug.$counter;

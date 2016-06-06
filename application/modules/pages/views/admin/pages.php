@@ -2,24 +2,24 @@
 <script type="text/javascript">
 function areyousure()
 {
-    return confirm('<?php echo lang('confirm_delete');?>');
+    return confirm('<?php echo lang('confirm_delete'); ?>');
 }
 </script>
 <div class="text-right">
-    <a class="btn btn-primary" href="<?php echo site_url('admin/pages/form'); ?>"><i class="icon-plus"></i> <?php echo lang('add_new_page');?></a>
-    <a class="btn btn-primary" href="<?php echo site_url('admin/pages/link_form'); ?>"><i class="icon-plus"></i> <?php echo lang('add_new_link');?></a>
+    <a class="btn btn-primary" href="<?php echo site_url('admin/pages/form'); ?>"><i class="icon-plus"></i> <?php echo lang('add_new_page'); ?></a>
+    <a class="btn btn-primary" href="<?php echo site_url('admin/pages/link_form'); ?>"><i class="icon-plus"></i> <?php echo lang('add_new_link'); ?></a>
 </div>
 
 <table class="table table-striped">
     <thead>
         <tr>
             <th style="max-width:20px;"></th>
-            <th><?php echo lang('title');?></th>
+            <th><?php echo lang('title'); ?></th>
             <th/>
         </tr>
     </thead>
     
-    <?php echo (count($pages) < 1)?'<tr><td style="text-align:center;" colspan="2">'.lang('no_pages_or_links').'</td></tr>':''?>
+    <?php echo (count($pages) < 1) ? '<tr><td style="text-align:center;" colspan="2">'.lang('no_pages_or_links').'</td></tr>' : ''?>
     <?php if ($pages) :?>
     <tbody>
         
@@ -28,7 +28,7 @@ function areyousure()
         {
             foreach ($pages[$parent_id] as $page) :?>
             <tr>
-                <td style="width:20px;"><?php echo ($page->parent_id ===-1)?'<i class="icon-eye-slash"></i>':'';
+                <td style="width:20px;"><?php echo ($page->parent_id === -1) ? '<i class="icon-eye-slash"></i>' : '';
             ?></td>
                 <td><?php echo  $sub.$page->title;
             ?></td>
@@ -52,14 +52,14 @@ function areyousure()
                 </td>
             </tr>
             <?php
-            if (isset($pages[$page->id]) && sizeof($pages[$page->id]) > 0) {
+            if (isset($pages[$page->id]) && count($pages[$page->id]) > 0) {
                 $sub2 = str_replace('&rarr;&nbsp;', '&nbsp;', $sub);
                 $sub2 .=  '&nbsp;&nbsp;&nbsp;&rarr;&nbsp;';
                 list_pages($page->id, $pages, $sub2);
             }
             endforeach;
         }
-        
+
         if (isset($pages[-1])) {
             list_pages(-1, $pages);
         }
@@ -69,5 +69,5 @@ function areyousure()
         }
         ?>
     </tbody>
-    <?php endif;?>
+    <?php endif; ?>
 </table>

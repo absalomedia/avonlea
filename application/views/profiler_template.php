@@ -196,7 +196,7 @@ window.onload = function() {
 				Load Time
 			</a>
 			<a href="#" id="ci-profiler-menu-memory" onclick="ci_profiler_bar.show('ci-profiler-memory', 'ci-profiler-menu-memory'); return false;">
-				<span><?php echo (! function_exists('memory_get_usage')) ? '0' : round(memory_get_usage()/1024/1024, 2).' MB' ?></span>
+				<span><?php echo (!function_exists('memory_get_usage')) ? '0' : round(memory_get_usage() / 1024 / 1024, 2).' MB' ?></span>
 				Memory Used
 			</a>
 		<?php endif; ?>
@@ -378,13 +378,13 @@ window.onload = function() {
 				<?php endif; ?>
 
 			<!-- The Rest -->
-			<?php foreach (array('get', 'post', 'uri_string', 'controller_info', 'headers', 'config') as $section) : ?>
+			<?php foreach (['get', 'post', 'uri_string', 'controller_info', 'headers', 'config'] as $section) : ?>
 
 				<?php if (isset($sections[$section])) :?>
 
 					<?php $append = ($section === 'get' || $section === 'post') ? '_data' : '' ?>
 					<a href="#" onclick="ci_profiler_bar.toggle_data_table('<?php echo $section ?>'); return false;">
-						<h2><?php echo lang('profiler_' . $section . $append) ?></h2>
+						<h2><?php echo lang('profiler_'.$section.$append) ?></h2>
 					</a>
 
 
@@ -415,7 +415,7 @@ window.onload = function() {
 				<?php foreach ($sections['files'] as $key => $val) : ?>
 					<tr>
 						<td class="hilight">
-							<?php echo preg_replace("/\/.*\//", "", $val) ?>
+							<?php echo preg_replace("/\/.*\//", '', $val) ?>
 							<br/><span class="faded small"><?php echo str_replace(FCPATH, '', $val) ?></span>
 						</td>
 					</tr>

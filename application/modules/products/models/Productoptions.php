@@ -1,14 +1,13 @@
 <?php
 /**
- * ProductOptions Class
+ * ProductOptions Class.
  *
- * @package     Avonlea
- * @subpackage  Models
  * @category    ProductOptions
+ *
  * @author      Absalom Media
+ *
  * @link        http://Avonleadv.com
  */
-
 class Productoptions extends CI_Model
 {
     public function __construct()
@@ -16,7 +15,7 @@ class Productoptions extends CI_Model
         parent::__construct();
         CI::load()->helper('formatting_helper');
     }
-    
+
     /********************************************************************
         Options Management
     ********************************************************************/
@@ -25,103 +24,104 @@ class Productoptions extends CI_Model
         CI::db()->where('product_id', $product_id);
         CI::db()->order_by('id', 'DESC');
         $result = CI::db()->get('options');
-        
+
         $return = [];
         foreach ($result->result() as $option) {
             $option->values = $this->getOptionValues($option->id);
             $return[] = $option;
         }
+
         return $return;
     }
-    
+
     public function getOption($id, $as_array = false)
     {
-        $result = CI::db()->get_where('options', array('id'=>$id));
-        
+        $result = CI::db()->get_where('options', ['id' => $id]);
+
         $data = $result->row();
-        
+
         if ($as_array) {
             $data->values = $this->getOptionValues($id, true);
         } else {
             $data->values = $this->getOptionValues($id);
         }
-        
+
         return $data;
     }
-    
+
     public function saveOption($option, $values)
     {
         if (isset($option['id'])) {
             CI::db()->where('id', $option['id']);
             CI::db()->update('options', $option);
             $id = $option['id'];
-            
+
             //eliminate existing options
             $this->deleteOptionValues($id);
         } else {
             CI::db()->insert('options', $option);
             $id = CI::db()->insert_id();
         }
-        
+
         //add options to the database
-        $sequence   = 0;
+        $sequence = 0;
         foreach ($values as $value) {
             $value['option_id'] = $id;
             $value['sequence'] = $sequence;
             $value['weight'] = floatval($value['weight']);
             $value['price'] = floatval($value['price']);
             $sequence++;
-            
+
             CI::db()->insert('option_values', $value);
         }
+
         return $id;
     }
-    
+
     // for product level options
     public function clearOptions($product_id)
     {
         // get the list of options for this product
         $list = CI::db()->where('product_id', $product_id)->get('options')->result();
-        
+
         foreach ($list as $opt) {
             $this->deleteOption($opt->id);
         }
     }
-    
+
     // also deletes child records in optionValues and product_option
     public function deleteOption($id)
     {
         CI::db()->where('id', $id);
         CI::db()->delete('options');
-        
+
         $this->deleteOptionValues($id);
     }
-    
-
 
     /********************************************************************
         Option values Management
     ********************************************************************/
-    
+
     public function getOptionValues($option_id)
     {
         CI::db()->where('option_id', $option_id);
         CI::db()->order_by('sequence', 'ASC');
+
         return CI::db()->get('option_values')->result();
     }
-    
+
     public function getValue($value_id)
     {
         CI::db()->where('id', $value_id);
+
         return CI::db()->get('option_values')->row();
     }
-    
+
     public function deleteOptionValues($id)
     {
         CI::db()->where('option_id', $id);
         CI::db()->delete('option_values');
     }
-    
 
     /********************************************************************
         Product options Management
@@ -130,36 +130,36 @@ class Productoptions extends CI_Model
     {
         CI::db()->where('product_id', $product_id);
         CI::db()->order_by('sequence', 'ASC');
-        
+
         $result = CI::db()->get('options');
-        
+
         $return = [];
         foreach ($result->result() as $option) {
             $option->values = $this->getOptionValues($option->id);
             $return[] = $option;
         }
+
         return $return;
     }
 
-    
     /***************************************************
         Options Live Use public Functionality
     ****************************************************/
-    
+
     public function validateProductOptions($product, $values)
     {
         if (empty($product->product_id)) {
             return false;
         }
-        
+
         // set up to catch option errors
         $error = false;
         $msg = lang('option_error').'<br/>';
-        
+
         // Get the list of options for the product
         //  We will check the submitted options against this to make sure required options were selected
         $options = $this->getProductOptions($product->product_id);
-        
+
         // Loop through the options from the database
         foreach ($options as $option) {
             // Use the product option to see if we have matching data from the product form
@@ -172,10 +172,10 @@ class Productoptions extends CI_Model
                 // Set our error flag and add to the user message
                 //  then continue processing the other options to built a full list of missing requirements
                 $error = true;
-                $msg .= "- ". $option->name .'<br/>';
+                $msg .= '- '.$option->name.'<br/>';
                 continue; // don't bother processing this particular option any further
             }
-            
+
             // process checklist items specially
             // multi-valued
             if ($option->type === 'checklist') {
@@ -192,7 +192,7 @@ class Productoptions extends CI_Model
                                 $val = $check_match;
                             }
                         }
-                        
+
                         $price = '';
                         if ($val->price > 0) {
                             $price = ' (+'.format_currency($val->price).')';
@@ -201,9 +201,9 @@ class Productoptions extends CI_Model
                         array_push($opts, $val->value.$price);
                     }
                 }
-                
+
                 // If only one option was checked, add it as a single value
-                if (count($opts)==1) {
+                if (count($opts) == 1) {
                     $product['options'][$option->name] = $opts[0];
                 } // otherwise, add it as an array of values
                 elseif (!empty($opts)) {
@@ -220,13 +220,13 @@ class Productoptions extends CI_Model
                     //add the weight and price to the product
                     $product['price'] = $product['price'] + $val->price;
                     $product['weight'] = $product['weight'] + $val->weight;
-                    
+
                     //if there is additional cost, add it to the item description
                     $price = '';
                     if ($val->price > 0) {
                         $price = ' (+'.format_currency($val->price).')';
                     }
-                    
+
                     $product['options'][$option->name] = $optionValue.$price;
                 }
             } // handle radios and droplists
@@ -241,11 +241,11 @@ class Productoptions extends CI_Model
                             $val = $check_match;
                         }
                     }
-                    
+
                     //adjust product price and weight
-                    $product['price']   = $product['price'] + $val->price;
-                    $product['weight']  = $product['weight'] + $val->weight;
-                    
+                    $product['price'] = $product['price'] + $val->price;
+                    $product['weight'] = $product['weight'] + $val->weight;
+
                     $price = '';
                     if ($val->price > 0) {
                         $price = ' (+'.format_currency($val->price).')';
@@ -256,11 +256,11 @@ class Productoptions extends CI_Model
                 }
             }
         }
-        
+
         if ($error) {
-            return(['validated' => false, 'error' => $msg]);
+            return ['validated' => false, 'error' => $msg];
         } else {
-            return(['validated' => true]);
+            return ['validated' => true];
         }
     }
 }

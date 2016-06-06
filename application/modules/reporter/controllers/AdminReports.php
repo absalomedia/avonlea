@@ -1,18 +1,18 @@
-<?php namespace Avonlea\Controller;
+<?php
+
+namespace Avonlea\Controller;
 
 /**
- * AdminReports Class
+ * AdminReports Class.
  *
- * @package     Avonlea
- * @subpackage  Controllers
  * @category    AdminReports
+ *
  * @author      Absalom Media
+ *
  * @link        http://Avonleadv.com
  */
-
 class AdminReports extends Admin
 {
-
     public $customer_id = false;
 
     public function __construct()
@@ -20,7 +20,7 @@ class AdminReports extends Admin
         parent::__construct();
         \CI::auth()->checkAccess('Admin', true);
         \CI::load()->model(['Orders', 'Search']);
-        \CI::load()->helper(array('formatting'));
+        \CI::load()->helper(['formatting']);
         \CI::lang()->load('reports');
     }
 

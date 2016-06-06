@@ -1,19 +1,18 @@
-<?php namespace Avonlea\Controller;
+<?php
+
+namespace Avonlea\Controller;
 
 /**
- * AdminFlatRate Class
+ * AdminFlatRate Class.
  *
- * @package     Avonlea
- * @subpackage  Controllers
  * @category    AdminFlatRate
+ *
  * @author      Absalom Media
+ *
  * @link        http://Avonleadv.com
  */
-
 class AdminFlatRate extends Admin
 {
-
-
     public function __construct()
     {
         parent::__construct();
@@ -25,8 +24,8 @@ class AdminFlatRate extends Admin
     public function install()
     {
         //set a default blank setting for flatrate shipping
-        \CI::Settings()->save_settings('shipping_modules', ['FlatRate'=>'1']);
-        \CI::Settings()->save_settings('FlatRate', ['enabled'=>'1', 'rate'=>0]);
+        \CI::Settings()->save_settings('shipping_modules', ['FlatRate' => '1']);
+        \CI::Settings()->save_settings('FlatRate', ['enabled' => '1', 'rate' => 0]);
 
         redirect('admin/shipping');
     }
@@ -37,7 +36,7 @@ class AdminFlatRate extends Admin
         \CI::Settings()->delete_settings('FlatRate');
         redirect('admin/shipping');
     }
-    
+
     //admin end form and check functions
     public function form()
     {

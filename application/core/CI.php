@@ -1,7 +1,6 @@
 <?php
 /**
- *
- * This content is released under the MIT License (MIT)
+ * This content is released under the MIT License (MIT).
  *
  * Copyright (c) 2014, Absalom Media
  *
@@ -22,25 +21,24 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- *
  */
 defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
- * Static CodeIgniter Object
+ * Static CodeIgniter Object.
  */
 class CI
 {
-
     private function __construct()
     {
     }
+
     private static $i;
 
     private static function instance()
     {
         if (!self::$i) {
-            self::$i =& get_instance();
+            self::$i = &get_instance();
         }
 
         return self::$i;
@@ -52,9 +50,9 @@ class CI
         if (isset(self::$i->$method)) {
             return self::$i->$method;
         } else {
-            self::$i->$method = new $method;
+            self::$i->$method = new $method();
+
             return self::$i->$method;
         }
-        
     }
 }

@@ -1,10 +1,10 @@
-<?php  if (! defined('BASEPATH')) {
+<?php
+ if (!defined('BASEPATH')) {
      exit('No direct script access allowed');
  }
 
 class MY_Form_validation extends CI_Form_validation
 {
-    
     public function get_error_array()
     {
         return $this->_error_array;

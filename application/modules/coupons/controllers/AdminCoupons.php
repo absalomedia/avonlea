@@ -1,51 +1,49 @@
-<?php namespace Avonlea\Controller;
+<?php
+
+namespace Avonlea\Controller;
 
 /**
- * AdminCoupons Class
+ * AdminCoupons Class.
  *
- * @package     Avonlea
- * @subpackage  Controllers
  * @category    AdminCoupons
+ *
  * @author      Absalom Media
+ *
  * @link        http://Avonleadv.com
  */
-
 class AdminCoupons extends Admin
 {
-
-
     public $coupon_id;
-    
+
     public function __construct()
     {
         parent::__construct();
-        
+
         \CI::auth()->checkAccess('Admin', true);
         \CI::load()->model('Coupons');
         \CI::load()->model('products');
         \CI::lang()->load('coupons');
     }
-    
+
     public function index()
     {
         $data['page_title'] = lang('coupons');
         $data['coupons'] = \CI::Coupons()->getCoupons();
-        
+
         $this->view('coupons', $data);
     }
-    
-    
+
     public function form($id = false)
     {
-        \CI::load()->helper(array('form', 'date'));
+        \CI::load()->helper(['form', 'date']);
         \CI::load()->library('form_validation');
-        
+
         \CI::form_validation()->set_error_delimiters('<div class="error">', '</div>');
-        
+
         $this->coupon_id = $id;
-        
+
         $data['page_title'] = lang('coupon_form');
-        
+
         //default values are empty if the product is new
         $data['id'] = '';
         $data['code'] = '';
@@ -57,7 +55,7 @@ class AdminCoupons extends Admin
         $data['reduction_type'] = '';
         $data['reduction_amount'] = '';
         $data['products'] = [];
-        
+
         if ($id) {
             $coupon = \CI::Coupons()->getCoupon($id);
 
@@ -66,7 +64,7 @@ class AdminCoupons extends Admin
                 \CI::session()->set_flashdata('message', lang('error_not_found'));
                 redirect('admin/product');
             }
-            
+
             //set values to db values
             $data['id'] = $coupon->id;
             $data['code'] = $coupon->code;
@@ -78,25 +76,25 @@ class AdminCoupons extends Admin
             $data['max_uses'] = $coupon->max_uses;
             $data['reduction_type'] = $coupon->reduction_type;
             $data['reduction_amount'] = $coupon->reduction_amount;
-            
+
             $data['products'] = \CI::Coupons()->getProducts($id);
         }
-        
+
         \CI::form_validation()->set_rules(
             'code',
             'lang:code',
             ['trim', 'required',
                 ['code_callable', function ($str) {
-                    
-                        $code = \CI::Coupons()->checkCode($str, $this->coupon_id);
+                    $code = \CI::Coupons()->checkCode($str, $this->coupon_id);
                     if ($code) {
                         \CI::form_validation()->set_message('code_callable', lang('error_already_used'));
+
                         return false;
                     } else {
                         return true;
                     }
-                }
-                ]
+                },
+                ],
             ]
         );
         \CI::form_validation()->set_rules('max_uses', 'lang:max_uses', 'trim|numeric');
@@ -106,7 +104,7 @@ class AdminCoupons extends Admin
         \CI::form_validation()->set_rules('reduction_amount', 'lang:reduction_amount', 'trim|numeric');
         \CI::form_validation()->set_rules('start_date', 'lang:start_date');
         \CI::form_validation()->set_rules('end_date', 'lang:end_date');
-    
+
         if (\CI::form_validation()->run() === false) {
             if (\CI::input()->post()) {
                 $data['products'] = json_decode(json_encode(\CI::input()->post('product')));
@@ -124,15 +122,15 @@ class AdminCoupons extends Admin
             $save['reduction_type'] = \CI::input()->post('reduction_type');
             $save['reduction_amount'] = \CI::input()->post('reduction_amount');
 
-            if ($save['start_date']=='') {
+            if ($save['start_date'] == '') {
                 $save['start_date'] = null;
             }
-            if ($save['end_date']=='') {
+            if ($save['end_date'] == '') {
                 $save['end_date'] = null;
             }
-            
+
             $products = \CI::input()->post('product');
-            
+
             // save coupon
             $id = \CI::Coupons()->save($save);
 
@@ -140,10 +138,10 @@ class AdminCoupons extends Admin
             if (!$save['whole_order_coupon'] && $products) {
                 \CI::Coupons()->addProducts($id, $products);
             }
-            
+
             // We're done
             \CI::session()->set_flashdata('message', lang('message_saved_coupon'));
-            
+
             //go back to the product list
             redirect('admin/coupons');
         }
@@ -159,7 +157,7 @@ class AdminCoupons extends Admin
                 redirect('admin/coupons');
             } else {
                 \CI::Coupons()->deleteCoupon($id);
-                
+
                 \CI::session()->set_flashdata('message', lang('message_coupon_deleted'));
                 redirect('admin/coupons');
             }

@@ -1,18 +1,18 @@
-<?php namespace Avonlea\Controller;
+<?php
+
+namespace Avonlea\Controller;
 
 /**
- * AdminOrders Class
+ * AdminOrders Class.
  *
- * @package     Avonlea
- * @subpackage  Controllers
  * @category    AdminOrders
+ *
  * @author      Absalom Media
+ *
  * @link        http://Avonleadv.com
  */
-
 class AdminOrders extends Admin
 {
-
     public function __construct()
     {
         parent::__construct();
@@ -20,7 +20,7 @@ class AdminOrders extends Admin
         \CI::load()->model('Orders');
         \CI::load()->model('Search');
         \CI::load()->model('Locations');
-        \CI::load()->helper(array('formatting'));
+        \CI::load()->helper(['formatting']);
         \CI::lang()->load('orders');
     }
 
@@ -32,7 +32,7 @@ class AdminOrders extends Admin
             \CI::load()->model('Customers');
             \CI::load()->helper('download_helper');
             $post = \CI::input()->post(null, false);
-            $term = (object)$post;
+            $term = (object) $post;
 
             $data['orders'] = \CI::Orders()->getOrders($term);
 
@@ -59,7 +59,7 @@ class AdminOrders extends Admin
             $code = \CI::Search()->recordTerm($term);
             $data['code'] = $code;
             //reset the term to an object for use
-            $term   = (object)$post;
+            $term = (object) $post;
         } elseif ($code) {
             $term = \CI::Search()->getTerm($code);
             $term = json_decode($term);
@@ -111,7 +111,7 @@ class AdminOrders extends Admin
         \CI::load()->model('Customers');
         \CI::load()->helper('download_helper');
         $post = \CI::input()->post(null, false);
-        $term = (object)$post;
+        $term = (object) $post;
 
         $data['orders'] = \CI::Orders()->getOrders($term);
 
@@ -133,9 +133,9 @@ class AdminOrders extends Admin
         \CI::form_validation()->set_rules('notes', 'lang:notes');
         \CI::form_validation()->set_rules('status', 'lang:status', 'required');
 
-        if (\CI::form_validation()->run() ===true) {
+        if (\CI::form_validation()->run() === true) {
             $save = [
-                'id' => $data['order']->id,
+                'id'    => $data['order']->id,
                 'notes' => \CI::input()->post('notes'),
             ];
 

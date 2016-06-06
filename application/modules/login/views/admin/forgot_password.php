@@ -8,16 +8,16 @@
     <?php echo form_open('admin/forgot-password') ?>
 
         <div class="form-group">
-            <label for="username"><?php echo lang('username');?></label>
-            <?php echo form_input(array('name'=>'username', 'class'=>'form-control')); ?>
+            <label for="username"><?php echo lang('username'); ?></label>
+            <?php echo form_input(['name' => 'username', 'class' => 'form-control']); ?>
         </div>
 
-        <input class="btn btn-primary" type="submit" value="<?php echo lang('reset_password');?>"/>
+        <input class="btn btn-primary" type="submit" value="<?php echo lang('reset_password'); ?>"/>
         
     <?php echo  form_close(); ?>
 
         <div class="text-center">
-            <a href="<?php echo site_url('admin/login');?>"><?php echo lang('return_to_login');?></a>
+            <a href="<?php echo site_url('admin/login'); ?>"><?php echo lang('return_to_login'); ?></a>
         </div>
     </div>
 </div>

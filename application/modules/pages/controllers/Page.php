@@ -1,24 +1,25 @@
-<?php namespace Avonlea\Controller;
+<?php
+
+namespace Avonlea\Controller;
 
 /**
- * Page Class
+ * Page Class.
  *
- * @package     Avonlea
- * @subpackage  Controllers
  * @category    Page
+ *
  * @author      Absalom Media
+ *
  * @link        http://Avonleadv.com
  */
-
 class Page extends Front
 {
-
     public function homepage()
     {
 
         //do we have a homepage view?
         if (file_exists(FCPATH.'themes/'.config_item('theme').'/views/homepage.php')) {
             $this->view('homepage');
+
             return;
         } else {
             //if we don't have a homepage view, check for a registered homepage
@@ -26,6 +27,7 @@ class Page extends Front
                 if (isset($this->pages['all'][config_item('homepage')])) {
                     //we have a registered homepage and it's active
                     $this->index($this->pages['all'][config_item('homepage')]->slug, false);
+
                     return;
                 }
             }
@@ -62,7 +64,7 @@ class Page extends Front
                 $data['page_title'] = $page->title;
             }
             $data['meta'] = $page->meta;
-            $data['seo_title'] = (!empty($page->seo_title))?$page->seo_title:$page->title;
+            $data['seo_title'] = (!empty($page->seo_title)) ? $page->seo_title : $page->title;
             $data['page'] = $page;
 
             //load the view
@@ -77,12 +79,12 @@ class Page extends Front
         $page = $this->Page_model->slug($slug);
 
         if (!$page) {
-            $json = json_encode(['error'=>lang('error_page_not_found')]);
+            $json = json_encode(['error' => lang('error_page_not_found')]);
         } else {
             $json = json_encode($page);
         }
 
-        $this->view('json', ['json'=>json_encode($json)]);
+        $this->view('json', ['json' => json_encode($json)]);
     }
 }
 

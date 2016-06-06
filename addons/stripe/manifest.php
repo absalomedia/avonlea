@@ -5,4 +5,4 @@ $routes[] = ['GET|POST', '/admin/stripe/install', 'Avonlea\Controller\AdminStrip
 $routes[] = ['GET|POST', '/admin/stripe/uninstall', 'Avonlea\Controller\AdminStripe#uninstall'];
 $routes[] = ['GET|POST', '/stripe/process-payment', 'Avonlea\Controller\Stripe#processPayment'];
 
-$paymentModules[] = ['name'=>'Stripe', 'key'=>'stripe', 'class'=>'Stripe'];
+$paymentModules[] = ['name' => 'Stripe', 'key' => 'stripe', 'class' => 'Stripe'];

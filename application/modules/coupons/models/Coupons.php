@@ -1,23 +1,22 @@
 <?php
 /**
- * Coupons Class
+ * Coupons Class.
  *
- * @package     Avonlea
- * @subpackage  Models
  * @category    Coupons
+ *
  * @author      Absalom Media
+ *
  * @link        http://Avonleadv.com
  */
-
 class Coupons extends CI_Model
 {
-
     public function save($coupon)
     {
         if (!$coupon['id']) {
             return $this->addCoupon($coupon);
         } else {
             $this->updateCoupon($coupon['id'], $coupon);
+
             return $coupon['id'];
         }
     }
@@ -26,6 +25,7 @@ class Coupons extends CI_Model
     public function addCoupon($data)
     {
         CI::db()->insert('coupons', $data);
+
         return CI::db()->insert_id();
     }
 
@@ -48,10 +48,10 @@ class Coupons extends CI_Model
     // checks coupon dates and usage numbers
     public function isValid($coupon)
     {
-        if ($coupon->max_uses!=0 && $coupon->num_uses >= $coupon->max_uses) {
+        if ($coupon->max_uses != 0 && $coupon->num_uses >= $coupon->max_uses) {
             return false;
         }
-        if ($coupon->start_date != "0000-00-00") {
+        if ($coupon->start_date != '0000-00-00') {
             $start = strtotime($coupon->start_date);
 
             $current = time();
@@ -61,7 +61,7 @@ class Coupons extends CI_Model
             }
         }
 
-        if ($coupon->end_date != "0000-00-00" && !empty($coupon->end_date)) {
+        if ($coupon->end_date != '0000-00-00' && !empty($coupon->end_date)) {
             $end = strtotime($coupon->end_date) + 86400; // add a day for the availability to be inclusive
 
             $current = time();
@@ -83,11 +83,12 @@ class Coupons extends CI_Model
     // get coupons list, sorted by start_date (default), end_date
     public function getCoupons($sort = null)
     {
-        if ($sort=='end_date') {
+        if ($sort == 'end_date') {
             CI::db()->order_by('end_date');
         } else {
             CI::db()->order_by('start_date');
         }
+
         return CI::db()->get('coupons')->result();
     }
 
@@ -107,6 +108,7 @@ class Coupons extends CI_Model
             return false;
         }
         $return->product_list = $this->getProductIds($return->id);
+
         return $return;
     }
 
@@ -133,8 +135,8 @@ class Coupons extends CI_Model
 
             foreach ($products as $p) {
                 $save[] = [
-                    'coupon_id'=>$coupon_id,
-                    'product_id'=>$p['id']
+                    'coupon_id'  => $coupon_id,
+                    'product_id' => $p['id'],
                 ];
             }
 
@@ -147,13 +149,13 @@ class Coupons extends CI_Model
     // add product to coupon
     public function addProduct($coupon_id, $prod_id)
     {
-        CI::db()->insert('coupons_products', array('coupon_id'=>$coupon_id, 'product_id'=>$prod_id));
+        CI::db()->insert('coupons_products', ['coupon_id' => $coupon_id, 'product_id' => $prod_id]);
     }
 
     // remove product from coupon. Product id as null for removing all products
     public function removeProduct($coupon_id, $prod_id = null)
     {
-        $where = array('coupon_id'=>$coupon_id);
+        $where = ['coupon_id' => $coupon_id];
 
         if (!is_null($prod_id)) {
             $where['product_id'] = $prod_id;
@@ -166,8 +168,9 @@ class Coupons extends CI_Model
     // get list of products in coupon with full info
     public function getProducts($coupon_id)
     {
-        CI::db()->join("products", "product_id=products.id");
+        CI::db()->join('products', 'product_id=products.id');
         CI::db()->where('coupon_id', $coupon_id);
+
         return CI::db()->get('coupons_products')->result();
     }
 
@@ -182,6 +185,7 @@ class Coupons extends CI_Model
         foreach ($res as $item) {
             $list[] = $item->product_id;
         }
+
         return $list;
     }
 }

@@ -1,8 +1,8 @@
 <?php
 
-include('crunch.php');
-include('Parsedown.php');
-include('content_filter.php');
+include 'crunch.php';
+include 'Parsedown.php';
+include 'content_filter.php';
 
 function category_loop($parent = 0, $ulattribs = false, $ul = true)
 {
@@ -12,12 +12,12 @@ function category_loop($parent = 0, $ulattribs = false, $ul = true)
     if (isset($cats[$parent])) {
         $items = $cats[$parent];
     }
-    
+
     if ($items) {
-        echo ($ul)?'<ul '.$ulattribs.'>':'';
+        echo ($ul) ? '<ul '.$ulattribs.'>' : '';
         foreach ($items as $item) {
-            $selected = (CI::uri()->segment(2) === $item->slug)?'class="selected"':'';
-            
+            $selected = (CI::uri()->segment(2) === $item->slug) ? 'class="selected"' : '';
+
             //add the chevron if this has a drop menu
             $name = $item->name;
             if (CI::Categories()->tier($item->id)) {
@@ -25,12 +25,12 @@ function category_loop($parent = 0, $ulattribs = false, $ul = true)
             }
 
             $anchor = anchor('category/'.$item->slug, $name, $selected);
-            
+
             echo '<li>'.$anchor;
             category_loop($item->id);
             echo '</li>';
         }
-        echo ($ul)?'</ul>':'';
+        echo ($ul) ? '</ul>' : '';
     }
 }
 
@@ -44,11 +44,11 @@ function page_loop($parent = 0, $ulattribs = false, $ul = true)
     }
 
     if ($items) {
-        echo ($ul)?'<ul '.$ulattribs.'>':'';
+        echo ($ul) ? '<ul '.$ulattribs.'>' : '';
         foreach ($items as $item) {
             echo '<li>';
             $chevron = ' <i class="icon-chevron-down dropdown"></i>';
-            
+
             if ($item->slug === '') {
                 //add the chevron if this has a drop menu
                 $name = $item->title;
@@ -56,7 +56,7 @@ function page_loop($parent = 0, $ulattribs = false, $ul = true)
                     $name .= $chevron;
                 }
 
-                $target = ($item->new_window)?' target="_blank"':'';
+                $target = ($item->new_window) ? ' target="_blank"' : '';
                 $anchor = '<a href="'.$item->url.'"'.$target.'>'.$name.'</a>';
             } else {
                 //add the chevron if this has a drop menu
@@ -64,7 +64,7 @@ function page_loop($parent = 0, $ulattribs = false, $ul = true)
                 if (isset($pages[$item->id])) {
                     $name .= $chevron;
                 }
-                $selected = (CI::uri()->segment(2) === $item->slug)?'class="selected"':'';
+                $selected = (CI::uri()->segment(2) === $item->slug) ? 'class="selected"' : '';
                 $anchor = anchor('page/'.$item->slug, $name, $selected);
             }
 
@@ -72,6 +72,6 @@ function page_loop($parent = 0, $ulattribs = false, $ul = true)
             page_loop($item->id);
             echo '</li>';
         }
-        echo ($ul)?'</ul>':'';
+        echo ($ul) ? '</ul>' : '';
     }
 }

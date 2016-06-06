@@ -1,25 +1,25 @@
-<?php namespace Avonlea\Controller;
+<?php
+
+namespace Avonlea\Controller;
 
 /**
- * MyAccount Class
+ * MyAccount Class.
  *
- * @package     Avonlea
- * @subpackage  Controllers
  * @category    MyAccount
+ *
  * @author      Absalom Media
+ *
  * @link        http://Avonleadv.com
  */
-
 class MyAccount extends Front
 {
-
     public $customer;
 
     public function __construct()
     {
         parent::__construct();
 
-        \CI::load()->model(array('Locations'));
+        \CI::load()->model(['Locations']);
         $this->customer = \CI::Login()->customer();
     }
 
@@ -28,7 +28,7 @@ class MyAccount extends Front
         //make sure they're logged in
         \CI::Login()->isLoggedIn('my-account');
 
-        $data['customer'] = (array)\CI::Customers()->getCustomer($this->customer->id);
+        $data['customer'] = (array) \CI::Customers()->getCustomer($this->customer->id);
         $data['addresses'] = \CI::Customers()->getAddressList($this->customer->id);
         $data['customer_addresses'] = \CI::Customers()->getAddressList($this->customer->id);
 
@@ -103,7 +103,7 @@ class MyAccount extends Front
             $customer['lastname'] = \CI::input()->post('lastname');
             $customer['email'] = \CI::input()->post('email');
             $customer['phone'] = \CI::input()->post('phone');
-            $customer['email_subscribe'] = intval((bool)\CI::input()->post('email_subscribe'));
+            $customer['email_subscribe'] = intval((bool) \CI::input()->post('email_subscribe'));
             if (\CI::input()->post('password') != '') {
                 $customer['password'] = \CI::input()->post('password');
             }
@@ -127,6 +127,7 @@ class MyAccount extends Front
 
         if ($email) {
             \CI::form_validation()->set_message('check_email_callable', lang('error_email'));
+
             return false;
         } else {
             return true;

@@ -1,4 +1,5 @@
 <?php
+
 $routes[] = ['GET|POST', '/checkout', 'Avonlea\Controller\Checkout#index'];
 $routes[] = ['GET|POST', '/checkout/address-list', 'Avonlea\Controller\Checkout#addressList'];
 $routes[] = ['GET|POST', '/checkout/submit-order', 'Avonlea\Controller\Checkout#submitOrder'];

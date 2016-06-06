@@ -1,12 +1,10 @@
 <?php
 
-use Avonlea\Libraries\View as View;
 
 class ContentFilter
 {
-
     public $content = '';
-    
+
     public function __construct($content)
     {
         //set the content appropriately
@@ -18,6 +16,7 @@ class ContentFilter
         //baseURL & siteURL filter
         $filter = new \Twig_SimpleFilter('*URL', function ($name, $string) {
             $f = $name.'_url';
+
             return $f($string);
         });
         $twig->addFilter($filter);
@@ -30,14 +29,13 @@ class ContentFilter
 
         foreach ($GLOBALS['themeShortcodes'] as $shortcode) {
             $function = new \Twig_SimpleFunction($shortcode['shortcode'], function () use ($shortcode) {
-                
                 if (is_array($shortcode['method'])) {
-                    $class = new $shortcode['method'][0];
+                    $class = new $shortcode['method'][0]();
+
                     return call_user_func_array([$class, $shortcode['method'][1]], func_get_args());
                 } else {
                     return call_user_func_array($shortcode['method'], func_get_args());
                 }
-                
             });
             $twig->addFunction($function);
         }

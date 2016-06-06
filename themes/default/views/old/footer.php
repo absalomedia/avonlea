@@ -1,5 +1,5 @@
 			<div id="footer">
-				<p><?php echo anchor("http://bambooinvoice.org", $this->lang->line('bambooinvoice_logo'), array('title'=>'BambooInvoice'));?> &copy; <?php echo date("Y");?> (<?php echo $this->lang->line('bambooinvoice_version');?> <?php echo $this->settings_model->get_setting('bambooinvoice_version');?>)</p>
+				<p><?php echo anchor('http://bambooinvoice.org', $this->lang->line('bambooinvoice_logo'), ['title' => 'BambooInvoice']); ?> &copy; <?php echo date('Y'); ?> (<?php echo $this->lang->line('bambooinvoice_version'); ?> <?php echo $this->settings_model->get_setting('bambooinvoice_version'); ?>)</p>
 			</div>
 		</div>
 	</div>
@@ -9,6 +9,6 @@
 </script>
 <script type="text/javascript">
 </script>
-<?php endif;?>
+<?php endif; ?>
 </body>
 </html>

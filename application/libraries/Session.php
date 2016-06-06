@@ -1,15 +1,16 @@
-<?php  if (! defined('BASEPATH')) {
+<?php
+ if (!defined('BASEPATH')) {
      exit('No direct script access allowed');
  }
 /**
- * CodeIgniter
+ * CodeIgniter.
  *
  * An open source application development framework for PHP 5.1.6 or newer
  *
- * @package		CodeIgniter
  * @author		ExpressionEngine Dev Team
  * @copyright	Copyright (c) 2008 - 2011, EllisLab, Inc.
  * @license		http://codeigniter.com/user_guide/license.html
+ *
  * @link		http://codeigniter.com
  * @since		Version 1.0
  * @filesource
@@ -18,34 +19,33 @@
 // ------------------------------------------------------------------------
 
 /**
- * Session Class
+ * Session Class.
  *
- * @package		CodeIgniter
- * @subpackage	Libraries
  * @category	Sessions
+ *
  * @author		ExpressionEngine Dev Team
+ *
  * @link		http://codeigniter.com/user_guide/libraries/sessions.html
  */
 class Session
 {
     /**
-     * Session Constructor
+     * Session Constructor.
      *
      * The constructor runs the session routines automatically
      * whenever the class is instantiated.
      */
     public function __construct()
     {
-        log_message('debug', "Session Class Initialized");
+        log_message('debug', 'Session Class Initialized');
     }
 
     // --------------------------------------------------------------------
 
     /**
-     * Destroy the current session
+     * Destroy the current session.
      *
-     * @access	public
-     * @return	void
+     * @return void
      */
     public function sess_destroy()
     {
@@ -58,24 +58,23 @@ class Session
     // --------------------------------------------------------------------
 
     /**
-     * Fetch a specific item from the session array
+     * Fetch a specific item from the session array.
      *
-     * @access	public
      * @param	string
-     * @return	string
+     *
+     * @return string
      */
     public function userdata($item)
     {
-        return (! isset($_SESSION['userdata'][$item])) ? false : $_SESSION['userdata'][$item];
+        return (!isset($_SESSION['userdata'][$item])) ? false : $_SESSION['userdata'][$item];
     }
 
     // --------------------------------------------------------------------
 
     /**
-     * Fetch all session data
+     * Fetch all session data.
      *
-     * @access	public
-     * @return	array
+     * @return array
      */
     public function all_userdata()
     {
@@ -85,17 +84,17 @@ class Session
     // --------------------------------------------------------------------
 
     /**
-     * Add or change data in the "userdata" array
+     * Add or change data in the "userdata" array.
      *
-     * @access	public
      * @param	mixed
      * @param	string
-     * @return	void
+     *
+     * @return void
      */
     public function set_userdata($newdata = [], $newval = '')
     {
         if (is_string($newdata)) {
-            $newdata = array($newdata => $newval);
+            $newdata = [$newdata => $newval];
         }
 
         if (count($newdata) > 0) {
@@ -108,15 +107,14 @@ class Session
     // --------------------------------------------------------------------
 
     /**
-     * Delete a session variable from the "userdata" array
+     * Delete a session variable from the "userdata" array.
      *
-     * @access	array
-     * @return	void
+     * @return void
      */
     public function unset_userdata($newdata = [])
     {
         if (is_string($newdata)) {
-            $newdata = array($newdata => '');
+            $newdata = [$newdata => ''];
         }
 
         if (count($newdata) > 0) {
@@ -130,17 +128,17 @@ class Session
 
     /**
      * Add or change flashdata, only available
-     * until the next request
+     * until the next request.
      *
-     * @access	public
      * @param	mixed
      * @param	string
-     * @return	void
+     *
+     * @return void
      */
     public function set_flashdata($newdata = [], $newval = '')
     {
         if (is_string($newdata)) {
-            $newdata = array($newdata => $newval);
+            $newdata = [$newdata => $newval];
         }
 
         if (count($newdata) > 0) {
@@ -155,9 +153,9 @@ class Session
     /**
      * Keeps existing flashdata available to next request.
      *
-     * @access	public
      * @param	string
-     * @return	void
+     *
+     * @return void
      */
     public function keep_flashdata($key)
     {
@@ -172,11 +170,11 @@ class Session
     // ------------------------------------------------------------------------
 
     /**
-     * Fetch a specific flashdata item from the session array
+     * Fetch a specific flashdata item from the session array.
      *
-     * @access	public
      * @param	string
-     * @return	string
+     *
+     * @return string
      */
     public function flashdata($key)
     {

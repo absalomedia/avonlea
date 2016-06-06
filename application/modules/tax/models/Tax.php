@@ -4,25 +4,25 @@ class Tax extends CI_Model
 {
     public $state = '';
     public $state_taxes;
-    
+
     public function __construct()
     {
         parent::__construct();
-        
+
         $this->state_taxes = config_item('state_taxes');
 
         $order = AVL::getCart();
 
         $taxType = config_item('tax_address');
-        
-        if ($taxType =='ship') {
-            if ((bool)$order->shipping_address_id) {
+
+        if ($taxType == 'ship') {
+            if ((bool) $order->shipping_address_id) {
                 $this->address = CI::Customers()->getAddress($order->shipping_address_id);
             } else {
                 return 0;
             }
         } else {
-            if ((bool)$order->billing_address_id) {
+            if ((bool) $order->billing_address_id) {
                 $this->address = CI::Customers()->getAddress($order->billing_address_id);
             } else {
                 return 0;
@@ -32,45 +32,46 @@ class Tax extends CI_Model
             return 0;
         }
     }
+
     public function getCountryTaxRate()
     {
         $rate = CI::db()->where('id', $this->address['country_id'])->get('countries')->row();
 
         if ($rate) {
-            $rate = $rate->tax/100;
+            $rate = $rate->tax / 100;
         } else {
             $rate = 0;
         }
-    
+
         return $rate;
     }
-    
+
     public function getZoneTaxRate()
     {
         $rate = CI::db()->where('id', $this->address['zone_id'])->get('country_zones')->row();
 
         if ($rate) {
-            $rate = $rate->tax/100;
+            $rate = $rate->tax / 100;
         } else {
             $rate = 0;
         }
-    
+
         return $rate;
     }
-    
+
     public function getAreaTaxRate()
     {
-        $rate = CI::db()->where(array('code'=>$this->address['zip'], 'zone_id'=>$this->address['zone_id']))->get('country_zone_areas')->row();
+        $rate = CI::db()->where(['code' => $this->address['zip'], 'zone_id' => $this->address['zone_id']])->get('country_zone_areas')->row();
 
         if ($rate) {
-            $rate = $rate->tax/100;
+            $rate = $rate->tax / 100;
         } else {
             $rate = 0;
         }
-    
+
         return $rate;
     }
-    
+
     public function getTaxTotal()
     {
         $taxTotal = 0;
@@ -78,7 +79,7 @@ class Tax extends CI_Model
 
         return number_format($taxTotal, 2, '.', '');
     }
-    
+
     public function getTaxRate()
     {
         //if there is no address yet return 0
@@ -95,7 +96,7 @@ class Tax extends CI_Model
         //returns the total rate not affected by price of merchandise.
         return $rate;
     }
-    
+
     public function getTaxes()
     {
         $rate = $this->getTaxRate();

@@ -1,18 +1,18 @@
-<?php namespace Avonlea\Controller;
+<?php
+
+namespace Avonlea\Controller;
 
 /**
- * AdminUsers Class
+ * AdminUsers Class.
  *
- * @package     Avonlea
- * @subpackage  Controllers
  * @category    AdminUsers
+ *
  * @author      Absalom Media
+ *
  * @link        http://Avonleadv.com
  */
-
 class AdminUsers extends Admin
 {
-    
     //these are used when editing, adding or deleting an admin
     public $admin_id = false;
     public $current_admin = false;
@@ -82,7 +82,7 @@ class AdminUsers extends Admin
             $data['username'] = $admin->username;
             $data['access'] = $admin->access;
         }
-        
+
         \CI::form_validation()->set_rules('firstname', 'lang:firstname', 'trim|max_length[32]');
         \CI::form_validation()->set_rules('lastname', 'lang:lastname', 'trim|max_length[32]');
         \CI::form_validation()->set_rules('email', 'lang:email', 'trim|required|valid_email|max_length[128]');
@@ -90,19 +90,20 @@ class AdminUsers extends Admin
             $email = \CI::auth()->checkUsername($str, $this->admin_id);
             if ($email) {
                 \CI::form_validation()->set_message('username_callable', lang('error_username_taken'));
+
                 return false;
             } else {
                 return true;
             }
         }]]);
         \CI::form_validation()->set_rules('access', 'lang:access', 'trim|required');
-        
+
         //if this is a new account require a password, or if they have entered either a password or a password confirmation
         if (\CI::input()->post('password') != '' || \CI::input()->post('confirm') != '' || !$id) {
             \CI::form_validation()->set_rules('password', 'lang:password', 'required|min_length[6]');
             \CI::form_validation()->set_rules('confirm', 'lang:confirm_password', 'required|matches[password]');
         }
-        
+
         if (\CI::form_validation()->run() === false) {
             $this->view('user_form', $data);
         } else {
@@ -112,14 +113,14 @@ class AdminUsers extends Admin
             $save['email'] = \CI::input()->post('email');
             $save['username'] = \CI::input()->post('username');
             $save['access'] = \CI::input()->post('access');
-            
+
             if (\CI::input()->post('password') != '' || !$id) {
                 $save['password'] = \CI::input()->post('password');
             }
 
             \CI::auth()->save($save);
             \CI::session()->set_flashdata('message', lang('message_user_saved'));
-            
+
             //go back to the customer list
             redirect('admin/users');
         }

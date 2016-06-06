@@ -1,18 +1,18 @@
-<?php namespace Avonlea\Controller;
+<?php
+
+namespace Avonlea\Controller;
 
 /**
- * AdminWysiwyg Class
+ * AdminWysiwyg Class.
  *
- * @package     Avonlea
- * @subpackage  Controllers
  * @category    AdminWysiwyg
+ *
  * @author      Absalom Media
+ *
  * @link        http://Avonleadv.com
  */
-
 class AdminWysiwyg extends Admin
 {
-
     public function upload_image()
     {
         $config['upload_path'] = 'uploads/wysiwyg/images';
@@ -20,8 +20,8 @@ class AdminWysiwyg extends Admin
 
         \CI::load()->library('upload', $config);
 
-        if (! \CI::upload()->do_upload('file')) {
-            $error = array('error' => \CI::upload()->display_errors('', ''));
+        if (!\CI::upload()->do_upload('file')) {
+            $error = ['error' => \CI::upload()->display_errors('', '')];
             echo stripslashes(json_encode($error));
         } else {
             $data = \CI::upload()->data();
@@ -32,15 +32,15 @@ class AdminWysiwyg extends Admin
             $config['new_image'] = 'uploads/wysiwyg/thumbnails/'.$data['file_name'];
             $config['create_thumb'] = false;
             $config['maintain_ratio'] = true;
-            $config['width']     = 75;
-            $config['height']   = 50;
+            $config['width'] = 75;
+            $config['height'] = 50;
 
             \CI::load()->library('image_lib', $config);
 
             \CI::image_lib()->resize();
 
-            
-            $data = array('filelink' => base_url('uploads/wysiwyg/images/'.$data['file_name']), 'filename'=>$data['file_name']);
+
+            $data = ['filelink' => base_url('uploads/wysiwyg/images/'.$data['file_name']), 'filename' => $data['file_name']];
             echo stripslashes(json_encode($data));
         }
     }
@@ -51,7 +51,7 @@ class AdminWysiwyg extends Admin
 
         $return = [];
         foreach ($files as $file) {
-            $return[] = array('thumb'=>base_url('uploads/wysiwyg/thumbnails/'.$file), 'image'=>base_url('uploads/wysiwyg/images/'.$file));
+            $return[] = ['thumb' => base_url('uploads/wysiwyg/thumbnails/'.$file), 'image' => base_url('uploads/wysiwyg/images/'.$file)];
         }
         echo stripslashes(json_encode($return));
     }

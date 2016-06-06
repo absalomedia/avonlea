@@ -1,57 +1,56 @@
-<?php namespace Avonlea\Controller;
+<?php
+
+namespace Avonlea\Controller;
 
 /**
- * AdminCategories Class
+ * AdminCategories Class.
  *
- * @package Avonlea
- * @subpackage Controllers
  * @category AdminCategories
+ *
  * @author Absalom Media
+ *
  * @link http://Avonleadv.com
  */
-
 class AdminCategories extends Admin
 {
-
-    
     public function __construct()
     {
         parent::__construct();
-        
+
         \CI::auth()->checkAccess('Admin', true);
         \CI::lang()->load('categories');
         \CI::load()->model('Categories');
     }
-    
+
     public function index()
     {
         $data['groups'] = \CI::Customers()->get_groups();
         $data['page_title'] = lang('categories');
         $data['categories'] = \CI::Categories()->get_categories_tiered(true);
-        
+
         $this->view('categories', $data);
     }
 
     public function form($id = false)
     {
         $data['groups'] = \CI::Customers()->get_groups();
-        
+
         $config['upload_path'] = 'uploads/images/full';
         $config['allowed_types'] = 'gif|jpg|png';
         $config['max_width'] = '1024';
         $config['max_height'] = '768';
         $config['encrypt_name'] = true;
         \CI::load()->library('upload', $config);
-        
-        
+
+
         $this->category_id = $id;
         \CI::load()->helper('form');
         \CI::load()->library('form_validation');
         \CI::form_validation()->set_error_delimiters('<div class="error">', '</div>');
-        
+
         $data['categories'] = \CI::Categories()->getCategoryOptionsMenu($id);
         $data['page_title'] = lang('category_form');
-        
+
         //default values are empty if the customer is new
         $data['id'] = '';
         $data['name'] = '';
@@ -64,14 +63,14 @@ class AdminCategories extends Admin
         $data['meta'] = '';
         $data['parent_id'] = 0;
         $data['error'] = '';
-        
+
         foreach ($data['groups'] as $group) {
             $data['enabled'.$group->id] = '';
         }
 
         //create the photos array for later use
         $data['photos'] = [];
-        
+
         if ($id) {
             $category = \CI::Categories()->find($id);
 
@@ -80,10 +79,10 @@ class AdminCategories extends Admin
                 \CI::session()->set_flashdata('error', lang('error_not_found'));
                 redirect('admin/categories');
             }
-            
+
             //helps us with the slug generation
             $this->category_name = \CI::input()->post('slug', $category->slug);
-            
+
             //set values to db values
             $data['id'] = $category->id;
             $data['name'] = $category->name;
@@ -99,7 +98,7 @@ class AdminCategories extends Admin
                 $data['enabled'.$group->id] = $category->{'enabled'.$group->id};
             }
         }
-        
+
         \CI::form_validation()->set_rules('name', 'lang:name', 'trim|required|max_length[64]');
         \CI::form_validation()->set_rules('slug', 'lang:slug', 'trim');
         \CI::form_validation()->set_rules('description', 'lang:description', 'trim');
@@ -109,17 +108,17 @@ class AdminCategories extends Admin
         \CI::form_validation()->set_rules('image', 'lang:image', 'trim');
         \CI::form_validation()->set_rules('seo_title', 'lang:seo_title', 'trim');
         \CI::form_validation()->set_rules('meta', 'lang:meta', 'trim');
-        
+
         foreach ($data['groups'] as $group) {
             \CI::form_validation()->set_rules('enabled'.$group->id, lang('enabled').'('.$group->name.')', 'trim|numeric');
         }
-        
+
         // validate the form
         if (\CI::form_validation()->run() === false) {
             $this->view('category_form', $data);
         } else {
             $uploaded = \CI::upload()->do_upload('image');
-            
+
             if ($id) {
                 //delete the original file if another is uploaded
                 if ($uploaded) {
@@ -129,7 +128,7 @@ class AdminCategories extends Admin
                         $file[] = 'uploads/images/medium/'.$data['image'];
                         $file[] = 'uploads/images/small/'.$data['image'];
                         $file[] = 'uploads/images/thumbnails/'.$data['image'];
-                        
+
                         foreach ($file as $f) {
                             //delete the existing file if needed
                             if (file_exists($f)) {
@@ -139,20 +138,21 @@ class AdminCategories extends Admin
                     }
                 }
             }
-            
+
             if (!$uploaded) {
                 $data['error'] = \CI::upload()->display_errors();
                 if ($_FILES['image']['error'] != 4) {
                     $data['error'] .= \CI::upload()->display_errors();
                     $this->view('category_form', $data);
+
                     return; //end script here if there is an error
                 }
             } else {
                 $image = \CI::upload()->data();
                 $save['image'] = $image['file_name'];
-                
+
                 \CI::load()->library('image_lib');
-                
+
                 //this is the larger image
                 $config['image_library'] = 'gd2';
                 $config['source_image'] = 'uploads/images/full/'.$save['image'];
@@ -186,17 +186,17 @@ class AdminCategories extends Admin
                 \CI::image_lib()->resize();
                 \CI::image_lib()->clear();
             }
-            
+
             \CI::load()->helper('text');
-            
+
             //first check the slug field
             $slug = \CI::input()->post('slug');
-            
+
             //if it's empty assign the name field
-            if (empty($slug) || $slug=='') {
+            if (empty($slug) || $slug == '') {
                 $slug = \CI::input()->post('name');
             }
-            
+
             $slug = url_title(convert_accented_characters($slug), 'dash', true);
 
             if ($id) {
@@ -204,7 +204,7 @@ class AdminCategories extends Admin
             } else {
                 $slug = \CI::Categories()->validate_slug($slug);
             }
-            
+
             $save['id'] = $id;
             $save['name'] = \CI::input()->post('name');
             $save['description'] = \CI::input()->post('description');
@@ -217,11 +217,11 @@ class AdminCategories extends Admin
             foreach ($data['groups'] as $group) {
                 $save['enabled'.$group->id] = \CI::input()->post('enabled'.$group->id);
             }
-            
+
             $category_id = \CI::Categories()->save($save);
-            
+
             \CI::session()->set_flashdata('message', lang('message_category_saved'));
-            
+
             //go back to the category list
             redirect('admin/categories');
         }
@@ -238,7 +238,7 @@ class AdminCategories extends Admin
                 $file[] = 'uploads/images/medium/'.$category->image;
                 $file[] = 'uploads/images/small/'.$category->image;
                 $file[] = 'uploads/images/thumbnails/'.$category->image;
-                
+
                 foreach ($file as $f) {
                     //delete the existing file if needed
                     if (file_exists($f)) {
@@ -248,7 +248,7 @@ class AdminCategories extends Admin
             }
 
             \CI::Categories()->delete($id);
-            
+
             \CI::session()->set_flashdata('message', lang('message_delete_category'));
             redirect('admin/categories');
         } else {

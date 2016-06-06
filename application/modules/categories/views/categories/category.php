@@ -5,17 +5,17 @@
 
     <?php if (!empty($category->description)) :?>
     <div class="categoryDescription">
-        <?php echo(new ContentFilter($category->description))->display();?>
+        <?php echo(new ContentFilter($category->description))->display(); ?>
     </div>
-    <?php endif;?>
+    <?php endif; ?>
 
     <div class="productsFilter">
         <div class="pull-right">
             <select id="sort">
-                <option<?php echo($sort=='name' && $dir === 'ASC')?' selected="selected"':'';?> value="<?php echo site_url('category/'.$slug.'/name/ASC/'.$page);?>"><?php echo lang('sort_by_name_asc');?></option>
-                <option<?php echo($sort=='name' && $dir === 'DESC')?' selected="selected"':'';?>  value="<?php echo site_url('category/'.$slug.'/name/DESC/'.$page);?>"><?php echo lang('sort_by_name_desc');?></option>
-                <option<?php echo($sort=='price' && $dir === 'ASC')?' selected="selected"':'';?>  value="<?php echo site_url('category/'.$slug.'/price/ASC/'.$page);?>"><?php echo lang('sort_by_price_asc');?></option>
-                <option<?php echo($sort=='price' && $dir === 'DESC')?' selected="selected"':'';?>  value="<?php echo site_url('category/'.$slug.'/price/DESC/'.$page);?>"><?php echo lang('sort_by_price_desc');?></option>
+                <option<?php echo($sort == 'name' && $dir === 'ASC') ? ' selected="selected"' : ''; ?> value="<?php echo site_url('category/'.$slug.'/name/ASC/'.$page); ?>"><?php echo lang('sort_by_name_asc'); ?></option>
+                <option<?php echo($sort == 'name' && $dir === 'DESC') ? ' selected="selected"' : ''; ?>  value="<?php echo site_url('category/'.$slug.'/name/DESC/'.$page); ?>"><?php echo lang('sort_by_name_desc'); ?></option>
+                <option<?php echo($sort == 'price' && $dir === 'ASC') ? ' selected="selected"' : ''; ?>  value="<?php echo site_url('category/'.$slug.'/price/ASC/'.$page); ?>"><?php echo lang('sort_by_price_asc'); ?></option>
+                <option<?php echo($sort == 'price' && $dir === 'DESC') ? ' selected="selected"' : ''; ?>  value="<?php echo site_url('category/'.$slug.'/price/DESC/'.$page); ?>"><?php echo lang('sort_by_price_desc'); ?></option>
             </select>
         </div>
         <div class="pull-right">
@@ -24,11 +24,11 @@
     </div> 
 
 <?php endif;
-    
-    include(__DIR__.'/products.php');?>
+
+    include __DIR__.'/products.php'; ?>
 
     <div class="text-center pagination">
-        <?php echo CI::pagination()->create_links();?>
+        <?php echo CI::pagination()->create_links(); ?>
     </div>
    
 </div>
