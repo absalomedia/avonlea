@@ -224,6 +224,9 @@ class Bootstrap extends CI_Controller
         }
     }
 
+    /**
+     * @param string $file
+     */
     private function getPhpClasses($file)
     {
         $phpcode = file_get_contents($file);
