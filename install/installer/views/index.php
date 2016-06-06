@@ -7,11 +7,11 @@
 <title>Install Avonlea Invoicing</title>
 <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
-<link href="<?php echo base_url('../themes/default/assets/css/fonts.css');?>" rel="stylesheet" type="text/css" />
-<link href="<?php echo base_url('../themes/default/assets/css/pure.min.css');?>" rel="stylesheet" type="text/css" />
-<link href="<?php echo base_url('../themes/default/assets/css/icono.min.css');?>" rel="stylesheet" type="text/css" />
-<link href="<?php echo base_url('../themes/default/assets/css/styles.css');?>" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="<?php echo base_url('../assets/js/jquery-2.1.3.min.js');?>"></script>
+<link href="<?php echo base_url('../themes/default/assets/css/fonts.css'); ?>" rel="stylesheet" type="text/css" />
+<link href="<?php echo base_url('../themes/default/assets/css/pure.min.css'); ?>" rel="stylesheet" type="text/css" />
+<link href="<?php echo base_url('../themes/default/assets/css/icono.min.css'); ?>" rel="stylesheet" type="text/css" />
+<link href="<?php echo base_url('../themes/default/assets/css/styles.css'); ?>" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="<?php echo base_url('../assets/js/jquery-2.1.3.min.js'); ?>"></script>
 
 </head>
 
@@ -23,29 +23,29 @@
         <h1>Avonlea Installer</h1>
 
     <?php if (isset($errors)) {
-        echo $errors;
+    echo $errors;
 } ?>
 
-    <form action="<?php echo base_url();?>" method="post" class="pure-form pure-form-stacked" accept-charset="utf-8">
+    <form action="<?php echo base_url(); ?>" method="post" class="pure-form pure-form-stacked" accept-charset="utf-8">
                 <div class="pure-control-group">
                     <label for="hostname-label">Host Name</label>
-                    <?php echo form_input(['name'=>'hostname', 'class'=>'form-control', 'value'=>set_value('hostname')]);?>
+                    <?php echo form_input(['name' => 'hostname', 'class' => 'form-control', 'value' => set_value('hostname')]); ?>
                 </div>
                 <div class="pure-control-group">
                     <label for="database-name-label">Database Name</label>
-                    <?php echo form_input(['name'=>'database', 'class'=>'form-control', 'value'=>set_value('database')]);?>
+                    <?php echo form_input(['name' => 'database', 'class' => 'form-control', 'value' => set_value('database')]); ?>
                 </div>
                 <div class="pure-control-group">
                     <label for="control-label">Username</label>
-                    <?php echo form_input(['name'=>'username', 'class'=>'form-control', 'value'=>set_value('username')]);?>
+                    <?php echo form_input(['name' => 'username', 'class' => 'form-control', 'value' => set_value('username')]); ?>
                 </div>
                 <div class="pure-control-group">
                     <label for="password-label">Password</label>
-                    <?php echo form_input(['name'=>'password', 'class'=>'form-control', 'value'=>set_value('password')]);?>
+                    <?php echo form_input(['name' => 'password', 'class' => 'form-control', 'value' => set_value('password')]); ?>
                 </div>
                 <div class="pure-control-group">
                     <label for="database-prefix-label">Database Table Prefix (ex. avl_)</label>
-                    <?php echo form_input(['name'=>'prefix', 'class'=>'form-control', 'value'=>set_value('prefix')]);?>
+                    <?php echo form_input(['name' => 'prefix', 'class' => 'form-control', 'value' => set_value('prefix')]); ?>
                 </div>
 
                 <div class="alert alert-warning">
@@ -55,7 +55,7 @@
                 </div>
                 <div class="pure-control-group">
                     <label for="admin-password-label">Admin Password</label>
-                    <?php echo form_input(['name'=>'admin-password', 'class'=>'form-control', 'value'=>set_value('admin-password')]);?>
+                    <?php echo form_input(['name' => 'admin-password', 'class' => 'form-control', 'value' => set_value('admin-password')]); ?>
                 </div>
                 <button id="btn_step1" class="pure-button pure-button-primary" type="submit">Install</button>
             </div>

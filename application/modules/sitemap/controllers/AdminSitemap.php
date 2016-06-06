@@ -1,18 +1,18 @@
-<?php namespace Avonlea\Controller;
+<?php
+
+namespace Avonlea\Controller;
 
 /**
- * AdminSitemap Class
+ * AdminSitemap Class.
  *
- * @package     Avonlea
- * @subpackage  Controllers
  * @category    AdminSitemap
+ *
  * @author      Absalom Media
+ *
  * @link        http://Avonleadv.com
  */
-
 class AdminSitemap extends Admin
 {
-
     public function __construct()
     {
         parent::__construct();
@@ -43,9 +43,9 @@ class AdminSitemap extends Admin
         $limit = \CI::input()->post('limit');
         $offset = \CI::input()->post('col-md-offset-');
 
-        $products = \CI::Products()->products(['rows'=>$limit, 'page'=>$offset]);
+        $products = \CI::Products()->products(['rows' => $limit, 'page' => $offset]);
 
-        $xml = $this->partial('product_xml', ['products'=>$products], true);
+        $xml = $this->partial('product_xml', ['products' => $products], true);
         echo $xml;
         $file = fopen('sitemap.xml', 'a');
         fwrite($file, $xml);
@@ -55,8 +55,8 @@ class AdminSitemap extends Admin
     public function generateCategories()
     {
         $categories = \CI::Categories()->get_categories_tiered();
-        
-        $xml = $this->partial('category_xml', ['categories'=>$categories['all']], true);
+
+        $xml = $this->partial('category_xml', ['categories' => $categories['all']], true);
         echo $xml;
         $file = fopen('sitemap.xml', 'a');
         fwrite($file, $xml);
@@ -66,8 +66,8 @@ class AdminSitemap extends Admin
     public function generatePages()
     {
         $pages = \CI::Pages()->get_pages_tiered();
-        
-        $xml = $this->partial('page_xml', ['pages'=>$pages['all']], true);
+
+        $xml = $this->partial('page_xml', ['pages' => $pages['all']], true);
         echo $xml;
         $file = fopen('sitemap.xml', 'a');
         fwrite($file, $xml);
@@ -84,9 +84,10 @@ class AdminSitemap extends Admin
         fwrite($file, $xml);
         fclose($file);
 
-        \CI::session()->set_flashdata('message', lang('success_sitemap_generate'). ' File location '.site_url('sitemap.xml'));
+        \CI::session()->set_flashdata('message', lang('success_sitemap_generate').' File location '.site_url('sitemap.xml'));
         redirect('admin/sitemap');
     }
+
     /* Sitemap Ping Feature to come
     public function pingSearchEngines()
     {

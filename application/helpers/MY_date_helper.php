@@ -1,25 +1,15 @@
 <?php
+
 function format_date($date)
 {
     if ($date != '' && $date != '0000-00-00') {
-        $d    = explode('-', $date);
-    
-        $m    = array(
-        'January'
-        ,'February'
-        ,'March'
-        ,'April'
-        ,'May'
-        ,'June'
-        ,'July'
-        ,'August'
-        ,'September'
-        ,'October'
-        ,'November'
-        ,'December'
-        );
-    
-        return $m[$d[1]-1].' '.$d[2].', '.$d[0];
+        $d = explode('-', $date);
+
+        $m = [
+        'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December',
+        ];
+
+        return $m[$d[1] - 1].' '.$d[2].', '.$d[0];
     } else {
         return false;
     }
@@ -30,9 +20,9 @@ function reverse_format($date)
     if (empty($date)) {
         return;
     }
-    
+
     $d = explode('-', $date);
-    
+
     return "{$d[1]}-{$d[2]}-{$d[0]}";
 }
 
@@ -42,6 +32,7 @@ function format_ymd($date)
         return '';
     } else {
         $d = explode('-', $date);
+
         return $d[2].'-'.$d[0].'-'.$d[1];
     }
 }

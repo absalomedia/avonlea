@@ -8,4 +8,4 @@ $routes[] = ['GET|POST', '/admin/banners/banner_form/[i:banner_collection_id]/[i
 $routes[] = ['GET|POST', '/admin/banners/delete_banner/[i:id]', 'Avonlea\Controller\AdminBanners#delete_banner'];
 $routes[] = ['GET|POST', '/admin/banners/organize', 'Avonlea\Controller\AdminBanners#organize'];
 
-$themeShortcodes[] = ['shortcode'=>'banner', 'method'=>['Banners', 'show_collection']];
+$themeShortcodes[] = ['shortcode' => 'banner', 'method' => ['Banners', 'show_collection']];

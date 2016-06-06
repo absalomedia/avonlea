@@ -1,17 +1,18 @@
-<?php namespace Avonlea;
+<?php
+
+namespace Avonlea;
 
 /**
- * Emails Class
+ * Emails Class.
  *
- * @package     Emails
- * @subpackage  Library
  * @category    Avonlea
+ *
  * @author      Absalom Media
+ *
  * @link        http://Avonleadv.com
  */
 class Emails
 {
-
     public static function sendEmail($email)
     {
         $mailType = config_item('email_method');
@@ -40,9 +41,9 @@ class Emails
         $twig = new \Twig_Environment($loader);
 
         //fields for the template
-        $fields = [ 'site_name'=>config_item('company_name'),
+        $fields = ['site_name'      => config_item('company_name'),
                     'customer_name' => $customer['firstname'].' '.$customer['lastname'],
-                    'url'=>base_url()
+                    'url'           => base_url(),
                   ];
 
         //render the subject and content to a variable
@@ -69,12 +70,12 @@ class Emails
         $twig = new \Twig_Environment($loader);
 
         //fields for the template
-        $fields = [ 'site_name'=>config_item('company_name'),
-                    'code' => $giftCard['code'],
-                    'amount'=>$giftCard['beginning_amount'],
-                    'from'=>$giftCard['from'],
-                    'personal_message'=>$giftCard['personal_message'],
-                    'url'=>base_url()
+        $fields = ['site_name'         => config_item('company_name'),
+                    'code'             => $giftCard['code'],
+                    'amount'           => $giftCard['beginning_amount'],
+                    'from'             => $giftCard['from'],
+                    'personal_message' => $giftCard['personal_message'],
+                    'url'              => base_url(),
                   ];
         //render the subject and content to a variable
         $subject = $twig->render($cannedMessage['subject'], $fields);
@@ -102,7 +103,7 @@ class Emails
         $twig = new \Twig_Environment($loader);
 
 
-        $fields = ['site_name'=>config_item('company_name'), 'password'=>$password];
+        $fields = ['site_name' => config_item('company_name'), 'password' => $password];
 
         $subject = $twig->render(lang('reset_password_subject'), $fields);
         $content = $twig->render(lang('reset_password_content'), $fields);
@@ -130,7 +131,7 @@ class Emails
         $twig = new \Twig_Environment($loader);
 
         //fields for the template
-        $fields = ['site_name'=>config_item('company_name'), 'email'=>$customeEmail, 'password'=>$password];
+        $fields = ['site_name' => config_item('company_name'), 'email' => $customeEmail, 'password' => $password];
 
         //render the subject and content to a variable
         $subject = $twig->render($cannedMessage['subject'], $fields);
@@ -186,8 +187,8 @@ class Emails
 
         //load in the view class so we can get our order view
         $view = \Avonlea\Libraries\View::getInstance();
-        
-        $fields = ['customer_name'=>$customerName, 'site_name'=>config_item('company_name'), 'order_summary'=>$view->get('order_summary_email', ['order'=>$order])];
+
+        $fields = ['customer_name' => $customerName, 'site_name' => config_item('company_name'), 'order_summary' => $view->get('order_summary_email', ['order' => $order])];
         $subject = $twig->render($cannedMessage['subject'], $fields);
         $content = $twig->render($cannedMessage['content'], $fields);
 

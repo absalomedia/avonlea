@@ -5,4 +5,4 @@ $routes[] = ['GET|POST', '/admin/pin/install', 'Avonlea\Controller\AdminPin#inst
 $routes[] = ['GET|POST', '/admin/pin/uninstall', 'Avonlea\Controller\AdminPin#uninstall'];
 $routes[] = ['GET|POST', '/pin/process-payment', 'Avonlea\Controller\Pin#processPayment'];
 
-$paymentModules[] = ['name'=>'Pin Payments', 'key'=>'pin', 'class'=>'Pin'];
+$paymentModules[] = ['name' => 'Pin Payments', 'key' => 'pin', 'class' => 'Pin'];

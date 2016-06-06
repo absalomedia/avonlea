@@ -1,6 +1,6 @@
 <?php echo pageHeader(lang('product_form')); ?>
 
-<?php $GLOBALS['optionValueCount'] = 0;?>
+<?php $GLOBALS['optionValueCount'] = 0; ?>
 <style type="text/css">
     .sortable { list-style-type: none; margin: 0; padding: 0; width: 100%; }
     .sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; height: 18px; }
@@ -12,77 +12,77 @@
         <div class="col-md-9">
             <div class="tabbable">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#product_info" data-toggle="tab"><?php echo lang('details');?></a></li>
+                    <li class="active"><a href="#product_info" data-toggle="tab"><?php echo lang('details'); ?></a></li>
                     <?php //if there aren't any files uploaded don't offer the client the tab
                     if (count($file_list) > 0) :?>
-                    <li><a href="#product_downloads" data-toggle="tab"><?php echo lang('digital_content');?></a></li>
-                    <?php                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         endif;?>
-                    <li><a href="#product_categories" data-toggle="tab"><?php echo lang('categories');?></a></li>
-                    <li><a href="#ProductOptions" data-toggle="tab"><?php echo lang('options');?></a></li>
-                    <li><a href="#product_related" data-toggle="tab"><?php echo lang('related_products');?></a></li>
-                    <li><a href="#product_photos" data-toggle="tab"><?php echo lang('images');?></a></li>
+                    <li><a href="#product_downloads" data-toggle="tab"><?php echo lang('digital_content'); ?></a></li>
+                    <?php                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         endif; ?>
+                    <li><a href="#product_categories" data-toggle="tab"><?php echo lang('categories'); ?></a></li>
+                    <li><a href="#ProductOptions" data-toggle="tab"><?php echo lang('options'); ?></a></li>
+                    <li><a href="#product_related" data-toggle="tab"><?php echo lang('related_products'); ?></a></li>
+                    <li><a href="#product_photos" data-toggle="tab"><?php echo lang('images'); ?></a></li>
                 </ul>
             </div>
             <div class="tab-content">
                 <div class="tab-pane active" id="product_info">
 
                     <div class="form-group">
-                        <label><?php echo lang('name');?></label>
-                        <?php echo form_input(['placeholder'=>lang('name'), 'name'=>'name', 'value'=>assign_value('name', $name), 'class'=>'form-control']); ?>
+                        <label><?php echo lang('name'); ?></label>
+                        <?php echo form_input(['placeholder' => lang('name'), 'name' => 'name', 'value' => assign_value('name', $name), 'class' => 'form-control']); ?>
                     </div>
 
                     <div class="form-group">
-                        <label><?php echo lang('description');?></label>
-                        <?php echo form_textarea(['name'=>'description', 'class'=>'redactor', 'value'=>assign_value('description', $description)]); ?>
+                        <label><?php echo lang('description'); ?></label>
+                        <?php echo form_textarea(['name' => 'description', 'class' => 'redactor', 'value' => assign_value('description', $description)]); ?>
                     </div>
 
                     <div class="form-group">
-                        <label><?php echo lang('excerpt');?></label>
-                        <?php echo form_textarea(['name'=>'excerpt', 'value'=>assign_value('excerpt', $excerpt), 'class'=>'redactor']); ?>
+                        <label><?php echo lang('excerpt'); ?></label>
+                        <?php echo form_textarea(['name' => 'excerpt', 'value' => assign_value('excerpt', $excerpt), 'class' => 'redactor']); ?>
                     </div>
 
                     <fieldset>
-                        <legend><?php echo lang('inventory');?></legend>
+                        <legend><?php echo lang('inventory'); ?></legend>
                         <div class="row" style="padding-top:10px;">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="track_stock"><?php echo lang('track_stock');?> </label>
+                                    <label for="track_stock"><?php echo lang('track_stock'); ?> </label>
                                     <?php echo form_dropdown('track_stock', [1 => lang('yes'), 0 => lang('no')], assign_value('track_stock', $track_stock), 'class="form-control"'); ?>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="fixed_quantity"><?php echo lang('fixed_quantity');?> </label>
+                                    <label for="fixed_quantity"><?php echo lang('fixed_quantity'); ?> </label>
                                     <?php echo form_dropdown('fixed_quantity', [1 => lang('yes'), 0 => lang('no')], assign_value('fixed_quantity', $fixed_quantity), 'class="form-control"'); ?>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="quantity"><?php echo lang('quantity');?> </label>
-                                    <?php echo form_input(['name'=>'quantity', 'value'=>assign_value('quantity', $quantity), 'class'=>'form-control']); ?>
+                                    <label for="quantity"><?php echo lang('quantity'); ?> </label>
+                                    <?php echo form_input(['name' => 'quantity', 'value' => assign_value('quantity', $quantity), 'class' => 'form-control']); ?>
                                 </div>
                             </div>
                         </div>
                     </fieldset>
 
                     <fieldset>
-                        <legend><?php echo lang('header_information');?></legend>
+                        <legend><?php echo lang('header_information'); ?></legend>
                         <div style="padding-top:10px;">
                             
                             <div class="form-group">
-                                <label for="slug"><?php echo lang('slug');?> </label>
-                                <?php echo form_input(['name'=>'slug', 'value'=>assign_value('slug', $slug), 'class'=>'form-control']); ?>
+                                <label for="slug"><?php echo lang('slug'); ?> </label>
+                                <?php echo form_input(['name' => 'slug', 'value' => assign_value('slug', $slug), 'class' => 'form-control']); ?>
                             </div>
 
                             <div class="form-group">
-                                <label for="seo_title"><?php echo lang('seo_title');?> </label>
-                                <?php echo form_input(['name'=>'seo_title', 'value'=>assign_value('seo_title', $seo_title), 'class'=>'form-control']); ?>
+                                <label for="seo_title"><?php echo lang('seo_title'); ?> </label>
+                                <?php echo form_input(['name' => 'seo_title', 'value' => assign_value('seo_title', $seo_title), 'class' => 'form-control']); ?>
                             </div>
 
                             <div class="form-group">
-                                <label for="meta"><?php echo lang('meta');?></label>
-                                <?php echo form_textarea(['name'=>'meta', 'value'=>assign_value('meta', html_entity_decode($meta)), 'class'=>'form-control']);?>
-                                <span class="help-block"><?php echo lang('meta_example');?></span>
+                                <label for="meta"><?php echo lang('meta'); ?></label>
+                                <?php echo form_textarea(['name' => 'meta', 'value' => assign_value('meta', html_entity_decode($meta)), 'class' => 'form-control']); ?>
+                                <span class="help-block"><?php echo lang('meta_example'); ?></span>
                             </div>
                         </div>
                     </fieldset>
@@ -96,14 +96,14 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th><?php echo lang('filename');?></th>
-                                    <th><?php echo lang('title');?></th>
-                                    <th><?php echo lang('size');?></th>
+                                    <th><?php echo lang('filename'); ?></th>
+                                    <th><?php echo lang('title'); ?></th>
+                                    <th><?php echo lang('size'); ?></th>
                                     <th style="width:16px;"></th>
                                 </tr>
                             </thead>
                             <tbody>
-                            <?php echo (count($file_list) < 1)?'<tr><td style="text-align:center;" colspan="6">'.lang('no_files').'</td></tr>':''?>
+                            <?php echo (count($file_list) < 1) ? '<tr><td style="text-align:center;" colspan="6">'.lang('no_files').'</td></tr>' : ''?>
                             <?php foreach ($file_list as $file) :?>
                                 <tr>
                                     <td><?php echo $file->filename ?></td>
@@ -119,45 +119,45 @@
 
                 <div class="tab-pane" id="product_categories">
                     <?php if (isset($categories[0])) :?>
-                        <label><strong><?php echo lang('select_a_category');?></strong></label>
+                        <label><strong><?php echo lang('select_a_category'); ?></strong></label>
                         <table class="table table-striped">
                             <thead>
                                 <tr>
                                     <th><i class="icon-eye-slash"></i></th>
                                     <th><?php echo lang('name')?></th>
                                     <?php foreach ($groups as $group) :?>
-                                        <th><?php echo $group->name;?></th>
-                                    <?php endforeach;?>
+                                        <th><?php echo $group->name; ?></th>
+                                    <?php endforeach; ?>
                                     <th class="text-center"><?php echo lang('in').'/'.lang('main'); ?></th>
                                 </tr>
                             </thead>
                         <?php
-                        function list_categories($parent_id, $cats, $sub = '', $product_categories, $primary_category, $groups, $hidden)
+                        function list_categories($parent_id, $cats, $sub, $product_categories, $primary_category, $groups, $hidden)
                         {
                             if (isset($cats[$parent_id])) {
                                 foreach ($cats[$parent_id] as $cat) :?>
                                 <tr>
-                                    <td><?php echo ($hidden)?'<i class="icon-eye-slash">':'';
+                                    <td><?php echo ($hidden) ? '<i class="icon-eye-slash">' : '';
                                 ?></i></td>
                                     <td><?php echo  $sub.$cat->name;
                                 ?></td>
                                     <?php foreach ($groups as $group) :?>
-                                        <td><?php echo ($cat->{'enabled'.$group->id})?'<i class="icon-check"></i>':'';
+                                        <td><?php echo ($cat->{'enabled'.$group->id}) ? '<i class="icon-check"></i>' : '';
                                 ?></td>
                                     <?php endforeach;
                                 ?>
                                     <td class="text-center">
                                         <input type="checkbox" name="categories[]" value="<?php echo $cat->id;
-                                ?>" <?php echo(in_array($cat->id, $product_categories))?'checked="checked"':'';
+                                ?>" <?php echo(in_array($cat->id, $product_categories)) ? 'checked="checked"' : '';
                                 ?>/>
                                         &nbsp;&nbsp;
                                         <input type="radio" name="primary_category" value="<?php echo $cat->id;
-                                ?>" <?php echo ($primary_category === $cat->id)?'checked="checked"':'';
+                                ?>" <?php echo ($primary_category === $cat->id) ? 'checked="checked"' : '';
                                 ?>/>
                                     </td>
                                 </tr>
                                 <?php
-                                if (isset($cats[$cat->id]) && sizeof($cats[$cat->id]) > 0) {
+                                if (isset($cats[$cat->id]) && count($cats[$cat->id]) > 0) {
                                     $sub2 = str_replace('&rarr;&nbsp;', '&nbsp;', $sub);
                                     $sub2 .=  '&nbsp;&nbsp;&nbsp;&rarr;&nbsp;';
                                     list_categories($cat->id, $cats, $sub2, $product_categories, $primary_category, $groups, $hidden);
@@ -172,8 +172,8 @@
 
                     </table>
                 <?php else :?>
-                    <div class="alert"><?php echo lang('no_available_categories');?></div>
-                <?php endif;?>
+                    <div class="alert"><?php echo lang('no_available_categories'); ?></div>
+                <?php endif; ?>
 
                 </div>
 
@@ -184,14 +184,14 @@
                             <div class="input-group">
                                <select id="optionTypes" class="form-control">
                                     <option value=""><?php echo lang('select_option_type')?></option>
-                                    <option value="checklist"><?php echo lang('checklist');?></option>
-                                    <option value="radiolist"><?php echo lang('radiolist');?></option>
-                                    <option value="droplist"><?php echo lang('droplist');?></option>
-                                    <option value="textfield"><?php echo lang('textfield');?></option>
-                                    <option value="textarea"><?php echo lang('textarea');?></option>
+                                    <option value="checklist"><?php echo lang('checklist'); ?></option>
+                                    <option value="radiolist"><?php echo lang('radiolist'); ?></option>
+                                    <option value="droplist"><?php echo lang('droplist'); ?></option>
+                                    <option value="textfield"><?php echo lang('textfield'); ?></option>
+                                    <option value="textarea"><?php echo lang('textarea'); ?></option>
                                 </select>
                                 <span class="input-group-btn">
-                                    <button id="addOption" class="btn btn-primary" type="button"><?php echo lang('add_option');?></button>
+                                    <button id="addOption" class="btn btn-primary" type="button"><?php echo lang('add_option'); ?></button>
                                 </span>
                             </div>
                         </div>
@@ -230,7 +230,7 @@
 
                 <div class="tab-pane" id="product_related">
 
-                    <label><strong><?php echo lang('select_a_product');?></strong></label>
+                    <label><strong><?php echo lang('select_a_product'); ?></strong></label>
 
                     <div class="row">
                         <div class="col-md-4">
@@ -245,7 +245,7 @@
 
                             function run_product_query()
                             {
-                                $.post("<?php echo site_url('admin/products/product_autocomplete/');?>", { name: $('#product_search').val(), limit:10},
+                                $.post("<?php echo site_url('admin/products/product_autocomplete/'); ?>", { name: $('#product_search').val(), limit:10},
                                     function(data) {
 
                                         $('#product_list').html('');
@@ -265,7 +265,7 @@
                             <div class="form-group">
                                 <select class="form-control" id="product_list" size="5" style="margin:0px;"></select>
                             </div>
-                            <button type="button" onclick="add_related_product();return false;" class="btn btn-primary btn-block" title="Add Related Product"><?php echo lang('add_related_product');?></button>
+                            <button type="button" onclick="add_related_product();return false;" class="btn btn-primary btn-block" title="Add Related Product"><?php echo lang('add_related_product'); ?></button>
                         </div>
 
                         <div class="col-md-8">
@@ -279,17 +279,17 @@
                 </div>
 
                 <div class="tab-pane" id="product_photos">
-                    <iframe id="iframe_uploader" src="<?php echo site_url('admin/products/product_image_form');?>" style="height:75px; width:100%; border:0px;"></iframe>
+                    <iframe id="iframe_uploader" src="<?php echo site_url('admin/products/product_image_form'); ?>" style="height:75px; width:100%; border:0px;"></iframe>
                     <div id="gc_photos"></div>
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary"><?php echo lang('save');?></button>
+            <button type="submit" class="btn btn-primary"><?php echo lang('save'); ?></button>
 
         </div>
         <div class="col-md-3">
             <div class="form-group">
-                <?php echo form_dropdown('shippable', [1 => lang('shippable'), 0 => lang('not_shippable')], assign_value('shippable', $shippable), 'class="form-control"');?>
+                <?php echo form_dropdown('shippable', [1 => lang('shippable'), 0 => lang('not_shippable')], assign_value('shippable', $shippable), 'class="form-control"'); ?>
             </div>
 
             <div class="form-group">
@@ -297,37 +297,37 @@
             </div>
 
             <div class="form-group">
-                <label for="sku"><?php echo lang('sku');?></label>
-                <?php echo form_input(['name'=>'sku', 'value'=>assign_value('sku', $sku), 'class'=>'form-control']);?>
+                <label for="sku"><?php echo lang('sku'); ?></label>
+                <?php echo form_input(['name' => 'sku', 'value' => assign_value('sku', $sku), 'class' => 'form-control']); ?>
             </div>
 
             <div class="form-group">
-                <label for="weight"><?php echo lang('weight');?> </label>
-                <?php echo form_input(['name'=>'weight', 'value'=>assign_value('weight', $weight), 'class'=>'form-control']);?>
+                <label for="weight"><?php echo lang('weight'); ?> </label>
+                <?php echo form_input(['name' => 'weight', 'value' => assign_value('weight', $weight), 'class' => 'form-control']); ?>
             </div>
 
             <?php foreach ($groups as $group) :?>
                 <fieldset>
                     <legend>
-                        <?php echo $group->name;?>
+                        <?php echo $group->name; ?>
                         <div class="checkbox pull-right" style="font-size:16px; margin-top:5px;">
                             <label>
-                                <?php echo form_checkbox('enabled'.$group->id, 1, ${'enabled'.$group->id}); ?> <?php echo lang('enabled');?>
+                                <?php echo form_checkbox('enabled'.$group->id, 1, ${'enabled'.$group->id}); ?> <?php echo lang('enabled'); ?>
                             </label>
                         </div>
                     </legend>
                     <div class="row">
                         <div class="col-md-6">
-                            <label for="price"><?php echo lang('price');?></label>
-                            <?php echo form_input(['name'=>'price_'.$group->id, 'value'=>assign_value('price_'.$group->id, ${'price_'.$group->id}), 'class'=>'form-control']);?>
+                            <label for="price"><?php echo lang('price'); ?></label>
+                            <?php echo form_input(['name' => 'price_'.$group->id, 'value' => assign_value('price_'.$group->id, ${'price_'.$group->id}), 'class' => 'form-control']); ?>
                         </div>
                         <div class="col-md-6">
-                            <label for="saleprice"><?php echo lang('saleprice');?></label>
-                            <?php echo form_input(['name'=>'saleprice_'.$group->id, 'value'=>assign_value('saleprice_'.$group->id, ${'saleprice_'.$group->id}), 'class'=>'form-control']);?>
+                            <label for="saleprice"><?php echo lang('saleprice'); ?></label>
+                            <?php echo form_input(['name' => 'saleprice_'.$group->id, 'value' => assign_value('saleprice_'.$group->id, ${'saleprice_'.$group->id}), 'class' => 'form-control']); ?>
                         </div>
                     </div>
                 </fieldset>
-            <?php endforeach;?>
+            <?php endforeach; ?>
         </div>
     </div>
 </form>
@@ -348,19 +348,19 @@
     <div class="row gc_photo" id="gc_photo_{{id}}" style="background-color:#fff; border-bottom:1px solid #ddd; padding-bottom:20px; margin-bottom:20px;">
         <div class="col-md-2">
             <input type="hidden" name="images[{{id}}][filename]" value="{{filename}}"/>
-            <img class="gc_thumbnail" src="<?php echo base_url('uploads/images/thumbnails/{{filename}}');?>" style="padding:5px; border:1px solid #ddd"/>
+            <img class="gc_thumbnail" src="<?php echo base_url('uploads/images/thumbnails/{{filename}}'); ?>" style="padding:5px; border:1px solid #ddd"/>
         </div>
         <div class="col-md-10">
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
-                        <input name="images[{{id}}][alt]" value="{{alt}}" class="form-control" placeholder="<?php echo lang('alt_tag');?>"/>
+                        <input name="images[{{id}}][alt]" value="{{alt}}" class="form-control" placeholder="<?php echo lang('alt_tag'); ?>"/>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="checkbox">
                         <label>
-                            <input type="radio" name="primary_image" value="{{id}}" {{#primary}}checked="checked"{{/primary}}/> <?php echo lang('main_image');?>
+                            <input type="radio" name="primary_image" value="{{id}}" {{#primary}}checked="checked"{{/primary}}/> <?php echo lang('main_image'); ?>
                         </label>
                     </div>
                 </div>
@@ -370,7 +370,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <label><?php echo lang('caption');?></label>
+                    <label><?php echo lang('caption'); ?></label>
                     <textarea name="images[{{id}}][caption]" class="form-control" rows="3">{{caption}}</textarea>
                 </div>
             </div>
@@ -389,29 +389,29 @@
             <div class="option-form" id="option-form-{{id}}">
                 <div class="row">
                     <div class="col-md-10">
-                        <input type="text" class="form-control" placeholder="<?php echo lang('option_name');?>" name="option[{{id}}][name]" value="{{name}}"/>
+                        <input type="text" class="form-control" placeholder="<?php echo lang('option_name'); ?>" name="option[{{id}}][name]" value="{{name}}"/>
                     </div>
                     <div class="col-md-2" style="text-align:right;">
                         <div class="checkbox">
                             <label>
-                                <input class="checkbox" type="checkbox" name="option[{{id}}][required]" value="1" {{#required}} checked="checked" {{/required}}/> <?php echo lang('required');?>
+                                <input class="checkbox" type="checkbox" name="option[{{id}}][required]" value="1" {{#required}} checked="checked" {{/required}}/> <?php echo lang('required'); ?>
                             </label>
                         </div>
                     </div>
                 </div>
                 
                 {{^isText}}
-                <a class="btn btn-primary" onclick="addOptionValue({{id}});"><?php echo lang('add_item');?></a>
+                <a class="btn btn-primary" onclick="addOptionValue({{id}});"><?php echo lang('add_item'); ?></a>
                 {{/isText}}
                 
                 <div style="margin-top:10px;">
                     <div class="row">
                         {{^isText}}<div class="col-md-1">&nbsp;</div>{{/isText}}
-                        <div class="col-md-3"><strong>&nbsp;&nbsp;<?php echo lang('name');?></strong></div>
-                        <div class="col-md-2"><strong>&nbsp;<?php echo lang('value');?></strong></div>
-                        <div class="col-md-2"><strong>&nbsp;<?php echo lang('weight');?></strong></div>
-                        <div class="col-md-2"><strong>&nbsp;<?php echo lang('price');?></strong></div>
-                        {{#isText}}<div class="col-md-2"><strong>&nbsp;<?php echo lang('limit');?></strong></div>{{/isText}}
+                        <div class="col-md-3"><strong>&nbsp;&nbsp;<?php echo lang('name'); ?></strong></div>
+                        <div class="col-md-2"><strong>&nbsp;<?php echo lang('value'); ?></strong></div>
+                        <div class="col-md-2"><strong>&nbsp;<?php echo lang('weight'); ?></strong></div>
+                        <div class="col-md-2"><strong>&nbsp;<?php echo lang('price'); ?></strong></div>
+                        {{#isText}}<div class="col-md-2"><strong>&nbsp;<?php echo lang('limit'); ?></strong></div>{{/isText}}
                     </div>
 
                     <div class="optionItems" id="optionItems-{{id}}"></div>
@@ -447,10 +447,10 @@
 
 <script>
 var relatedItemsTemplate = $('#relatedItemsTemplate').html();
-var relatedItems = <?php echo json_encode($related_products);?>
+var relatedItems = <?php echo json_encode($related_products); ?>
 
 var imageTemplate = $('#imageTemplate').html();
-var images = <?php echo json_encode($images);?>
+var images = <?php echo json_encode($images); ?>
 
 var optionAddValueButtonTemplate = $('#optionTextButtonTemplate').html();
 var optionTemplate = $('#optionTemplate').html();
@@ -458,7 +458,7 @@ var optionValueTemplate = $('#optionValueTemplate').html();
 
 var optionCount = 0;
 var optionValueCount = 0;
-var options = <?php echo json_encode($productOptions);?>
+var options = <?php echo json_encode($productOptions); ?>
 
 $(document).ready(function() {
 
@@ -469,7 +469,7 @@ $(document).ready(function() {
         $($(this).attr('href')).slideToggle();
         return false;
     }).on('click', '.deleteOptionValue', function(){
-        if(confirm('<?php echo lang('confirm_remove_value');?>'))
+        if(confirm('<?php echo lang('confirm_remove_value'); ?>'))
         {
             $(this).closest('.optionValuesForm').remove();
         }
@@ -581,7 +581,7 @@ function addProductImage(id, filename, alt, primary, caption)
 
 function remove_image(img)
 {
-    if(confirm('<?php echo lang('confirm_remove_image');?>'))
+    if(confirm('<?php echo lang('confirm_remove_image'); ?>'))
     {
         var id  = img.attr('rel');
         $('#gc_photo_'+id).remove();
@@ -621,7 +621,7 @@ function optionValuesSortable()
 
 function remove_option(id)
 {
-    if(confirm('<?php echo lang('confirm_remove_option');?>'))
+    if(confirm('<?php echo lang('confirm_remove_option'); ?>'))
     {
         $('#option-'+id).remove();
     }
@@ -658,18 +658,18 @@ function add_related_product(id, name)
     {
         if($('#product_list').val() ===null)
         {
-            alert('<?php echo lang('alert_select_product');?>');
+            alert('<?php echo lang('alert_select_product'); ?>');
         }
         else
         {
-            alert('<?php echo lang('alert_product_related');?>');
+            alert('<?php echo lang('alert_product_related'); ?>');
         }
     }
 }
 
 function remove_related_product(id)
 {
-    if(confirm('<?php echo lang('confirm_remove_related');?>'))
+    if(confirm('<?php echo lang('confirm_remove_related'); ?>'))
     {
         $('#related_product_'+id).remove();
         run_product_query();

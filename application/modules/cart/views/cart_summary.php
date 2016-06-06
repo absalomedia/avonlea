@@ -1,5 +1,5 @@
 <div class="cartSummary">
-    <div class="cartSummaryTitle"><?php echo lang('your_cart');?></div>
+    <div class="cartSummaryTitle"><?php echo lang('your_cart'); ?></div>
 
     <div class="alert red" id="summaryErrors" style="display:none;"></div>
     <?php
@@ -57,7 +57,7 @@
 
         ?>
         
-        <div class="cartItem" id="cartItem-<?php echo $product->id;?>">
+        <div class="cartItem" id="cartItem-<?php echo $product->id; ?>">
             <div class="col-nest">
                 <div class="col" data-cols="1">
                     <div class="cartItemName"><?php echo $product->name; ?></div>
@@ -67,26 +67,26 @@
             <?php if (!empty($product->coupon_code)) :?>
                 <div class="col-nest">
                     <div class="col" data-cols="3/4">
-                        <small><?php echo lang('coupon').': '.$product->coupon_code;?></small>
+                        <small><?php echo lang('coupon').': '.$product->coupon_code; ?></small>
                     </div>
                     <div class="col text-right text-red" data-cols="1/4">
-                        <strong><small><?php echo '-'.format_currency(($product->coupon_discount * $product->coupon_discount_quantity));?></small></strong>
+                        <strong><small><?php echo '-'.format_currency(($product->coupon_discount * $product->coupon_discount_quantity)); ?></small></strong>
                     </div>
                 </div>
-            <?php endif;?>
+            <?php endif; ?>
 
             <div class="col-nest">
                 <div class="col" data-cols="1/5">
-                    <?php echo $photo;?>
+                    <?php echo $photo; ?>
                 </div>
 
                 <div class="col" data-cols="4/5">
-                    <?php echo (!empty($product->sku))?'<div class="cartItemSku">'.lang('sku').': '.$product->sku.'</div>':''?>
+                    <?php echo (!empty($product->sku)) ? '<div class="cartItemSku">'.lang('sku').': '.$product->sku.'</div>' : ''?>
                     <?php
                     if (isset($options[$product->id])) {
                         foreach ($options[$product->id] as $option) :?>
                                 <div class="cartItemOption"><?php echo ($product->is_giftcard) ? lang('gift_card_'.$option->option_name) : $option->option_name;
-                        ?> : <?php echo($option->price > 0)?'['.format_currency($option->price).']':'';
+                        ?> : <?php echo($option->price > 0) ? '['.format_currency($option->price).']' : '';
                         ?> <?php echo $option->value;
                         ?></div>
                             <?php                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             endforeach;
@@ -100,13 +100,13 @@
                 </div>
                 <div class="col text-right" data-cols="1/4">
                     <?php if (CI::uri()->segment(1) === 'cart' && !$product->fixed_quantity) : ?>
-                        <input class="input-sm quantityInput" style="margin:0;" <?php echo($product->fixed_quantity)?'disabled':''?> data-product-id="<?php echo $product->id;?>" data-orig-val="<?php echo $product->quantity ?>" id="qtyInput<?php echo $product->id;?>" value="<?php echo $product->quantity ?>" type="text">
+                        <input class="input-sm quantityInput" style="margin:0;" <?php echo($product->fixed_quantity) ? 'disabled' : ''?> data-product-id="<?php echo $product->id; ?>" data-orig-val="<?php echo $product->quantity ?>" id="qtyInput<?php echo $product->id; ?>" value="<?php echo $product->quantity ?>" type="text">
                     <?php else : ?>
                         &times; <?php echo $product->quantity; ?>
-                    <?php endif;?>
+                    <?php endif; ?>
 
                     <div class="cartItemRemove">
-                        <a class="text-red" onclick="updateItem(<?php echo $product->id;?>, 0);" style="cursor:pointer"><?php echo lang('remove');?></a>
+                        <a class="text-red" onclick="updateItem(<?php echo $product->id; ?>, 0);" style="cursor:pointer"><?php echo lang('remove'); ?></a>
                     </div>
                 </div>
                 <div class="col text-right" data-cols="1/4">
@@ -114,17 +114,17 @@
                 </div>
             </div>
         </div>
-    <?php                                                                                                         endforeach;?>
+    <?php                                                                                                         endforeach; ?>
 
     <?php if (count($charges['products']) > 0) :?>
 
         <div class="cartSummaryTotals">
             <div class="col-nest">
                 <div class="col" data-cols="2/3" data-medium-cols="2/3" data-small-cols="2/3">
-                    <div class="cartSummaryTotalsKey"><?php echo lang('subtotal');?>:</div>
+                    <div class="cartSummaryTotalsKey"><?php echo lang('subtotal'); ?>:</div>
                 </div>
                 <div class="col" data-cols="1/3" data-medium-cols="1/3" data-small-cols="1/3">
-                    <div class="cartSummaryTotalsValue"><?php echo format_currency(AVL::getSubtotal());?></div>
+                    <div class="cartSummaryTotalsValue"><?php echo format_currency(AVL::getSubtotal()); ?></div>
                 </div>
             </div>
 
@@ -133,7 +133,7 @@
                 <?php foreach ($charges['shipping'] as $shipping) :?>
                     <div class="col-nest">
                         <div class="col" data-cols="2/3" data-medium-cols="2/3" data-small-cols="2/3">
-                            <div class="cartSummaryTotalsKey"><?php echo lang('shipping');?>: <?php echo $shipping->name; ?></div>
+                            <div class="cartSummaryTotalsKey"><?php echo lang('shipping'); ?>: <?php echo $shipping->name; ?></div>
                         </div>
                         <div class="col" data-cols="1/3" data-medium-cols="1/3" data-small-cols="1/3">
                             <div class="cartSummaryTotalsValue">
@@ -141,12 +141,12 @@
                             </div>
                         </div>
                     </div>
-                <?php endforeach;?>
+                <?php endforeach; ?>
 
                 <?php foreach ($charges['tax'] as $tax) :?>
                     <div class="col-nest">
                         <div class="col" data-cols="2/3" data-medium-cols="2/3" data-small-cols="2/3">
-                            <div class="cartSummaryTotalsKey"><?php echo lang('taxes');?>: <?php echo $tax->name; ?></div>
+                            <div class="cartSummaryTotalsKey"><?php echo lang('taxes'); ?>: <?php echo $tax->name; ?></div>
                         </div>
                         <div class="col" data-cols="1/3" data-medium-cols="1/3" data-small-cols="1/3">
                             <div class="cartSummaryTotalsValue">
@@ -154,8 +154,8 @@
                             </div>
                         </div>
                     </div>
-                <?php endforeach;?>
-        <?php endif;?>
+                <?php endforeach; ?>
+        <?php endif; ?>
 
         <?php if (count($charges['giftCards']) > 0) :?>
             </div>
@@ -170,52 +170,52 @@
                         <div class="col text-right" data-cols="1/4" data-medium-cols="1/4" data-small-cols="1/4" style="white-space:nowrap;">
                             <?php echo format_currency($giftCard->total_price); ?>
                             <div class="cartItemRemove">
-                                <a class="text-red" onclick="updateItem(<?php echo $giftCard->id;?>, 0);" style="cursor:pointer"><?php echo lang('remove');?></a>
+                                <a class="text-red" onclick="updateItem(<?php echo $giftCard->id; ?>, 0);" style="cursor:pointer"><?php echo lang('remove'); ?></a>
                             </div>
                         </div>
                     </div>
                 </div>
-            <?php endforeach;?>
+            <?php endforeach; ?>
             <div class="cartSummaryTotals">
-        <?php endif;?>
+        <?php endif; ?>
 
             <div class="col-nest">
                 <div class="col" data-cols="2/3" data-medium-cols="2/3" data-small-cols="2/3">
-                    <div class="cartSummaryTotalsKey"><?php echo lang('grand_total');?>:</div>
+                    <div class="cartSummaryTotalsKey"><?php echo lang('grand_total'); ?>:</div>
                 </div>
                 <div class="col" data-cols="1/3" data-medium-cols="1/3" data-small-cols="1/3">
-                    <div class="cartSummaryTotalsValue"><?php echo format_currency(AVL::getGrandTotal());?></div>
+                    <div class="cartSummaryTotalsValue"><?php echo format_currency(AVL::getGrandTotal()); ?></div>
                 </div>
             </div>
         </div>
-    <?php endif;?>
+    <?php endif; ?>
 
     <?php foreach ($charges['coupons'] as $coupon) :?>
         <div class="cartItem">
             <div class="col-nest">
                 <div class="col" data-cols="3/4">
-                    <div class="cartSummaryTotalsKey"><?php echo lang('coupon');?>: <?php echo $coupon->description; ?></div>
+                    <div class="cartSummaryTotalsKey"><?php echo lang('coupon'); ?>: <?php echo $coupon->description; ?></div>
                 </div>
                 <div class="col text-right" data-cols="1/4" data-medium-cols="1/4" data-small-cols="1/4" style="white-space:nowrap;">
                     <div class="cartItemRemove">
-                        <a class="text-red" onclick="updateItem(<?php echo $coupon->id;?>, 0);" style="cursor:pointer"><?php echo lang('remove');?></a>
+                        <a class="text-red" onclick="updateItem(<?php echo $coupon->id; ?>, 0);" style="cursor:pointer"><?php echo lang('remove'); ?></a>
                     </div>
                 </div>
             </div>
         </div>
-    <?php endforeach;?>
+    <?php endforeach; ?>
 
     <div class="cartPromotions">
 
         <div class="couponMessage"></div>
         <div class="btn-group input-sm">
-            <div class="priority"><input type="text" id="coupon" placeholder="<?php echo lang('coupon_label');?>"></div>
+            <div class="priority"><input type="text" id="coupon" placeholder="<?php echo lang('coupon_label'); ?>"></div>
             <a class="btn green" type="button" onclick="submitCoupon()"><i class="icon-plus"></i></a>
         </div>
 
         <div class="giftCardMessage"></div>
         <div class="btn-group input-sm">
-            <div class="priority"><input type="text" id="giftCard" placeholder="<?php echo lang('gift_card_label');?>"></div>
+            <div class="priority"><input type="text" id="giftCard" placeholder="<?php echo lang('gift_card_label'); ?>"></div>
             <a class="btn green" type="button" onclick="submitGiftCard()"><i class="icon-plus"></i></a>
         </div>
 
@@ -224,7 +224,7 @@
 
 <script>
 
-var inventoryCheck = <?php echo json_encode($inventoryCheck);?>
+var inventoryCheck = <?php echo json_encode($inventoryCheck); ?>
 
 function setInventoryErrors(checks)
 {
@@ -240,9 +240,9 @@ function setInventoryErrors(checks)
 
 setInventoryErrors(inventoryCheck);
 
-updateItemCount(<?php echo AVL::totalItems();?>);
+updateItemCount(<?php echo AVL::totalItems(); ?>);
 
-var newGrandTotalTest = <?php echo (AVL::getGrandTotal() > 0)?1:0;?>;
+var newGrandTotalTest = <?php echo (AVL::getGrandTotal() > 0) ? 1 : 0; ?>;
 if(newGrandTotalTest != grandTotalTest)
 {
     getPaymentMethods();
@@ -268,7 +268,7 @@ function updateItem(id, newQuantity, oldQuantity)
 
         if(newQuantity === 0)
         {
-            if(!confirm('<?php echo lang('remove_item');?>')){
+            if(!confirm('<?php echo lang('remove_item'); ?>')){
                 return false;
             }
             else
@@ -280,7 +280,7 @@ function updateItem(id, newQuantity, oldQuantity)
             }
         }
         $('#cartSummary').spin();
-        $.post('<?php echo site_url('cart/update-cart');?>', {'product_id':id, 'quantity':newQuantity}, function(data){
+        $.post('<?php echo site_url('cart/update-cart'); ?>', {'product_id':id, 'quantity':newQuantity}, function(data){
 
             if(data.error != undefined)
             {
@@ -317,7 +317,7 @@ $('#giftCard').keyup(function(event){
 function submitGiftCard()
 {
     $('#cartSummary').spin();
-    $.post('<?php echo site_url('cart/submit-gift-card');?>', {'gift_card':$('#giftCard').val()}, function(data){
+    $.post('<?php echo site_url('cart/submit-gift-card'); ?>', {'gift_card':$('#giftCard').val()}, function(data){
         if(data.error != undefined)
         {
             $('.giftCardMessage').html($('<div class="alert red"></div>').text(data.error).prepend('<i class="close"></i>'));
@@ -337,7 +337,7 @@ function submitGiftCard()
 function submitCoupon()
 {
     $('#cartSummary').spin();
-    $.post('<?php echo site_url('cart/submit-coupon');?>', {'coupon':$('#coupon').val()}, function(data){
+    $.post('<?php echo site_url('cart/submit-coupon'); ?>', {'coupon':$('#coupon').val()}, function(data){
         if(data.error != undefined)
         {
             $('.couponMessage').html($('<div class="alert red"></div>').text(data.error).prepend('<i class="close"></i>'));

@@ -1,14 +1,13 @@
 <?php
 /**
- * Products Class
+ * Products Class.
  *
- * @package     Avonlea
- * @subpackage  Models
  * @category    Products
+ *
  * @author      Absalom Media
+ *
  * @link        http://Avonleadv.com
  */
-
 class Products extends CI_Model
 {
     public function __construct()
@@ -24,6 +23,7 @@ class Products extends CI_Model
         //find the product
         $product = CI::db()->select('*, saleprice_'.$this->customer->group_id.' as saleprice, price_'.$this->customer->group_id.' as price')->where('id', $id)->where('enabled'.$this->customer->group_id, '1')->get('products')->row();
         $product = $this->processImageDecoding($product);
+
         return $product;
     }
 
@@ -98,7 +98,7 @@ class Products extends CI_Model
     {
         //if we are provided a category_id, then get products according to category
         if ($category_id) {
-            CI::db()->select('category_products.*, products.*, saleprice_'.$this->customer->group_id.' as saleprice, price_'.$this->customer->group_id.' as price, LEAST(IFNULL(NULLIF(saleprice_'.$this->customer->group_id.', 0), price_'.$this->customer->group_id.'), price_'.$this->customer->group_id.') as sort_price', false)->from('category_products')->join('products', 'category_products.product_id=products.id')->where(array('category_id'=>$category_id, 'enabled'.$this->customer->group_id=>1));
+            CI::db()->select('category_products.*, products.*, saleprice_'.$this->customer->group_id.' as saleprice, price_'.$this->customer->group_id.' as price, LEAST(IFNULL(NULLIF(saleprice_'.$this->customer->group_id.', 0), price_'.$this->customer->group_id.'), price_'.$this->customer->group_id.') as sort_price', false)->from('category_products')->join('products', 'category_products.product_id=products.id')->where(['category_id' => $category_id, 'enabled'.$this->customer->group_id => 1]);
 
             CI::db()->order_by($by, $sort);
 
@@ -109,6 +109,7 @@ class Products extends CI_Model
             foreach ($result as $product) {
                 $products[] = $this->processImageDecoding($product);
             }
+
             return $products;
         } else {
             //sort by alphabetically by default
@@ -123,12 +124,12 @@ class Products extends CI_Model
 
     public function count_products($id)
     {
-        return CI::db()->select('product_id')->from('category_products')->join('products', 'category_products.product_id=products.id')->where(array('category_id'=>$id, 'enabled'.$this->customer->group_id=>1))->count_all_results();
+        return CI::db()->select('product_id')->from('category_products')->join('products', 'category_products.product_id=products.id')->where(['category_id' => $id, 'enabled'.$this->customer->group_id => 1])->count_all_results();
     }
 
     public function slug($slug, $related = true)
     {
-        $result = CI::db()->select('*, saleprice_'.$this->customer->group_id.' as saleprice, price_'.$this->customer->group_id.' as price')->get_where('products', array('slug'=>$slug, 'enabled'.$this->customer->group_id=>1))->row();
+        $result = CI::db()->select('*, saleprice_'.$this->customer->group_id.' as saleprice, price_'.$this->customer->group_id.' as price')->get_where('products', ['slug' => $slug, 'enabled'.$this->customer->group_id => 1])->row();
 
         if (!$result) {
             return false;
@@ -146,9 +147,9 @@ class Products extends CI_Model
             CI::db()->where('('.implode(' OR ', $where).')', null);
             CI::db()->where('enabled'.$this->customer->group_id, 1);
 
-            $result->related_products   = CI::db()->get('products')->result();
+            $result->related_products = CI::db()->get('products')->result();
         } else {
-            $result->related_products   = [];
+            $result->related_products = [];
         }
         $result->categories = $this->getProductCategories($result->id);
 
@@ -157,7 +158,7 @@ class Products extends CI_Model
 
     public function find($id, $related = true)
     {
-        $result = CI::db()->get_where('products', array('id'=>$id))->row();
+        $result = CI::db()->get_where('products', ['id' => $id])->row();
         if (!$result) {
             return false;
         }
@@ -174,9 +175,9 @@ class Products extends CI_Model
                 CI::db()->where('('.implode(' OR ', $where).')', null);
                 CI::db()->where('enabled'.$this->customer->group_id, 1);
 
-                $result->related_products   = CI::db()->get('products')->result();
+                $result->related_products = CI::db()->get('products')->result();
             } else {
-                $result->related_products   = [];
+                $result->related_products = [];
             }
         }
 
@@ -223,31 +224,31 @@ class Products extends CI_Model
         if ($categories !== false) {
             if ($product['id']) {
                 //get all the categories that the product is in
-                $cats   = $this->getProductCategories($id);
+                $cats = $this->getProductCategories($id);
 
                 //generate cat_id array
-                $ids    = [];
+                $ids = [];
                 foreach ($cats as $c) {
-                    $ids[]  = $c->id;
+                    $ids[] = $c->id;
                 }
 
                 //eliminate categories that products are no longer in
                 foreach ($ids as $c) {
                     if (!in_array($c, $categories)) {
-                        CI::db()->delete('category_products', array('product_id'=>$id, 'category_id'=>$c));
+                        CI::db()->delete('category_products', ['product_id' => $id, 'category_id' => $c]);
                     }
                 }
 
                 //add products to new categories
                 foreach ($categories as $c) {
                     if (!in_array($c, $ids)) {
-                        CI::db()->insert('category_products', array('product_id'=>$id, 'category_id'=>$c));
+                        CI::db()->insert('category_products', ['product_id' => $id, 'category_id' => $c]);
                     }
                 }
             } else {
                 //new product add them all
                 foreach ($categories as $c) {
-                    CI::db()->insert('category_products', array('product_id'=>$id, 'category_id'=>$c));
+                    CI::db()->insert('category_products', ['product_id' => $id, 'category_id' => $c]);
                 }
             }
         }
@@ -308,6 +309,7 @@ class Products extends CI_Model
             } else {
                 $product->images = [];
             }
+
             return $product;
         } else {
             return $product;
@@ -330,6 +332,7 @@ class Products extends CI_Model
             } else {
                 $counter++;
             }
+
             return $this->validate_slug($slug, $id, $counter);
         } else {
             return $slug.$counter;

@@ -1,18 +1,18 @@
-<?php namespace Avonlea\Controller;
+<?php
+
+namespace Avonlea\Controller;
 
 /**
- * AdminSettings Class
+ * AdminSettings Class.
  *
- * @package     Avonlea
- * @subpackage  Controllers
  * @category    AdminSettings
+ *
  * @author      Absalom Media
+ *
  * @link        http://Avonleadv.com
  */
-
 class AdminSettings extends Admin
 {
-
     public function __construct()
     {
         parent::__construct();
@@ -30,46 +30,46 @@ class AdminSettings extends Admin
 
         //set defaults
         $data = [
-            'company_name' => '',
-            'theme' => 'default',
-            'homepage' => '',
-            'products_per_page' => '24',
-            'default_meta_keywords' => '',
+            'company_name'             => '',
+            'theme'                    => 'default',
+            'homepage'                 => '',
+            'products_per_page'        => '24',
+            'default_meta_keywords'    => '',
             'default_meta_description' => '',
 
             'sendmail_path' => '/usr/sbin/sendmail -bs',
-            'email_from' => '',
-            'email_to' => '',
-            'email_method' => 'Mail',
-            'smtp_server' => '',
+            'email_from'    => '',
+            'email_to'      => '',
+            'email_method'  => 'Mail',
+            'smtp_server'   => '',
             'smtp_username' => '',
             'smtp_password' => '',
-            'smtp_port' => '25',
+            'smtp_port'     => '25',
 
             'country_id' => '',
-            'city' => '',
-            'address1' => '',
-            'address2' => '',
-            'zone_id' => '',
-            'zip' => '',
+            'city'       => '',
+            'address1'   => '',
+            'address2'   => '',
+            'zone_id'    => '',
+            'zip'        => '',
 
-            'locale' => locale_get_default(),
-            'timezone' => date_default_timezone_get(),
+            'locale'       => locale_get_default(),
+            'timezone'     => date_default_timezone_get(),
             'currency_iso' => 'USD',
 
-            'ssl_support' => '',
-            'stage_username' => '',
-            'stage_password' => '',
-            'require_login' => '',
+            'ssl_support'         => '',
+            'stage_username'      => '',
+            'stage_password'      => '',
+            'require_login'       => '',
             'new_customer_status' => '1',
 
-            'weight_unit' => 'LB',
-            'dimension_unit' => 'IN',
-            'order_status' => '',
+            'weight_unit'       => 'LB',
+            'dimension_unit'    => 'IN',
+            'order_status'      => '',
             'inventory_enabled' => '',
             'allow_os_purchase' => '',
-            'tax_address' => '',
-            'tax_shipping' => ''
+            'tax_address'       => '',
+            'tax_shipping'      => '',
         ];
 
         \CI::form_validation()->set_rules('company_name', 'lang:company_name', 'required');
@@ -128,7 +128,7 @@ class AdminSettings extends Admin
         $themePath = FCPATH.'themes/';
         if ($handle = opendir($themePath)) {
             while (false !== ($entry = readdir($handle))) {
-                if ($entry != "." && $entry != ".." && is_dir($themePath.$entry)) {
+                if ($entry != '.' && $entry != '..' && is_dir($themePath.$entry)) {
                     $data['themes'][$entry] = $entry;
                 }
             }
@@ -145,7 +145,7 @@ class AdminSettings extends Admin
         asort($data['locales']);
         //get ISO 4217 codes
         $data['iso_4217'] = [];
-        $iso_4217 =json_decode(json_encode(simplexml_load_file(FCPATH.'ISO_4217.xml')));
+        $iso_4217 = json_decode(json_encode(simplexml_load_file(FCPATH.'ISO_4217.xml')));
         $iso_4217 = $iso_4217->CcyTbl->CcyNtry;
         foreach ($iso_4217 as $iso_code) {
             if (isset($iso_code->Ccy)) {
@@ -181,11 +181,11 @@ class AdminSettings extends Admin
 
             $save = \CI::input()->post();
             //fix boolean values
-            $save['ssl_support'] = (bool)\CI::input()->post('ssl_support');
-            $save['require_login'] = (bool)\CI::input()->post('require_login');
+            $save['ssl_support'] = (bool) \CI::input()->post('ssl_support');
+            $save['require_login'] = (bool) \CI::input()->post('require_login');
             $save['new_customer_status'] = \CI::input()->post('new_customer_status');
-            $save['allow_os_purchase'] = (bool)\CI::input()->post('allow_os_purchase');
-            $save['tax_shipping'] = (bool)\CI::input()->post('tax_shipping');
+            $save['allow_os_purchase'] = (bool) \CI::input()->post('allow_os_purchase');
+            $save['tax_shipping'] = (bool) \CI::input()->post('tax_shipping');
             $save['homepage'] = \CI::input()->post('homepage');
 
             \CI::Settings()->saveSettings('Avonlea', $save);
@@ -200,7 +200,6 @@ class AdminSettings extends Admin
         $data['page_title'] = lang('common_canned_messages');
         $this->view('canned_messages', $data);
     }
-
 
     public function canned_message_form($id = false)
     {

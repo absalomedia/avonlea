@@ -1,4 +1,5 @@
 <?php
+
 class Crunch
 {
     public $files;
@@ -22,13 +23,12 @@ class Crunch
 
 class CSSCrunch extends Crunch
 {
-
     public function crunch($dev = false)
     {
         $filename = md5(serialize($this->files)).'.css';
 
         if (!file_exists(theme_path().'assets/css/'.$filename.'.css')) {
-            $buffer = "";
+            $buffer = '';
 
             foreach ($this->files as $cssFile) {
                 $buffer .= file_get_contents(theme_path().'assets/css/'.$cssFile.'.css');
@@ -45,17 +45,17 @@ class CSSCrunch extends Crunch
 
             // Remove comments
             $buffer = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $buffer);
-             
+
             // Remove space after colons
             $buffer = str_replace(': ', ':', $buffer);
-             
+
             // Remove whitespace
-            $buffer = str_replace(array("\r\n", "\r", "\n", "\t", '  ', '    ', '    '), '', $buffer);
+            $buffer = str_replace(["\r\n", "\r", "\n", "\t", '  ', '    ', '    '], '', $buffer);
 
             file_put_contents(theme_path().'assets/css/'.$filename, $buffer);
         }
-        
-        
+
+
         echo '<link href="'.theme_css($filename).'" type="text/css" rel="stylesheet" />';
 
         $this->files = [];
@@ -64,12 +64,11 @@ class CSSCrunch extends Crunch
 
 class JSCrunch extends Crunch
 {
-
     public function crunch($dev = false)
     {
         $filename = md5(serialize($this->files)).'.js';
 
-        $buffer = "";
+        $buffer = '';
 
         if (!file_exists(theme_path().'assets/js/'.$filename)) {
             foreach ($this->files as $jsFile) {

@@ -1,46 +1,46 @@
-<?php pageHeader(lang('coupon_form'));?>
+<?php pageHeader(lang('coupon_form')); ?>
 
 <?php echo form_open('admin/coupons/form/'.$id); ?>
     <div class="row">
         <div class="col-sm-4">
             <div class="alert alert-info" style="text-align:center;">
-                <strong><?php echo sprintf(lang('times_used'), @$num_uses);?></strong>
+                <strong><?php echo sprintf(lang('times_used'), @$num_uses); ?></strong>
             </div>
 
             <div class="form-group">
-                <label for="code"><?php echo lang('coupon_code');?></label>
-                <?php echo form_input(['name'=>'code', 'value'=>assign_value('code', $code), 'class'=>'form-control']); ?>
+                <label for="code"><?php echo lang('coupon_code'); ?></label>
+                <?php echo form_input(['name' => 'code', 'value' => assign_value('code', $code), 'class' => 'form-control']); ?>
             </div>
 
             <div class="form-group">
-                <label for="max_uses"><?php echo lang('max_uses');?></label>
-                <?php echo form_input(['name'=>'max_uses', 'value'=>assign_value('max_uses', $max_uses), 'class'=>'form-control']); ?>
+                <label for="max_uses"><?php echo lang('max_uses'); ?></label>
+                <?php echo form_input(['name' => 'max_uses', 'value' => assign_value('max_uses', $max_uses), 'class' => 'form-control']); ?>
             </div>
 
 
             <div class="form-group">
                 <label for="max_product_instances"><?php echo lang('limit_per_order')?></label>
-                <?php echo form_input(['name'=>'max_product_instances', 'value'=>assign_value('max_product_instances', $max_product_instances), 'class'=>'form-control']); ?>
+                <?php echo form_input(['name' => 'max_product_instances', 'value' => assign_value('max_product_instances', $max_product_instances), 'class' => 'form-control']); ?>
             </div>
 
             <div class="form-group">
-                <label for="start_date"><?php echo lang('enable_on');?></label>
-                <?php echo form_input(['name'=>'start_date', 'data-value'=>assign_value('start_date', reverse_format($start_date)), 'class'=>'datepicker form-control']);?>
+                <label for="start_date"><?php echo lang('enable_on'); ?></label>
+                <?php echo form_input(['name' => 'start_date', 'data-value' => assign_value('start_date', reverse_format($start_date)), 'class' => 'datepicker form-control']); ?>
             </div>
 
             <div class="form-group">
-                <label for="end_date"><?php echo lang('disable_on');?></label>
-                <?php echo form_input(['name'=>'end_date', 'data-value'=>assign_value('end_date', reverse_format($end_date)), 'class'=>'datepicker form-control']); ?>
+                <label for="end_date"><?php echo lang('disable_on'); ?></label>
+                <?php echo form_input(['name' => 'end_date', 'data-value' => assign_value('end_date', reverse_format($end_date)), 'class' => 'datepicker form-control']); ?>
             </div>
 
             <div class="form-group">
                 <label for="reduction_amount"><?php echo lang('reduction_amount')?></label>
                 <div class="row">
                     <div class="col-md-6">
-                    <?php echo form_dropdown('reduction_type', [ 'percent'  => lang('percentage'), 'fixed' => lang('fixed') ], $reduction_type, 'class="form-control"'); ?>
+                    <?php echo form_dropdown('reduction_type', ['percent'  => lang('percentage'), 'fixed' => lang('fixed')], $reduction_type, 'class="form-control"'); ?>
                     </div>
                     <div class="col-md-6">
-                        <?php echo form_input(['name'=>'reduction_amount', 'value'=>assign_value('reduction_amount', $reduction_amount), 'class'=>'form-control']);?>
+                        <?php echo form_input(['name' => 'reduction_amount', 'value' => assign_value('reduction_amount', $reduction_amount), 'class' => 'form-control']); ?>
                     </div>
                 </div>
             </div>
@@ -48,7 +48,7 @@
 
         <div class="col-md-6 col-md-offset-1 well pull-right">
             <?php
-                $options = [ '1' => lang('apply_to_whole_order'), '0' => lang('apply_to_select_items') ];
+                $options = ['1' => lang('apply_to_whole_order'), '0' => lang('apply_to_select_items')];
                 echo form_dropdown('whole_order_coupon', $options, assign_value(0, $whole_order_coupon), 'id="gc_coupon_appliesto_fields" class="form-control"');
             ?>
             <div id="gc_coupon_products">
@@ -68,13 +68,13 @@
         </div>
     </div>
 
-    <button type="submit" class="btn btn-primary"><?php echo lang('save');?></button>
+    <button type="submit" class="btn btn-primary"><?php echo lang('save'); ?></button>
     
 </form>
 <?php
 function related_items($id, $name)
-{
-    return '
+            {
+                return '
             <tr id="related_product_'.$id.'">
                 <td>
                     <input type="hidden" name="product['.$id.'][id]" value="'.$id.'"/>
@@ -85,10 +85,10 @@ function related_items($id, $name)
                 </td>
             </tr>
         ';
-}
+            }
 ?>
 <script id="productTemplate" type="text/template">
-    <?php echo related_items("{{id}}", "{{name}}");?>
+    <?php echo related_items('{{id}}', '{{name}}'); ?>
 </script>
 
 <script type="text/javascript">
@@ -103,7 +103,7 @@ $('#product_search').keyup(function(){
 
 function run_product_query()
 {
-    $.post("<?php echo site_url('admin/products/product_autocomplete/');?>", { name: $('#product_search').val(), limit:10},
+    $.post("<?php echo site_url('admin/products/product_autocomplete/'); ?>", { name: $('#product_search').val(), limit:10},
         function(data) {
     
             $('#product_list').html('');
@@ -135,11 +135,11 @@ function add_product()
     {
         if($('#product_list').val() ===null)
         {
-            alert('<?php echo lang('alert_select_product');?>');
+            alert('<?php echo lang('alert_select_product'); ?>');
         }
         else
         {
-            alert('<?php echo lang('alert_product_related');?>');
+            alert('<?php echo lang('alert_product_related'); ?>');
         }
     }
 }
@@ -158,7 +158,7 @@ function addToProductList(id, name)
 
 function remove_product(id)
 {
-    if(confirm('<?php echo lang('confirm_remove_related');?>'))
+    if(confirm('<?php echo lang('confirm_remove_related'); ?>'))
     {
         $('#related_product_'+id).remove();
         run_product_query();
@@ -167,7 +167,7 @@ function remove_product(id)
 
 $(document).ready(function(){
 
-    var products = <?php echo json_encode($products);?>
+    var products = <?php echo json_encode($products); ?>
     
     $.each(products, function(key, val){
         addToProductList(val.id, val.name);

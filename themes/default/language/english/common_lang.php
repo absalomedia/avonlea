@@ -34,7 +34,7 @@ $lang['home'] = 'Home';
 $lang['empty_view_cart'] = 'There are no products in your cart!';
 $lang['your_cart'] = 'Your Cart Summary';
 
-$lang['sale_price']  = 'Sale Price';
+$lang['sale_price'] = 'Sale Price';
 $lang['on_sale'] = 'On Sale';
 $lang['related_products_title'] = 'You might also like...';
 $lang['form_submit'] = 'Submit';

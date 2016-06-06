@@ -1,15 +1,16 @@
-<?php  if (! defined('BASEPATH')) {
+<?php
+ if (!defined('BASEPATH')) {
      exit('No direct script access allowed');
-}
+ }
 /**
- * CodeIgniter
+ * CodeIgniter.
  *
  * An open source application development framework for PHP 5.1.6 or newer
  *
- * @package         CodeIgniter
  * @author      ExpressionEngine Dev Team
  * @copyright   Copyright (c) 2008 - 2011, EllisLab, Inc.
  * @license         http://codeigniter.com/user_guide/license.html
+ *
  * @link        http://codeigniter.com
  * @since       Version 1.0
  * @filesource
@@ -18,7 +19,7 @@
 // ------------------------------------------------------------------------
 
 /**
- * CodeIgniter Profiler Class
+ * CodeIgniter Profiler Class.
  *
  * This class enables you to display benchmark, query, and other data
  * in order to help with debugging and optimization.
@@ -26,18 +27,17 @@
  * Note: At some point it would be good to move all the HTML in this class
  * into a set of template files in order to allow customization.
  *
- * @package         CodeIgniter
- * @subpackage  Libraries
  * @category    Libraries
+ *
  * @author      ExpressionEngine Dev Team
+ *
  * @link        http://codeigniter.com/user_guide/general/profiling.html
  */
 class CI_Profiler extends CI_Loader
 {
-
     protected $CI;
 
-    protected $_available_sections = array(
+    protected $_available_sections = [
                                         'benchmarks',
                                         'get',
                                         'memory_usage',
@@ -50,18 +50,18 @@ class CI_Profiler extends CI_Loader
                                         'files',
                                         'console',
                                         'userdata',
-                                        'view_data'
-                                        );
+                                        'view_data',
+                                        ];
 
-    protected $_sections = array();        // Stores _compile_x() results
+    protected $_sections = [];        // Stores _compile_x() results
 
-    protected $_query_toggle_count    = 25;
+    protected $_query_toggle_count = 25;
 
     // --------------------------------------------------------------------
 
-    public function __construct($config = array())
+    public function __construct($config = [])
     {
-        $this->CI =& get_instance();
+        $this->CI = &get_instance();
         $this->CI->load->language('profiler');
 
         // If the config file has a query_toggle_count,
@@ -73,7 +73,7 @@ class CI_Profiler extends CI_Loader
 
         // default all sections to display
         foreach ($this->_available_sections as $section) {
-            if (! isset($config[$section])) {
+            if (!isset($config[$section])) {
                 $this->_compile_{$section}
                 = true;
             }
@@ -94,12 +94,13 @@ class CI_Profiler extends CI_Loader
     // --------------------------------------------------------------------
 
     /**
-     * Set Sections
+     * Set Sections.
      *
      * Sets the private _compile_* properties to enable/disable Profiler sections
      *
      * @param   mixed
-     * @return  void
+     *
+     * @return void
      */
     public function set_sections($config)
     {
@@ -114,24 +115,24 @@ class CI_Profiler extends CI_Loader
     // --------------------------------------------------------------------
 
     /**
-     * Auto Profiler
+     * Auto Profiler.
      *
      * This function cycles through the entire array of mark points and
      * matches any two points that are named identically (ending in "_start"
      * and "_end" respectively).  It then compiles the execution times for
      * all points and returns it as an array
      *
-     * @return  array
+     * @return array
      */
     protected function _compile_benchmarks()
     {
-        $profile = array();
-        $output = array();
+        $profile = [];
+        $output = [];
 
         foreach ($this->CI->benchmark->marker as $key => $val) {
             // We match the "end" marker so that the list ends
             // up in the order that it was defined
-            if (preg_match("/(.+?)_end/i", $key, $match)) {
+            if (preg_match('/(.+?)_end/i', $key, $match)) {
                 if (isset($this->CI->benchmark->marker[$match[1].'_end']) && isset($this->CI->benchmark->marker[$match[1].'_start'])) {
                     $profile[$match[1]] = $this->CI->benchmark->elapsed_time($match[1].'_start', $key);
                 }
@@ -141,7 +142,7 @@ class CI_Profiler extends CI_Loader
         // Build a table containing the profile data.
         // Note: At some point we might want to make this data available to be logged.
         foreach ($profile as $key => $val) {
-            $key = ucwords(str_replace(array('_', '-'), ' ', $key));
+            $key = ucwords(str_replace(['_', '-'], ' ', $key));
             $output[$key] = $val;
         }
 
@@ -153,14 +154,14 @@ class CI_Profiler extends CI_Loader
     // --------------------------------------------------------------------
 
     /**
-     * Compile Queries
+     * Compile Queries.
      *
-     * @return  string
+     * @return string
      */
     protected function _compile_queries()
     {
-        $dbs = array();
-        $output = array();
+        $dbs = [];
+        $output = [];
 
         // Let's determine which databases are currently connected to
         foreach (get_object_vars($this->CI) as $CI_object) {
@@ -177,7 +178,7 @@ class CI_Profiler extends CI_Loader
         $this->CI->load->helper('text');
 
         // Key words we want bolded
-        $highlight = array('SELECT', 'DISTINCT', 'FROM', 'WHERE', 'AND', 'LEFT&nbsp;JOIN', 'ORDER&nbsp;BY', 'GROUP&nbsp;BY', 'LIMIT', 'INSERT', 'INTO', 'VALUES', 'UPDATE', 'OR&nbsp;', 'HAVING', 'OFFSET', 'NOT&nbsp;IN', 'IN', 'LIKE', 'NOT&nbsp;LIKE', 'COUNT', 'MAX', 'MIN', 'ON', 'AS', 'AVG', 'SUM', '(', ')');
+        $highlight = ['SELECT', 'DISTINCT', 'FROM', 'WHERE', 'AND', 'LEFT&nbsp;JOIN', 'ORDER&nbsp;BY', 'GROUP&nbsp;BY', 'LIMIT', 'INSERT', 'INTO', 'VALUES', 'UPDATE', 'OR&nbsp;', 'HAVING', 'OFFSET', 'NOT&nbsp;IN', 'IN', 'LIKE', 'NOT&nbsp;LIKE', 'COUNT', 'MAX', 'MIN', 'ON', 'AS', 'AVG', 'SUM', '(', ')'];
 
 
         $total = 0; // total query time
@@ -187,7 +188,7 @@ class CI_Profiler extends CI_Loader
                 $total += $db->query_times[$key];
 
                 foreach ($highlight as $bold) {
-                    $val = str_replace($bold, '<b>'. $bold .'</b>', $val);
+                    $val = str_replace($bold, '<b>'.$bold.'</b>', $val);
                 }
 
                 $output[][$time] = $val;
@@ -204,17 +205,16 @@ class CI_Profiler extends CI_Loader
         return $output;
     }
 
-
     // --------------------------------------------------------------------
 
     /**
-     * Compile $_GET Data
+     * Compile $_GET Data.
      *
-     * @return  string
+     * @return string
      */
     protected function _compile_get()
     {
-        $output = array();
+        $output = [];
 
         $get = $this->CI->input->get();
 
@@ -223,7 +223,7 @@ class CI_Profiler extends CI_Loader
         } else {
             foreach ($get as $key => $val) {
                 if (is_array($val)) {
-                    $output[$key] = "<pre>" . htmlspecialchars(stripslashes(print_r($val, true))) . "</pre>";
+                    $output[$key] = '<pre>'.htmlspecialchars(stripslashes(print_r($val, true))).'</pre>';
                 } else {
                     $output[$key] = htmlspecialchars(stripslashes($val));
                 }
@@ -236,26 +236,26 @@ class CI_Profiler extends CI_Loader
     // --------------------------------------------------------------------
 
     /**
-     * Compile $_POST Data
+     * Compile $_POST Data.
      *
-     * @return  string
+     * @return string
      */
     protected function _compile_post()
     {
-        $output = array();
+        $output = [];
 
         if (count($_POST) === 0) {
             $output = $this->CI->lang->line('profiler_no_post');
         } else {
             foreach ($_POST as $key => $val) {
-                if (! is_numeric($key)) {
+                if (!is_numeric($key)) {
                     $key = "'".$key."'";
                 }
 
                 if (is_array($val)) {
-                    $output['&#36;_POST['. $key .']'] = '<pre>'. htmlspecialchars(stripslashes(print_r($val, true))) . '</pre>';
+                    $output['&#36;_POST['.$key.']'] = '<pre>'.htmlspecialchars(stripslashes(print_r($val, true))).'</pre>';
                 } else {
-                    $output['&#36;_POST['. $key .']'] = htmlspecialchars(stripslashes($val));
+                    $output['&#36;_POST['.$key.']'] = htmlspecialchars(stripslashes($val));
                 }
             }
         }
@@ -266,9 +266,9 @@ class CI_Profiler extends CI_Loader
     // --------------------------------------------------------------------
 
     /**
-     * Show query string
+     * Show query string.
      *
-     * @return  string
+     * @return string
      */
     protected function _compile_uri_string()
     {
@@ -284,13 +284,13 @@ class CI_Profiler extends CI_Loader
     // --------------------------------------------------------------------
 
     /**
-     * Show the controller and function that were called
+     * Show the controller and function that were called.
      *
-     * @return  string
+     * @return string
      */
     protected function _compile_controller_info()
     {
-        $output = $this->CI->router->fetch_class()."/".$this->CI->router->fetch_method();
+        $output = $this->CI->router->fetch_class().'/'.$this->CI->router->fetch_method();
 
         return $output;
     }
@@ -298,16 +298,16 @@ class CI_Profiler extends CI_Loader
     // --------------------------------------------------------------------
 
     /**
-     * Compile memory usage
+     * Compile memory usage.
      *
      * Display total used memory
      *
-     * @return  string
+     * @return string
      */
     protected function _compile_memory_usage()
     {
         if (function_exists('memory_get_usage') && ($usage = memory_get_usage()) != '') {
-            $output = number_format($usage) .' bytes';
+            $output = number_format($usage).' bytes';
         } else {
             $output = $this->CI->lang->line('profiler_no_memory_usage');
         }
@@ -318,19 +318,19 @@ class CI_Profiler extends CI_Loader
     // --------------------------------------------------------------------
 
     /**
-     * Compile header information
+     * Compile header information.
      *
      * Lists HTTP headers
      *
-     * @return  string
+     * @return string
      */
     protected function _compile_http_headers()
     {
-        $output = array();
+        $output = [];
 
-        foreach (array('HTTP_ACCEPT', 'HTTP_USER_AGENT', 'HTTP_CONNECTION', 'SERVER_PORT', 'SERVER_NAME', 'REMOTE_ADDR', 'SERVER_SOFTWARE', 'HTTP_ACCEPT_LANGUAGE', 'SCRIPT_NAME', 'REQUEST_METHOD', ' HTTP_HOST', 'REMOTE_HOST', 'CONTENT_TYPE', 'SERVER_PROTOCOL', 'QUERY_STRING', 'HTTP_ACCEPT_ENCODING', 'HTTP_X_FORWARDED_FOR') as $header) {
+        foreach (['HTTP_ACCEPT', 'HTTP_USER_AGENT', 'HTTP_CONNECTION', 'SERVER_PORT', 'SERVER_NAME', 'REMOTE_ADDR', 'SERVER_SOFTWARE', 'HTTP_ACCEPT_LANGUAGE', 'SCRIPT_NAME', 'REQUEST_METHOD', ' HTTP_HOST', 'REMOTE_HOST', 'CONTENT_TYPE', 'SERVER_PROTOCOL', 'QUERY_STRING', 'HTTP_ACCEPT_ENCODING', 'HTTP_X_FORWARDED_FOR'] as $header) {
             $val = (isset($_SERVER[$header])) ? $_SERVER[$header] : '';
-            $output[$header] =  $val;
+            $output[$header] = $val;
         }
 
         return $output;
@@ -339,15 +339,15 @@ class CI_Profiler extends CI_Loader
     // --------------------------------------------------------------------
 
     /**
-     * Compile config information
+     * Compile config information.
      *
      * Lists developer config variables
      *
-     * @return  string
+     * @return string
      */
     protected function _compile_config()
     {
-        $output = array();
+        $output = [];
 
         foreach ($this->CI->config->config as $config => $val) {
             if (is_array($val)) {
@@ -394,7 +394,7 @@ class CI_Profiler extends CI_Loader
 
     public function _compile_userdata()
     {
-        $output = array();
+        $output = [];
 
         if (false !== $this->CI->load->is_loaded('session')) {
             $compiled_userdata = $this->CI->session->all_userdata();
@@ -420,7 +420,7 @@ class CI_Profiler extends CI_Loader
     //--------------------------------------------------------------------
 
     /**
-     * Compile View Data
+     * Compile View Data.
      *
      * Allows any data passed to views to be available in the profiler bar.
      *
@@ -447,11 +447,10 @@ class CI_Profiler extends CI_Loader
 
     //--------------------------------------------------------------------
 
-
     public static function get_file_size($size, $retstring = null)
     {
         // adapted from code at http://aidanlister.com/repos/v/function.size_readable.php
-        $sizes = array('bytes', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
+        $sizes = ['bytes', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
 
         if ($retstring === null) {
             $retstring = '%01.2f %s';
@@ -477,9 +476,9 @@ class CI_Profiler extends CI_Loader
     //--------------------------------------------------------------------
 
     /**
-     * Run the Profiler
+     * Run the Profiler.
      *
-     * @return  string
+     * @return string
      */
     public function run()
     {
@@ -498,7 +497,7 @@ class CI_Profiler extends CI_Loader
             }
         }
 
-        return $this->CI->load->view('profiler_template', array('sections' => $this->_sections), true);
+        return $this->CI->load->view('profiler_template', ['sections' => $this->_sections], true);
     }
 }
 

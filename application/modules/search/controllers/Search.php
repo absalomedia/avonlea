@@ -1,19 +1,19 @@
-<?php namespace Avonlea\Controller;
+<?php
+
+namespace Avonlea\Controller;
 
 /**
- * Search Class
+ * Search Class.
  *
- * @package     Avonlea
- * @subpackage  Controllers
  * @category    Search
+ *
  * @author      Absalom Media
+ *
  * @link        http://Avonleadv.com
  */
-
 class Search extends Front
 {
-
-    public function index($code = false, $sort = 'name', $dir = "ASC", $page = 0)
+    public function index($code = false, $sort = 'name', $dir = 'ASC', $page = 0)
     {
         $pagination_base_url = site_url('search/'.$code.'/'.$sort.'/'.$dir);
 
@@ -31,6 +31,7 @@ class Search extends Front
                 //if there is still no search term throw an error
                 $data['error'] = lang('search_error');
                 $this->view('search_error', $data);
+
                 return;
             } else {
                 $code = \CI::Search()->recordTerm($term);
@@ -52,6 +53,7 @@ class Search extends Front
         if (empty($term)) {
             //if there is still no search term throw an error
             $this->view('search_error', $data);
+
             return;
         } else {
             $result = \CI::Products()->search_products($term, $per_page, $page, $sort, $dir);
@@ -69,7 +71,7 @@ class Search extends Front
 
             $data['products'] = $result['products'];
 
-            $data['category'] = (object)['name'=>str_replace('{term}', $term, lang('search_title'))];
+            $data['category'] = (object) ['name' => str_replace('{term}', $term, lang('search_title'))];
 
             $this->view('search', $data);
         }

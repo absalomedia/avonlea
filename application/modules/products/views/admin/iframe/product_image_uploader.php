@@ -1,4 +1,4 @@
-<?php include('header.php');?>
+<?php include 'header.php'; ?>
 
 <script type="text/javascript">
 
@@ -6,13 +6,13 @@
 $(window).ready(function(){
     $('#iframe_uploader', window.parent.document).height($('body').height());
 });
-<?php endif;?>
+<?php endif; ?>
 
 <?php if ($file_name):?>
-    var filename = '<?php echo $file_name;?>';
+    var filename = '<?php echo $file_name; ?>';
     var uploaded = filename.split('.');
     parent.addProductImage(uploaded[0], filename, '', '', '');
-<?php endif;?>
+<?php endif; ?>
 
 </script>
 
@@ -23,9 +23,9 @@ $(window).ready(function(){
     </div>
 <?php endif; ?>
 
-<?php echo form_open_multipart('admin/products/product_image_upload');?>
+<?php echo form_open_multipart('admin/products/product_image_upload'); ?>
     <div class="input-group">
-        <?php echo form_upload(array('name'=>'userfile', 'class'=>'form-control'));?>
+        <?php echo form_upload(['name' => 'userfile', 'class' => 'form-control']); ?>
         <span class="input-group-btn">
             <button class="btn btn-primary" name="submit" type="submit"><i class="icon-upload"></i></button>
         </span>
@@ -33,4 +33,4 @@ $(window).ready(function(){
     
 </form>
 
-<?php include('footer.php');
+<?php include 'footer.php';

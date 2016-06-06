@@ -1,25 +1,25 @@
-<?php namespace Avonlea\Controller;
+<?php
+
+namespace Avonlea\Controller;
 
 /**
- * AdminPayments Class
+ * AdminPayments Class.
  *
- * @package     Avonlea
- * @subpackage  Controllers
  * @category    AdminPayments
+ *
  * @author      Absalom Media
+ *
  * @link        http://Avonleadv.com
  */
-
 class AdminPayments extends Admin
 {
-
     public function index()
     {
         \CI::auth()->checkAccess('Admin', true);
 
         \CI::lang()->load('settings');
         \CI::load()->helper('inflector');
-        
+
         global $paymentModules;
 
         $data['payment_modules'] = $paymentModules;

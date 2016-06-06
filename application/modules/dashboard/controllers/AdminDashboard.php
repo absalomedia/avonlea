@@ -1,18 +1,18 @@
-<?php namespace Avonlea\Controller;
+<?php
+
+namespace Avonlea\Controller;
 
 /**
- * AdminDashboard Class
+ * AdminDashboard Class.
  *
- * @package     Avonlea
- * @subpackage  Controllers
  * @category    AdminDashboard
+ *
  * @author      Absalom Media
+ *
  * @link        http://Avonleadv.com
  */
-
 class AdminDashboard extends Admin
 {
-
     public function __construct()
     {
         parent::__construct();
@@ -30,10 +30,10 @@ class AdminDashboard extends Admin
     public function index()
     {
         //check to see if shipping and payment modules are installed
-        $data['payment_module_installed'] = (bool)count(\CI::Settings()->getSettings('payment_modules'));
-        $data['shipping_module_installed'] = (bool)count(\CI::Settings()->getSettings('shipping_modules'));
+        $data['payment_module_installed'] = (bool) count(\CI::Settings()->getSettings('payment_modules'));
+        $data['shipping_module_installed'] = (bool) count(\CI::Settings()->getSettings('shipping_modules'));
 
-        $data['page_title'] =  lang('dashboard');
+        $data['page_title'] = lang('dashboard');
 
         // get 5 latest orders
         $data['orders'] = \CI::Orders()->getOrders(false, 'ordered_on', 'DESC', 5);

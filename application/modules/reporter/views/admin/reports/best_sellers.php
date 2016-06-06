@@ -2,9 +2,9 @@
 	<thead>
 		<tr>
 			<?php /*<th>ID</th> uncomment this if you want it*/ ?>
-			<th><?php echo lang('sku');?></th>
-			<th><?php echo lang('name');?></th>
-			<th><?php echo lang('quantity');?></th>
+			<th><?php echo lang('sku'); ?></th>
+			<th><?php echo lang('name'); ?></th>
+			<th><?php echo lang('quantity'); ?></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -15,6 +15,6 @@
 			<td><?php echo  $b->name; ?></td>
 			<td><?php echo $b->quantity_sold; ?></a></td>
 		</tr>
-		<?php endforeach;?>
+		<?php endforeach; ?>
 	</tbody>
 </table>

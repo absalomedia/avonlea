@@ -3,7 +3,7 @@
 
         <div class="checkoutAddress">
         <?php if (!empty($addresses)) {
-            $this->show('checkout/address_list', ['addresses'=>$addresses]);
+    $this->show('checkout/address_list', ['addresses' => $addresses]);
 } else {
     ?>
             <script>
@@ -25,10 +25,10 @@
 </div>
 
 <script>
-    var grandTotalTest = <?php echo (AVL::getGrandTotal() > 0)?1:0;?>;
+    var grandTotalTest = <?php echo (AVL::getGrandTotal() > 0) ? 1 : 0; ?>;
 
     function closeAddressForm(){
-        $('.checkoutAddress').load('<?php echo site_url('checkout/address-list');?>');
+        $('.checkoutAddress').load('<?php echo site_url('checkout/address-list'); ?>');
     }
 
     function processErrors(errors)
@@ -41,7 +41,7 @@
             if(key === 'inventory')
             {
                 setInventoryErrors(val);
-                $('#summaryErrors').text('<?php echo lang('some_items_are_out_of_stock');?>').show();
+                $('#summaryErrors').text('<?php echo lang('some_items_are_out_of_stock'); ?>').show();
             }
             else if(key === 'shipping')
             {
@@ -72,7 +72,7 @@
         getShippingMethods();
 
         $('#orderSummary').spin();
-        $.post('<?php echo site_url('cart/summary');?>', function(data) {
+        $.post('<?php echo site_url('cart/summary'); ?>', function(data) {
             $('#orderSummary').html(data);
             if(callback != undefined)
             {
@@ -83,11 +83,11 @@
 
     function getShippingMethods()
     {
-        $('#shippingMethod').load('<?php echo site_url('checkout/shipping-methods');?>');
+        $('#shippingMethod').load('<?php echo site_url('checkout/shipping-methods'); ?>');
     }
 
     function getPaymentMethods()
     {
-        $('#paymentMethod').load('<?php echo site_url('checkout/payment-methods');?>');
+        $('#paymentMethod').load('<?php echo site_url('checkout/payment-methods'); ?>');
     }
 </script>

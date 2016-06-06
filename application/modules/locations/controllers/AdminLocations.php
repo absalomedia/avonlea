@@ -1,45 +1,43 @@
 <?php namespace Avonlea\Controller;
 
 /**
- * AdminLocations Class
+ * AdminLocations Class.
  *
- * @package     Avonlea
- * @subpackage  Controllers
  * @category    AdminLocations
+ *
  * @author      Absalom Media
+ *
  * @link        http://Avonleadv.com
  */
-
 class AdminLocations extends Admin
 {
-    
     public function __construct()
     {
         parent::__construct();
-        
+
         \CI::auth()->checkAccess('Admin', true);
         \CI::load()->model('Locations');
         \CI::lang()->load('locations');
     }
-    
+
     public function index()
     {
-        $data['locations']  = \CI::Locations()->get_countries();
-        
+        $data['locations'] = \CI::Locations()->get_countries();
+
         $this->view('countries', $data);
     }
-    
+
     public function organize_countries()
     {
-        $countries  = \CI::input()->post('country');
+        $countries = \CI::input()->post('country');
         \CI::Locations()->organize_countries($countries);
     }
-    
+
     public function country_form($id = false)
     {
         \CI::load()->helper('form');
         \CI::load()->library('form_validation');
-        
+
         \CI::form_validation()->set_error_delimiters('<div class="error">', '</div>');
 
         //default values are empty if the product is new
@@ -53,19 +51,19 @@ class AdminLocations extends Admin
         $data['tax'] = 0;
 
         if ($id) {
-            $country = (array)\CI::Locations()->get_country($id);
+            $country = (array) \CI::Locations()->get_country($id);
             //if the country does not exist, redirect them to the country list with an error
             if (!$country) {
                 \CI::session()->set_flashdata('error', lang('error_country_not_found'));
                 redirect('admin/locations');
             }
-            
+
             $data = array_merge($data, $country);
             if (empty($data['address_format'])) {
-                $data['address_format'] = "<strong>{% if company %} {{company}}, {% endif %}{{firstname}} {{lastname}}</strong><br><small>{{phone}} | {{email}}<br>{{address1}}<br>{% if address2 %}{{address2}}<br>{% endif %}{{city}} {{zip}}<br> {{zone}}<br>{{country}}</small>";
+                $data['address_format'] = '<strong>{% if company %} {{company}}, {% endif %}{{firstname}} {{lastname}}</strong><br><small>{{phone}} | {{email}}<br>{{address1}}<br>{% if address2 %}{{address2}}<br>{% endif %}{{city}} {{zip}}<br> {{zone}}<br>{{country}}</small>';
             }
         }
-        
+
         \CI::form_validation()->set_rules('name', 'lang:name', 'trim|required');
         \CI::form_validation()->set_rules('iso_code_2', 'lang:iso_code_2', 'trim|required');
         \CI::form_validation()->set_rules('iso_code_3', 'lang:iso_code_3', 'trim|required');
@@ -73,7 +71,7 @@ class AdminLocations extends Admin
         \CI::form_validation()->set_rules('zip_required', 'lang:require_zip', 'trim');
         \CI::form_validation()->set_rules('tax', 'lang:tax', 'trim|numeric');
         \CI::form_validation()->set_rules('status', 'lang:status', 'trim');
-    
+
         if (\CI::form_validation()->run() === false) {
             $this->view('country_form', $data);
         } else {
@@ -87,15 +85,14 @@ class AdminLocations extends Admin
             $save['tax'] = \CI::input()->post('tax');
 
             \CI::Locations()->save_country($save);
-            
+
             \CI::session()->set_flashdata('message', lang('message_saved_country'));
-            
+
             //go back to the product list
             redirect('admin/locations');
         }
     }
 
-    
     public function delete_country($id = false)
     {
         if ($id) {
@@ -106,7 +103,7 @@ class AdminLocations extends Admin
                 redirect('admin/locations');
             } else {
                 \CI::Locations()->delete_country($id);
-                
+
                 \CI::session()->set_flashdata('message', lang('message_deleted_country'));
                 redirect('admin/locations');
             }
@@ -116,7 +113,7 @@ class AdminLocations extends Admin
             redirect('admin/locations');
         }
     }
-    
+
     public function delete_zone($id = false)
     {
         if ($id) {
@@ -127,7 +124,7 @@ class AdminLocations extends Admin
                 redirect('admin/locations');
             } else {
                 \CI::Locations()->delete_zone($id);
-                
+
                 \CI::session()->set_flashdata('message', lang('message_deleted_zone'));
                 redirect('admin/locations/zones/'.$location->country_id);
             }
@@ -137,7 +134,7 @@ class AdminLocations extends Admin
             redirect('admin/locations');
         }
     }
-    
+
     public function zones($country_id)
     {
         $data['countries'] = \CI::Locations()->get_countries();
@@ -150,14 +147,14 @@ class AdminLocations extends Admin
 
         $this->view('country_zones', $data);
     }
-    
+
     public function zone_form($id = false)
     {
         \CI::load()->helper('form');
         \CI::load()->library('form_validation');
-        
+
         \CI::form_validation()->set_error_delimiters('<div class="error">', '</div>');
-    
+
         $data['countries'] = \CI::Locations()->get_countries();
 
         //default values are empty if the product is new
@@ -167,25 +164,25 @@ class AdminLocations extends Admin
         $data['code'] = '';
         $data['tax'] = 0;
         $data['status'] = false;
-        
+
         if ($id) {
-            $zone = (array)\CI::Locations()->get_zone($id);
+            $zone = (array) \CI::Locations()->get_zone($id);
 
             //if the country does not exist, redirect them to the country list with an error
             if (!$zone) {
                 \CI::session()->set_flashdata('error', lang('error_zone_not_found'));
                 redirect('admin/locations');
             }
-            
+
             $data = array_merge($data, $zone);
         }
-        
+
         \CI::form_validation()->set_rules('country_id', 'Country ID', 'trim|required');
         \CI::form_validation()->set_rules('name', 'lang:name', 'trim|required');
         \CI::form_validation()->set_rules('code', 'lang:code', 'trim|required');
         \CI::form_validation()->set_rules('tax', 'lang:tax', 'trim|numeric');
         \CI::form_validation()->set_rules('status', 'lang:status', 'trim');
-    
+
         if (\CI::form_validation()->run() === false) {
             $this->view('country_zone_form', $data);
         } else {
@@ -197,18 +194,18 @@ class AdminLocations extends Admin
             $save['tax'] = \CI::input()->post('tax');
 
             \CI::Locations()->save_zone($save);
-            
+
             \CI::session()->set_flashdata('message', lang('message_zone_saved'));
             //go back to the product list
             redirect('admin/locations/zones/'.$save['country_id']);
         }
     }
-    
+
     public function get_zone_menu()
     {
         $id = \CI::input()->post('id');
-        $zones  = \CI::Locations()->get_zones_menu($id);
-        
+        $zones = \CI::Locations()->get_zones_menu($id);
+
         foreach ($zones as $id => $z) :?>
         
         <option value="<?php echo $id;
@@ -217,12 +214,12 @@ class AdminLocations extends Admin
         
         <?php                                                                                                                                                                                                                         endforeach;
     }
-    
+
     public function zone_areas($id)
     {
         $data['zone'] = \CI::Locations()->get_zone($id);
         $data['areas'] = \CI::Locations()->get_zone_areas($id);
-        
+
         $this->view('country_zone_areas', $data);
     }
 
@@ -236,7 +233,7 @@ class AdminLocations extends Admin
                 redirect('admin/locations');
             } else {
                 \CI::Locations()->delete_zone_area($id);
-                
+
                 \CI::session()->set_flashdata('message', lang('message_deleted_zone_area'));
                 redirect('admin/locations/zone_areas/'.$location->zone_id);
             }
@@ -246,14 +243,14 @@ class AdminLocations extends Admin
             redirect('admin/locations/');
         }
     }
-        
+
     public function zone_area_form($zone_id, $area_id = false)
     {
         \CI::load()->helper('form');
         \CI::load()->library('form_validation');
 
         \CI::form_validation()->set_error_delimiters('<div class="error">', '</div>');
-        
+
         $zone = \CI::Locations()->get_zone($zone_id);
 
         $data['zone'] = $zone;
@@ -264,7 +261,7 @@ class AdminLocations extends Admin
         $data['tax'] = 0;
 
         if ($area_id) {
-            $area = (array)\CI::Locations()->get_zone_area($area_id);
+            $area = (array) \CI::Locations()->get_zone_area($area_id);
 
             //if the country does not exist, redirect them to the country list with an error
             if (!$area) {

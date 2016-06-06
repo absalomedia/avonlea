@@ -1,6 +1,6 @@
 <div class="page-header">
-    <button id="addAddress" type="button" class="input-xs pull-right"><?php echo lang('add_address');?></button>
-    <h3><?php echo lang('your_addresses');?></h3>
+    <button id="addAddress" type="button" class="input-xs pull-right"><?php echo lang('add_address'); ?></button>
+    <h3><?php echo lang('your_addresses'); ?></h3>
 </div>
 <?php if (count($addresses) > 0) :?>
 <div id="addressError" class="alert red hide"></div>
@@ -16,23 +16,23 @@
                         </td>
                         <td>
                             <label><?php
-                                $checked = (AVL::getCart()->billing_address_id === $a['id'])?true:false;
-                                echo form_radio(['name'=>'billing_address', 'value'=>$a['id'], 'checked'=>$checked]);
-                            ?><?php echo lang('billing');?></label>
+                                $checked = (AVL::getCart()->billing_address_id === $a['id']) ? true : false;
+                                echo form_radio(['name' => 'billing_address', 'value' => $a['id'], 'checked' => $checked]);
+                            ?><?php echo lang('billing'); ?></label>
                         </td>
                         <td>
                             <label><?php
-                                $checked = (AVL::getCart()->shipping_address_id === $a['id'])?true:false;
-                                echo form_radio(['name'=>'shipping_address', 'value'=>$a['id'], 'checked'=>$checked]);
+                                $checked = (AVL::getCart()->shipping_address_id === $a['id']) ? true : false;
+                                echo form_radio(['name' => 'shipping_address', 'value' => $a['id'], 'checked' => $checked]);
                             ?>
-                            <?php echo lang('shipping');?></label>
+                            <?php echo lang('shipping'); ?></label>
                         </td>
                         <td>
-                            <i class="icon-pencil" onclick="editAddress(<?php echo $a['id'];?>)"></i>
-                            <i class="icon-x text-red" onclick="deleteAddress(<?php echo $a['id'];?>)"></i>
+                            <i class="icon-pencil" onclick="editAddress(<?php echo $a['id']; ?>)"></i>
+                            <i class="icon-x text-red" onclick="deleteAddress(<?php echo $a['id']; ?>)"></i>
                         </td>
                     </tr>
-                <?php endforeach;?>
+                <?php endforeach; ?>
             </tbody>
         </table>
     </div>
@@ -42,24 +42,24 @@
 
 <script>
 $('.checkoutAddress').spin();
-$('.checkoutAddress').load('<?php echo site_url('addresses/form');?>');
+$('.checkoutAddress').load('<?php echo site_url('addresses/form'); ?>');
 getCartSummary();
 </script>
 
-<?php endif;?>
+<?php endif; ?>
 
 <script>
 function editAddress(id)
 {
     $('.checkoutAddress').spin();
-    $('.checkoutAddress').load('<?php echo site_url('addresses/form');?>/'+id);
+    $('.checkoutAddress').load('<?php echo site_url('addresses/form'); ?>/'+id);
 }
 
 function deleteAddress(id)
 {
-    if( confirm('<?php echo lang('deleteAddress_confirmation');?>') )
+    if( confirm('<?php echo lang('deleteAddress_confirmation'); ?>') )
     {
-        $.post('<?php echo site_url('addresses/delete');?>/'+id, function(){
+        $.post('<?php echo site_url('addresses/delete'); ?>/'+id, function(){
             closeAddressForm();
         });
     }
@@ -67,12 +67,12 @@ function deleteAddress(id)
 
 $('#addAddress').click(function(){
     $('.checkoutAddress').spin();
-    $('.checkoutAddress').load('<?php echo site_url('addresses/form');?>');
+    $('.checkoutAddress').load('<?php echo site_url('addresses/form'); ?>');
 })
 
 $('[name="billing_address"]').change(function(){
     $('#billingAddress').spin();
-    $.post('<?php echo site_url('checkout/address');?>', {'type':'billing', 'id':$(this).val()}, function(data){
+    $.post('<?php echo site_url('checkout/address'); ?>', {'type':'billing', 'id':$(this).val()}, function(data){
         if(data.error != undefined)
         {
             alert(data.error);
@@ -88,7 +88,7 @@ $('[name="billing_address"]').change(function(){
 
 $('[name="shipping_address"]').change(function(){
     $('#shipingAddress').spin();
-    $.post('<?php echo site_url('checkout/address');?>', {'type':'shipping', 'id':$(this).val()}, function(data){
+    $.post('<?php echo site_url('checkout/address'); ?>', {'type':'shipping', 'id':$(this).val()}, function(data){
         if(data.error != undefined)
         {
             alert(data.error);

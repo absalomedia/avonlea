@@ -1,16 +1,15 @@
 <?php
+
 defined('BASEPATH') or exit('No direct script access allowed');
 
-use Exception as BaseException;
 use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run;
 
 class Bootstrap extends CI_Controller
 {
-
     public function init()
     {
-        $run     = new Run();
+        $run = new Run();
         $handler = new PrettyPageHandler();
 
         $run->pushHandler($handler);
@@ -20,6 +19,7 @@ class Bootstrap extends CI_Controller
                 if ($function = $frame->getFunction()) {
                     $frame->addComment("This frame is within function '$function'", 'cpt-obvious');
                 }
+
                 return $frame;
             });
         });
@@ -70,7 +70,7 @@ class Bootstrap extends CI_Controller
             //just modules
             $moduleDirectories = [
                 APPPATH.'modules',
-                FCPATH.'addons'
+                FCPATH.'addons',
             ];
 
             foreach ($moduleDirectories as $moduleDirectory) {
@@ -93,9 +93,9 @@ class Bootstrap extends CI_Controller
                         $filename = pathinfo($file, PATHINFO_FILENAME);
                         if ($ext === 'php') {
                             if ($filename === 'manifest') {
-                                include($file);
+                                include $file;
                             }
-                            $this->getPhpClasses((string)$file);
+                            $this->getPhpClasses((string) $file);
                         }
                     }
                 }
@@ -107,12 +107,12 @@ class Bootstrap extends CI_Controller
             $manifest .= "\n\n".'//Theme Shortcodes'."\n".'$GLOBALS[\'themeShortcodes\'] = '.var_export($themeShortcodes, true).';';
             $manifest .= "\n\n".'//Complete Module List'."\n".'$GLOBALS[\'modules\'] = '.var_export($modules, true).';';
             $manifest .= "\n\n".'//Defined Routes'."\n".'$routes = '.var_export($routes, true).';';
-            
+
             //generate the autoload file
             write_file(APPPATH.'config/manifest.php', $manifest);
         }
 
-        require(APPPATH.'config/manifest.php');
+        require APPPATH.'config/manifest.php';
 
         //load in the database.
         $this->load->database();
@@ -132,7 +132,7 @@ class Bootstrap extends CI_Controller
 
         //set the homepage route
         $router->map('GET|POST', '/', 'Avonlea\Controller\Page#homepage');
-        
+
         //map the routes from the manifest.
         foreach ($routes as $route) {
             $router->map($route[0], $route[1], $route[2]);
@@ -144,9 +144,8 @@ class Bootstrap extends CI_Controller
 
         //autoloader for Modules
         spl_autoload_register(function ($class) use ($classes) {
-
             if (isset($classes[$class])) {
-                include_once($classes[$class]);
+                include_once $classes[$class];
             }
         });
 
@@ -213,7 +212,7 @@ class Bootstrap extends CI_Controller
             $target = explode('#', $match['target']);
 
             try {
-                $class = new $target[0];
+                $class = new $target[0]();
                 call_user_func_array([$class, $target[1]], $match['params']);
             } catch (Exception $e) {
                 r($e);
@@ -234,20 +233,20 @@ class Bootstrap extends CI_Controller
         $count = count($tokens);
         $dlm = false;
         for ($i = 2; $i < $count; $i++) {
-            if ((isset($tokens[$i - 2][1]) && ($tokens[$i - 2][1] ==="phpnamespace" || $tokens[$i - 2][1] ==="namespace")) || ($dlm && $tokens[$i - 1][0] ===T_NS_SEPARATOR && $tokens[$i][0] ===T_STRING)) {
+            if ((isset($tokens[$i - 2][1]) && ($tokens[$i - 2][1] === 'phpnamespace' || $tokens[$i - 2][1] === 'namespace')) || ($dlm && $tokens[$i - 1][0] === T_NS_SEPARATOR && $tokens[$i][0] === T_STRING)) {
                 if (!$dlm) {
                     $namespace = 0;
                 }
                 if (isset($tokens[$i][1])) {
-                    $namespace = $namespace ? $namespace . "\\" . $tokens[$i][1] : $tokens[$i][1];
+                    $namespace = $namespace ? $namespace.'\\'.$tokens[$i][1] : $tokens[$i][1];
                     $dlm = true;
                 }
             } elseif ($dlm && ($tokens[$i][0] != T_NS_SEPARATOR) && ($tokens[$i][0] != T_STRING)) {
                 $dlm = false;
             }
-            if (($tokens[$i - 2][0] ===T_CLASS || (isset($tokens[$i - 2][1]) && $tokens[$i - 2][1] ==="phpclass")) && $tokens[$i - 1][0] ===T_WHITESPACE && $tokens[$i][0] ===T_STRING) {
+            if (($tokens[$i - 2][0] === T_CLASS || (isset($tokens[$i - 2][1]) && $tokens[$i - 2][1] === 'phpclass')) && $tokens[$i - 1][0] === T_WHITESPACE && $tokens[$i][0] === T_STRING) {
                 $class_name = $tokens[$i][1];
-                
+
                 if ($namespace != '') {
                     $this->classMap[$namespace.'\\'.$class_name] = $file;
                 } else {

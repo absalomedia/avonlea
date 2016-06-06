@@ -1,18 +1,18 @@
-<?php namespace Avonlea\Controller;
+<?php
+
+namespace Avonlea\Controller;
 
 /**
- * Checkout Class
+ * Checkout Class.
  *
- * @package     Avonlea
- * @subpackage  Controllers
  * @category    Checkout
+ *
  * @author      Absalom Media
+ *
  * @link        http://Avonleadv.com
  */
-
 class Checkout extends Front
 {
-
     public $customer;
 
     public function __construct()
@@ -45,15 +45,16 @@ class Checkout extends Front
         }
 
         if (count($errors) > 0) {
-            echo json_encode(['errors'=>$errors]);
+            echo json_encode(['errors' => $errors]);
+
             return false;
         } else {
             $payment = [
-                'order_id' => \AVL::getAttribute('id'),
-                'amount' => \AVL::getGrandTotal(),
-                'status' => 'processed',
+                'order_id'       => \AVL::getAttribute('id'),
+                'amount'         => \AVL::getGrandTotal(),
+                'status'         => 'processed',
                 'payment_module' => '',
-                'description' => lang('no_payment_needed')
+                'description'    => lang('no_payment_needed'),
             ];
 
             \CI::Orders()->savePaymentInfo($payment);
@@ -61,7 +62,8 @@ class Checkout extends Front
             $orderId = \AVL::submitOrder();
 
             //send the order ID
-            echo json_encode(['orderId'=>$orderId]);
+            echo json_encode(['orderId' => $orderId]);
+
             return false;
         }
     }
@@ -71,7 +73,7 @@ class Checkout extends Front
         $order = \CI::Orders()->getOrder($orderNumber);
         $orderCustomer = \CI::Customers()->getCustomer($order->customer_id);
         if ($orderCustomer->is_guest || $orderCustomer->id === $this->customer->id) {
-            $this->view('orderComplete', ['order'=>$order]);
+            $this->view('orderComplete', ['order' => $order]);
         } else {
             if (!\CI::Login()->isLoggedIn(false, false)) {
                 redirect('login');
@@ -84,7 +86,7 @@ class Checkout extends Front
     public function orderCompleteEmail($orderNumber)
     {
         $order = \CI::Orders()->getOrder($orderNumber);
-        $this->partial('order_summary_email', ['order'=>$order]);
+        $this->partial('order_summary_email', ['order' => $order]);
     }
 
     public function addressList()
@@ -101,7 +103,7 @@ class Checkout extends Front
         $address = \CI::Customers()->getAddress($id);
 
         if ($address['customer_id'] != $this->customer->id) {
-            echo json_encode(['error'=>lang('error_address_not_found')]);
+            echo json_encode(['error' => lang('error_address_not_found')]);
         } else {
             if ($type === 'shipping') {
                 \AVL::setAttribute('shipping_address_id', $id);
@@ -112,7 +114,7 @@ class Checkout extends Front
             \AVL::saveCart();
 
 
-            echo json_encode(['success'=>true]);
+            echo json_encode(['success' => true]);
         }
     }
 
@@ -120,11 +122,11 @@ class Checkout extends Front
     {
         if (\AVL::orderRequiresShipping()) {
             $this->partial('shippingMethods', [
-                'rates'=>\AVL::getShippingMethodOptions(),
-                'requiresShipping'=>true
+                'rates'            => \AVL::getShippingMethodOptions(),
+                'requiresShipping' => true,
             ]);
         } else {
-            $this->partial('shippingMethods', ['rates'=>[], 'requiresShipping'=>false]);
+            $this->partial('shippingMethods', ['rates' => [], 'requiresShipping' => false]);
         }
     }
 
@@ -134,20 +136,21 @@ class Checkout extends Front
         $hash = \CI::input()->post('method');
 
         foreach ($rates as $key => $rate) {
-            $test = md5(json_encode(['key'=>$key, 'rate'=>$rate]));
+            $test = md5(json_encode(['key' => $key, 'rate' => $rate]));
             if ($hash === $test) {
                 \AVL::setShippingMethod($key, $rate, $hash);
 
                 //save the cart
                 \AVL::saveCart();
 
-                echo json_encode(['success'=>true]);
+                echo json_encode(['success' => true]);
+
                 return false;
             }
         }
 
 
-        echo json_encode(['error'=>lang('shipping_method_is_no_longer_valid')]);
+        echo json_encode(['error' => lang('shipping_method_is_no_longer_valid')]);
     }
 
     public function paymentMethods()
@@ -162,11 +165,11 @@ class Checkout extends Front
             if (array_key_exists($paymentModule['key'], $enabled_modules)) {
                 $className = '\Avonlea\Controller\\'.$paymentModule['class'];
                 $modules[$paymentModule['key']] = $paymentModule;
-                $modules[$paymentModule['key']]['class'] = new $className;
+                $modules[$paymentModule['key']]['class'] = new $className();
             }
         }
 
         ksort($modules);
-        $this->partial('paymentMethods', ['modules'=>$modules]);
+        $this->partial('paymentMethods', ['modules' => $modules]);
     }
 }

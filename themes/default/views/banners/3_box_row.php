@@ -3,9 +3,9 @@
 	<div class="col" data-cols="1/3">
 		<?php
 
-        $box_image    = '<img src="'.base_url('uploads/'.$banner->image).'" />';
+        $box_image = '<img src="'.base_url('uploads/'.$banner->image).'" />';
         if ($banner->link != '') {
-            $target    = false;
+            $target = false;
             if ($banner->new_window) {
                 $target = 'target="_blank"';
             }
@@ -15,6 +15,6 @@
         }
         ?>
 	</div>
-	<?php endforeach;?>
+	<?php endforeach; ?>
 </div>
 <br class="clear">

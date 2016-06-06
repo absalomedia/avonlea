@@ -4,7 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 function throw_404()
 {
-    header($_SERVER["SERVER_PROTOCOL"] . ' 404 Not Found');
+    header($_SERVER['SERVER_PROTOCOL'].' 404 Not Found');
     (new Avonlea\Controller\Page())->show404();
 }
 
@@ -41,13 +41,14 @@ function theme_js($uri, $tag = false)
 function theme_css($uri, $tag = false)
 {
     if ($tag) {
-        $media=false;
+        $media = false;
         if (is_string($tag)) {
             $media = 'media="'.$tag.'"';
         }
+
         return '<link href="'.theme_url('assets/css/'.$uri).'" type="text/css" rel="stylesheet" '.$media.'/>';
     }
-    
+
     return theme_url('assets/css/'.$uri);
 }
 
@@ -79,13 +80,14 @@ function module_js($module, $uri, $tag = false)
 function module_css($module, $uri, $tag = false)
 {
     if ($tag) {
-        $media=false;
+        $media = false;
         if (is_string($tag)) {
             $media = 'media="'.$tag.'"';
         }
+
         return '<link href="'.module_url($module, 'assets/css/'.$uri).'" type="text/css" rel="stylesheet" '.$media.'/>';
     }
-    
+
     return module_url($module, 'assets/css/'.$uri);
 }
 
@@ -117,12 +119,13 @@ function addon_js($addon, $uri, $tag = false)
 function addon_css($addon, $uri, $tag = false)
 {
     if ($tag) {
-        $media=false;
+        $media = false;
         if (is_string($tag)) {
             $media = 'media="'.$tag.'"';
         }
+
         return '<link href="'.addon_url($addon, 'assets/css/'.$uri).'" type="text/css" rel="stylesheet" '.$media.'/>';
     }
-    
+
     return addon_url($addon, 'assets/css/'.$uri);
 }

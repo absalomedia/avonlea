@@ -1,19 +1,19 @@
-<?php namespace Avonlea\Controller;
+<?php
+
+namespace Avonlea\Controller;
 
 /**
- * Category Class
+ * Category Class.
  *
- * @package     Avonlea
- * @subpackage  Controllers
  * @category    Category
+ *
  * @author      Absalom Media
+ *
  * @link        http://Avonleadv.com
  */
-
 class Category extends Front
 {
-
-    public function index($slug, $sort = 'id', $dir = "ASC", $page = 0)
+    public function index($slug, $sort = 'id', $dir = 'ASC', $page = 0)
     {
         \CI::lang()->load('categories');
         //define the URL for pagination
@@ -29,6 +29,7 @@ class Category extends Front
         //no category? show 404
         if (!$categories) {
             throw_404();
+
             return;
         }
 
@@ -36,7 +37,7 @@ class Category extends Front
         $categories['dir'] = $dir;
         $categories['slug'] = $slug;
         $categories['page'] = $page;
-        
+
         //load up the pagination library
         \CI::load()->library('pagination');
         $config['base_url'] = $pagination_base_url;

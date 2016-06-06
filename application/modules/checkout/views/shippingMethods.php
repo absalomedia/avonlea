@@ -1,5 +1,5 @@
 <div class="page-header">
-    <h3><?php echo lang('shipping');?></h3>
+    <h3><?php echo lang('shipping'); ?></h3>
 </div>
 <?php if ($requiresShipping) :?>
     <div class="shippingError"></div>
@@ -7,15 +7,15 @@
     <?php
     $selectedShippingMethod = \AVL::getShippingMethod();
     foreach ($rates as $key => $rate) :
-        $hash = md5(json_encode(['key'=>$key, 'rate'=>$rate]));?>
+        $hash = md5(json_encode(['key' => $key, 'rate' => $rate])); ?>
 
         <tr onclick="$(this).find('input').prop('checked', true).trigger('change');">
-            <td style="width:20px;"><input type="radio" name="shippingMethod" value="<?php echo $hash;?>" <?php echo (is_object($selectedShippingMethod) && $hash === $selectedShippingMethod->description)?'checked':'';?>></td>
-            <td><?php echo $key;?></td>
-            <td><?php echo format_currency($rate);?>
+            <td style="width:20px;"><input type="radio" name="shippingMethod" value="<?php echo $hash; ?>" <?php echo (is_object($selectedShippingMethod) && $hash === $selectedShippingMethod->description) ? 'checked' : ''; ?>></td>
+            <td><?php echo $key; ?></td>
+            <td><?php echo format_currency($rate); ?>
         </tr>
 
-    <?php                                                                                                         endforeach;?>
+    <?php                                                                                                         endforeach; ?>
     </table>
 
     <script>
@@ -23,7 +23,7 @@
             $('.shippingError').html('');
             $('#shippingMethod').spin();
 
-            $.post('<?php echo site_url('checkout/set-shipping-method');?>', {'method':$(this).val()}, function(data){
+            $.post('<?php echo site_url('checkout/set-shipping-method'); ?>', {'method':$(this).val()}, function(data){
                 if(data.error)
                 {
                     $('.shippingError').html('<div class="alert red"><i class="close"></i> '+data.error+'</div>');
@@ -47,6 +47,6 @@
     </script>
 <?php else : ?>
     <div class="alert">
-        <?php echo lang('no_shipping_needed');?>
+        <?php echo lang('no_shipping_needed'); ?>
     </div>
-<?php endif;?>
+<?php endif; ?>

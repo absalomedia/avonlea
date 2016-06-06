@@ -1,5 +1,5 @@
 <div class="page-header">
-    <h1><?php echo lang('order_number');?>: <?php echo $order->order_number;?></h1>
+    <h1><?php echo lang('order_number'); ?>: <?php echo $order->order_number; ?></h1>
 </div>
 
 <div class="col-nest">
@@ -58,8 +58,8 @@
                 <div class="col-nest">
                     <div class="col" data-cols="2/3" data-medium-cols="2/3" data-small-cols="2/3">
                         <div class="orderPhoto">
-                            <?php echo $photo;?>
-                            <?php echo (!empty($product->sku))?'<div class="orderItemSku">'.lang('sku').': '.$product->sku.'</div>':''?>
+                            <?php echo $photo; ?>
+                            <?php echo (!empty($product->sku)) ? '<div class="orderItemSku">'.lang('sku').': '.$product->sku.'</div>' : ''?>
                         </div>
                         <div class="orderItemDetails">
                             <div class="orderItemName"><?php echo $product->name; ?></div>
@@ -68,7 +68,7 @@
                                 if (isset($order->options[$product->id])) :
 
                                     foreach ($order->options[$product->id] as $option) :?>
-                                        <div class="orderItemOption"><strong><?php echo ($product->is_giftcard) ? lang('gift_card_'.$option->option_name) : $option->option_name;?> :</strong> <?php echo($option->price > 0)?'['.format_currency($option->price).']':'';?> <?php echo $option->value;?></div>
+                                        <div class="orderItemOption"><strong><?php echo ($product->is_giftcard) ? lang('gift_card_'.$option->option_name) : $option->option_name; ?> :</strong> <?php echo($option->price > 0) ? '['.format_currency($option->price).']' : ''; ?> <?php echo $option->value; ?></div>
                                     <?php                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         endforeach;
 
                                 endif;
@@ -93,10 +93,10 @@
                     </div>
                     <div class="col" data-cols="1/3" data-medium-cols="1/3" data-small-cols="1/3">
                         <div class="orderPrice">
-                            <div class="orderItemQuantity">(<?php echo $product->quantity.'  &times; '.format_currency($product->total_price);?>)</div>
+                            <div class="orderItemQuantity">(<?php echo $product->quantity.'  &times; '.format_currency($product->total_price); ?>)</div>
                             <?php if (!empty($product->coupon_code)) :
-?><div class="orderItemCoupon"><?php echo lang('coupon');?> <span class="nowrap"><?php echo '-'.format_currency(($product->coupon_discount * $product->coupon_discount_quantity));?></span></div><?php
-endif;?>
+?><div class="orderItemCoupon"><?php echo lang('coupon'); ?> <span class="nowrap"><?php echo '-'.format_currency(($product->coupon_discount * $product->coupon_discount_quantity)); ?></span></div><?php
+endif; ?>
 
                             <?php echo format_currency(($product->total_price * $product->quantity) - ($product->coupon_discount * $product->coupon_discount_quantity)); ?>
                         </div>
@@ -104,15 +104,15 @@ endif;?>
                 </div>
             </div>
 
-        <?php endforeach;?>
+        <?php endforeach; ?>
 
             <div class="cartSummaryTotals">
                 <div class="col-nest">
                     <div class="col" data-cols="2/3" data-medium-cols="2/3" data-small-cols="2/3">
-                        <div class="cartSummaryTotalsKey"><?php echo lang('subtotal');?>:</div>
+                        <div class="cartSummaryTotalsKey"><?php echo lang('subtotal'); ?>:</div>
                     </div>
                     <div class="col" data-cols="1/3" data-medium-cols="1/3" data-small-cols="1/3">
-                        <div class="orderTotalsValue"><?php echo format_currency($order->subtotal);?></div>
+                        <div class="orderTotalsValue"><?php echo format_currency($order->subtotal); ?></div>
                     </div>
                 </div>
 
@@ -120,25 +120,25 @@ endif;?>
                     <?php foreach ($charges['shipping'] as $shipping) :?>
                         <div class="col-nest">
                             <div class="col" data-cols="2/3" data-medium-cols="2/3" data-small-cols="2/3">
-                                <div class="cartSummaryTotalsKey"><?php echo lang('shipping');?>: <?php echo $shipping->name; ?></div>
+                                <div class="cartSummaryTotalsKey"><?php echo lang('shipping'); ?>: <?php echo $shipping->name; ?></div>
                             </div>
                             <div class="col" data-cols="1/3" data-medium-cols="1/3" data-small-cols="1/3">
                                 <div class="orderTotalsValue"><?php echo format_currency($shipping->total_price); ?></div>
                             </div>
                         </div>
-                    <?php endforeach;?>
+                    <?php endforeach; ?>
 
                     <?php foreach ($charges['tax'] as $tax) :?>
                         <div class="col-nest">
                             <div class="col" data-cols="2/3" data-medium-cols="2/3" data-small-cols="2/3">
-                                <div class="cartSummaryTotalsKey"><?php echo lang('taxes');?>: <?php echo $tax->name; ?></div>
+                                <div class="cartSummaryTotalsKey"><?php echo lang('taxes'); ?>: <?php echo $tax->name; ?></div>
                             </div>
                             <div class="col" data-cols="1/3" data-medium-cols="1/3" data-small-cols="1/3">
                                 <div class="orderTotalsValue"><?php echo format_currency($tax->total_price); ?></div>
                             </div>
                         </div>
-                    <?php endforeach;?>
-                <?php endif;?>
+                    <?php endforeach; ?>
+                <?php endif; ?>
 
                 <?php if (count($charges['giftCards']) > 0) :?>
 
@@ -152,15 +152,15 @@ endif;?>
                                 <div class="orderTotalsValue"><?php echo format_currency($giftCard->total_price); ?></div>
                             </div>
                         </div>
-                    <?php endforeach;?>
-                <?php endif;?>
+                    <?php endforeach; ?>
+                <?php endif; ?>
 
                 <div class="col-nest">
                     <div class="col" data-cols="2/3" data-medium-cols="2/3" data-small-cols="2/3">
-                        <div class="cartSummaryTotalsKey"><?php echo lang('grand_total');?>:</div>
+                        <div class="cartSummaryTotalsKey"><?php echo lang('grand_total'); ?>:</div>
                     </div>
                     <div class="col" data-cols="1/3" data-medium-cols="1/3" data-small-cols="1/3">
-                        <div class="orderTotalsValue"><?php echo format_currency($order->total);?></div>
+                        <div class="orderTotalsValue"><?php echo format_currency($order->total); ?></div>
                     </div>
                 </div>
             </div>
@@ -168,44 +168,44 @@ endif;?>
 
     <div class="col" data-cols="1/3">
         <div class="orderAddresses">
-            <div class="orderAddressTitle"><?php echo lang('shipping_address');?></div>
+            <div class="orderAddressTitle"><?php echo lang('shipping_address'); ?></div>
             <div class="orderAddress">
             <?php echo format_address([
-                'company'=>$order->shipping_company,
-                'firstname'=>$order->shipping_firstname,
-                'lastname'=>$order->shipping_lastname,
-                'phone'=>$order->shipping_phone,
-                'email'=>$order->shipping_email,
-                'address1'=>$order->shipping_address1,
-                'address2'=>$order->shipping_address2,
-                'city'=>$order->shipping_city,
-                'zone'=>$order->shipping_zone,
-                'zip'=>$order->shipping_zip,
-                'country_id'=>$order->shipping_country_id
-                ]);?>
+                'company'    => $order->shipping_company,
+                'firstname'  => $order->shipping_firstname,
+                'lastname'   => $order->shipping_lastname,
+                'phone'      => $order->shipping_phone,
+                'email'      => $order->shipping_email,
+                'address1'   => $order->shipping_address1,
+                'address2'   => $order->shipping_address2,
+                'city'       => $order->shipping_city,
+                'zone'       => $order->shipping_zone,
+                'zip'        => $order->shipping_zip,
+                'country_id' => $order->shipping_country_id,
+                ]); ?>
             </div>
-            <div class="orderAddressTitle"><?php echo lang('billing_address');?></div>
+            <div class="orderAddressTitle"><?php echo lang('billing_address'); ?></div>
             <div class="orderAddress">
             <?php echo format_address([
-                'company'=>$order->billing_company,
-                'firstname'=>$order->billing_firstname,
-                'lastname'=>$order->billing_lastname,
-                'phone'=>$order->billing_phone,
-                'email'=>$order->billing_email,
-                'address1'=>$order->billing_address1,
-                'address2'=>$order->billing_address2,
-                'city'=>$order->billing_city,
-                'zone'=>$order->billing_zone,
-                'zip'=>$order->billing_zip,
-                'country_id'=>$order->billing_country_id
-                ]);?>
+                'company'    => $order->billing_company,
+                'firstname'  => $order->billing_firstname,
+                'lastname'   => $order->billing_lastname,
+                'phone'      => $order->billing_phone,
+                'email'      => $order->billing_email,
+                'address1'   => $order->billing_address1,
+                'address2'   => $order->billing_address2,
+                'city'       => $order->billing_city,
+                'zone'       => $order->billing_zone,
+                'zip'        => $order->billing_zip,
+                'country_id' => $order->billing_country_id,
+                ]); ?>
             </div>
 
-            <div class="orderAddressTitle"><?php echo lang('payment_information');?></div>
+            <div class="orderAddressTitle"><?php echo lang('payment_information'); ?></div>
             <div class="orderAddress">
                 <?php foreach ($order->payments as $payment) :?>
-                <div><?php echo $payment->description;?></div>
-                <?php endforeach;?>
+                <div><?php echo $payment->description; ?></div>
+                <?php endforeach; ?>
             </div>
 
         </div>

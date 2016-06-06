@@ -1,6 +1,7 @@
-<?php  if (! defined('BASEPATH')) {
+<?php
+ if (!defined('BASEPATH')) {
      exit('No direct script access allowed');
-}
+ }
 
 class Auth
 {
@@ -11,7 +12,7 @@ class Auth
         if an admin's access level gets changed while they're logged in
         the system will act accordingly.
         */
-        
+
         $admin = CI::session()->userdata('admin');
 
         CI::db()->select('access');
@@ -19,11 +20,12 @@ class Auth
         CI::db()->limit(1);
         $result = CI::db()->get('admin');
         $result = $result->row();
-        
+
         //result should be an object I was getting odd errors in relation to the object.
         //if $result is an array then the problem is present.
         if (!$result || is_array($result)) {
             $this->logout();
+
             return false;
         }
     //  echo $result->access;
@@ -41,7 +43,7 @@ class Auth
             }
         }
     }
-    
+
     /*
     this checks to see if the admin is logged in
     we can provide a link to redirect to, and for the login page, we have $defaultRedirect,
@@ -49,14 +51,14 @@ class Auth
     */
     public function isLoggedIn($redirect = false, $defaultRedirect = true)
     {
-    
+
         //var_dump(CI::session()->userdata('session_id'));
 
         //$redirect allows us to choose where a customer will get redirected to after they login
         //$defaultRedirect points is to the login page, if you do not want this, you can set it to false and then redirect wherever you wish.
 
         $admin = CI::session()->userdata('admin');
-        
+
         if (!$admin) {
             //check the cookie
             if (isset($_COOKIE['AvonleaAdmin'])) {
@@ -68,12 +70,12 @@ class Auth
                         unset($result['password']);
                         unset($result['hash']);
 
-                        CI::session()->set_userdata(['admin'=>$result]);
+                        CI::session()->set_userdata(['admin' => $result]);
 
                         if ($redirect) {
                             CI::session()->set_flashdata('redirect', $redirect);
                         }
-                            
+
                         if ($defaultRedirect) {
                             redirect(CI::uri()->uri_string());
                         }
@@ -90,6 +92,7 @@ class Auth
             return true;
         }
     }
+
     /*
     this function does the logging in.
     */
@@ -105,11 +108,11 @@ class Auth
         CI::db()->limit(1);
         $result = CI::db()->get('admin');
         $result = $result->row_array();
-        
-        if (password_verify($password, $result['password']) ===true && sizeof($result) > 0) {
+
+        if (password_verify($password, $result['password']) === true && count($result) > 0) {
             if ($remember) {
                 //generate a remember cookie
-                $loginCred =  sha1($username.$result['password']);
+                $loginCred = sha1($username.$result['password']);
                 $this->generateCookie($loginCred, strtotime('+6 months')); //remember the user for 6 months
             }
 
@@ -118,14 +121,14 @@ class Auth
             unset($result['hash']);
 
             //save the session
-            CI::session()->set_userdata(['admin'=>$result]);
+            CI::session()->set_userdata(['admin' => $result]);
 
             return true;
         } else {
             return false;
         }
     }
-    
+
     private function generateCookie($data, $expire)
     {
         setcookie('AvonleaAdmin', $data, $expire, '/', $_SERVER['HTTP_HOST'], config_item('ssl_support'), true);
@@ -138,7 +141,7 @@ class Auth
     {
         CI::session()->unset_userdata('admin');
         //force expire the cookie
-        $this->generateCookie('[]', time()-3600);
+        $this->generateCookie('[]', time() - 3600);
     }
 
     /*
@@ -150,11 +153,11 @@ class Auth
         if ($admin) {
             CI::load()->helper('string');
             CI::load()->library('email');
-            
+
             $newPassword = random_string('alnum', 8);
             $admin['password'] = password_hash($newPassword, PASSWORD_DEFAULT);
             $this->save($admin);
-            
+
             \Avonlea\Emails::resetPassword($newPassword, $admin['email']);
 
             return true;
@@ -162,7 +165,7 @@ class Auth
             return false;
         }
     }
-    
+
     /*
     This function gets the admin by their username address and returns the values in an array
     it is not intended to be called outside this class
@@ -175,13 +178,13 @@ class Auth
         $result = CI::db()->get('admin');
         $result = $result->row_array();
 
-        if (sizeof($result) > 0) {
+        if (count($result) > 0) {
             return $result;
         } else {
             return false;
         }
     }
-    
+
     /*
     This function takes admin array and inserts/updates it to the database
     */
@@ -194,8 +197,7 @@ class Auth
             CI::db()->insert('admin', $admin);
         }
     }
-    
-    
+
     /*
     This function gets a complete list of all admin
     */
@@ -208,7 +210,7 @@ class Auth
         CI::db()->order_by('username', 'ASC');
         $result = CI::db()->get('admin');
         $result = $result->result();
-        
+
         return $result;
     }
 
@@ -224,21 +226,21 @@ class Auth
 
         return $result;
     }
-    
+
     public function checkId($str)
     {
         CI::db()->select('id');
         CI::db()->from('admin');
         CI::db()->where('id', $str);
         $count = CI::db()->count_all_results();
-        
+
         if ($count > 0) {
             return true;
         } else {
             return false;
         }
     }
-    
+
     public function checkUsername($str, $id = false)
     {
         CI::db()->select('username');
@@ -248,7 +250,7 @@ class Auth
             CI::db()->where('id !=', $id);
         }
         $count = CI::db()->count_all_results();
-        
+
         if ($count > 0) {
             return true;
         } else {
@@ -259,7 +261,7 @@ class Auth
     public function delete($id)
     {
         if ($this->checkId($id)) {
-            $admin  = $this->getAdmin($id);
+            $admin = $this->getAdmin($id);
             CI::db()->where('id', $id);
             CI::db()->limit(1);
             CI::db()->delete('admin');

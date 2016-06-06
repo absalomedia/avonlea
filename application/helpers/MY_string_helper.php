@@ -15,19 +15,19 @@ function form_decode(&$x)
             $y = form_decode($y);
         }
     }
-    
+
     if (is_string($x)) {
-        $x    = full_decode($x);
+        $x = full_decode($x);
     }
-    
+
     return $x;
 }
 
 function my_character_limiter($str, $n = 500, $end_char = '&#8230;')
 {
     $output = substr($str, 0, $n);
-    if (strlen($str)>$n) {
-        $output.=$end_char;
+    if (strlen($str) > $n) {
+        $output .= $end_char;
     }
 
     return $output;
@@ -39,11 +39,11 @@ function generate_code($length = 16)
 {
     $vowels = '0123';
     $consonants = '456789ABCDEF';
- 
+
     $password = '';
     $alt = time() % 2;
     for ($i = 0; $i < $length; $i++) {
-        if ($alt ===1) {
+        if ($alt === 1) {
             $password .= $consonants[(rand() % strlen($consonants))];
             $alt = 0;
         } else {
@@ -51,5 +51,6 @@ function generate_code($length = 16)
             $alt = 1;
         }
     }
+
     return $password;
 }

@@ -1,25 +1,23 @@
 <?php namespace Avonlea\Controller;
 
 /**
- * Addresses Class
+ * Addresses Class.
  *
- * @package     Avonlea
- * @subpackage  Controllers
  * @category    Addresses
+ *
  * @author      Absalom Media
+ *
  * @link        http://Avonleadv.com
  */
-
 class Addresses extends Front
 {
-
     public $customer;
 
     public function __construct()
     {
         parent::__construct();
 
-        \CI::load()->model(array('Locations'));
+        \CI::load()->model(['Locations']);
         $this->customer = \CI::Login()->customer();
     }
 
@@ -54,7 +52,7 @@ class Addresses extends Front
 
 
         if ($id != 0) {
-            $a  = \CI::Customers()->getAddress($id);
+            $a = \CI::Customers()->getAddress($id);
 
             if ($a['customer_id'] != $this->customer->id) {
                 redirect('addresses/form'); // don't allow cross-customer editing
@@ -67,7 +65,7 @@ class Addresses extends Front
         //get the countries list for the dropdown
         $data['countries_menu'] = \CI::Locations()->get_countries_menu();
 
-        if ($id==0) {
+        if ($id == 0) {
             //if there is no set ID, the get the zones of the first country in the countries menu
             $data['zones_menu'] = \CI::Locations()->get_zones_menu(array_shift((array_keys($data['countries_menu']))));
         } else {
@@ -91,7 +89,7 @@ class Addresses extends Front
             $this->partial('address_form', $data);
         } else {
             $a = [];
-            $a['id'] = ($id==0) ? '' : $id;
+            $a['id'] = ($id == 0) ? '' : $id;
             $a['customer_id'] = $this->customer->id;
             $a['company'] = \CI::input()->post('company');
             $a['firstname'] = \CI::input()->post('firstname');
@@ -105,7 +103,7 @@ class Addresses extends Front
 
             // get zone / country data using the zone id submitted as state
             $country = \CI::Locations()->get_country(assign_value('country_id'));
-            $zone    = \CI::Locations()->get_zone(assign_value('zone_id'));
+            $zone = \CI::Locations()->get_zone(assign_value('zone_id'));
             if (!empty($country)) {
                 $a['zone'] = $zone->code;  // save the state for output formatted addresses
                 $a['country'] = $country->name; // some shipping libraries require country name
@@ -127,7 +125,7 @@ class Addresses extends Front
 
     public function getZoneOptions($id)
     {
-        $zones  = \CI::Locations()->get_zones_menu($id);
+        $zones = \CI::Locations()->get_zones_menu($id);
 
         foreach ($zones as $id => $z) :?>
 

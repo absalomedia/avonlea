@@ -1,7 +1,7 @@
 <?php
+
 class Settings
 {
-
     public function getSettings($code)
     {
         CI::db()->where('code', $code);
@@ -9,11 +9,12 @@ class Settings
 
         $return = [];
         foreach ($result->result() as $results) {
-            $return[$results->setting_key]  = $results->setting;
+            $return[$results->setting_key] = $results->setting;
         }
+
         return $return;
     }
-    
+
     /*
     settings should be an array
     array('setting_key'=>'setting')
@@ -24,19 +25,19 @@ class Settings
     {
         //get the settings first, this way, we can know if we need to update or insert settings
         //we're going to create an array of keys for the requested code
-        $settings   = $this->getSettings($code);
+        $settings = $this->getSettings($code);
 
         //loop through the settings and add each one as a new row
         foreach ($values as $key => $value) {
             //if the key currently exists, update the setting
             if (array_key_exists($key, $settings)) {
-                $update = array('setting'=>$value);
+                $update = ['setting' => $value];
                 CI::db()->where('code', $code);
                 CI::db()->where('setting_key', $key);
                 CI::db()->update('settings', $update);
             } //if the key does not exist, add it
             else {
-                $insert = array('code'=>$code, 'setting_key'=>$key, 'setting'=>$value);
+                $insert = ['code' => $code, 'setting_key' => $key, 'setting' => $value];
                 CI::db()->insert('settings', $insert);
             }
         }

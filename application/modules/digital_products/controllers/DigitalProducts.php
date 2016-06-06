@@ -1,18 +1,18 @@
-<?php namespace Avonlea\Controller;
+<?php
+
+namespace Avonlea\Controller;
 
 /**
- * DigitalProducts Class
+ * DigitalProducts Class.
  *
- * @package     Avonlea
- * @subpackage  Controllers
  * @category    DigitalProducts
+ *
  * @author      Absalom Media
+ *
  * @link        http://Avonleadv.com
  */
-
 class DigitalProducts extends Front
 {
-
     public $customer;
 
     public function __construct()
@@ -26,7 +26,7 @@ class DigitalProducts extends Front
         //get the order.
         $order = \CI::db()->where('orders.id', $orderId)->join('customers', 'customers.id = orders.customer_id')->get('orders')->row();
         $file = \CI::db()->where('order_item_files.id', $fileId)->join('digital_products', 'digital_products.id = order_item_files.file_id')->get('order_item_files')->row();
-        
+
         if ($order && $file) {
             if ($order->is_guest || $order->customer_id === $this->customer->id) {
                 if ($file->max_downloads === 0 || $file->downloads_used < $file->max_downloads) {

@@ -1,4 +1,5 @@
 <?php
+
 defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
@@ -17,7 +18,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 | environments.
 |
 */
-$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] === 443) ? "https://" : "http://";
+$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] === 443) ? 'https://' : 'http://';
 $config['base_url'] = $protocol.$_SERVER['HTTP_HOST'];
 
 /*
@@ -47,7 +48,7 @@ $config['index_page'] = '';
 |
 | WARNING: If you set this to 'PATH_INFO', URIs will always be URL-decoded!
 */
-$config['uri_protocol']     = 'REQUEST_URI';
+$config['uri_protocol'] = 'REQUEST_URI';
 
 /*
 |--------------------------------------------------------------------------
@@ -72,7 +73,7 @@ $config['url_suffix'] = '';
 | than english.
 |
 */
-$config['language']     = 'english';
+$config['language'] = 'english';
 
 /*
 |--------------------------------------------------------------------------
@@ -377,11 +378,11 @@ $config['sess_regenerate_destroy'] = false;
 |       'cookie_httponly') will also affect sessions.
 |
 */
-$config['cookie_prefix']    = '';
-$config['cookie_domain']    = '';
-$config['cookie_path']      = '/';
-$config['cookie_secure']    = false;
-$config['cookie_httponly']  = false;
+$config['cookie_prefix'] = '';
+$config['cookie_domain'] = '';
+$config['cookie_path'] = '/';
+$config['cookie_secure'] = false;
+$config['cookie_httponly'] = false;
 
 /*
 |--------------------------------------------------------------------------
@@ -430,7 +431,7 @@ $config['csrf_token_name'] = 'csrf_test_name';
 $config['csrf_cookie_name'] = 'csrf_cookie_name';
 $config['csrf_expire'] = 7200;
 $config['csrf_regenerate'] = true;
-$config['csrf_exclude_uris'] = array();
+$config['csrf_exclude_uris'] = [];
 
 /*
 |--------------------------------------------------------------------------

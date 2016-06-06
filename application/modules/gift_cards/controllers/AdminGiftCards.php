@@ -1,18 +1,18 @@
-<?php namespace Avonlea\Controller;
+<?php
+
+namespace Avonlea\Controller;
 
 /**
- * AdminDigitalProducts Class
+ * AdminDigitalProducts Class.
  *
- * @package     Avonlea
- * @subpackage  Controllers
  * @category    AdminDigitalProducts
+ *
  * @author      Absalom Media
+ *
  * @link        http://Avonleadv.com
  */
-
 class AdminGiftCards extends Admin
 {
-
     public function __construct()
     {
         parent::__construct();

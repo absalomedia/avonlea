@@ -1,14 +1,13 @@
 <?php
 /**
- * GiftCards Class
+ * GiftCards Class.
  *
- * @package     Avonlea
- * @subpackage  Models
  * @category    GiftCards
+ *
  * @author      Absalom Media
+ *
  * @link        http://Avonleadv.com
  */
-
 class Giftcards extends CI_Model
 {
     // check the date and/or balance
@@ -18,6 +17,7 @@ class Giftcards extends CI_Model
         if ($this->getBalance($card) === 0) {
             return false;
         }
+
         return true;
     }
 
@@ -46,6 +46,7 @@ class Giftcards extends CI_Model
         CI::db()->select('gift_cards.*, orders.status', false);
         CI::db()->join('orders', 'gift_cards.order_number = orders.order_number', 'left');
         CI::db()->order_by('gift_cards.id', 'DESC');
+
         return CI::db()->get('gift_cards')->result();
     }
 
@@ -63,6 +64,7 @@ class Giftcards extends CI_Model
     {
         CI::db()->where('code', $code);
         $res = CI::db()->get('gift_cards');
+
         return $res->row();
     }
 

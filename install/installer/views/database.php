@@ -63,12 +63,12 @@ $query_builder = TRUE;
 
 $db['default'] = array(
     'dsn'   => '',
-    'hostname' => '<?php echo $hostname;?>',
-    'username' => '<?php echo $username;?>',
-    'password' => '<?php echo $password;?>',
-    'database' => '<?php echo $database;?>',
+    'hostname' => '<?php echo $hostname; ?>',
+    'username' => '<?php echo $username; ?>',
+    'password' => '<?php echo $password; ?>',
+    'database' => '<?php echo $database; ?>',
     'dbdriver' => 'mysqli',
-    'dbprefix' => '<?php echo $prefix;?>',
+    'dbprefix' => '<?php echo $prefix; ?>',
     'pconnect' => FALSE,
     'db_debug' => TRUE,
     'cache_on' => FALSE,
