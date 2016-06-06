@@ -44,7 +44,7 @@ class Login extends CI_Model
 
     /**
      * @param string $data
-     * @param integer $expire
+     * @param int    $expire
      */
     private function generateCookie($data, $expire)
     {

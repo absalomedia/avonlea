@@ -118,7 +118,7 @@ class Avonlea
     }
 
     /**
-     * @param integer $numitem
+     * @param int $numitem
      */
     private function calculateCouponDiscounts($numitem)
     {
