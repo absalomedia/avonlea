@@ -7,3 +7,5 @@ linting: true
 finder:
   exclude:
     - "system"
+  name:
+    - "*.php"
