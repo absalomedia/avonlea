@@ -148,7 +148,7 @@ class Console
         }
 
         self::$logs['console'][] = $item;
-        self::$logs[$log]            += 1;
+        self::$logs[$log] += 1;
     }
 
     //--------------------------------------------------------------------

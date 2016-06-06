@@ -1,7 +1,7 @@
 <?php
- if (!defined('BASEPATH')) {
-     exit('No direct script access allowed');
- }
+    if (!defined('BASEPATH')) {
+        exit('No direct script access allowed');
+    }
 /**
  * CodeIgniter.
  *
@@ -53,7 +53,7 @@ class CI_Profiler extends CI_Loader
                                         'view_data',
                                         ];
 
-    protected $_sections = [];        // Stores _compile_x() results
+    protected $_sections = []; // Stores _compile_x() results
 
     protected $_query_toggle_count = 25;
 
