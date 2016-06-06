@@ -36,7 +36,7 @@ class MY_Image_lib extends CI_Image_lib
         }
 
         if (($this->width != $new_width) && ($this->height != $new_height)) {
-            if ($this->master_dim    === 'height') {
+            if ($this->master_dim === 'height') {
                 $this->width = $new_width;
             } else {
                 $this->height = $new_height;

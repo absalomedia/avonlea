@@ -1,20 +1,20 @@
 <?php
- if (!defined('BASEPATH')) {
-     exit('No direct script access allowed');
- }
+    if (!defined('BASEPATH')) {
+        exit('No direct script access allowed');
+    }
 /**
- * CodeIgniter.
- *
- * An open source application development framework for PHP 5.1.6 or newer
- *
- * @author      ExpressionEngine Dev Team
- * @copyright   Copyright (c) 2008 - 2011, EllisLab, Inc.
- * @license         http://codeigniter.com/user_guide/license.html
- *
- * @link        http://codeigniter.com
- * @since       Version 1.0
- * @filesource
- */
+     * CodeIgniter.
+     *
+     * An open source application development framework for PHP 5.1.6 or newer
+     *
+     * @author      ExpressionEngine Dev Team
+     * @copyright   Copyright (c) 2008 - 2011, EllisLab, Inc.
+     * @license         http://codeigniter.com/user_guide/license.html
+     *
+     * @link        http://codeigniter.com
+     * @since       Version 1.0
+     * @filesource
+     */
 
 // ------------------------------------------------------------------------
 
@@ -53,7 +53,7 @@ class CI_Profiler extends CI_Loader
                                         'view_data',
                                         ];
 
-    protected $_sections = [];        // Stores _compile_x() results
+    protected $_sections = []; // Stores _compile_x() results
 
     protected $_query_toggle_count = 25;
 
