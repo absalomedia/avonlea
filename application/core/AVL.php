@@ -8,7 +8,7 @@
  *
  * @link        http://Avonleadv.com
  */
-defined('BASEPATH') or exit('No direct script access allowed');
+defined('BASEPATH') || exit('No direct script access allowed');
 
 /**
  * Static Avonlea Object.
