@@ -1,7 +1,13 @@
 <?php
-
-namespace Invoice;
-
+/**
+ * Invoice Class.
+ *
+ * @category Invoice
+ *
+ * @author Absalom Media
+ *
+ * @link http://Avonleadv.com
+ */
 class Invoice extends CI_Model
 {
     public function __construct()
