@@ -21,23 +21,6 @@ echo config_item('company_name'); ?></title>
 <?php
 $_css = new CSSCrunch();
 
-/*
-$_css->addFile('gumbo/normalize');
-$_css->addFile('gumbo/base');
-$_css->addFile('gumbo/text');
-$_css->addFile('gumbo/banners');
-$_css->addFile('gumbo/buttons');
-$_css->addFile('gumbo/alerts');
-$_css->addFile('gumbo/forms');
-$_css->addFile('gumbo/grid');
-$_css->addFile('gumbo/tabs');
-$_css->addFile('gumbo/tables');
-$_css->addFile('gumbo/pagination');
-$_css->addFile('gumbo/nav');
-$_css->addFile('gumbo/colors');
-$_css->addFile('gumbo/tray');
-*/
-
 $_css->addFile('fonts');
 $_css->addFile('animate.min');
 $_css->addFile('pure.min');
