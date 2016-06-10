@@ -156,9 +156,13 @@ $(document).ready(function(){
         </div>
     </nav>
 <?php endif; ?>
-<div class="cover-image manager"></div>
+<div class="cover-image manager <?php if (CI::auth()->isLoggedIn(false, false)) :
+?>logged<?php
+endif; ?>"></div>
 <div id="main">
-    <div class="core">
+    <div class="content <?php if (CI::auth()->isLoggedIn(false, false)) :
+?>admin<?php
+endif; ?>">
 
     <?php
     //lets have the flashdata overright "$message" if it exists
