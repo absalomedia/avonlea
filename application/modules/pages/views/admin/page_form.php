@@ -45,14 +45,14 @@
             $options = [];
             $options[-1] = lang('hidden');
             $options[0] = lang('top_level');
-            function page_loop($pages, $dash = '', $id = 0)
+            function pageLooper($pages, $dash = '', $id = 0)
             {
                 $options = [];
                 foreach ($pages as $page) {
                     //this is to stop the whole tree of a particular link from showing up while editing it
                     if ($id != $page->id) {
                         $options[$page->id] = $dash.' '.$page->title;
-                        $options = $options + page_loop($page->children, $dash.'-', $id);
+                        $options = $options + pageLooper($page->children, $dash.'-', $id);
                     }
                 }
 
