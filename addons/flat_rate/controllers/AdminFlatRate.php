@@ -16,7 +16,7 @@ class AdminFlatRate extends Admin
     public function __construct()
     {
         parent::__construct();
-        \CI::auth()->check_access('Admin', true);
+        \CI::auth()->checkAccess('Admin', true);
         \CI::lang()->load('flat_rate');
     }
 
@@ -24,8 +24,8 @@ class AdminFlatRate extends Admin
     public function install()
     {
         //set a default blank setting for flatrate shipping
-        \CI::Settings()->save_settings('shipping_modules', ['FlatRate' => '1']);
-        \CI::Settings()->save_settings('FlatRate', ['enabled' => '1', 'rate' => 0]);
+        \CI::Settings()->saveSettings('shipping_modules', ['FlatRate' => '1']);
+        \CI::Settings()->saveSettings('FlatRate', ['enabled' => '1', 'rate' => 0]);
 
         redirect('admin/shipping');
     }
@@ -33,7 +33,7 @@ class AdminFlatRate extends Admin
     public function uninstall()
     {
         \CI::Settings()->delete_setting('shipping_modules', 'FlatRate');
-        \CI::Settings()->delete_settings('FlatRate');
+        \CI::Settings()->deleteSettings('FlatRate');
         redirect('admin/shipping');
     }
 
@@ -52,7 +52,7 @@ class AdminFlatRate extends Admin
 
             $this->view('flat_rate_form', $settings);
         } else {
-            \CI::Settings()->save_settings('FlatRate', \CI::input()->post());
+            \CI::Settings()->saveSettings('FlatRate', \CI::input()->post());
             redirect('admin/shipping');
         }
     }

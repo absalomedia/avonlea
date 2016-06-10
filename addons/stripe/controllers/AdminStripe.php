@@ -17,7 +17,7 @@ class AdminStripe extends Admin
     {
         parent::__construct();
 
-        \CI::auth()->check_access('Admin', true);
+        \CI::auth()->checkAccess('Admin', true);
         \CI::lang()->load('cod');
     }
 
@@ -25,8 +25,8 @@ class AdminStripe extends Admin
     public function install()
     {
         //set a default blank setting for flatrate shipping
-        \CI::Settings()->save_settings('payment_modules', ['cod' => '1']);
-        \CI::Settings()->save_settings('cod', ['enabled' => '1']);
+        \CI::Settings()->saveSettings('payment_modules', ['cod' => '1']);
+        \CI::Settings()->saveSettings('cod', ['enabled' => '1']);
 
         redirect('admin/payments');
     }
@@ -34,7 +34,7 @@ class AdminStripe extends Admin
     public function uninstall()
     {
         \CI::Settings()->delete_setting('payment_modules', 'cod');
-        \CI::Settings()->delete_settings('cod');
+        \CI::Settings()->deleteSettings('cod');
         redirect('admin/payments');
     }
 
@@ -53,7 +53,7 @@ class AdminStripe extends Admin
 
             $this->view('cod_form', ['enabled' => $enabled]);
         } else {
-            \CI::Settings()->save_settings('cod', ['enabled' => $_POST['enabled']]);
+            \CI::Settings()->saveSettings('cod', ['enabled' => $_POST['enabled']]);
             redirect('admin/payments');
         }
     }
