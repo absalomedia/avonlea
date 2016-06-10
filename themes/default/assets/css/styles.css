@@ -1325,3 +1325,10 @@ login_content form input[type="submit"],#content form .submit{float: left; margi
 .manager {
      background-image:url(../img/lake-fyans-by-john-gayler-2012.jpg);
 }
+
+#main {
+    background-color: #ffffff;
+    color: #ffffff;
+    display: block;
+    z-index: 100;
+}

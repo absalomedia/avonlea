@@ -15,7 +15,9 @@ $_css->addFile('animate.min');
 $_css->addFile('pure.min');
 $_css->addFile('icono.min');
 $_css->addFile('styles');
+$_css->addFile('side-menu');
 $_css->addFile('profiler');
+
 
 $_js = new JSCrunch();
 
@@ -82,21 +84,20 @@ $(document).ready(function(){
 </head>
 <body>
 <?php if (CI::auth()->isLoggedIn(false, false)) :?>
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#primary-navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="<?php echo site_url('admin'); ?>">Avonlea</a>
-            </div>
+    <div id="layout">
+    <!-- Menu toggle -->
+    <a href="#menu" id="menuLink" class="menu-link">
+        <!-- Hamburger icon -->
+        <span></span>
+    </a>
 
+    <nav id="menu" role="navigation">
+        <div class="pure-menu">
 
-            <div class="collapse navbar-collapse" id="primary-navbar">
-                <ul class="nav navbar-nav">
+        <a class="pure-menu-heading" href="<?php echo site_url('admin'); ?>">Avonlea</a>
+
+            <ul class="pure-menu-list">
+
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php echo lang('common_sales'); ?> <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
@@ -110,10 +111,7 @@ $(document).ready(function(){
                             <?php endif; ?>
                         </ul>
                     </li>
-
-                    <?php
-                    // Restrict access to Admins only
-                    if (CI::auth()->checkAccess('Admin')) : ?>
+<?php if (CI::auth()->checkAccess('Admin')) : ?>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php echo lang('common_catalog'); ?> <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
@@ -143,7 +141,7 @@ $(document).ready(function(){
                             <li><a href="<?php echo site_url('admin/sitemap'); ?>"><?php echo 'Sitemap'; ?></a></li>
                         </ul>
                     </li>
-                    <?php                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         endif; ?>
+                    <?php endif; ?>
 
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php echo lang('common_actions'); ?> <span class="caret"></span></a>
@@ -153,14 +151,15 @@ $(document).ready(function(){
                             <li><a href="<?php echo site_url('admin/logout'); ?>"><?php echo lang('common_log_out'); ?></a></li>
                         </ul>
                     </li>
-                </ul>
-            </div>
+
+            </ul>
         </div>
     </nav>
 <?php endif; ?>
 <div class="cover-image manager"></div>
+<div id="main">
+    <div class="core">
 
-<div class="container">
     <?php
     //lets have the flashdata overright "$message" if it exists
     if (CI::session()->flashdata('message')) {
