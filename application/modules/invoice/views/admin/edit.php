@@ -58,16 +58,16 @@ $this->load->view('header');
             </p>
           </td>
           <td><p><label><input type="checkbox" name="items[<?php echo $item_count; ?>][taxable]" value="1" onclick="recalculate_items();" <?php if ($item->taxable === 1) {
-            echo 'checked="checked" ';
-        }?>/><span><?php echo $this->lang->line('invoice_taxable'); ?>?</span></label></p></td>
-          <td nowrap="nowrap"><p><label><span><?php echo $this->lang->line('invoice_amount'); ?></span><?php echo $this->settings_model->get_setting('currency_symbol'); ?><input type="text" id="amount" name="items[<?php echo $item_count; ?>][amount]" size="5" value="<?php echo $item->amount; ?>" onkeyup="recalculate_items();" value="" /></label></p></td>
+                echo 'checked="checked" ';
+}?>/><span><?php echo $this->lang->line('invoice_taxable'); ?>?</span></label></p></td>
+          <td nowrap="nowrap"><p><label><span><?php echo $this->lang->line('invoice_amount'); ?></span><?php echo \CI::Settings()->getSettings('currency_symbol'); ?><input type="text" id="amount" name="items[<?php echo $item_count; ?>][amount]" size="5" value="<?php echo $item->amount; ?>" onkeyup="recalculate_items();" value="" /></label></p></td>
           <td>
             <?php if ($item_count > 1) :?>
           <p><img alt="X" src="<?php echo base_url(); ?>img/cancel.png" onclick="$('item_area').removeChild($('item<?php echo $item_count; ?>'));"/></p>
             <?php endif; ?>&nbsp;
           </td>
         </tr>
-        <?php                                                                                                                                                                                                                 endforeach; ?>
+        <?php                                                                                                                                                                                                                                                                                                                                                                                                                                 endforeach; ?>
 
         </tbody>
       </table>
@@ -76,14 +76,14 @@ $this->load->view('header');
     </div>
 
     <div class="amount_listing">
-      <p><?php echo $this->lang->line('invoice_amount'); ?> <?php echo $this->settings_model->get_setting('currency_symbol'); ?><span id="item_amount">0.00</span></p>
+      <p><?php echo $this->lang->line('invoice_amount'); ?> <?php echo \CI::Settings()->getSettings('currency_symbol'); ?><span id="item_amount">0.00</span></p>
         <?php if ($row->tax1_rate > 0) :?>
-      <p><?php echo $row->tax1_desc; ?> (<?php echo $row->tax1_rate; ?>%) <?php echo $this->settings_model->get_setting('currency_symbol'); ?><span id="item_tax1amount">0.00</span></p>
+      <p><?php echo $row->tax1_desc; ?> (<?php echo $row->tax1_rate; ?>%) <?php echo \CI::Settings()->getSettings('currency_symbol'); ?><span id="item_tax1amount">0.00</span></p>
         <?php endif; ?>
         <?php if ($row->tax2_rate > 0) :?>
-      <p><?php echo $row->tax2_desc; ?> (<?php echo $row->tax2_rate; ?>%) <?php echo $this->settings_model->get_setting('currency_symbol'); ?><span id="item_tax2amount">0.00</span></p>
+      <p><?php echo $row->tax2_desc; ?> (<?php echo $row->tax2_rate; ?>%) <?php echo \CI::Settings()->getSettings('currency_symbol'); ?><span id="item_tax2amount">0.00</span></p>
         <?php endif; ?>
-      <p><?php echo $this->lang->line('invoice_total'); ?> <?php echo $this->settings_model->get_setting('currency_symbol'); ?><span id="item_total_amount">0.00</span></p>
+      <p><?php echo $this->lang->line('invoice_total'); ?> <?php echo \CI::Settings()->getSettings('currency_symbol'); ?><span id="item_total_amount">0.00</span></p>
     </div>
 
     <p>
@@ -93,9 +93,9 @@ $this->load->view('header');
     </p>
 
 		<p><label>Recur in <input type="text" name="recur_interval" size="2" maxlength="11" value="<?php echo $row->recur_interval; ?>"> day(s) (leave blank to disable)</label></p>
-		<p>
+        <p>
 			<input type="submit" name="createInvoice" id="createInvoice" value="<?php echo $this->lang->line($button_label); ?>" />
-		</p>
+        </p>
   </form>
 
 <?php

@@ -20,13 +20,13 @@ class PayNow extends Controller
 	function getcurrency()
 	{
 
-		if ($this->settings_model->get_setting('currency_type'))
+		if (\CI::Settings()->getSettings('currency_type'))
 		{
-			return $this->settings_model->get_setting('currency_type');
+			return \CI::Settings()->getSettings('currency_type');
 		}
 		else
 		{		
-			$cur_symbol = $this->settings_model->get_setting('currency_symbol');
+			$cur_symbol = \CI::Settings()->getSettings('currency_symbol');
 			
 			if ($cur_symbol == htmlentities('$')) 
 			{
@@ -54,7 +54,7 @@ class PayNow extends Controller
 		if (!$id)
 			redirect('');
 			
-		$data['row'] = $this->invoices_model->getSingleInvoice($id)->row();
+		$data['row'] = \CI::Invoices()->getSingleInvoice($id)->row();
 		
 		if (!$data['row'])
 			redirect('');
@@ -65,7 +65,7 @@ class PayNow extends Controller
 			</head>
 			<body>
 				<h1 style="text-align: center">Redirecting to Google Checkout ...</h1>
-				<form action="https://checkout.google.com/api/checkout/v2/checkoutForm/Merchant/'.$this->settings_model->get_setting('google_merchant_id').'" id="BB_BuyButtonForm" method="post" name="BB_BuyButtonForm">
+				<form action="https://checkout.google.com/api/checkout/v2/checkoutForm/Merchant/'.\CI::Settings()->getSettings('google_merchant_id').'" id="BB_BuyButtonForm" method="post" name="BB_BuyButtonForm">
 					<input name="item_name_1" type="hidden" value="Invoice '.$data['row']->invoice_number.'" />
 					<input name="item_description_1" type="hidden" value="" />
 					<input name="item_quantity_1" type="hidden" value="1" />
@@ -85,7 +85,7 @@ class PayNow extends Controller
 		if (!$id)
 			redirect('');
 			
-		$data['row'] = $this->invoices_model->getSingleInvoice($id)->row();
+		$data['row'] = \CI::Invoices()->getSingleInvoice($id)->row();
 		
 		if (!$data['row'])
 			redirect('');
@@ -97,7 +97,7 @@ class PayNow extends Controller
 			<body>
 				<h1 style="text-align: center">Redirecting to PayPal ...</h1>
 				<form action="https://www.paypal.com/cgi-bin/webscr" method="post" name="paypalredirect">
-					<input type="hidden" name="business" value="'.$this->settings_model->get_setting('paypal_email').'" />
+					<input type="hidden" name="business" value="'.\CI::Settings()->getSettings('paypal_email').'" />
 					<input type="hidden" name="cmd" value="_xclick" />
 					<input type="hidden" name="item_name" value="Invoice '.$data['row']->invoice_number.'" /> 
 					<input type="hidden" name="amount" value="'.($data['row']->total_with_tax - $data['row']->amount_paid).'" />

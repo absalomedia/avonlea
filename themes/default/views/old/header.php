@@ -32,7 +32,7 @@ echo ': '.$page_title;
 <meta name="author" content="Derek Allard - http://www.derekallard.com" />
 <meta name="description" content="BorealInvoices" />
 <meta name="keywords" content="BorealInvoices, Online Invoicing" />
-<?php if ($this->settings_model->get_setting('demo_flag') == 'y'):?>
+<?php if (\CI::Settings()->getSettings('demo_flag') == 'y') :?>
 <meta name="robots" content="all" />
 <?php else :?>
 <meta name="robots" content="noindex, nofollow" />
@@ -51,7 +51,7 @@ echo ': '.$page_title;
 <script type="text/javascript">
 base_url = "<?php echo site_url(); ?>/";
 base_url_no_index = "<?php echo base_url(); ?>";
-bi_currency_symbol = new String("<?php echo str_replace('&#0128;', '€', $this->settings_model->get_setting('currency_symbol')); ?>");
+bi_currency_symbol = new String("<?php echo str_replace('&#0128;', '€', \CI::Settings()->getSettings('currency_symbol')); ?>");
 lang_invoice_date_issued = new String("<?php echo $this->lang->line('invoice_date_issued'); ?> ");
 lang_invoice_change = new String("<?php echo $this->lang->line('actions_change'); ?>");
 lang_amount_error = new String("<?php echo $this->lang->line('invoice_amount_error'); ?>");
@@ -73,43 +73,43 @@ lang_taxable = new String("<?php echo $this->lang->line('invoice_taxable'); ?>")
 lang_amount = new String("<?php echo $this->lang->line('invoice_amount'); ?>");
 </script>
 <?php
-    if (isset($extraHeadContent)) {
-        echo $extraHeadContent;
-    }
+if (isset($extraHeadContent)) {
+    echo $extraHeadContent;
+}
 ?>
 </head>
 <body>
 <div id="allHolder">
-	<div id="container">
-		<div id="masthead">
+    <div id="container">
+        <div id="masthead">
 
 			<h1 id="bamboo_logo"><a href="<?php echo site_url()?>"><?php echo $this->lang->line('bambooinvoice_logo'); ?></a></h1>
 
-			<?php if ($this->session->userdata('logged_in')):?>
-			<ul id="submenu">
+			<?php if ($this->session->userdata('logged_in')) :?>
+            <ul id="submenu">
 				<li><a href="<?php echo site_url('help')?>" class="submenu_link help"><?php echo $this->lang->line('menu_help'); ?></a></li>
 				<li><a href="<?php echo site_url('logout/confirm')?>" class="submenu_link logout lbOn"><?php echo $this->lang->line('menu_logout'); ?></a></li>
-			</ul>
+            </ul>
 			<?php endif; ?>
 
-		</div>
+        </div>
 
-		<div id="invoice_action_menu">
-		<ul>
+        <div id="invoice_action_menu">
+        <ul>
 
-		<?php if ($this->session->userdata('logged_in')): ?>
+		<?php if ($this->session->userdata('logged_in')) : ?>
 
 			<li><?php echo anchor('', $this->lang->line('menu_root_system'), ['class' => 'dashboard']); ?></li>
 			<li><?php echo anchor('invoices', $this->lang->line('menu_invoice_summary'), ['class' => 'summaryinv']); ?></li>
 
-			<?php if (isset($clientList)): ?>
+			<?php if (isset($clientList)) : ?>
 				<li><?php echo anchor('invoices/newinvoice_first', $this->lang->line('menu_new_invoice'), ['class' => 'addinv createInvoice', 'id' => 'addinv']); ?></li>
 			<?php endif; ?>
 
-			<?php if (isset($invoiceOptions)): ?>
+			<?php if (isset($invoiceOptions)) : ?>
 				<li id="invnoteli"><a class="invnote" href="javascript:void(0);" onclick="Effect.BlindDown('private_note_form', {duration: '0.4'});"><?php echo $this->lang->line('menu_private_note'); ?></a></li>
 
-				<?php if ($row->amount_paid < $row->total_with_tax): ?>
+				<?php if ($row->amount_paid < $row->total_with_tax) : ?>
 					<li id="invpayli"><a class="invpayment" href="javascript:void(0);" onclick="Effect.BlindDown('enterPayment', {duration: '0.4'});"><?php echo $this->lang->line('menu_enter_payment'); ?></a></li>
 				<?php endif; ?>
 
@@ -118,7 +118,7 @@ lang_amount = new String("<?php echo $this->lang->line('invoice_amount'); ?>");
 				<li><?php echo anchor('invoices/pdf/'.$row->id, $this->lang->line('menu_generate_pdf'), ['class' => 'emailpdf']); ?></li>
 				<li id="invprintli"><?php echo anchor('', $this->lang->line('menu_print_invoice'), ['class' => 'invprint', 'onclick' => 'print(); return false;']); ?></li>
 
-				<?php if ($row->amount_paid < $row->total_with_tax): ?>
+				<?php if ($row->amount_paid < $row->total_with_tax) : ?>
 					<li><?php echo anchor('invoices/edit/'.$row->id, $this->lang->line('menu_edit_invoice'), ['class' => 'invedit']); ?></li>
 				<?php endif; ?>
 
@@ -128,26 +128,26 @@ lang_amount = new String("<?php echo $this->lang->line('invoice_amount'); ?>");
 
 			<?php endif; ?>
 
-		<?php else: ?>
+		<?php else : ?>
 
 		<li class="menu_promo"><?php echo $this->lang->line('menu_catchphrase'); ?></li>
 
 		<?php endif; ?>
 
-		</ul>
+        </ul>
 		<?php
         $quotes = $this->lang->line('menu_did_you_know_quotes');
         //echo '<p id="tip"><strong>' . $this->lang->line('menu_did_you_know') . '</strong><br />' . $quotes[array_rand($quotes)] . '</p>';
         ?>
-		</div>
-		<div id="main_content">
+        </div>
+        <div id="main_content">
 
-		<?php if ($this->session->userdata('logged_in') && isset($status_menu)):?>
-		<ul id="invoice_status_menu">
+		<?php if ($this->session->userdata('logged_in') && isset($status_menu)) :?>
+        <ul id="invoice_status_menu">
 			<li><?php echo anchor('invoices', $this->lang->line('invoice_summary')); ?></li>
 			<li><?php echo anchor('invoices/overdue', $this->lang->line('invoice_overdue')); ?></li>
 			<li><?php echo anchor('invoices/open', $this->lang->line('invoice_open')); ?></li>
 			<li><?php echo anchor('invoices/closed', $this->lang->line('invoice_closed')); ?></li>
 			<li><?php echo anchor('invoices/all', $this->lang->line('invoice_all_invoices')); ?></li>
-		</ul>
+        </ul>
 		<?php endif; ?>

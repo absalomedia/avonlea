@@ -1,5 +1,17 @@
 <?php
 
+namespace Avonlea\Controller;
+
+/**
+ * AdminInvocies Class.
+ *
+ * @category    AdminInvoices
+ *
+ * @author      Absalom Media
+ *
+ * @link        http://avonlea.absalom.net.au
+ */
+
 class Invoices extends Admin
 {
 
@@ -17,19 +29,19 @@ class Invoices extends Admin
 
     function index()
     {
-        $data['clientList'] = $this->clients_model->getAllClients(); // activate the option
+        $data['clientList'] = \CI::Clients()->getAllClients(); // activate the option
         $data['extraHeadContent'] = "<script type=\"text/javascript\" src=\"". base_url()."js/newinvoice.js\"></script>\n";
         $data['extraHeadContent'] .= "<script type=\"text/javascript\" src=\"". base_url()."js/search.js\"></script>\n";
         $data['extraHeadContent'] .= "<link type=\"text/css\" rel=\"stylesheet\" href=\"". base_url()."css/invoice.css\" />\n";
         $offset = (int) $this->uri->segment(3, 0);
 
-        $data['query'] = $this->invoices_model->getInvoices('open', $this->settings_model->get_setting('days_payment_due'), $offset, 5000);
+        $data['query'] =  \CI::Invoices()->getInvoices('open', \CI::Settings()->getSettings('days_payment_due'), $offset, 5000);
 
-        $data['short_description'] = $this->invoices_model->buildShortDescriptions();
+        $data['short_description'] = \CI::Invoices()->buildShortDescriptions();
 
         $data['total_rows'] = ($data['query']) ? $data['query']->num_rows() : 0;
 
-        $overdue_count = $this->invoices_model->getInvoices('overdue', $this->settings_model->get_setting('days_payment_due'), 0, 5000);
+        $overdue_count = \CI::Invoices()->getInvoices('overdue', \CI::Settings()->getSettings('days_payment_due'), 0, 5000);
 
         $data['overdue_count'] = ($overdue_count) ? $overdue_count->num_rows() : 0;
 
@@ -45,15 +57,15 @@ class Invoices extends Admin
 
     function overdue($offset = 0)
     {
-        $data['clientList'] = $this->clients_model->getAllClients(); // activate the option
+        $data['clientList'] = \CI::Clients()->getAllClients(); // activate the option
         $data['extraHeadContent'] = "<script type=\"text/javascript\" src=\"". base_url()."js/newinvoice.js\"></script>\n";
         $data['extraHeadContent'] .= "<link type=\"text/css\" rel=\"stylesheet\" href=\"". base_url()."css/invoice.css\" />\n";
 
-        $data['query'] = $this->invoices_model->getInvoices('overdue', $this->settings_model->get_setting('days_payment_due'), $offset, 20);
+        $data['query'] = \CI::Invoices()->getInvoices('overdue', \CI::Settings()->getSettings('days_payment_due'), $offset, 20);
 
         $data['total_rows'] = $data['query']->num_rows();
         $config['base_url'] = site_url('invoices/overdue');
-        $config['total_rows'] = $this->invoices_model->getInvoices('overdue', $this->settings_model->get_setting('days_payment_due'), 0, 10000)->num_rows();
+        $config['total_rows'] = \CI::Invoices()->getInvoices('overdue', \CI::Settings()->getSettings('days_payment_due'), 0, 10000)->num_rows();
         $this->pagination->initialize($config);
         $data['pagination'] = $this->pagination->create_links();
 
@@ -66,16 +78,16 @@ class Invoices extends Admin
 
     function open($offset = 0)
     {
-        $data['clientList'] = $this->clients_model->getAllClients(); // activate the option
+        $data['clientList'] = \CI::Clients()->getAllClients(); // activate the option
         $data['extraHeadContent'] = "<script type=\"text/javascript\" src=\"". base_url()."js/newinvoice.js\"></script>\n";
         $data['extraHeadContent'] .= "<link type=\"text/css\" rel=\"stylesheet\" href=\"". base_url()."css/invoice.css\" />\n";
 
-        $data['query'] = $this->invoices_model->getInvoices('open', $this->settings_model->get_setting('days_payment_due'), $offset, 20);
+        $data['query'] = \CI::Invoices()->getInvoices('open', \CI::Settings()->getSettings('days_payment_due'), $offset, 20);
 
         $data['total_rows'] = $data['query']->num_rows();
 
         $config['base_url'] = site_url('invoices/open');
-        $config['total_rows'] = $this->invoices_model->getInvoices('open', $this->settings_model->get_setting('days_payment_due'), 0, 10000)->num_rows();
+        $config['total_rows'] = \CI::Invoices()->getInvoices('open', \CI::Settings()->getSettings('days_payment_due'), 0, 10000)->num_rows();
         $this->pagination->initialize($config);
         $data['pagination'] = $this->pagination->create_links();
 
@@ -88,16 +100,16 @@ class Invoices extends Admin
 
     function closed($offset = 0)
     {
-        $data['clientList'] = $this->clients_model->getAllClients(); // activate the option
+        $data['clientList'] = \CI::Clients()->getAllClients(); // activate the option
         $data['extraHeadContent'] = "<script type=\"text/javascript\" src=\"". base_url()."js/newinvoice.js\"></script>\n";
         $data['extraHeadContent'] .= "<link type=\"text/css\" rel=\"stylesheet\" href=\"". base_url()."css/invoice.css\" />\n";
 
-        $data['query'] = $this->invoices_model->getInvoices('closed', $this->settings_model->get_setting('days_payment_due'), $offset, 20);
+        $data['query'] = \CI::Invoices()->getInvoices('closed', \CI::Settings()->getSettings('days_payment_due'), $offset, 20);
 
         $data['total_rows'] = $data['query']->num_rows();
 
         $config['base_url'] = site_url('invoices/closed');
-        $config['total_rows'] = $this->invoices_model->getInvoices('closed', $this->settings_model->get_setting('days_payment_due'), 0, 10000)->num_rows();
+        $config['total_rows'] = \CI::Invoices()->getInvoices('closed', \CI::Settings()->getSettings('days_payment_due'), 0, 10000)->num_rows();
         $this->pagination->initialize($config);
         $data['pagination'] = $this->pagination->create_links();
 
@@ -110,14 +122,14 @@ class Invoices extends Admin
 
     function all($offset = 0)
     {
-        $data['clientList'] = $this->clients_model->getAllClients(); // activate the option
+        $data['clientList'] = \CI::Clients()->getAllClients(); // activate the option
         $data['extraHeadContent'] = "<script type=\"text/javascript\" src=\"". base_url()."js/newinvoice.js\"></script>\n";
         $data['extraHeadContent'] .= "<link type=\"text/css\" rel=\"stylesheet\" href=\"". base_url()."css/invoice.css\" />\n";
 
-        $data['query'] = $this->invoices_model->getInvoices('all', $this->settings_model->get_setting('days_payment_due'), $offset, 20);
+        $data['query'] = \CI::Invoices()->getInvoices('all', \CI::Settings()->getSettings('days_payment_due'), $offset, 20);
         $data['total_rows'] = $data['query']->num_rows();
 
-        $config['total_rows'] = $this->invoices_model->getInvoices('all', $this->settings_model->get_setting('days_payment_due'), 0, 10000)->num_rows();
+        $config['total_rows'] = \CI::Invoices()->getInvoices('all', \CI::Settings()->getSettings('days_payment_due'), 0, 10000)->num_rows();
         $config['base_url'] = site_url('invoices/all');
         $this->pagination->initialize($config);
         $data['pagination'] = $this->pagination->create_links();
@@ -169,15 +181,15 @@ class Invoices extends Admin
             redirect('clients/newclient');
         }
 
-        $data['row'] = $this->clients_model->get_client_info($id); // used to extract name, id and tax info
+        $data['row'] = \CI::Clients()->get_client_info($id); // used to extract name, id and tax info
 
-        $data['tax1_desc'] = $this->settings_model->get_setting('tax1_desc');
-        $data['tax1_rate'] = $this->settings_model->get_setting('tax1_rate');
-        $data['tax2_desc'] = $this->settings_model->get_setting('tax2_desc');
-        $data['tax2_rate'] = $this->settings_model->get_setting('tax2_rate');
-        $data['invoice_note_default'] = $this->settings_model->get_setting('invoice_note_default');
+        $data['tax1_desc'] = \CI::Settings()->getSettings('tax1_desc');
+        $data['tax1_rate'] = \CI::Settings()->getSettings('tax1_rate');
+        $data['tax2_desc'] = \CI::Settings()->getSettings('tax2_desc');
+        $data['tax2_rate'] = \CI::Settings()->getSettings('tax2_rate');
+        $data['invoice_note_default'] = \CI::Settings()->getSettings('invoice_note_default');
 
-        $last_invoice_number = $this->invoices_model->lastInvoiceNumber($id);
+        $last_invoice_number = \CI::Invoices()->lastInvoiceNumber($id);
         ($last_invoice_number != '') ? $data['lastInvoiceNumber'] = $last_invoice_number : $data['lastInvoiceNumber'] = '';
         $data['suggested_invoice_number'] = (is_numeric($last_invoice_number)) ? $last_invoice_number+1 : '';
 
@@ -210,7 +222,7 @@ class Invoices extends Admin
                                     'invoice_note' => $this->input->post('invoice_note')
                                 );
 
-            $invoice_id = $this->invoices_model->addInvoice($invoice_data);
+            $invoice_id = \CI::Invoices()->addInvoice($invoice_data);
 
             if ($invoice_id > 0) {
                 $items = $this->input->post('items');
@@ -227,7 +239,7 @@ class Invoices extends Admin
                                             'taxable'           => $taxable
                                         );
 
-                    $this->invoices_model->addInvoiceItem($invoice_items);
+                    \CI::Invoices()->addInvoiceItem($invoice_items);
                 }
 
                 redirect('invoices/view/'.$invoice_id);
@@ -245,7 +257,7 @@ class Invoices extends Admin
     {
         // page for users without javascript enabled
         $data['page_title'] = $this->lang->line('menu_new_invoice');
-        $data['clientList'] = $this->clients_model->getAllClients(); // activate the option
+        $data['clientList'] = \CI::Clients()->getAllClients(); // activate the option
         $this->load->view('invoices/newinvoice_first', $data);
     }
 
@@ -267,7 +279,7 @@ class Invoices extends Admin
         $data['extraHeadContent'] .= js_calendar_script('my_form');
         $data['invoiceDate'] = date("Y-m-d");
 
-        $invoiceInfo = $this->invoices_model->getSingleInvoice($id);
+        $invoiceInfo = \CI::Invoices()->getSingleInvoice($id);
 
         if ($invoiceInfo->num_rows() == 0) {
             redirect('invoices/');
@@ -276,44 +288,44 @@ class Invoices extends Admin
         $data['row'] = $invoiceInfo->row();
 
         $data['date_invoice_issued'] = formatted_invoice_date($data['row']->dateIssued);
-        $data['date_invoice_due'] = formatted_invoice_date($data['row']->dateIssued, $this->settings_model->get_setting('days_payment_due'));
+        $data['date_invoice_due'] = formatted_invoice_date($data['row']->dateIssued, \CI::Settings()->getSettings('days_payment_due'));
 
         if ($data['row']->amount_paid >= $data['row']->total_with_tax) {
         // paid invoices
             $data['status'] = '<span>'.$this->lang->line('invoice_closed').'</span>';
-        } elseif (mysql_to_unix($data['row']->dateIssued) >= time()-($this->settings_model->get_setting('days_payment_due') * 60*60*24)) {
+        } elseif (mysql_to_unix($data['row']->dateIssued) >= time()-(\CI::Settings()->getSettings('days_payment_due') * 60*60*24)) {
         // owing less then 30 days
             $data['status'] = '<span>'.$this->lang->line('invoice_open').'</span>';
         } else {
             // owing more then 30 days
-            $due_date = $data['row']->dateIssued + ($this->settings_model->get_setting('days_payment_due') * 60*60*24);
-            $data['status'] = '<span class="error">'.timespan(mysql_to_unix($data['row']->dateIssued) + ($this->settings_model->get_setting('days_payment_due') * 60*60*24), now()). ' '.$this->lang->line('invoice_overdue').'</span>';
+            $due_date = $data['row']->dateIssued + (\CI::Settings()->getSettings('days_payment_due') * 60*60*24);
+            $data['status'] = '<span class="error">'.timespan(mysql_to_unix($data['row']->dateIssued) + (\CI::Settings()->getSettings('days_payment_due') * 60*60*24), now()). ' '.$this->lang->line('invoice_overdue').'</span>';
         }
 
-        $data['items'] = $this->invoices_model->getInvoiceItems($id);
+        $data['items'] = \CI::Invoices()->getInvoiceItems($id);
 
         // begin amount and taxes
-        $data['total_no_tax'] = $this->lang->line('invoice_amount').': '.$this->settings_model->get_setting('currency_symbol').number_format($data['row']->total_notax, 2, $this->config->item('currency_decimal'), '')."<br />\n";
+        $data['total_no_tax'] = $this->lang->line('invoice_amount').': '.\CI::Settings()->getSettings('currency_symbol').number_format($data['row']->total_notax, 2, $this->config->item('currency_decimal'), '')."<br />\n";
 
         $data['tax_info'] = $this->_tax_info($data['row']);
 
-        $data['total_with_tax'] = $this->lang->line('invoice_total').': '.$this->settings_model->get_setting('currency_symbol').number_format($data['row']->total_with_tax, 2, $this->config->item('currency_decimal'), '')."<br />\n";
+        $data['total_with_tax'] = $this->lang->line('invoice_total').': '.\CI::Settings()->getSettings('currency_symbol').number_format($data['row']->total_with_tax, 2, $this->config->item('currency_decimal'), '')."<br />\n";
         ;
         // end amount and taxes
 
         if ($data['row']->amount_paid > 0) {
-            $data['total_paid'] = $this->lang->line('invoice_amount_paid').': '.$this->settings_model->get_setting('currency_symbol').number_format($data['row']->amount_paid, 2, $this->config->item('currency_decimal'), '')."<br />\n";
+            $data['total_paid'] = $this->lang->line('invoice_amount_paid').': '.\CI::Settings()->getSettings('currency_symbol').number_format($data['row']->amount_paid, 2, $this->config->item('currency_decimal'), '')."<br />\n";
             ;
-            $data['total_outstanding'] = $this->lang->line('invoice_amount_outstanding').': '.$this->settings_model->get_setting('currency_symbol').number_format($data['row']->total_with_tax - $data['row']->amount_paid, 2, $this->config->item('currency_decimal'), '');
+            $data['total_outstanding'] = $this->lang->line('invoice_amount_outstanding').': '.\CI::Settings()->getSettings('currency_symbol').number_format($data['row']->total_with_tax - $data['row']->amount_paid, 2, $this->config->item('currency_decimal'), '');
         } else {
             $data['total_paid'] = '';
             $data['total_outstanding'] = '';
         }
 
-        $data['companyInfo'] = $this->settings_model->getCompanyInfo()->row();
-        $data['clientContacts'] = $this->clients_model->getClientContacts($data['row']->client_id);
-        $data['invoiceHistory'] = $this->invoices_model->getInvoiceHistory($id);
-        $data['paymentHistory'] = $this->invoices_model->getInvoicePaymentHistory($id);
+        $data['companyInfo'] = \CI::Settings()->getCompanyInfo()->row();
+        $data['clientContacts'] = \CI::Clients()->getClientContacts($data['row']->client_id);
+        $data['invoiceHistory'] = \CI::Invoices()->getInvoiceHistory($id);
+        $data['paymentHistory'] = \CI::Invoices()->getInvoicePaymentHistory($id);
         $data['invoiceOptions'] = true; // create invoice options on sidebar
         $data['company_logo'] = $this->_get_logo();
         $data['page_title'] = 'Invoice Details';
@@ -329,7 +341,7 @@ class Invoices extends Admin
         $this->load->plugin('js_calendar');
 
         // grab invoice info
-        $data['row'] = $this->invoices_model->getSingleInvoice($id)->row();
+        $data['row'] = \CI::Invoices()->getSingleInvoice($id)->row();
         $data['invoice_number'] = $data['row']->invoice_number;
         $data['last_number_suggestion'] = '';
         $data['action'] = 'edit';
@@ -343,14 +355,14 @@ class Invoices extends Admin
                                         'tax2_description'  => $data['row']->tax2_desc,
                                     );
 
-        $taxable = ($this->clients_model->get_client_info($data['row']->client_id, 'tax_status')->tax_status == 1) ? 'true' : 'false';
+        $taxable = (\CI::Clients()->get_client_info($data['row']->client_id, 'tax_status')->tax_status == 1) ? 'true' : 'false';
 
         $data['extraHeadContent'] = "<link type=\"text/css\" rel=\"stylesheet\" href=\"". base_url()."css/calendar.css\" />\n";
         $data['extraHeadContent'] .= "<script type=\"text/javascript\">\nvar taxable = ".$taxable.";\nvar tax1_rate = ". $data['row']->tax1_rate .";\nvar tax2_rate = ". $data['row']->tax2_rate .";\nvar datePicker1 = \"".date("Y-m-d", mysql_to_unix($data['row']->dateIssued))."\";\nvar datePicker2 = \"".date("F j, Y", mysql_to_unix($data['row']->dateIssued))."\";\n\n</script>";
         $data['extraHeadContent'] .= "<link type=\"text/css\" rel=\"stylesheet\" href=\"". base_url()."css/invoice.css\" />\n";
         $data['extraHeadContent'] .= "<script type=\"text/javascript\" src=\"". base_url()."js/createinvoice.js\"></script>\n";
         $data['extraHeadContent'] .= js_calendar_script('my_form');
-        $data['clientListEdit'] = $this->clients_model->getAllClients();
+        $data['clientListEdit'] = \CI::Clients()->getAllClients();
 
         $this->_validation_edit(); // Load the validation rules and fields
 
@@ -358,17 +370,17 @@ class Invoices extends Admin
         $data['button_label'] = 'invoice_save_edited_invoice';
 
         if ($this->validation->run() == false) {
-            $data['items'] = $this->invoices_model->getInvoiceItems($id);
+            $data['items'] = \CI::Invoices()->getInvoiceItems($id);
 
             // begin amount and taxes
-            $data['total_no_tax'] = $this->lang->line('invoice_amount').': '.$this->settings_model->get_setting('currency_symbol').number_format($data['row']->total_notax, 2, $this->config->item('currency_decimal'), '')."<br />\n";
+            $data['total_no_tax'] = $this->lang->line('invoice_amount').': '.\CI::Settings()->getSettings('currency_symbol').number_format($data['row']->total_notax, 2, $this->config->item('currency_decimal'), '')."<br />\n";
             $data['tax_info'] = $this->_tax_info($data['row']);
-            $data['total_with_tax'] = $this->lang->line('invoice_total').': '.$this->settings_model->get_setting('currency_symbol').number_format($data['row']->total_with_tax, 2, $this->config->item('currency_decimal'), '');
+            $data['total_with_tax'] = $this->lang->line('invoice_total').': '.\CI::Settings()->getSettings('currency_symbol').number_format($data['row']->total_with_tax, 2, $this->config->item('currency_decimal'), '');
             // end amount and taxes
 
             $this->load->view('invoices/edit', $data);
         } else {
-            if ($this->invoices_model->uniqueInvoiceNumberEdit($this->input->post('invoice_number'), $this->input->post('id'))) {
+            if (\CI::Invoices()->uniqueInvoiceNumberEdit($this->input->post('invoice_number'), $this->input->post('id'))) {
                 $invoice_data = array(
                                             'client_id'         => $this->input->post('client_id'),
                                             'invoice_number'    => $this->input->post('invoice_number'),
@@ -380,13 +392,13 @@ class Invoices extends Admin
                                             'invoice_note'      => $this->input->post('invoice_note')
                                     );
 
-                $invoice_id = $this->invoices_model->updateInvoice($this->input->post('id'), $invoice_data);
+                $invoice_id = \CI::Invoices()->updateInvoice($this->input->post('id'), $invoice_data);
 
                 if (!$invoice_id) {
                     show_error('That invoice could not be updated.');
                 }
 
-                $this->invoices_model->delete_invoice_items($invoice_id); // remove old items
+                \CI::Invoices()->delete_invoice_items($invoice_id); // remove old items
 
                 // add them back
                 $items = $this->input->post('items');
@@ -401,7 +413,7 @@ class Invoices extends Admin
                                             'taxable'           => $taxable
                                         );
 
-                    $this->invoices_model->addInvoiceItem($invoice_items);
+                    \CI::Invoices()->addInvoiceItem($invoice_items);
                 }
 
                 // give a session telling them it worked
@@ -409,14 +421,14 @@ class Invoices extends Admin
                 redirect('invoices/view/'.$invoice_id);
             } else {
                 $data['invoice_number_error'] = true;
-                $data['items'] = $this->invoices_model->getInvoiceItems($id);
+                $data['items'] = \CI::Invoices()->getInvoiceItems($id);
 
                 // begin amount and taxes
-                $data['total_no_tax'] = $this->lang->line('invoice_amount').': '.$this->settings_model->get_setting('currency_symbol').number_format($data['row']->total_notax, 2, $this->config->item('currency_decimal'), '')."<br />\n";
+                $data['total_no_tax'] = $this->lang->line('invoice_amount').': '.\CI::Settings()->getSettings('currency_symbol').number_format($data['row']->total_notax, 2, $this->config->item('currency_decimal'), '')."<br />\n";
 
                 $data['tax_info'] = $this->_tax_info($data['row']);
 
-                $data['total_with_tax'] = $this->lang->line('invoice_total').': '.$this->settings_model->get_setting('currency_symbol').number_format($data['row']->total_with_tax, 2, $this->config->item('currency_decimal'), '');
+                $data['total_with_tax'] = $this->lang->line('invoice_total').': '.\CI::Settings()->getSettings('currency_symbol').number_format($data['row']->total_with_tax, 2, $this->config->item('currency_decimal'), '');
                 // end amount and taxes
 
                 $this->load->view('invoices/edit', $data);
@@ -432,7 +444,7 @@ class Invoices extends Admin
         $this->load->plugin('js_calendar');
 
         // grab invoice info
-        $data['row'] = $this->invoices_model->getSingleInvoice($id)->row();
+        $data['row'] = \CI::Invoices()->getSingleInvoice($id)->row();
         $data['action'] = 'duplicate';
 
         // some hidden form data
@@ -443,18 +455,18 @@ class Invoices extends Admin
                                         'tax2_description'  => $data['row']->tax2_desc,
                                     );
 
-        $taxable = ($this->clients_model->get_client_info($data['row']->client_id, 'tax_status')->tax_status == 1) ? 'true' : 'false';
+        $taxable = (\CI::Clients()->get_client_info($data['row']->client_id, 'tax_status')->tax_status == 1) ? 'true' : 'false';
 
         $data['extraHeadContent'] = "<link type=\"text/css\" rel=\"stylesheet\" href=\"". base_url()."css/calendar.css\" />\n";
         $data['extraHeadContent'] .= "<script type=\"text/javascript\">\nvar taxable = ".$taxable.";\nvar tax1_rate = ". $data['row']->tax1_rate .";\nvar tax2_rate = ". $data['row']->tax2_rate .";\nvar datePicker1 = \"".date("Y-m-d", mysql_to_unix($data['row']->dateIssued))."\";\nvar datePicker2 = \"".date("F j, Y", mysql_to_unix($data['row']->dateIssued))."\";\n\n</script>";
         $data['extraHeadContent'] .= "<link type=\"text/css\" rel=\"stylesheet\" href=\"". base_url()."css/invoice.css\" />\n";
         $data['extraHeadContent'] .= "<script type=\"text/javascript\" src=\"". base_url()."js/createinvoice.js\"></script>\n";
         $data['extraHeadContent'] .= js_calendar_script('my_form');
-        $data['clientListEdit'] = $this->clients_model->getAllClients();
+        $data['clientListEdit'] = \CI::Clients()->getAllClients();
 
         $this->_validation_edit(); // Load the validation rules and fields
 
-        $last_invoice_number = $this->invoices_model->lastInvoiceNumber($id);
+        $last_invoice_number = \CI::Invoices()->lastInvoiceNumber($id);
         ($last_invoice_number != '') ? $data['lastInvoiceNumber'] = $last_invoice_number : $data['lastInvoiceNumber'] = '';
         $data['invoice_number'] = (is_numeric($last_invoice_number)) ? $last_invoice_number+1 : '';
         $data['last_number_suggestion'] = '('.$this->lang->line('invoice_last_used').' '.$last_invoice_number.')';
@@ -463,17 +475,17 @@ class Invoices extends Admin
         $data['button_label'] = 'actions_create_invoice';
 
         if ($this->validation->run() == false) {
-            $data['items'] = $this->invoices_model->getInvoiceItems($id);
+            $data['items'] = \CI::Invoices()->getInvoiceItems($id);
 
             // begin amount and taxes
-            $data['total_no_tax'] = $this->lang->line('invoice_amount').': '.$this->settings_model->get_setting('currency_symbol').number_format($data['row']->total_notax, 2, $this->config->item('currency_decimal'), '')."<br />\n";
+            $data['total_no_tax'] = $this->lang->line('invoice_amount').': '.\CI::Settings()->getSettings('currency_symbol').number_format($data['row']->total_notax, 2, $this->config->item('currency_decimal'), '')."<br />\n";
             $data['tax_info'] = $this->_tax_info($data['row']);
-            $data['total_with_tax'] = $this->lang->line('invoice_total').': '.$this->settings_model->get_setting('currency_symbol').number_format($data['row']->total_with_tax, 2, $this->config->item('currency_decimal'), '');
+            $data['total_with_tax'] = $this->lang->line('invoice_total').': '.\CI::Settings()->getSettings('currency_symbol').number_format($data['row']->total_with_tax, 2, $this->config->item('currency_decimal'), '');
             // end amount and taxes
 
             $this->load->view('invoices/edit', $data);
         } else {
-            if ($this->invoices_model->uniqueInvoiceNumber($this->input->post('invoice_number'), $this->input->post('id'))) {
+            if (\CI::Invoices()->uniqueInvoiceNumber($this->input->post('invoice_number'), $this->input->post('id'))) {
                 $invoice_data = array(
                                         'client_id' => $this->input->post('client_id'),
                                         'invoice_number' => $this->input->post('invoice_number'),
@@ -485,7 +497,7 @@ class Invoices extends Admin
                                         'invoice_note' => $this->input->post('invoice_note')
                                     );
 
-                $invoice_id = $this->invoices_model->addInvoice($invoice_data);
+                $invoice_id = \CI::Invoices()->addInvoice($invoice_data);
 
                 if ($invoice_id > 0) {
                     $items = $this->input->post('items');
@@ -502,7 +514,7 @@ class Invoices extends Admin
                                                 'taxable' => htmlspecialchars($taxable)
                                             );
 
-                        $this->invoices_model->addInvoiceItem($invoice_items);
+                        \CI::Invoices()->addInvoiceItem($invoice_items);
                     }
                 }
 
@@ -511,14 +523,14 @@ class Invoices extends Admin
                 redirect('invoices/view/'.$invoice_id);
             } else {
                 $data['invoice_number_error'] = true;
-                $data['items'] = $this->invoices_model->getInvoiceItems($id);
+                $data['items'] = \CI::Invoices()->getInvoiceItems($id);
 
                 // begin amount and taxes
-                $data['total_no_tax'] = $this->lang->line('invoice_amount').': '.$this->settings_model->get_setting('currency_symbol').number_format($data['row']->total_notax, 2, $this->config->item('currency_decimal'), '')."<br />\n";
+                $data['total_no_tax'] = $this->lang->line('invoice_amount').': '.\CI::Settings()->getSettings('currency_symbol').number_format($data['row']->total_notax, 2, $this->config->item('currency_decimal'), '')."<br />\n";
 
                 $data['tax_info'] = $this->_tax_info($data['row']);
 
-                $data['total_with_tax'] = $this->lang->line('invoice_total').': '.$this->settings_model->get_setting('currency_symbol').number_format($data['row']->total_with_tax, 2, $this->config->item('currency_decimal'), '');
+                $data['total_with_tax'] = $this->lang->line('invoice_total').': '.\CI::Settings()->getSettings('currency_symbol').number_format($data['row']->total_with_tax, 2, $this->config->item('currency_decimal'), '');
                 // end amount and taxes
 
                 $this->load->view('invoices/edit', $data);
@@ -551,38 +563,38 @@ class Invoices extends Admin
         $data['page_title'] = 'invoice';
 
         // configure email to be sent
-        $data['companyInfo'] = $this->settings_model->getCompanyInfo()->row();
+        $data['companyInfo'] = \CI::Settings()->getCompanyInfo()->row();
         $data['company_logo'] = $this->_get_logo();
 
-        $data['row'] = $this->invoices_model->getSingleInvoice($id)->row();
+        $data['row'] = \CI::Invoices()->getSingleInvoice($id)->row();
 
-        $invoiceInfo = $this->invoices_model->getSingleInvoice($id);
+        $invoiceInfo = \CI::Invoices()->getSingleInvoice($id);
         if ($invoiceInfo->num_rows() == 0) {
             redirect('invoices/');
         }
 
-        $data['client_note'] = $this->clients_model->get_client_info($data['row']->client_id)->client_notes;
+        $data['client_note'] = \CI::Clients()->get_client_info($data['row']->client_id)->client_notes;
 
         $invoice_number = $data['row']->invoice_number;
 
         $data['date_invoice_issued'] = formatted_invoice_date($data['row']->dateIssued);
-        $data['date_invoice_due'] = formatted_invoice_date($data['row']->dateIssued, $this->settings_model->get_setting('days_payment_due'));
+        $data['date_invoice_due'] = formatted_invoice_date($data['row']->dateIssued, \CI::Settings()->getSettings('days_payment_due'));
 
-        $items = $this->invoices_model->getInvoiceItems($id);
+        $items = \CI::Invoices()->getInvoiceItems($id);
 
         $data['items'] = $items;
-        $data['total_no_tax'] = $this->lang->line('invoice_amount').': '.$this->settings_model->get_setting('currency_symbol').number_format($data['row']->total_notax, 2, $this->config->item('currency_decimal'), '')."<br />\n";
+        $data['total_no_tax'] = $this->lang->line('invoice_amount').': '.\CI::Settings()->getSettings('currency_symbol').number_format($data['row']->total_notax, 2, $this->config->item('currency_decimal'), '')."<br />\n";
 
         // taxes
         $data['tax_info'] = $this->_tax_info($data['row']);
 
-        $data['total_with_tax'] = $this->lang->line('invoice_total').': '.$this->settings_model->get_setting('currency_symbol').number_format($data['row']->total_with_tax, 2, $this->config->item('currency_decimal'), '')."<br />\n";
+        $data['total_with_tax'] = $this->lang->line('invoice_total').': '.\CI::Settings()->getSettings('currency_symbol').number_format($data['row']->total_with_tax, 2, $this->config->item('currency_decimal'), '')."<br />\n";
         ;
 
         if ($data['row']->amount_paid > 0) {
-            $data['total_paid'] = $this->lang->line('invoice_amount_paid').': '.$this->settings_model->get_setting('currency_symbol').number_format($data['row']->amount_paid, 2, $this->config->item('currency_decimal'), '')."<br />\n";
+            $data['total_paid'] = $this->lang->line('invoice_amount_paid').': '.\CI::Settings()->getSettings('currency_symbol').number_format($data['row']->amount_paid, 2, $this->config->item('currency_decimal'), '')."<br />\n";
             ;
-            $data['total_outstanding'] = $this->lang->line('invoice_amount_outstanding').': '.$this->settings_model->get_setting('currency_symbol').number_format($data['row']->total_with_tax - $data['row']->amount_paid, 2, $this->config->item('currency_decimal'), '');
+            $data['total_outstanding'] = $this->lang->line('invoice_amount_outstanding').': '.\CI::Settings()->getSettings('currency_symbol').number_format($data['row']->total_with_tax - $data['row']->amount_paid, 2, $this->config->item('currency_decimal'), '');
         } else {
             $data['total_paid'] = '';
             $data['total_outstanding'] = '';
@@ -643,7 +655,7 @@ class Invoices extends Admin
 
         // for the demo, I don't want actual emails sent out, so this provides an easy
         // override.
-        if ($this->settings_model->get_setting('demo_flag') == 'n') {
+        if (\CI::Settings()->getSettings('demo_flag') == 'n') {
             $this->email->send();
         }
 
@@ -658,7 +670,7 @@ class Invoices extends Admin
         if ($this->input->post('isAjax') == 'true') {
         // for future ajax functionality, right now this is permanently set to false
         } else {
-            if ($this->settings_model->get_setting('demo_flag') == 'y') {
+            if (\CI::Settings()->getSettings('demo_flag') == 'y') {
                 $this->session->set_flashdata('message', $this->lang->line('invoice_email_demo'));
             } else {
                 $this->session->set_flashdata('message', $this->lang->line('invoice_email_success'));
@@ -678,7 +690,7 @@ class Invoices extends Admin
 
         $data['page_title'] = $this->lang->line('menu_invoices');
 
-        $invoiceInfo = $this->invoices_model->getSingleInvoice($id);
+        $invoiceInfo = \CI::Invoices()->getSingleInvoice($id);
 
         if ($invoiceInfo->num_rows() == 0) {
             redirect('invoices/');
@@ -686,28 +698,28 @@ class Invoices extends Admin
 
         $data['row'] = $invoiceInfo->row();
 
-        $data['client_note'] = $this->clients_model->get_client_info($data['row']->client_id)->client_notes;
+        $data['client_note'] = \CI::Clients()->get_client_info($data['row']->client_id)->client_notes;
 
         $data['date_invoice_issued'] = formatted_invoice_date($data['row']->dateIssued);
-        $data['date_invoice_due'] = formatted_invoice_date($data['row']->dateIssued, $this->settings_model->get_setting('days_payment_due'));
+        $data['date_invoice_due'] = formatted_invoice_date($data['row']->dateIssued, \CI::Settings()->getSettings('days_payment_due'));
 
-        $data['companyInfo'] = $this->settings_model->getCompanyInfo()->row();
+        $data['companyInfo'] = \CI::Settings()->getCompanyInfo()->row();
         $data['company_logo'] = $this->_get_logo('_pdf', 'pdf');
 
-        $data['items'] = $this->invoices_model->getInvoiceItems($id);
+        $data['items'] = \CI::Invoices()->getInvoiceItems($id);
 
-        $data['total_no_tax'] = $this->lang->line('invoice_amount').': '.$this->settings_model->get_setting('currency_symbol').number_format($data['row']->total_notax, 2, $this->config->item('currency_decimal'), '')."<br />\n";
+        $data['total_no_tax'] = $this->lang->line('invoice_amount').': '.\CI::Settings()->getSettings('currency_symbol').number_format($data['row']->total_notax, 2, $this->config->item('currency_decimal'), '')."<br />\n";
 
         // taxes
         $data['tax_info'] = $this->_tax_info($data['row']);
 
-        $data['total_with_tax'] = $this->lang->line('invoice_total').': '.$this->settings_model->get_setting('currency_symbol').number_format($data['row']->total_with_tax, 2, $this->config->item('currency_decimal'), '')."<br />\n";
+        $data['total_with_tax'] = $this->lang->line('invoice_total').': '.\CI::Settings()->getSettings('currency_symbol').number_format($data['row']->total_with_tax, 2, $this->config->item('currency_decimal'), '')."<br />\n";
         ;
 
         if ($data['row']->amount_paid > 0) {
-            $data['total_paid'] = $this->lang->line('invoice_amount_paid').': '.$this->settings_model->get_setting('currency_symbol').number_format($data['row']->amount_paid, 2, $this->config->item('currency_decimal'), '')."<br />\n";
+            $data['total_paid'] = $this->lang->line('invoice_amount_paid').': '.\CI::Settings()->getSettings('currency_symbol').number_format($data['row']->amount_paid, 2, $this->config->item('currency_decimal'), '')."<br />\n";
             ;
-            $data['total_outstanding'] = $this->lang->line('invoice_amount_outstanding').': '.$this->settings_model->get_setting('currency_symbol').number_format($data['row']->total_with_tax - $data['row']->amount_paid, 2, $this->config->item('currency_decimal'), '');
+            $data['total_outstanding'] = $this->lang->line('invoice_amount_outstanding').': '.\CI::Settings()->getSettings('currency_symbol').number_format($data['row']->total_with_tax - $data['row']->amount_paid, 2, $this->config->item('currency_decimal'), '');
         } else {
             $data['total_paid'] = '';
             $data['total_outstanding'] = '';
@@ -778,7 +790,7 @@ class Invoices extends Admin
                             'payment_note' => $payment_note
                         );
 
-            $this->invoices_model->payment($data);
+            \CI::Invoices()->payment($data);
 
             $this->session->set_flashdata('message', $this->lang->line('invoice_payment_success'));
 
@@ -791,7 +803,7 @@ class Invoices extends Admin
     function delete($id)
     {
         $this->session->set_flashdata('deleteInvoice', $id);
-        $data['deleteInvoice'] = $this->invoices_model->getSingleInvoice($id)->row()->invoice_number;
+        $data['deleteInvoice'] = \CI::Invoices()->getSingleInvoice($id)->row()->invoice_number;
         $data['page_title'] = $this->lang->line('menu_delete_invoice');
         $this->load->view('invoices/delete', $data);
     }
@@ -801,7 +813,7 @@ class Invoices extends Admin
     function delete_confirmed()
     {
         $invoice_id = $this->session->flashdata('deleteInvoice');
-        $this->invoices_model->delete_invoice($invoice_id);
+        \CI::Invoices()->delete_invoice($invoice_id);
         $this->session->set_flashdata('message', $this->lang->line('invoice_invoice_delete_success'));
         redirect('invoices/');
     }
@@ -810,7 +822,7 @@ class Invoices extends Admin
 
     function retrieveInvoices()
     {
-        $query = $this->invoices_model->getInvoicesAJAX($this->input->post('status'), $this->input->post('client_id'), $this->settings_model->get_setting('days_payment_due'));
+        $query = \CI::Invoices()->getInvoicesAJAX($this->input->post('status'), $this->input->post('client_id'), \CI::Settings()->getSettings('days_payment_due'));
 
         $last_retrieved_month = 0; // no month
 
@@ -833,12 +845,12 @@ class Invoices extends Admin
                 if ($row->amount_paid >= $row->subtotal) {
                 // paid invoices
                     $invoiceResults .= $this->lang->line('invoice_closed');
-                } elseif (mysql_to_unix($row->dateIssued) >= strtotime('-'.$this->settings_model->get_setting('days_payment_due'). ' days')) {
+                } elseif (mysql_to_unix($row->dateIssued) >= strtotime('-'.\CI::Settings()->getSettings('days_payment_due'). ' days')) {
                 // owing less then the overdue days amount
                     $invoiceResults .= $this->lang->line('invoice_open');
                 } else {
                     // owing more then the overdue days amount
-                    $due_date = $invoice_date + ($this->settings_model->get_setting('days_payment_due') * 60*60*24);
+                    $due_date = $invoice_date + (\CI::Settings()->getSettings('days_payment_due') * 60*60*24);
                     $invoiceResults .= timespan($due_date, now()). ' '.$this->lang->line('invoice_overdue');
                 }
 
@@ -866,7 +878,7 @@ class Invoices extends Admin
 
     function _delete_stored_files()
     {
-        if ($this->settings_model->get_setting('save_invoices') == "n") {
+        if (\CI::Settings()->getSettings('save_invoices') == "n") {
             delete_files("./invoices_temp/");
         }
     }
@@ -878,7 +890,7 @@ class Invoices extends Admin
         $this->load->helper('logo');
         $this->load->helper('path');
 
-        return get_logo($this->settings_model->get_setting('logo'.$target), $context);
+        return get_logo(\CI::Settings()->getSettings('logo'.$target), $context);
     }
 
     // --------------------------------------------------------------------
@@ -888,11 +900,11 @@ class Invoices extends Admin
         $tax_info = '';
 
         if ($data->total_tax1 != 0) {
-            $tax_info .= $data->tax1_desc." (".$data->tax1_rate."%): ".$this->settings_model->get_setting('currency_symbol').number_format($data->total_tax1, 2, $this->config->item('currency_decimal'), '')."<br />\n";
+            $tax_info .= $data->tax1_desc." (".$data->tax1_rate."%): ".\CI::Settings()->getSettings('currency_symbol').number_format($data->total_tax1, 2, $this->config->item('currency_decimal'), '')."<br />\n";
         }
 
         if ($data->total_tax2 != 0) {
-            $tax_info .= $data->tax2_desc." (".$data->tax2_rate."%): ".$this->settings_model->get_setting('currency_symbol').number_format($data->total_tax2, 2, $this->config->item('currency_decimal'), '')."<br />\n";
+            $tax_info .= $data->tax2_desc." (".$data->tax2_rate."%): ".\CI::Settings()->getSettings('currency_symbol').number_format($data->total_tax2, 2, $this->config->item('currency_decimal'), '')."<br />\n";
         }
 
         return $tax_info;
@@ -916,10 +928,10 @@ class Invoices extends Admin
         $fields['invoice_number']   = $this->lang->line('invoice_number');
         $fields['dateIssued']       = $this->lang->line('invoice_date_issued');
         $fields['invoice_note']     = $this->lang->line('invoice_note');
-        $fields['tax1_description']     = $this->settings_model->get_setting('tax1_desc');
-        $fields['tax1_rate']        = $this->settings_model->get_setting('tax1_rate');
-        $fields['tax2_description']     = $this->settings_model->get_setting('tax1_desc');
-        $fields['tax2_rate']        = $this->settings_model->get_setting('tax2_rate');
+        $fields['tax1_description']     = \CI::Settings()->getSettings('tax1_desc');
+        $fields['tax1_rate']        = \CI::Settings()->getSettings('tax1_rate');
+        $fields['tax2_description']     = \CI::Settings()->getSettings('tax1_desc');
+        $fields['tax2_rate']        = \CI::Settings()->getSettings('tax2_rate');
         $this->validation->set_fields($fields);
 
         $this->validation->set_error_delimiters('<span class="error">', '</span>');
@@ -943,10 +955,10 @@ class Invoices extends Admin
         $fields['invoice_number']   = $this->lang->line('invoice_number');
         $fields['dateIssued']       = $this->lang->line('invoice_date_issued');
         $fields['invoice_note']     = $this->lang->line('invoice_note');
-        $fields['tax1_description']     = $this->settings_model->get_setting('tax1_desc');
-        $fields['tax1_rate']        = $this->settings_model->get_setting('tax1_rate');
-        $fields['tax2_description']     = $this->settings_model->get_setting('tax1_desc');
-        $fields['tax2_rate']        = $this->settings_model->get_setting('tax2_rate');
+        $fields['tax1_description']     = \CI::Settings()->getSettings('tax1_desc');
+        $fields['tax1_rate']        = \CI::Settings()->getSettings('tax1_rate');
+        $fields['tax2_description']     = \CI::Settings()->getSettings('tax1_desc');
+        $fields['tax2_rate']        = \CI::Settings()->getSettings('tax2_rate');
         $this->validation->set_fields($fields);
 
         $this->validation->set_error_delimiters('<span class="error">', '</span>');
@@ -956,6 +968,6 @@ class Invoices extends Admin
     {
         $this->validation->set_message('uniqueInvoice', $this->lang->line('invoice_not_unique'));
 
-        return $this->invoices_model->uniqueInvoiceNumber($this->input->post('invoice_number'));
+        return \CI::Invoices()->uniqueInvoiceNumber($this->input->post('invoice_number'));
     }
 }
