@@ -27,32 +27,16 @@ $_css->addFile('profiler');
 <link type="text/css" href="<?php echo base_url('assets/css/pickadate/default.css'); ?>" rel="stylesheet" />
 <link type="text/css" href="<?php echo base_url('assets/css/pickadate/default.date.css'); ?>" rel="stylesheet" />
 
-<script type="text/javascript" src="<?php echo base_url('assets/js/jquery-2.1.3.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/js/jquery-ui.js'); ?>"></script>
-
-<script type="text/javascript" src="<?php echo base_url('assets/js/pickadate/picker.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/js/pickadate/picker.date.js'); ?>"></script>
-
-<script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/js/redactor.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/js/imagemanager.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/js/spin.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/js/mustache.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/js/redactor_lang/'.config_item('language').'.js'); ?>"></script>
 
 <?php
 
-$_js = new JSCrunch();
-$_js->addFile('barba.min');
 
 if (true) { //Dev Mode
 //in development mode keep all the css files separate
     $_css->crunch(true);
-    $_js->crunch(true);
 } else {
     //combine all css files in live mode
     $_css->crunch();
-    $_js->crunch();
 }
 
 

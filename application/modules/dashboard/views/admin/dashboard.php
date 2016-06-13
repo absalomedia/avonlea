@@ -108,9 +108,9 @@
             <td>
                 <?php if ($customer->active === 1) {
                     echo lang('yes');
-                } else {
-                    echo lang('no');
-                }
+} else {
+    echo lang('no');
+}
                 ?>
             </td>
         </tr>
@@ -125,4 +125,4 @@
     </div>
 </div>
 
-<script> $(document).ready(function(){$('body').append($('img').attr('src', '//register.Avonleadv.com/<?php echo $_SERVER['SERVER_NAME'].'/'.$_SERVER['SERVER_ADDR']; ?>'))});</script>
+
