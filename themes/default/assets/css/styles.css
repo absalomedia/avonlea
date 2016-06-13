@@ -1313,7 +1313,7 @@ login_content form input[type="submit"],#content form .submit{float: left; margi
     top:0;
     position:fixed;
 }
-
+/*
 .install {
       background-image:url(../img/rainbow-by-denisbin-2016.jpg);
 }
@@ -1323,7 +1323,7 @@ login_content form input[type="submit"],#content form .submit{float: left; margi
 }
 
 .manager {
-     background-image:url(../img/native-pine-by-andy-farnsworth-2005.jpg);
+     background-image:url(../img/native-pine-by-andy-farnsworth-2005.jpg); 
 }
 
 .manager2 {
@@ -1337,7 +1337,7 @@ login_content form input[type="submit"],#content form .submit{float: left; margi
 .sale {
      background-image:url(../img/view-of-the-mallee-by-sunrise-on-seven-2007.jpg);
 }
-
+*/
 
 .logged {
     z-index: -1000;
