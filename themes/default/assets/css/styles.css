@@ -1323,8 +1323,21 @@ login_content form input[type="submit"],#content form .submit{float: left; margi
 }
 
 .manager {
+     background-image:url(../img/native-pine-by-andy-farnsworth-2005.jpg);
+}
+
+.manager2 {
      background-image:url(../img/lake-fyans-by-john-gayler-2012.jpg);
 }
+
+.manager3 {
+     background-image:url(../img/mallee-gums-by-lloyd-2013.jpg);
+}
+
+.sale {
+     background-image:url(../img/view-of-the-mallee-by-sunrise-on-seven-2007.jpg);
+}
+
 
 .logged {
     z-index: -1000;
