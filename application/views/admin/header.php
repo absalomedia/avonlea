@@ -18,24 +18,6 @@ $_css->addFile('styles');
 $_css->addFile('side-menu');
 $_css->addFile('profiler');
 
-
-$_js = new JSCrunch();
-
-if (true) { //Dev Mode
-//in development mode keep all the css files separate
-    $_css->crunch(true);
-    $_js->crunch(true);
-} else {
-    //combine all css files in live mode
-    $_css->crunch();
-    $_js->crunch();
-}
-
-
-//with this I can put header data in the header instead of in the body.
-if (isset($additional_header_info)) {
-    echo $additional_header_info;
-}
 ?>
 
 <link href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>" rel="stylesheet" type="text/css" />
@@ -58,28 +40,32 @@ if (isset($additional_header_info)) {
 <script type="text/javascript" src="<?php echo base_url('assets/js/mustache.min.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/js/redactor_lang/'.config_item('language').'.js'); ?>"></script>
 
+<?php
+
+$_js = new JSCrunch();
+$_js->addFile('barba.min');
+
+if (true) { //Dev Mode
+//in development mode keep all the css files separate
+    $_css->crunch(true);
+    $_js->crunch(true);
+} else {
+    //combine all css files in live mode
+    $_css->crunch();
+    $_js->crunch();
+}
+
+
+//with this I can put header data in the header instead of in the body.
+if (isset($additional_header_info)) {
+    echo $additional_header_info;
+}
+?>
+
+
 <?php if (CI::auth()->isLoggedIn(false, false)) :?>
 
-<script type="text/javascript">
-$(document).ready(function(){
-    $('.datepicker').pickadate({formatSubmit:'yyyy-mm-dd', hiddenName:true, format:'mm/dd/yyyy'});
-    //$('.datepicker').datepicker({dateFormat: 'yy-mm-dd'});
 
-    $('.redactor').redactor({
-        lang: '<?php echo config_item('language'); ?>',
-        minHeight: 200,
-        pastePlainText: true,
-        linebreaks:true,
-        imageUpload: '<?php echo site_url('admin/wysiwyg/upload_image'); ?>',
-        imageManagerJson: '<?php echo site_url('admin/wysiwyg/get_images'); ?>',
-        imageUploadErrorCallback: function(json)
-        {
-            alert(json.error);
-        },
-        plugins: ['imagemanager']
-    });
-});
-</script>
 <?php endif; ?>
 </head>
 <body>
