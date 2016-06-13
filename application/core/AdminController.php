@@ -9,7 +9,7 @@ namespace Avonlea\Controller;
  *
  * @author      Absalom Media
  *
- * @link        http://Avonleadv.com
+ * @link        http://avonlea.absalom.net.au
  */
 class Admin extends \Avonlea\Controller
 {

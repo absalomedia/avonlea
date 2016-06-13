@@ -6,7 +6,7 @@
  *
  * @author Absalom Media
  *
- * @link http://Avonleadv.com
+ * @link http://avonlea.absalom.net.au
  */
 class Invoice extends CI_Model
 {
@@ -106,7 +106,7 @@ class Invoice extends CI_Model
 
     // --------------------------------------------------------------------
 
-    public function build_short_descriptions()
+    public function buildShortDescriptions()
     {
         $limit = ($this->config->item('short_description_characters') != '') ? $this->config->item('short_description_characters') : 50;
 

@@ -6,7 +6,7 @@
  *
  * @author      Absalom Media
  *
- * @link        http://Avonleadv.com
+ * @link        http://avonlea.absalom.net.au
  */
 class Productoptions extends CI_Model
 {

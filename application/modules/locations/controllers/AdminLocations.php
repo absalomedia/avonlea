@@ -7,7 +7,7 @@
  *
  * @author      Absalom Media
  *
- * @link        http://Avonleadv.com
+ * @link        http://avonlea.absalom.net.au
  */
 class AdminLocations extends Admin
 {
