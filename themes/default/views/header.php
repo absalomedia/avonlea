@@ -41,9 +41,11 @@ $_js->addFile('elementQuery.min');
 if (true) { //Dev Mode
 //in development mode keep all the css files separate
     $_css->crunch(true);
+    $_js->crunch(true);
 } else {
     //combine all css files in live mode
     $_css->crunch();
+    $_js->crunch();
 }
 
 
