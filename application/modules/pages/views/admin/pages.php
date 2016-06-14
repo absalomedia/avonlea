@@ -6,7 +6,7 @@ function areyousure()
 }
 </script>
 <div class="text-right">
-    <a class="btn btn-primary" href="<?php echo site_url('admin/pages/form'); ?>"><i class="icon-plus"></i> <?php echo lang('add_new_page'); ?></a>
+    <a class="btn btn-primary no-barba" href="<?php echo site_url('admin/pages/form'); ?>"><i class="icon-plus"></i> <?php echo lang('add_new_page'); ?></a>
     <a class="btn btn-primary" href="<?php echo site_url('admin/pages/link_form'); ?>"><i class="icon-plus"></i> <?php echo lang('add_new_link'); ?></a>
 </div>
 
