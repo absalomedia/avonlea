@@ -35,20 +35,20 @@
                 <?php
                 $options = [];
                 $options[0] = lang('top_level');
-                function page_loop($pages, $dash = '', $id = 0)
+                function pageLink($pages, $dash = '', $id = 0)
                 {
                     $options = [];
                     foreach ($pages as $page) {
                         //this is to stop the whole tree of a particular link from showing up while editing it
                         if ($id != $page->id) {
                             $options[$page->id] = $dash.' '.$page->title;
-                            $options = $options + page_loop($page->children, $dash.'-', $id);
+                            $options = $options + pageLink($page->children, $dash.'-', $id);
                         }
                     }
 
                     return $options;
                 }
-                $options = $options + page_loop($pages, '', $id);
+                $options = $options + pageLink($pages, '', $id);
                 echo form_dropdown('parent_id', $options, assign_value('parent_id', $parent_id), 'class="form-control"');
                 ?>
             </div>

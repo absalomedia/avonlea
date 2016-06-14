@@ -32,7 +32,7 @@
 <div class="form-group">
     <div class="form-group">
         <label for="content"><?php echo lang('content'); ?></label>
-        <?php echo form_textarea(['name' => 'content', 'value' => assign_value('content', $content), 'class' => 'form-control redactor']); ?>
+        <?php echo form_textarea(['name' => 'content', 'value' => assign_value('content', $content), 'class' => 'form-control trumb']); ?>
     </div>
 </div>
 
@@ -58,7 +58,7 @@
 
                 return $options;
             }
-            $options = $options + page_loop($pages, '', $id);
+            $options = $options + pageLooper($pages, '', $id);
             echo form_dropdown('parent_id', $options, assign_value('parent_id', $parent_id), 'class="form-control"');
             ?>
         </div>
