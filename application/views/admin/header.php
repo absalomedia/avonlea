@@ -11,19 +11,19 @@
 $_css = new CSSCrunch();
 
 $_css->addFile('fonts');
-$_css->addFile('animate.min');
 $_css->addFile('pure.min');
 $_css->addFile('icono.min');
 $_css->addFile('styles');
 $_css->addFile('side-menu');
 $_css->addFile('profiler');
+$_css->addFile('trumbowyg');
+$_css->addFile('trumb');
 
 ?>
 
 <link href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>" rel="stylesheet" type="text/css" />
 <link href="<?php echo base_url('assets/css/admin.css'); ?>" rel="stylesheet" type="text/css" />
 <link href="<?php echo base_url('assets/css/font-awesome.css'); ?>" rel="stylesheet" type="text/css" />
-<link type="text/css" href="<?php echo base_url('assets/css/redactor.css'); ?>" rel="stylesheet" />
 <link type="text/css" href="<?php echo base_url('assets/css/pickadate/default.css'); ?>" rel="stylesheet" />
 <link type="text/css" href="<?php echo base_url('assets/css/pickadate/default.date.css'); ?>" rel="stylesheet" />
 

@@ -2,17 +2,16 @@
     <footer></footer>
 </div>
 <script type="text/javascript" src="<?php echo base_url('assets/js/jquery-2.1.3.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/js/jquery-ui.js'); ?>"></script>
 
 <script type="text/javascript" src="<?php echo base_url('assets/js/pickadate/picker.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/js/pickadate/picker.date.js'); ?>"></script>
 
 <script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/js/redactor.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/js/imagemanager.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/js/trumb/trumbowyg.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/js/trumb/trumbowyg.table.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/js/trumb/trumbowyg.uploadcare.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/js/spin.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/js/mustache.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/js/redactor_lang/'.config_item('language').'.js'); ?>"></script>
 <?php
     $_js = new JSCrunch();
     $_js->addFile('barba.min');
@@ -31,22 +30,36 @@ if (true) { //Dev Mode
 
 <script type="text/javascript">
 $(document).ready(function(){
+
+    var base = "<?php echo base_url(); ?>";
+
+
     $('.datepicker').pickadate({formatSubmit:'yyyy-mm-dd', hiddenName:true, format:'mm/dd/yyyy'});
     //$('.datepicker').datepicker({dateFormat: 'yy-mm-dd'});
 
-    $('.redactor').redactor({
-        lang: '<?php echo config_item('language'); ?>',
-        minHeight: 200,
-        pastePlainText: true,
-        linebreaks:true,
-        imageUpload: '<?php echo site_url('admin/wysiwyg/upload_image'); ?>',
-        imageManagerJson: '<?php echo site_url('admin/wysiwyg/get_images'); ?>',
-        imageUploadErrorCallback: function(json)
-        {
-            alert(json.error);
-        },
-        plugins: ['imagemanager']
-    });
+    $('.trumb').trumbowyg({
+    fullscreenable: false,
+    autogrow: true,
+        lang: 'en',
+        svgPath: base+'/themes/default/assets/img/icons.svg',
+    btnsDef: {
+                // Customizables dropdowns
+                image: {
+                    dropdown: ['insertImage','uploadcare'],
+                    ico: 'insertImage'
+                },
+                linkImproved: {
+                    dropdown: ['createLink', 'unlink'],
+                    ico: 'link'
+                },
+                newTable: {
+                    dropdown: ['table'],
+                    ico: 'table'
+                }
+            },
+            btns: ['viewHTML','formatting','btnGrp-design','linkImproved', 'image', 'newTable','btnGrp-justify','btnGrp-lists','horizontalRule']
+  });
+
 });
 </script>
 

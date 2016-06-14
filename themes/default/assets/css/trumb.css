@@ -1,0 +1,32 @@
+/**
+ * Trombone Editor - A lightweight WYSIWYG editor
+ * Default stylesheet for Trumbowyg editor
+ * ------------------------
+ * @link http://alex-d.github.io/Trumbowyg
+ * @license MIT
+ * @author Alexandre Demode (Alex-D)
+ *         Twitter : @AlexandreDemode
+ *         Website : alex-d.fr
+ *
+ * with work done by Lawrence Meckan
+ */
+
+@import 'trumbowyg.css';
+
+ .trumbowyg-modal-box input[type='text'] {
+    width: 73%;
+ }
+
+  .trumbowyg-editor table {
+  	border: 1px solid #cccccc;
+ }
+
+ .trumbowyg-editor tr {
+  	border: 1px solid #cccccc;
+  	padding: 1em;
+ }
+
+ .trumbowyg-editor td {
+  	border: 1px solid #cccccc;
+  	padding: 1em;
+ }
