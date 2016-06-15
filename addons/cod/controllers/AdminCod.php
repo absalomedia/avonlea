@@ -49,12 +49,14 @@ class AdminCod extends Admin
 
         if (\CI::form_validation()->run() === false) {
             $settings = \CI::Settings()->getSettings('cod');
-            $enabled = $settings['enabled'];
+            $enabled = (isset($settings['enabled']) ?  $settings['enabled'] : null);
 
             $this->view('cod_form', ['enabled' => $enabled]);
         } else {
             \CI::Settings()->saveSettings('cod', ['enabled' => $_POST['enabled']]);
-            redirect('admin/payments');
+            if ($_POST['enabled']) {
+                redirect('admin/payments');
+            }
         }
     }
 }

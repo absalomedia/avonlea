@@ -18,7 +18,6 @@
         "softcommerce/omnipay-paytrace": "~1.0",
         "meebio/omnipay-secure-trading": "dev-master",
         "justinbusschau/omnipay-secpay": "~2.0",
-        "digitalnature/php-ref": "^1.2",
         "filp/whoops": "^2.1"
     },
     "require-dev": {

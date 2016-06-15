@@ -2,12 +2,12 @@
     <?php echo lang('pin_payments'); ?>
 </div>
 
-<button class="blue" id="btn_cod" onclick="PinSubmitOrder()"><?php echo lang('submit_order'); ?></button>
+<button class="blue" id="btn_pin" onclick="PinSubmitOrder()"><?php echo lang('submit_order'); ?></button>
 
 <script>
 function PinSubmitOrder()
 {
-    $('#btn_cod').attr('disabled', true).addClass('disabled');
+    $('#btn_pin').attr('disabled', true).addClass('disabled');
 
     $.post('<?php echo base_url('/pin/process-payment'); ?>', function(data){
         if(data.errors != undefined)

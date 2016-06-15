@@ -49,12 +49,14 @@ class AdminStripe extends Admin
 
         if (\CI::form_validation()->run() === false) {
             $settings = \CI::Settings()->getSettings('stripe');
-            $enabled = $settings['enabled'];
+            $enabled = (isset($settings['enabled']) ?  $settings['enabled'] : null);
 
             $this->view('stripe_form', ['enabled' => $enabled]);
         } else {
             \CI::Settings()->saveSettings('stripe', ['enabled' => $_POST['enabled']]);
-            redirect('admin/payments');
+            if ($_POST['enabled']) {
+                redirect('admin/payments');
+            }
         }
     }
 }

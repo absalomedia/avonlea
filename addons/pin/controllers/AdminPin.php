@@ -26,7 +26,7 @@ class AdminPin extends Admin
     {
         //set a default blank setting for flatrate shipping
         \CI::Settings()->saveSettings('payment_modules', ['pin' => '1']);
-        \CI::Settings()->saveSettings('pin', ['enabled' => '1']);
+        \CI::Settings()->saveSettings('pin', ['enabled' => '0']);
 
         redirect('admin/payments');
     }
@@ -48,13 +48,15 @@ class AdminPin extends Admin
         \CI::form_validation()->set_rules('enabled', 'lang:enabled', 'trim|numeric');
 
         if (\CI::form_validation()->run() === false) {
-            $settings = \CI::Settings()->getSettings('cod');
-            $enabled = $settings['enabled'];
+            $settings = \CI::Settings()->getSettings('pin');
+            $enabled = (isset($settings['enabled']) ?  $settings['enabled'] : null);
 
             $this->view('pin_form', ['enabled' => $enabled]);
         } else {
             \CI::Settings()->saveSettings('pin', ['enabled' => $_POST['enabled']]);
-            redirect('admin/payments');
+            if ($_POST['enabled']) {
+                redirect('admin/payments');
+            }
         }
     }
 }

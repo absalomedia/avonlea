@@ -2,7 +2,7 @@
     <h2><?php echo lang('pin_payments'); ?></h2>
 </div>
 
-<?php echo form_open_multipart('admin/cod/form'); ?>
+<?php echo form_open_multipart('admin/pin/form'); ?>
 <div class="row">
 <div class="col-md-6">
 <div class="form-group">

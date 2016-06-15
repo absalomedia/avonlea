@@ -1,5 +1,5 @@
 <div class="page-header">
-    <?php echo lang('stripe_payemnt'); ?>
+    <?php echo lang('stripe_payment'); ?>
 </div>
 
 <button class="blue" id="btn_stripe" onclick="StripeSubmitOrder()"><?php echo lang('submit_order'); ?></button>
