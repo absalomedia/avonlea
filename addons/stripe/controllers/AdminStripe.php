@@ -33,7 +33,7 @@ class AdminStripe extends Admin
 
     public function uninstall()
     {
-        \CI::Settings()->delete_setting('payment_modules', 'stripe');
+        \CI::Settings()->deleteSetting('payment_modules', 'stripe');
         \CI::Settings()->deleteSettings('stripe');
         redirect('admin/payments');
     }

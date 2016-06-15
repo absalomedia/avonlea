@@ -33,7 +33,7 @@ class AdminPin extends Admin
 
     public function uninstall()
     {
-        \CI::Settings()->delete_setting('payment_modules', 'pin');
+        \CI::Settings()->deleteSetting('payment_modules', 'pin');
         \CI::Settings()->deleteSettings('pin');
         redirect('admin/payments');
     }

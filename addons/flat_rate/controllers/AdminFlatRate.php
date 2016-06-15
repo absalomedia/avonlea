@@ -32,7 +32,7 @@ class AdminFlatRate extends Admin
 
     public function uninstall()
     {
-        \CI::Settings()->delete_setting('shipping_modules', 'FlatRate');
+        \CI::Settings()->deleteSetting('shipping_modules', 'FlatRate');
         \CI::Settings()->deleteSettings('FlatRate');
         redirect('admin/shipping');
     }

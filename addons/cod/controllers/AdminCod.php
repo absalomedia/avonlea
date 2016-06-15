@@ -33,7 +33,7 @@ class AdminCod extends Admin
 
     public function uninstall()
     {
-        \CI::Settings()->delete_setting('payment_modules', 'cod');
+        \CI::Settings()->deleteSetting('payment_modules', 'cod');
         \CI::Settings()->deleteSettings('cod');
         redirect('admin/payments');
     }
