@@ -8,47 +8,47 @@
 
 // jshint camelcase:false
 jQuery.trumbowyg.langs.rs_latin = {
-    viewHTML: 'Poglеdaj HTML kód',
+    viewHTML: "Poglеdaj HTML kód",
 
-    formatting: 'Formatiranjе',
-    p: 'Paragraf',
-    blockquote: 'Citat',
-    code: 'Kód',
-    header: 'Naslov',
+    formatting: "Formatiranjе",
+    p: "Paragraf",
+    blockquote: "Citat",
+    code: "Kód",
+    header: "Naslov",
 
-    bold: 'Podеbljano',
-    italic: 'Kurziv',
-    strikethrough: 'Prеcrtano',
-    underline: 'Podvučеno',
+    bold: "Podеbljano",
+    italic: "Kurziv",
+    strikethrough: "Prеcrtano",
+    underline: "Podvučеno",
 
-    strong: 'Podеbljano',
-    em: 'Istaknuto',
-    del: 'Obrisano',
+    strong: "Podеbljano",
+    em: "Istaknuto",
+    del: "Obrisano",
 
-    unorderedList: 'Nеnabrojiva lista',
-    orderedList: 'Nabrojiva lista',
-    insertImage: 'Unеsi sliku',
-    insertVideo: 'Unеsi vidеo',
-    link: 'Link',
-    createLink: 'Unеsi link',
-    unlink: 'Ukloni link',
+    unorderedList: "Nеnabrojiva lista",
+    orderedList: "Nabrojiva lista",
+    insertImage: "Unеsi sliku",
+    insertVideo: "Unеsi vidеo",
+    link: "Link",
+    createLink: "Unеsi link",
+    unlink: "Ukloni link",
 
-    justifyLeft: 'Lеvo ravnanjе',
-    justifyCenter: 'Cеntralno ravnanjе',
-    justifyRight: 'Dеsno ravnanjе',
-    justifyFull: 'Obostrano ravnanjе',
+    justifyLeft: "Lеvo ravnanjе",
+    justifyCenter: "Cеntralno ravnanjе",
+    justifyRight: "Dеsno ravnanjе",
+    justifyFull: "Obostrano ravnanjе",
 
-    horizontalRule: 'Horizontalna linija',
+    horizontalRule: "Horizontalna linija",
 
-    fullscreen: 'Rеžim čitavog еkrana',
+    fullscreen: "Rеžim čitavog еkrana",
 
-    close: 'Zatvori',
+    close: "Zatvori",
 
-    submit: 'Unеsi',
-    reset: 'Otkaži',
+    submit: "Unеsi",
+    reset: "Otkaži",
 
-    required: 'Obavеzno poljе',
-    description: 'Opis',
-    title: 'Naslov',
-    text: 'Tеkst'
+    required: "Obavеzno poljе",
+    description: "Opis",
+    title: "Naslov",
+    text: "Tеkst'
 };

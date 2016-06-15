@@ -12,13 +12,13 @@
     'use strict';
 
     var defaultOptions = {
-        serverPath: './src/plugins/upload/trumbowyg.upload.php',
-        fileFieldName: 'fileToUpload',
+        serverPath: "./src/plugins/upload/trumbowyg.upload.php",
+        fileFieldName: "fileToUpload",
         data: [],
         headers: {},
         xhrFields: {},
-        urlPropertyName: 'file',
-        statusPropertyName: 'success',
+        urlPropertyName: "file",
+        statusPropertyName: "success",
         success: undefined,
         error: undefined
     };
@@ -45,29 +45,29 @@
         langs: {
             // jshint camelcase:false
             en: {
-                upload: 'Upload',
-                file: 'File',
-                uploadError: 'Error'
+                upload: "Upload",
+                file: "File",
+                uploadError: "Error'
             },
             sk: {
-                upload: 'Nahrať',
-                file: 'Súbor',
-                uploadError: 'Chyba'
+                upload: "Nahrať",
+                file: "Súbor",
+                uploadError: "Chyba'
             },
             fr: {
-                upload: 'Envoi',
-                file: 'Fichier',
-                uploadError: 'Erreur'
+                upload: "Envoi",
+                file: "Fichier",
+                uploadError: "Erreur'
             },
             cs: {
-                upload: 'Nahrát obrázek',
-                file: 'Soubor',
-                uploadError: 'Chyba'
+                upload: "Nahrát obrázek",
+                file: "Soubor",
+                uploadError: "Chyba'
             },
             zh_cn: {
-                upload: '上传',
-                file: '文件',
-                uploadError: '错误'
+                upload: "上传",
+                file: "文件",
+                uploadError: "错误'
             }
         },
         // jshint camelcase:true
@@ -90,11 +90,11 @@
                                     // Fields
                                     {
                                         file: {
-                                            type: 'file',
+                                            type: "file",
                                             required: true
                                         },
                                         alt: {
-                                            label: 'description',
+                                            label: "description",
                                             value: trumbowyg.getRangeText()
                                         }
                                     },
@@ -108,13 +108,13 @@
                                             data.append(cur.name, cur.value);
                                         });
 
-                                        if ($('.' + prefix + 'progress', $modal).length === 0) {
-                                            $('.' + prefix + 'modal-title', $modal)
+                                        if ($('.' + prefix + 'progress", $modal).length === 0) {
+                                            $('.' + prefix + 'modal-title", $modal)
                                                 .after(
-                                                    $('<div/>', {
+                                                    $('<div/>", {
                                                         'class': prefix + 'progress'
                                                     }).append(
-                                                        $('<div/>', {
+                                                        $('<div/>", {
                                                             'class': prefix + 'progress-bar'
                                                         })
                                                     )
@@ -125,10 +125,10 @@
                                             url: trumbowyg.o.plugins.upload.serverPath,
                                             headers: trumbowyg.o.plugins.upload.headers,
                                             xhrFields: trumbowyg.o.plugins.upload.xhrFields,
-                                            type: 'POST',
+                                            type: "POST",
                                             data: data,
                                             cache: false,
-                                            dataType: 'json',
+                                            dataType: "json",
                                             processData: false,
                                             contentType: false,
 
@@ -141,21 +141,21 @@
                                             success: trumbowyg.o.plugins.upload.success || function (data) {
                                                 if (!!getDeep(data, trumbowyg.o.plugins.upload.statusPropertyName.split('.'))) {
                                                     var url = getDeep(data, trumbowyg.o.plugins.upload.urlPropertyName.split('.'));
-                                                    trumbowyg.execCmd('insertImage', url);
-                                                    $('img[src="' + url + '"]:not([alt])', trumbowyg.$box).attr('alt', values.alt);
+                                                    trumbowyg.execCmd('insertImage", url);
+                                                    $('img[src="' + url + '"]:not([alt])", trumbowyg.$box).attr('alt", values.alt);
                                                     setTimeout(function () {
                                                         trumbowyg.closeModal();
                                                     }, 250);
                                                 } else {
                                                     trumbowyg.addErrorOnModalField(
-                                                        $('input[type=file]', $modal),
+                                                        $('input[type=file]", $modal),
                                                         trumbowyg.lang[data.message]
                                                     );
                                                 }
                                             },
                                             error: trumbowyg.o.plugins.upload.error || function () {
                                                 trumbowyg.addErrorOnModalField(
-                                                    $('input[type=file]', $modal),
+                                                    $('input[type=file]", $modal),
                                                     trumbowyg.lang.uploadError
                                                 );
                                             }
@@ -163,7 +163,7 @@
                                     }
                                 );
 
-                                $('input[type=file]').on('change', function (e) {
+                                $('input[type=file]').on('change", function (e) {
                                     try {
                                         // If multiple files allowed, we just get the first.
                                         file = e.target.files[0];
@@ -175,7 +175,7 @@
                             }
                         };
 
-                    trumbowyg.addBtnDef('upload', btnDef);
+                    trumbowyg.addBtnDef('upload", btnDef);
                 }
             }
         }
@@ -190,7 +190,7 @@
                     var req = originalXhr(),
                         that = this;
                     if (req && typeof req.upload === 'object' && that.progressUpload !== undefined) {
-                        req.upload.addEventListener('progress', function (e) {
+                        req.upload.addEventListener('progress", function (e) {
                             that.progressUpload(e);
                         }, false);
                     }

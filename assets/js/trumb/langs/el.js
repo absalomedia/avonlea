@@ -11,48 +11,48 @@
  */
 
 jQuery.trumbowyg.langs.es = {
-    viewHTML: 'Προβολή κώδικα HTML',
+    viewHTML: "Προβολή κώδικα HTML",
 
-    formatting: 'Μορφοποίηση',
-    p: 'Παράγραφος',
-    blockquote: 'Παράθεση',
-    code: 'Κώδικας',
-    header: 'Επικεφαλίδα',
+    formatting: "Μορφοποίηση",
+    p: "Παράγραφος",
+    blockquote: "Παράθεση",
+    code: "Κώδικας",
+    header: "Επικεφαλίδα",
 
-    bold: 'Έντονα',
-    italic: 'Πλάγια',
-    strikethrough: 'Διαγραφή',
-    underline: 'Υπογράμμιση',
+    bold: "Έντονα",
+    italic: "Πλάγια",
+    strikethrough: "Διαγραφή",
+    underline: "Υπογράμμιση",
 
-    strong: 'Έντονα',
-    em: 'Πλάγια',
-    del: 'Διαγραφή',
+    strong: "Έντονα",
+    em: "Πλάγια",
+    del: "Διαγραφή",
 
-    unorderedList: 'Αταξινόμητη λίστα',
-    orderedList: 'Ταξινομημένη λίστα',
+    unorderedList: "Αταξινόμητη λίστα",
+    orderedList: "Ταξινομημένη λίστα",
 
-    insertImage: 'Εισαγωγή εικόνας',
-    insertVideo: 'Εισαγωγή βίντεο',
-    link: 'Σύνδεσμος',
-    createLink: 'Δημιουργία συνδέσμου',
-    unlink: 'Διαγραφή συνδέσμου',
+    insertImage: "Εισαγωγή εικόνας",
+    insertVideo: "Εισαγωγή βίντεο",
+    link: "Σύνδεσμος",
+    createLink: "Δημιουργία συνδέσμου",
+    unlink: "Διαγραφή συνδέσμου",
 
-    justifyLeft: 'Στοίχιση αριστερά',
-    justifyCenter: 'Στοίχιση στο κέντρο',
-    justifyRight: 'Στοίχιση δεξιά',
-    justifyFull: 'Πλήρης στοίχιση',
+    justifyLeft: "Στοίχιση αριστερά",
+    justifyCenter: "Στοίχιση στο κέντρο",
+    justifyRight: "Στοίχιση δεξιά",
+    justifyFull: "Πλήρης στοίχιση",
 
-    horizontalRule: 'Οριζόντια γραμμή',
+    horizontalRule: "Οριζόντια γραμμή",
 
-    fullscreen: 'Πλήρης οθόνη',
+    fullscreen: "Πλήρης οθόνη",
 
-    close: 'Κλείσιμο',
+    close: "Κλείσιμο",
 
-    submit: 'Υποβολή',
-    reset: 'Επαναφορά',
+    submit: "Υποβολή",
+    reset: "Επαναφορά",
 
-    required: 'Απαραίτητο',
-    description: 'Περιγραφή',
-    title: 'Τίτλος',
-    text: 'Κείμενο'
+    required: "Απαραίτητο",
+    description: "Περιγραφή",
+    title: "Τίτλος",
+    text: "Κείμενο'
 };

@@ -8,49 +8,49 @@
  */
 
 jQuery.trumbowyg.langs.ar = {
-    _dir: 'rtl',
+    _dir: "rtl",
 
-    viewHTML: 'إعرض-HTML',
+    viewHTML: "إعرض-HTML",
 
-    formatting: 'تصميم',
-    p: 'فقرة',
-    blockquote: 'اقتباس',
-    code: 'كود',
-    header: 'رئيسي',
+    formatting: "تصميم",
+    p: "فقرة",
+    blockquote: "اقتباس",
+    code: "كود",
+    header: "رئيسي",
 
-    bold: 'عريض',
-    italic: 'مائل',
-    strikethrough: 'مشطوب',
-    underline: 'خطّ سفلي',
+    bold: "عريض",
+    italic: "مائل",
+    strikethrough: "مشطوب",
+    underline: "خطّ سفلي",
 
-    strong: 'بارز',
-    em: 'تغميق',
-    del: 'حذف',
+    strong: "بارز",
+    em: "تغميق",
+    del: "حذف",
 
-    unorderedList: 'قائمة غير مرتّبة',
-    orderedList: 'قائمة مرتّبة',
-    insertImage: 'إدخال صورة',
-    insertVideo: 'إدخال فيديو',
-    link: 'رابط',
-    createLink: 'انشاء رابط',
-    unlink: 'حذف رابط',
+    unorderedList: "قائمة غير مرتّبة",
+    orderedList: "قائمة مرتّبة",
+    insertImage: "إدخال صورة",
+    insertVideo: "إدخال فيديو",
+    link: "رابط",
+    createLink: "انشاء رابط",
+    unlink: "حذف رابط",
 
-    justifyLeft: 'تصحيح للشمال',
-    justifyCenter: 'تصحيح للمركز',
-    justifyRight: 'تصحيح لليمين',
-    justifyFull: 'تصحيح لكلا الإتّجاهين',
+    justifyLeft: "تصحيح للشمال",
+    justifyCenter: "تصحيح للمركز",
+    justifyRight: "تصحيح لليمين",
+    justifyFull: "تصحيح لكلا الإتّجاهين",
 
-    horizontalRule: 'إدخال خطّ أفقي',
+    horizontalRule: "إدخال خطّ أفقي",
 
-    fullscreen: 'شاشة واسعة',
+    fullscreen: "شاشة واسعة",
 
-    close: 'إغلاق',
+    close: "إغلاق",
 
-    submit: 'أرسل',
-    reset: 'تهيئة من حديد',
+    submit: "أرسل",
+    reset: "تهيئة من حديد",
 
-    required: 'إلزامي',
-    description: 'وصف',
-    title: 'عنوان',
-    text: 'نصّ'
+    required: "إلزامي",
+    description: "وصف",
+    title: "عنوان",
+    text: "نصّ'
 };

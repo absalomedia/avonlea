@@ -13,46 +13,46 @@
     var defaultOptions = {
         rows: 0,
         columns: 0,
-        styler: ''
+        styler: "'
     };
 
     $.extend(true, $.trumbowyg, {
         langs: {
             en: {
-                table: 'Create Table',
-                addro: 'Add Rows',
-                addco: 'Add Columns',
-                rows: 'Rows',
-                columns: 'Columns',
-                styler: 'Table Class',
-                error: 'Error'
+                table: "Create Table",
+                addro: "Add Rows",
+                addco: "Add Columns",
+                rows: "Rows",
+                columns: "Columns",
+                styler: "Table Class",
+                error: "Error'
             },
             sk: {
-                table: 'Vytvoriť tabuľky',
-                addro: 'Pridať riadok',
-                addco: 'Pridať stĺpec',               
-                rows: 'Riadky',
-                columns: 'Stĺpce',
-                styler: 'Tabuľku triedy',
-                error: 'Chyba'
+                table: "Vytvoriť tabuľky",
+                addro: "Pridať riadok",
+                addco: "Pridať stĺpec",               
+                rows: "Riadky",
+                columns: "Stĺpce",
+                styler: "Tabuľku triedy",
+                error: "Chyba'
             },
             fr: {
-                table: 'Créez Table',
-                addro: 'Ajout de ligne',
-                addco: 'Ajouter colonnes',
-                rows: 'Lignes',
-                columns: 'Colonnes',
-                styler: 'Classe de table',
-                error: 'Erreur'
+                table: "Créez Table",
+                addro: "Ajout de ligne",
+                addco: "Ajouter colonnes",
+                rows: "Lignes",
+                columns: "Colonnes",
+                styler: "Classe de table",
+                error: "Erreur'
             },
             cs: {
-                table: 'Vytvořit příkaz Table',
-                addro: 'Přidat řádek',
-                addco: 'Přidat sloupec',
-                rows: 'Řádky',
-                columns: 'Sloupce',
-                styler: 'Tabulku třída',
-                error: 'Chyba'
+                table: "Vytvořit příkaz Table",
+                addro: "Přidat řádek",
+                addco: "Přidat sloupec",
+                rows: "Řádky",
+                columns: "Sloupce",
+                styler: "Tabulku třída",
+                error: "Chyba'
             }
         },
 
@@ -72,16 +72,16 @@
                             // Fields
                             {
                                 rows: {
-                                    type: 'number',
+                                    type: "number",
                                     required: true
                                 },
                                 columns: {
-                                    type: 'number',
+                                    type: "number",
                                     required: true
                                 },
                                 styler: {
                                     label: trumbowyg.lang.styler,
-                                    type: 'text'
+                                    type: "text'
                                 }
                             },
                             function(v) { // v is value
@@ -125,9 +125,9 @@
 
                         }
                     };
-                    trumbowyg.addBtnDef('table', tableBuild);
-                    trumbowyg.addBtnDef('addro', addRow);
-                    trumbowyg.addBtnDef('addco', addColumn);
+                    trumbowyg.addBtnDef('table", tableBuild);
+                    trumbowyg.addBtnDef('addro", addRow);
+                    trumbowyg.addBtnDef('addco", addColumn);
                 }
             }
         }
