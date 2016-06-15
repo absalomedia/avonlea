@@ -9,7 +9,7 @@
 <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
 <link href="<?php echo base_url('../themes/default/assets/css/fonts.css'); ?>" rel="stylesheet" type="text/css" />
 <link href="<?php echo base_url('../themes/default/assets/css/pure.min.css'); ?>" rel="stylesheet" type="text/css" />
-<link href="<?php echo base_url('../themes/default/assets/css/icono.min.css'); ?>" rel="stylesheet" type="text/css" />
+<link href="<?php echo base_url('../themes/default/assets/css/font-awesome.min.css'); ?>" rel="stylesheet" type="text/css" />
 <link href="<?php echo base_url('../themes/default/assets/css/styles.css'); ?>" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="<?php echo base_url('../assets/js/jquery-2.1.3.min.js'); ?>"></script>
 
@@ -23,7 +23,7 @@
         <h1>Avonlea Installer</h1>
 
     <?php if (isset($errors)) {
-    echo $errors;
+        echo $errors;
 } ?>
 
     <form action="<?php echo base_url(); ?>" method="post" class="pure-form pure-form-stacked" accept-charset="utf-8">

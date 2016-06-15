@@ -15,6 +15,7 @@
 <?php
     $_js = new JSCrunch();
     $_js->addFile('barba.min');
+    $_js->addFile('flatpickr.min');
 
 if (true) { //Dev Mode
     //in development mode keep all the css files separate
@@ -33,9 +34,7 @@ $(document).ready(function(){
 
     var base = "<?php echo base_url(); ?>";
 
-
-    $('.datepicker').pickadate({formatSubmit:'yyyy-mm-dd', hiddenName:true, format:'mm/dd/yyyy'});
-    //$('.datepicker').datepicker({dateFormat: 'yy-mm-dd'});
+    flatpickr('.datepicker', { altInput: true,  minDate: "today", data-altFormat: "F j, Y" });
 
     $('.trumb').trumbowyg({
     fullscreenable: false,

@@ -13,7 +13,6 @@ $_css = new CSSCrunch();
 $_css->addFile('fonts');
 $_css->addFile('animate.min');
 $_css->addFile('pure.min');
-$_css->addFile('icono.min');
 $_css->addFile('styles');
 $_css->addFile('profiler');
 
