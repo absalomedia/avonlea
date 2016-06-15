@@ -1,15 +1,15 @@
 <div class="page-header">
-    <?php echo lang('charge_on_delivery'); ?>
+    <?php echo lang('stripe_payemnt'); ?>
 </div>
 
-<button class="blue" id="btn_cod" onclick="CodSubmitOrder()"><?php echo lang('submit_order'); ?></button>
+<button class="blue" id="btn_stripe" onclick="StripeSubmitOrder()"><?php echo lang('submit_order'); ?></button>
 
 <script>
-function CodSubmitOrder()
+function StripeSubmitOrder()
 {
-    $('#btn_cod').attr('disabled', true).addClass('disabled');
+    $('#btn_stripe').attr('disabled', true).addClass('disabled');
 
-    $.post('<?php echo base_url('/cod/process-payment'); ?>', function(data){
+    $.post('<?php echo base_url('/stripe/process-payment'); ?>', function(data){
         if(data.errors != undefined)
         {
             var error = '<div class="alert red">';
@@ -20,7 +20,7 @@ function CodSubmitOrder()
             error += '</div>';
 
             $.gumboTray(error);
-            $('#btn_cod').attr('disabled', false).addClass('disabled');
+            $('#btn_stripe').attr('disabled', false).addClass('disabled');
         }
         else
         {

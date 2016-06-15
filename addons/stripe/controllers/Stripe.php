@@ -3,9 +3,9 @@
 namespace Avonlea\Controller;
 
 /**
- * Cod Class.
+ * Stripe Class.
  *
- * @category    Cod
+ * @category    Stripe
  *
  * @author      Absalom Media
  *
@@ -16,19 +16,19 @@ class Stripe extends Front
     public function __construct()
     {
         parent::__construct();
-        \CI::lang()->load('cod');
+        \CI::lang()->load('stripe');
     }
 
     //back end installation functions
     public function checkoutForm()
     {
         //set a default blank setting for flatrate shipping
-        $this->partial('codCheckoutForm');
+        $this->partial('stripeCheckoutForm');
     }
 
     public function isEnabled()
     {
-        $settings = \CI::Settings()->getSettings('cod');
+        $settings = \CI::Settings()->getSettings('stripe');
 
         return (isset($settings['enabled']) && (bool) $settings['enabled']) ? true : false;
     }
@@ -37,7 +37,7 @@ class Stripe extends Front
     {
         $errors = \AVL::checkOrder();
         if (count($errors) > 0) {
-            echo json_encode(['errors' => $errors]);
+            echo json_enstripee(['errors' => $errors]);
 
             return false;
         } else {
@@ -45,8 +45,8 @@ class Stripe extends Front
                 'order_id'       => \AVL::getAttribute('id'),
                 'amount'         => \AVL::getGrandTotal(),
                 'status'         => 'processed',
-                'payment_module' => 'Cod',
-                'description'    => lang('charge_on_delivery'),
+                'payment_module' => 'Stripe',
+                'description'    => lang('stripe_payments'),
             ];
 
             \CI::Orders()->savePaymentInfo($payment);
@@ -54,7 +54,7 @@ class Stripe extends Front
             $orderId = \AVL::submitOrder();
 
             //send the order ID
-            echo json_encode(['orderId' => $orderId]);
+            echo json_enstripee(['orderId' => $orderId]);
 
             return false;
         }
@@ -62,6 +62,6 @@ class Stripe extends Front
 
     public function getName()
     {
-        echo lang('charge_on_delivery');
+        echo lang('stripe_payments');
     }
 }

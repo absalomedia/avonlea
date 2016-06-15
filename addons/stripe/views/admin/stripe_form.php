@@ -1,8 +1,8 @@
 <div class="page-header">
-    <h2><?php echo lang('charge_on_delivery'); ?></h2>
+    <h2><?php echo lang('stripe_payment'); ?></h2>
 </div>
 
-<?php echo form_open_multipart('admin/cod/form'); ?>
+<?php echo form_open_multipart('admin/stripe/form'); ?>
 <div class="row">
 <div class="col-md-6">
 <div class="form-group">

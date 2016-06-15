@@ -1,5 +1,5 @@
 <div class="page-header">
-    <h2><?php echo lang('charge_on_delivery'); ?></h2>
+    <h2><?php echo lang('pin_payments'); ?></h2>
 </div>
 
 <?php echo form_open_multipart('admin/cod/form'); ?>

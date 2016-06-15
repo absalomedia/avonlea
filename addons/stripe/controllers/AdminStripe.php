@@ -3,9 +3,9 @@
 namespace Avonlea\Controller;
 
 /**
- * AdminCod Class.
+ * AdminStripe Class.
  *
- * @category    AdminCod
+ * @category    AdminStripe
  *
  * @author      Absalom Media
  *
@@ -18,23 +18,23 @@ class AdminStripe extends Admin
         parent::__construct();
 
         \CI::auth()->checkAccess('Admin', true);
-        \CI::lang()->load('cod');
+        \CI::lang()->load('stripe');
     }
 
     //back end installation functions
     public function install()
     {
         //set a default blank setting for flatrate shipping
-        \CI::Settings()->saveSettings('payment_modules', ['cod' => '1']);
-        \CI::Settings()->saveSettings('cod', ['enabled' => '1']);
+        \CI::Settings()->saveSettings('payment_modules', ['stripe' => '1']);
+        \CI::Settings()->saveSettings('stripe', ['enabled' => '1']);
 
         redirect('admin/payments');
     }
 
     public function uninstall()
     {
-        \CI::Settings()->delete_setting('payment_modules', 'cod');
-        \CI::Settings()->deleteSettings('cod');
+        \CI::Settings()->delete_setting('payment_modules', 'stripe');
+        \CI::Settings()->deleteSettings('stripe');
         redirect('admin/payments');
     }
 
@@ -48,12 +48,12 @@ class AdminStripe extends Admin
         \CI::form_validation()->set_rules('enabled', 'lang:enabled', 'trim|numeric');
 
         if (\CI::form_validation()->run() === false) {
-            $settings = \CI::Settings()->getSettings('cod');
+            $settings = \CI::Settings()->getSettings('stripe');
             $enabled = $settings['enabled'];
 
-            $this->view('cod_form', ['enabled' => $enabled]);
+            $this->view('stripe_form', ['enabled' => $enabled]);
         } else {
-            \CI::Settings()->saveSettings('cod', ['enabled' => $_POST['enabled']]);
+            \CI::Settings()->saveSettings('stripe', ['enabled' => $_POST['enabled']]);
             redirect('admin/payments');
         }
     }

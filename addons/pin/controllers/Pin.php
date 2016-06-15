@@ -3,9 +3,9 @@
 namespace Avonlea\Controller;
 
 /**
- * Cod Class.
+ * Pin Class.
  *
- * @category    Cod
+ * @category    Pin
  *
  * @author      Absalom Media
  *
@@ -16,19 +16,19 @@ class Pin extends Front
     public function __construct()
     {
         parent::__construct();
-        \CI::lang()->load('cod');
+        \CI::lang()->load('pin');
     }
 
     //back end installation functions
     public function checkoutForm()
     {
         //set a default blank setting for flatrate shipping
-        $this->partial('codCheckoutForm');
+        $this->partial('pinCheckoutForm');
     }
 
     public function isEnabled()
     {
-        $settings = \CI::Settings()->getSettings('cod');
+        $settings = \CI::Settings()->getSettings('pin');
 
         return (isset($settings['enabled']) && (bool) $settings['enabled']) ? true : false;
     }
@@ -45,8 +45,8 @@ class Pin extends Front
                 'order_id'       => \AVL::getAttribute('id'),
                 'amount'         => \AVL::getGrandTotal(),
                 'status'         => 'processed',
-                'payment_module' => 'Cod',
-                'description'    => lang('charge_on_delivery'),
+                'payment_module' => 'Pin',
+                'description'    => lang('pin_payments'),
             ];
 
             \CI::Orders()->savePaymentInfo($payment);
@@ -62,6 +62,6 @@ class Pin extends Front
 
     public function getName()
     {
-        echo lang('charge_on_delivery');
+        echo lang('pin_payments');
     }
 }

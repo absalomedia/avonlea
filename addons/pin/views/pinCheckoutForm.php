@@ -1,15 +1,15 @@
 <div class="page-header">
-    <?php echo lang('charge_on_delivery'); ?>
+    <?php echo lang('pin_payments'); ?>
 </div>
 
-<button class="blue" id="btn_cod" onclick="CodSubmitOrder()"><?php echo lang('submit_order'); ?></button>
+<button class="blue" id="btn_cod" onclick="PinSubmitOrder()"><?php echo lang('submit_order'); ?></button>
 
 <script>
-function CodSubmitOrder()
+function PinSubmitOrder()
 {
     $('#btn_cod').attr('disabled', true).addClass('disabled');
 
-    $.post('<?php echo base_url('/cod/process-payment'); ?>', function(data){
+    $.post('<?php echo base_url('/pin/process-payment'); ?>', function(data){
         if(data.errors != undefined)
         {
             var error = '<div class="alert red">';

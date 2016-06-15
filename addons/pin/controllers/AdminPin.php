@@ -3,9 +3,9 @@
 namespace Avonlea\Controller;
 
 /**
- * AdminCod Class.
+ * AdminPin Class.
  *
- * @category    AdminCod
+ * @category    AdminPin
  *
  * @author      Absalom Media
  *
@@ -18,23 +18,23 @@ class AdminPin extends Admin
         parent::__construct();
 
         \CI::auth()->checkAccess('Admin', true);
-        \CI::lang()->load('cod');
+        \CI::lang()->load('pin');
     }
 
     //back end installation functions
     public function install()
     {
         //set a default blank setting for flatrate shipping
-        \CI::Settings()->saveSettings('payment_modules', ['cod' => '1']);
-        \CI::Settings()->saveSettings('cod', ['enabled' => '1']);
+        \CI::Settings()->saveSettings('payment_modules', ['pin' => '1']);
+        \CI::Settings()->saveSettings('pin', ['enabled' => '1']);
 
         redirect('admin/payments');
     }
 
     public function uninstall()
     {
-        \CI::Settings()->delete_setting('payment_modules', 'cod');
-        \CI::Settings()->deleteSettings('cod');
+        \CI::Settings()->delete_setting('payment_modules', 'pin');
+        \CI::Settings()->deleteSettings('pin');
         redirect('admin/payments');
     }
 
@@ -51,9 +51,9 @@ class AdminPin extends Admin
             $settings = \CI::Settings()->getSettings('cod');
             $enabled = $settings['enabled'];
 
-            $this->view('cod_form', ['enabled' => $enabled]);
+            $this->view('pin_form', ['enabled' => $enabled]);
         } else {
-            \CI::Settings()->saveSettings('cod', ['enabled' => $_POST['enabled']]);
+            \CI::Settings()->saveSettings('pin', ['enabled' => $_POST['enabled']]);
             redirect('admin/payments');
         }
     }
