@@ -48,7 +48,7 @@ class AdminStripe extends Admin
         \CI::form_validation()->set_rules('enabled', 'lang:enabled', 'trim|numeric');
 
         if (\CI::form_validation()->run() === false) {
-            $settings = \CI::Settings()->get_settings('cod');
+            $settings = \CI::Settings()->getSettings('cod');
             $enabled = $settings['enabled'];
 
             $this->view('cod_form', ['enabled' => $enabled]);

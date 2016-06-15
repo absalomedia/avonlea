@@ -28,7 +28,7 @@ class Stripe extends Front
 
     public function isEnabled()
     {
-        $settings = \CI::Settings()->get_settings('cod');
+        $settings = \CI::Settings()->getSettings('cod');
 
         return (isset($settings['enabled']) && (bool) $settings['enabled']) ? true : false;
     }
