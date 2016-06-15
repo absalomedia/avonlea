@@ -2,10 +2,6 @@
     <footer></footer>
 </div>
 <script type="text/javascript" src="<?php echo base_url('assets/js/jquery-2.1.3.min.js'); ?>"></script>
-
-<script type="text/javascript" src="<?php echo base_url('assets/js/pickadate/picker.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/js/pickadate/picker.date.js'); ?>"></script>
-
 <script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap.min.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/js/trumb/trumbowyg.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/js/trumb/trumbowyg.table.js'); ?>"></script>
@@ -34,7 +30,7 @@ $(document).ready(function(){
 
     var base = "<?php echo base_url(); ?>";
 
-    flatpickr('.datepicker', { altInput: true,  minDate: "today", data-altFormat: "F j, Y" });
+    flatpickr('.datepicker');
 
     $('.trumb').trumbowyg({
     fullscreenable: false,
