@@ -4,9 +4,9 @@
 <?php echo form_open_multipart('admin/pin/form', array('class' => 'pure-form pure-form-stacked')); ?>
                 <div class="pure-control-group">
                 	<label class="switch-light switch-ios" onclick="">
-  						<input type="checkbox" name="<?php echo strtolower(lang('enabled')); ?>">
+  						<input type="checkbox" name="<?php echo lang('status'); ?>">
 						  <strong>
-    					<?php echo lang('enabled'); ?>
+    					<?php echo lang('status'); ?>
   						</strong>
 					  <span aria-hidden="true">
   					  <span>Disabled</span>
@@ -14,6 +14,7 @@
   					  <a></a>
   					</span>
 					</label>
+                        <?php echo form_hidden('enabled', assign_value('enabled', $enabled)); ?>
                 </div>
 				<div class="pure-control-group">
                     <label for="<?php echo lang('secret_key'); ?>"><?php echo lang('secret_key'); ?></label>
@@ -21,7 +22,7 @@
                 </div>
   				<div class="pure-control-group">
   					<label class="switch-light switch-ios" onclick="">
-  						<input type="checkbox" name="<?php echo strtolower(lang('testmode')); ?>">
+  						<input type="checkbox" name="<?php echo lang('testmode'); ?>">
 						  <strong>
     					<?php echo lang('testmode'); ?>
   						</strong>
@@ -39,8 +40,19 @@
 </div>    
 </div>    
 </form>
-
 <script type="text/javascript">
+$(function() {
+    $('input[name=Status]').change(function(){
+        if ($(this).val() == "on") {
+            $('input[name=enabled]').val(1);
+            alert($('input[name=enabled]').val());
+        } else {
+            $('input[name=enabled]').val(0);
+        }
+    });
+});
+
+
 $('form').submit(function() {
     $('.btn .btn-primary').attr('disabled', true).addClass('disabled');
 });
