@@ -42,6 +42,7 @@ $lang['no'] = 'No';
 //buttons
 $lang['save'] = 'Save';
 $lang['edit'] = 'Edit';
+$lang['cancel'] = 'Cancel';
 $lang['delete'] = 'Delete';
 $lang['search'] = 'Search';
 $lang['toggle_wysiwyg'] = 'Toggle WYSIWYG';
