@@ -45,7 +45,7 @@ class AdminPin extends Admin
         \CI::load()->helper('form');
         \CI::load()->library('form_validation');
 
-        \CI::form_validation()->set_rules('enabled', 'lang:enabled', 'trim|numeric');
+        \CI::form_validation()->set_rules('enabled', 'lang:enabled');
 
         if (\CI::form_validation()->run() === false) {
             $settings = \CI::Settings()->getSettings('pin');
