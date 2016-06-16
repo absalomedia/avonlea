@@ -50,5 +50,5 @@ jQuery.trumbowyg.langs.rs_latin = {
     required: "Obavеzno poljе",
     description: "Opis",
     title: "Naslov",
-    text: "Tеkst'
+    text: "Tеkst"
 };

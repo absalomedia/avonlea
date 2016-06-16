@@ -52,5 +52,5 @@ jQuery.trumbowyg.langs.ja = {
     required: "必須",
     description: "説明",
     title: "タイトル",
-    text: "テキスト'
+    text: "テキスト"
 };

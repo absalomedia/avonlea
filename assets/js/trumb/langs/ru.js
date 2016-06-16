@@ -50,5 +50,5 @@ jQuery.trumbowyg.langs.ru = {
     required: "Обязательное",
     description: "Описание",
     title: "Подсказка",
-    text: "Текст'
+    text: "Текст"
 };

@@ -51,5 +51,5 @@ jQuery.trumbowyg.langs.sv = {
     required: "Obligatorisk",
     description: "Beskrivning",
     title: "Titel",
-    text: "Text'
+    text: "Text"
 };

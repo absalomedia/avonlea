@@ -51,5 +51,5 @@ jQuery.trumbowyg.langs.vi = {
     required: "Bắt buộc",
     description: "Mô tả",
     title: "Tiêu đề",
-    text: "Nội dung'
+    text: "Nội dung"
 };

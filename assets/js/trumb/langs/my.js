@@ -50,5 +50,5 @@ jQuery.trumbowyg.langs.id = {
     required: "Diperlukan",
     description: "Perihal",
     title: "Tajuk",
-    text: "Teks'
+    text: "Teks"
 };

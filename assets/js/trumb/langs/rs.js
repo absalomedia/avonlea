@@ -49,5 +49,5 @@ jQuery.trumbowyg.langs.rs = {
     required: "Обавезно поље",
     description: "Опис",
     title: "Наслов",
-    text: "Текст'
+    text: "Текст"
 };

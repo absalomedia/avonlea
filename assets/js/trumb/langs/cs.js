@@ -50,5 +50,5 @@ jQuery.trumbowyg.langs.cs = {
     required: "Povinné",
     description: "Popis",
     title: "Nadpis",
-    text: "Text'
+    text: "Text"
 };

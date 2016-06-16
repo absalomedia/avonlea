@@ -47,8 +47,8 @@ jQuery.trumbowyg.langs.ua = {
     submit: "Вставити",
     reset: "Скасувати",
 
-    required: "Обов\'язкове",
+    required: "Обов\"язкове",
     description: "Опис",
     title: "Підказка",
-    text: "Текст'
+    text: "Текст"
 };

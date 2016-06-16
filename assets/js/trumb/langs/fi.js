@@ -51,5 +51,5 @@ jQuery.trumbowyg.langs.fi = {
     required: "Pakollinen",
     description: "Kuvaus",
     title: "Otsikko",
-    text: "Teksti'
+    text: "Teksti"
 };

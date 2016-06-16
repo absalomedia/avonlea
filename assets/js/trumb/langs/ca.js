@@ -53,5 +53,5 @@ jQuery.trumbowyg.langs.ca = {
     required: "Obligatori",
     description: "Descripció",
     title: "Títol",
-    text: "Text'
+    text: "Text"
 };

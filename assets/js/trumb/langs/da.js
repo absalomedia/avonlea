@@ -51,5 +51,5 @@ jQuery.trumbowyg.langs.da = {
     required: "Påkrævet",
     description: "Beskrivelse",
     title: "Titel",
-    text: "Tekst'
+    text: "Tekst"
 };

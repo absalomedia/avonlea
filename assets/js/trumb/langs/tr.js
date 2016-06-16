@@ -51,5 +51,5 @@ jQuery.trumbowyg.langs.tr = {
     required: "Gerekli",
     description: "Açıklama",
     title: "Başlık",
-    text: "Metin'
+    text: "Metin"
 };

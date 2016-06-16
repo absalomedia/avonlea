@@ -52,5 +52,5 @@ jQuery.trumbowyg.langs.ko = {
     required: "꼭 입력해야 합니다.",
     description: "설명",
     title: "제목",
-    text: "본문 내용'
+    text: "본문 내용"
 };

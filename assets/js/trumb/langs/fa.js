@@ -52,5 +52,5 @@ jQuery.trumbowyg.langs.fa = {
     required: "اجباری",
     description: "توضیحات",
     title: "عنوان",
-    text: "متن'
+    text: "متن"
 };

@@ -52,5 +52,5 @@ jQuery.trumbowyg.langs.nl = {
     required: "Verplicht",
     description: "Omschrijving",
     title: "Titel",
-    text: "Tekst'
+    text: "Tekst"
 };

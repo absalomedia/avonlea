@@ -59,5 +59,5 @@ jQuery.trumbowyg.langs.fr = {
     description: "Description",
     title: "Titre",
     text: "Texte",
-    target: "Cible'
+    target: "Cible"
 };

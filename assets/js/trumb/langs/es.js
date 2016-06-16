@@ -51,5 +51,5 @@ jQuery.trumbowyg.langs.es = {
     required: "Obligatorio",
     description: "Descripción",
     title: "Título",
-    text: "Texto'
+    text: "Texto"
 };

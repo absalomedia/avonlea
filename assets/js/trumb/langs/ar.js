@@ -52,5 +52,5 @@ jQuery.trumbowyg.langs.ar = {
     required: "إلزامي",
     description: "وصف",
     title: "عنوان",
-    text: "نصّ'
+    text: "نصّ"
 };

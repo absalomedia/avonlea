@@ -53,5 +53,5 @@ jQuery.trumbowyg.langs.he = {
     required: "נחוץ",
     description: "תיאור",
     title: "כותרת",
-    text: "טקסט'
+    text: "טקסט"
 };

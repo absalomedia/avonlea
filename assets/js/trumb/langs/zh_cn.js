@@ -53,5 +53,5 @@ jQuery.trumbowyg.langs.zh_cn = {
     required: "必需的",
     description: "描述",
     title: "标题",
-    text: "文字'
+    text: "文字"
 };
