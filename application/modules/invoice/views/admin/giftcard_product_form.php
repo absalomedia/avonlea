@@ -257,7 +257,7 @@ function remove_option(id)
 
 <?php
 function add_image($photo_id, $filename, $alt, $caption, $primary = false)
-                    {
+{
                         ob_start();
                         ?>
     <div class="row gc_photo" id="gc_photo_<?php echo $photo_id;
@@ -293,7 +293,7 @@ function add_image($photo_id, $filename, $alt, $caption, $primary = false)
                 </div>
                 <div class="col-md-4">
                     <a onclick="return remove_image($(this));" rel="<?php echo $photo_id;
-                        ?>" class="btn btn-danger pull-right"><i class="icon-times "></i></a>
+                        ?>" class="btn btn-danger pull-right"><i class="fa fa-times " aria-hidden="true"></i></a>
                 </div>
             </div>
             <div class="row">
@@ -314,7 +314,7 @@ function add_image($photo_id, $filename, $alt, $caption, $primary = false)
                         ob_end_clean();
 
                         echo replace_newline($stuff);
-                    }
+}
 
 //this makes it easy to use the same code for initial generation of the form as well as javascript additions
 function replace_newline($string)
@@ -355,7 +355,7 @@ function add_option_value($po, $count, $price)
     ?>]" value="<?php echo $price ?>" class="form-control"/>
                 <div class="input-group-btn">
                     <button type="button" class="btn btn-danger" onclick="remove_giftcard_value(<?php echo $count;
-    ?>);"><i class="icon-times"></i></button>
+    ?>);"><i class="fa fa-times" aria-hidden="true"></i></button>
                 </div>
             </div>
         </td>

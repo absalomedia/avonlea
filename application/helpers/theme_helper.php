@@ -21,7 +21,7 @@ function category_loop($parent = 0, $ulattribs = false, $ul = true)
             //add the chevron if this has a drop menu
             $name = $item->name;
             if (CI::Categories()->tier($item->id)) {
-                $name .= ' <i class="icon-chevron-down dropdown"></i>';
+                $name .= ' <i class="fa fa-chevron-down dropdown" aria-hidden="true"></i>';
             }
 
             $anchor = anchor('category/'.$item->slug, $name, $selected);
@@ -47,7 +47,7 @@ function page_loop($parent = 0, $ulattribs = false, $ul = true)
         echo ($ul) ? '<ul '.$ulattribs.'>' : '';
         foreach ($items as $item) {
             echo '<li>';
-            $chevron = ' <i class="icon-chevron-down dropdown"></i>';
+            $chevron = ' <i class="fa fa-chevron-down dropdown" aria-hidden="true"></i>';
 
             if ($item->slug === '') {
                 //add the chevron if this has a drop menu

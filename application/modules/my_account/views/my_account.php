@@ -36,7 +36,7 @@
 
             <label class="checklist">
                 <input type="checkbox" name="email_subscribe" value="1" <?php if ((bool) $customer['email_subscribe']) {
-    ?> checked="checked" <?php 
+    ?> checked="checked" <?php
 } ?>/> <?php echo lang('account_newsletter_subscribe'); ?>
             </label>
         
@@ -67,7 +67,7 @@
         <div class="page-header" style="margin-top:30px;">
             <h2><?php echo lang('order_history'); ?></h2>
         </div>
-        <?php if ($orders):
+        <?php if ($orders) :
             echo $orders_pagination;
         ?>
         <table class="table bordered zebra">
@@ -81,7 +81,7 @@
 
             <tbody>
             <?php
-            foreach ($orders as $order): ?>
+            foreach ($orders as $order) : ?>
                 <tr>
                     <td>
                         <?php $d = format_date($order->ordered_on);
@@ -95,11 +95,11 @@
                     <td><?php echo $order->status; ?></td>
                 </tr>
         
-            <?php endforeach; ?>
+            <?php                                                                                                                                                                                                                                                                                                                         endforeach; ?>
             </tbody>
         </table>
-        <?php else: ?>
-            <div class="alert yellow"><i class="close"></i><?php echo lang('no_order_history'); ?></div>
+        <?php else : ?>
+            <div class="alert yellow"><i class="close" aria-hidden="true"></i><?php echo lang('no_order_history'); ?></div>
         <?php endif; ?>
     </div>
 </div>

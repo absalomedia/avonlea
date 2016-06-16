@@ -123,7 +123,7 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th><i class="icon-eye-slash"></i></th>
+                                    <th><i class="fa fa-eye-slash" aria-hidden="true"></i></th>
                                     <th><?php echo lang('name')?></th>
                                     <?php foreach ($groups as $group) :?>
                                         <th><?php echo $group->name; ?></th>
@@ -137,12 +137,12 @@
                             if (isset($cats[$parent_id])) {
                                 foreach ($cats[$parent_id] as $cat) :?>
                                 <tr>
-                                    <td><?php echo ($hidden) ? '<i class="icon-eye-slash">' : '';
+                                    <td><?php echo ($hidden) ? '<i class="fa fa-eye-slash">' : '';
                                 ?></i></td>
                                     <td><?php echo  $sub.$cat->name;
                                 ?></td>
                                     <?php foreach ($groups as $group) :?>
-                                        <td><?php echo ($cat->{'enabled'.$group->id}) ? '<i class="icon-check"></i>' : '';
+                                        <td><?php echo ($cat->{'enabled'.$group->id}) ? '<i class="fa fa-check" aria-hidden="true"></i>' : '';
                                 ?></td>
                                     <?php endforeach;
                                 ?>
@@ -339,7 +339,7 @@
             {{name}}
         </td>
         <td class="text-right">
-            <a class="btn btn-danger" href="#" onclick="remove_related_product({{id}}); return false;"><i class="icon-times"></i></a>
+            <a class="btn btn-danger" href="#" onclick="remove_related_product({{id}}); return false;"><i class="fa fa-times" aria-hidden="true"></i></a>
         </td>
     </tr>
 </script>
@@ -365,7 +365,7 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <a onclick="return remove_image($(this));" rel="{{id}}" class="btn btn-danger pull-right"><i class="icon-times "></i></a>
+                    <a onclick="return remove_image($(this));" rel="{{id}}" class="btn btn-danger pull-right"><i class="fa fa-times " aria-hidden="true"></i></a>
                 </div>
             </div>
             <div class="row">
@@ -381,9 +381,9 @@
 <script type="text/template" id="optionTemplate">
     <tr id="option-{{id}}">
         <td>
-            <a class="handle1 btn btn-primary btn-sm"><i class="icon-sort"></i></a>
+            <a class="handle1 btn btn-primary btn-sm"><i class="fa fa-sort" aria-hidden="true"></i></a>
             <strong><a class="optionTitle" href="#option-form-{{id}}">{{type}} : {{name}}</a></strong>
-            <button type="button" class="btn btn-danger btn-sm pull-right" onclick="remove_option({{id}});"><i class="icon-times"></i></button>
+            <button type="button" class="btn btn-danger btn-sm pull-right" onclick="remove_option({{id}});"><i class="fa fa-times" aria-hidden="true"></i></button>
             <input type="hidden" name="option[{{id}}][type]" value="{{type}}" />
 
             <div class="option-form" id="option-form-{{id}}">
@@ -426,7 +426,7 @@
         <div class="row">
             
             {{^isText}}
-                <div class="col-md-1"><a class="handle2 btn btn-primary btn-sm" style="float:left;"><i class="icon-sort"></i></a></div>
+                <div class="col-md-1"><a class="handle2 btn btn-primary btn-sm" style="float:left;"><i class="fa fa-sort" aria-hidden="true"></i></a></div>
             {{/isText}}
 
             <div class="col-md-3"><input type="text" class="form-control input-sm" name="option[{{id}}][values][{{valId}}][name]" value="{{name}}" /></div>
@@ -438,7 +438,7 @@
                     <input class="form-control" type="text" name="option[{{id}}][values][{{valId}}][limit]" value="{{limit}}" />
                 {{/isText}}
                 {{^isText}}
-                    <a class="deleteOptionValue btn btn-danger btn-sm pull-right"><i class="icon-times"></i></a>
+                    <a class="deleteOptionValue btn btn-danger btn-sm pull-right"><i class="fa fa-times" aria-hidden="true"></i></a>
                 {{/isText}}
             </div>
         </div>

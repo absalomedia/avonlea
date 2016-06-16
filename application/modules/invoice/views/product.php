@@ -164,9 +164,9 @@
 
                         <strong>Quantity&nbsp;</strong>
                         <input type="text" name="quantity" value="1" style="width:50px; display:inline"/>&nbsp;
-                        <button class="blue" type="button" value="submit" onclick="addToCart($(this));"><i class="icon-cart"></i> <?php echo lang('form_add_to_cart'); ?></button>
+                        <button class="blue" type="button" value="submit" onclick="addToCart($(this));"><i class="fa fa-cart" aria-hidden="true"></i> <?php echo lang('form_add_to_cart'); ?></button>
                 <?php else : ?>
-                        <button class="blue" type="button" value="submit" onclick="addToCart($(this));"><i class="icon-cart"></i> <?php echo lang('form_add_to_cart'); ?></button>
+                        <button class="blue" type="button" value="submit" onclick="addToCart($(this));"><i class="fa fa-cart" aria-hidden="true"></i> <?php echo lang('form_add_to_cart'); ?></button>
                 <?php endif; ?>
 
             <?php endif; ?>
@@ -193,13 +193,13 @@
         $.post(cart.attr('action'), cart.serialize(), function(data){
             if(data.message != undefined)
             {
-                $('#productAlerts').html('<div class="alert green">'+data.message+' <a href="<?php echo site_url('checkout'); ?>"> <?php echo lang('view_cart'); ?></a> <i class="close"></i></div>');
+                $('#productAlerts').html('<div class="alert green">'+data.message+' <a href="<?php echo site_url('checkout'); ?>"> <?php echo lang('view_cart'); ?></a> <i class="close" aria-hidden="true"></i></div>');
                 updateItemCount(data.itemCount);
                 cart[0].reset();
             }
             else if(data.error != undefined)
             {
-                $('#productAlerts').html('<div class="alert red">'+data.error+' <i class="close"></i></div>');
+                $('#productAlerts').html('<div class="alert red">'+data.error+' <i class="close" aria-hidden="true"></i></div>');
             }
 
             $('.productDetails').spin(false);
@@ -237,8 +237,8 @@
                     <?php endif; ?>
                 </div>
         <?php                                                                                                                                                                                                                 endforeach; ?>
-        <a class="controls" data-direction="back"><i class="icon-chevron-left"></i></a>
-        <a class="controls" data-direction="forward"><i class="icon-chevron-right"></i></a>
+        <a class="controls" data-direction="back"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+        <a class="controls" data-direction="forward"><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
         <div class="banner-timer"></div>
     </div>
 </script>

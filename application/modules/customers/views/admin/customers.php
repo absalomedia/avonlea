@@ -9,8 +9,8 @@ function areyousure()
 }
 </script>
 <div class="btn-group pull-right">
-    <a class="btn btn-primary" href="<?php echo site_url('admin/customers/export'); ?>"><i class="icon-download"></i> <?php echo lang('export'); ?></a>
-    <a class="btn btn-primary" href="<?php echo site_url('admin/customers/form'); ?>"><i class="icon-plus"></i> <?php echo lang('add_new_customer'); ?></a>
+    <a class="btn btn-primary" href="<?php echo site_url('admin/customers/export'); ?>"><i class="fa fa-download" aria-hidden="true"></i> <?php echo lang('export'); ?></a>
+    <a class="btn btn-primary" href="<?php echo site_url('admin/customers/form'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> <?php echo lang('add_new_customer'); ?></a>
 </div>
 
 <table class="table table-striped">
@@ -21,11 +21,11 @@ function areyousure()
                 $url = 'admin/customers/'.$thead.'/';
                 $icon = '';
                 if ($field === $thead) {
-                    $icon = ' <i class="icon-chevron-down"></i>';
+                    $icon = ' <i class="fa fa-chevron-down" aria-hidden="true"></i>';
 
                     if ($by === 'ASC') {
                         $url .= 'DESC/';
-                        $icon = ' <i class="icon-chevron-up"></i>';
+                        $icon = ' <i class="fa fa-chevron-up" aria-hidden="true"></i>';
                     } else {
                         $url .= 'ASC/';
                     }
@@ -65,9 +65,9 @@ function areyousure()
             </td>
             <td class="text-right">
                 <div class="btn-group">
-                    <a class="btn btn-default" href="<?php echo site_url('admin/customers/form/'.$customer->id); ?>"><i class="icon-pencil"></i></a>
-                    <a class="btn btn-default" href="<?php echo site_url('admin/customers/addresses/'.$customer->id); ?>"><i class="icon-envelope"></i></a>
-                    <a class="btn btn-danger" href="<?php echo site_url('admin/customers/delete/'.$customer->id); ?>" onclick="return areyousure();"><i class="icon-times "></i></a>
+                    <a class="btn btn-default" href="<?php echo site_url('admin/customers/form/'.$customer->id); ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                    <a class="btn btn-default" href="<?php echo site_url('admin/customers/addresses/'.$customer->id); ?>"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+                    <a class="btn btn-danger" href="<?php echo site_url('admin/customers/delete/'.$customer->id); ?>" onclick="return areyousure();"><i class="fa fa-times " aria-hidden="true"></i></a>
                 </div>
             </td>
         </tr>

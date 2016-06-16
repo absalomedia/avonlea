@@ -13,10 +13,10 @@ function sort_url($lang, $by, $sort, $sorder, $code)
     if ($sort === $by) {
         if ($sorder === 'asc') {
             $sort = 'desc';
-            $icon = ' <i class="icon-chevron-up"></i>';
+            $icon = ' <i class="fa fa-chevron-up" aria-hidden="true"></i>';
         } else {
             $sort = 'asc';
-            $icon = ' <i class="icon-chevron-down"></i>';
+            $icon = ' <i class="fa fa-chevron-down" aria-hidden="true"></i>';
         }
     } else {
         $sort = 'asc';
@@ -58,8 +58,8 @@ if ($term) :?>
             <div class="form-group">
                 <input id="top" type="text" class="form-control" name="term" placeholder="<?php echo lang('term')?>" />
             </div>
-                <button class="btn btn-default" name="submit" value="search"><i class="icon-search"></i></button>
-                <button class="btn btn-default" name="submit" value="export"><i class="icon-download"></i></button>
+                <button class="btn btn-default" name="submit" value="search"><i class="fa fa-search" aria-hidden="true"></i></button>
+                <button class="btn btn-default" name="submit" value="export"><i class="fa fa-download" aria-hidden="true"></i></button>
         </form>
     </div>
 </div>
@@ -119,7 +119,7 @@ if ($term) :?>
                 <?php echo form_input(['id' => 'status_form_'.$order->id, 'data-original' => set_value('status', $order->status), 'class' => 'form-control', 'value' => set_value('status', $order->status)]); ?>
                 <div class="input-group-btn">
 
-                    <button type="button" class="btn btn-success" onClick="save_status(<?php echo $order->id; ?>)"><i class="icon-check"></i></button>
+                    <button type="button" class="btn btn-success" onClick="save_status(<?php echo $order->id; ?>)"><i class="fa fa-check" aria-hidden="true"></i></button>
 
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                         <span class="caret"></span>

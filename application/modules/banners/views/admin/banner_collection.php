@@ -44,7 +44,7 @@ function areyousure()
 </script>
 
 <div class="text-right">
-    <a class="btn btn-primary" href="<?php echo site_url('admin/banners/banner_form/'.$banner_collection_id); ?>"><i class="icon-plus"></i> <?php echo lang('add_new_banner'); ?></a>
+    <a class="btn btn-primary" href="<?php echo site_url('admin/banners/banner_form/'.$banner_collection_id); ?>"><i class="fa fa-plus" aria-hidden="true"></i> <?php echo lang('add_new_banner'); ?></a>
     <a class="btn btn-primary" href="<?php echo site_url('admin/banners/'); ?>"><?php echo lang('banner_collections'); ?></a>
 </div>
 
@@ -59,36 +59,35 @@ function areyousure()
         </tr>
     </thead>
     <?php echo (count($banners) < 1) ? '<tr><td style="text-align:center;" colspan="5">'.lang('no_banners').'</td></tr>' : ''?>
-    <?php if ($banners): ?>
+    <?php if ($banners) : ?>
     <tbody id="banners_sortable">
     <?php
 
-    foreach ($banners as $banner):
+    foreach ($banners as $banner) :
 
         $disabled = '';
         $enableOn = ($banner->enable_date === '0000-00-00') ? '' : date('m/d/y', strtotime($banner->enable_date));
         $disableOn = ($banner->disable_date === '0000-00-00') ? '' : date('m/d/y', strtotime($banner->disable_date));
 
-        if (
-            (!empty($enableOn) && strtotime($banner->enable_date) > time()) ||
+        if ((!empty($enableOn) && strtotime($banner->enable_date) > time()) ||
             (!empty($disableOn) && strtotime($banner->disable_date) < time())) {
             $disabled = ' style="opacity:.6;"';
         }
 
         ?>
         <tr id="banners-<?php echo $banner->banner_id; ?>"<?php echo $disabled; ?>>
-            <td class="handle"><a class="btn btn-primary"><span class="icon-sort"></span></a></td>
+            <td class="handle"><a class="btn btn-primary"><span class="fa fa-sort"></span></a></td>
             <td><?php echo $banner->name; ?></td>
             <td><?php echo $enableOn; ?></td>
             <td><?php echo $disableOn; ?></td>
             <td class="text-right">
                 <div class="btn-group">
-                    <a class="btn btn-default" href="<?php echo site_url('admin/banners/banner_form/'.$banner_collection_id.'/'.$banner->banner_id); ?>"><i class="icon-pencil"></i></a>
-                    <a class="btn btn-danger" href="<?php echo  site_url('admin/banners/delete_banner/'.$banner->banner_id); ?>" onclick="return areyousure();"><i class="icon-times "></i></a>
+                    <a class="btn btn-default" href="<?php echo site_url('admin/banners/banner_form/'.$banner_collection_id.'/'.$banner->banner_id); ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                    <a class="btn btn-danger" href="<?php echo  site_url('admin/banners/delete_banner/'.$banner->banner_id); ?>" onclick="return areyousure();"><i class="fa fa-times " aria-hidden="true"></i></a>
                 </div>
             </td>
         </tr>
-    <?php endforeach; ?>
+    <?php                                                                                                             endforeach; ?>
     </tbody>
     <?php endif; ?>
 </table>

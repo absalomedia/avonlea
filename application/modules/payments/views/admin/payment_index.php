@@ -9,11 +9,11 @@
                 <td class="text-right">
                     <div class="btn-group">
                 <?php if (array_key_exists($module['key'], $enabled_modules)) : ?>
-                    <a class="btn btn-default no-barba" href="<?php echo site_url('admin/'.$module['key'].'/form/'); ?>"><i class="icon-gear"></i></a>
-                    <a class="btn btn-danger" href="<?php echo site_url('admin/'.$module['key'].'/uninstall/'); ?>" onclick="return areyousure();"><i class="icon-times"></i></a>
+                    <a class="btn btn-default no-barba" href="<?php echo site_url('admin/'.$module['key'].'/form/'); ?>"><i class="fa fa-gear" aria-hidden="true"></i></a>
+                    <a class="btn btn-danger" href="<?php echo site_url('admin/'.$module['key'].'/uninstall/'); ?>" onclick="return areyousure();"><i class="fa fa-times" aria-hidden="true"></i></a>
                 <?php else : ?>
-                    <a class="btn btn-default no-barba" href="<?php echo site_url('admin/'.$module['key'].'/form/'); ?>"><i class="icon-gear"></i></a>
-                    <a class="btn btn-success" href="<?php echo site_url('admin/'.$module['key'].'/install/'); ?>"><i class="icon-check"></i></a>
+                    <a class="btn btn-default no-barba" href="<?php echo site_url('admin/'.$module['key'].'/form/'); ?>"><i class="fa fa-gear" aria-hidden="true"></i></a>
+                    <a class="btn btn-success" href="<?php echo site_url('admin/'.$module['key'].'/install/'); ?>"><i class="fa fa-check" aria-hidden="true"></i></a>
                 <?php endif; ?>
                     </div>
                 </td>

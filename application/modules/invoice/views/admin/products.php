@@ -58,9 +58,9 @@ function areyousure()
 
 <?php echo form_open('admin/products/bulk_save', ['id' => 'bulk_form']); ?>
 <div class="text-right form-group">
-    <button class="btn btn-primary" href="#"><i class="icon-ok"></i> <?php echo lang('bulk_save'); ?></button>
-    <a class="btn btn-primary" style="font-weight:normal;"href="<?php echo site_url('admin/products/form'); ?>"><i class="icon-plus"></i> <?php echo lang('add_new_product'); ?></a>
-    <a class="btn btn-primary" style="font-weight:normal;"href="<?php echo site_url('admin/products/gift-card-form'); ?>"><i class="icon-plus"></i> <?php echo lang('add_new_gift_card'); ?></a>
+    <button class="btn btn-primary" href="#"><i class="fa fa-ok" aria-hidden="true"></i> <?php echo lang('bulk_save'); ?></button>
+    <a class="btn btn-primary" style="font-weight:normal;"href="<?php echo site_url('admin/products/form'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> <?php echo lang('add_new_product'); ?></a>
+    <a class="btn btn-primary" style="font-weight:normal;"href="<?php echo site_url('admin/products/gift-card-form'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> <?php echo lang('add_new_gift_card'); ?></a>
 </div>
     <table class="table table-striped">
         <thead>
@@ -74,10 +74,10 @@ function areyousure()
                     if ($order_by === $thead) {
                         if ($sort_order === 'asc') {
                             $uristring .= 'desc/';
-                            $icon = ' <i class="icon-sort-alt-up"></i>';
+                            $icon = ' <i class="fa fa-sort-alt-up" aria-hidden="true"></i>';
                         } else {
                             $uristring .= 'asc/';
-                            $icon = ' <i class="icon-sort-alt-down"></i>';
+                            $icon = ' <i class="fa fa-sort-alt-down" aria-hidden="true"></i>';
                         }
                     } else {
                         $uristring .= 'asc/';
@@ -110,9 +110,9 @@ function areyousure()
                 <?php endforeach; ?>
                 <td class="text-right">
                     <div class="btn-group">
-                        <a class="btn btn-default" href="<?php echo ($product->is_giftcard) ? site_url('admin/products/gift-card-form/'.$product->id) : site_url('admin/products/form/'.$product->id); ?>" alt="<?php echo lang('edit'); ?>"><i class="icon-pencil"></i></a>
-                        <a class="btn btn-default" href="<?php echo site_url('admin/products/form/'.$product->id.'/1'); ?>" alt="<?php echo lang('copy'); ?>"><i class="icon-copy"></i></a>
-                        <a class="btn btn-danger" href="<?php echo site_url('admin/products/delete/'.$product->id); ?>" onclick="return areyousure();" alt="<?php echo lang('delete'); ?>"><i class="icon-times "></i></a>
+                        <a class="btn btn-default" href="<?php echo ($product->is_giftcard) ? site_url('admin/products/gift-card-form/'.$product->id) : site_url('admin/products/form/'.$product->id); ?>" alt="<?php echo lang('edit'); ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                        <a class="btn btn-default" href="<?php echo site_url('admin/products/form/'.$product->id.'/1'); ?>" alt="<?php echo lang('copy'); ?>"><i class="fa fa-copy" aria-hidden="true"></i></a>
+                        <a class="btn btn-danger" href="<?php echo site_url('admin/products/delete/'.$product->id); ?>" onclick="return areyousure();" alt="<?php echo lang('delete'); ?>"><i class="fa fa-times " aria-hidden="true"></i></a>
                     </div>
                 </td>
             </tr>

@@ -1,5 +1,5 @@
 <?php pageHeader(lang('banner_collections')) ?>
-<a class="btn btn-primary pull-right" href="<?php echo site_url('admin/banners/banner_collection_form'); ?>"><i class="icon-plus"></i> <?php echo lang('add_new_banner_collection'); ?></a>
+<a class="btn btn-primary pull-right" href="<?php echo site_url('admin/banners/banner_collection_form'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> <?php echo lang('add_new_banner_collection'); ?></a>
 
 <table class="table table-striped">
     <thead>
@@ -9,24 +9,24 @@
         </tr>
     </thead>
     <?php echo (count($banner_collections) < 1) ? '<tr><td style="text-align:center;" colspan="5">'.lang('no_banner_collections').'</td></tr>' : ''?>
-    <?php if ($banner_collections): ?>
+    <?php if ($banner_collections) : ?>
     <tbody>
     <?php
 
-    foreach ($banner_collections as $banner_collection):?>
+    foreach ($banner_collections as $banner_collection) :?>
         <tr>
             <td><?php echo $banner_collection->name; ?></td>
             <td class="text-right">
                 <div class="btn-group">
-                    <a class="btn btn-default" href="<?php echo base_url('admin/banners/banner_collection/'.$banner_collection->banner_collection_id); ?>"><i class="icon-image"></i></a>
+                    <a class="btn btn-default" href="<?php echo base_url('admin/banners/banner_collection/'.$banner_collection->banner_collection_id); ?>"><i class="fa fa-image" aria-hidden="true"></i></a>
                     
-                    <a class="btn btn-default" href="<?php echo site_url('admin/banners/banner_collection_form/'.$banner_collection->banner_collection_id); ?>"><i class="icon-pencil"></i></a>
+                    <a class="btn btn-default" href="<?php echo site_url('admin/banners/banner_collection_form/'.$banner_collection->banner_collection_id); ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                     
-                    <a class="btn btn-danger" href="<?php echo site_url('admin/banners/delete_banner_collection/'.$banner_collection->banner_collection_id); ?>" onclick="return areyousure();"><i class="icon-times "></i></a>
+                    <a class="btn btn-danger" href="<?php echo site_url('admin/banners/delete_banner_collection/'.$banner_collection->banner_collection_id); ?>" onclick="return areyousure();"><i class="fa fa-times " aria-hidden="true"></i></a>
                 </div>
             </td>
         </tr>
-    <?php endforeach; ?>
+    <?php                                                                                                         endforeach; ?>
     </tbody>
     <?php endif; ?>
 </table>

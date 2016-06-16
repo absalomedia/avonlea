@@ -210,13 +210,13 @@
         <div class="couponMessage"></div>
         <div class="btn-group input-sm">
             <div class="priority"><input type="text" id="coupon" placeholder="<?php echo lang('coupon_label'); ?>"></div>
-            <a class="btn green" type="button" onclick="submitCoupon()"><i class="icon-plus"></i></a>
+            <a class="btn green" type="button" onclick="submitCoupon()"><i class="fa fa-plus" aria-hidden="true"></i></a>
         </div>
 
         <div class="giftCardMessage"></div>
         <div class="btn-group input-sm">
             <div class="priority"><input type="text" id="giftCard" placeholder="<?php echo lang('gift_card_label'); ?>"></div>
-            <a class="btn green" type="button" onclick="submitGiftCard()"><i class="icon-plus"></i></a>
+            <a class="btn green" type="button" onclick="submitGiftCard()"><i class="fa fa-plus" aria-hidden="true"></i></a>
         </div>
 
     </div>
@@ -320,14 +320,14 @@ function submitGiftCard()
     $.post('<?php echo site_url('cart/submit-gift-card'); ?>', {'gift_card':$('#giftCard').val()}, function(data){
         if(data.error != undefined)
         {
-            $('.giftCardMessage').html($('<div class="alert red"></div>').text(data.error).prepend('<i class="close"></i>'));
+            $('.giftCardMessage').html($('<div class="alert red"></div>').text(data.error).prepend('<i class="close" aria-hidden="true"></i>'));
             $('#cartSummary').spin(false);
             $('#giftCard')[0].setSelectionRange(0, $('#giftCard').val().length);
         }
         else
         {
             getCartSummary(function(){
-                $('.giftCardMessage').html($('<div class="alert green"></div>').text(data.message).prepend('<i class="close"></i>'))
+                $('.giftCardMessage').html($('<div class="alert green"></div>').text(data.message).prepend('<i class="close" aria-hidden="true"></i>'))
             })
         }
 
@@ -340,14 +340,14 @@ function submitCoupon()
     $.post('<?php echo site_url('cart/submit-coupon'); ?>', {'coupon':$('#coupon').val()}, function(data){
         if(data.error != undefined)
         {
-            $('.couponMessage').html($('<div class="alert red"></div>').text(data.error).prepend('<i class="close"></i>'));
+            $('.couponMessage').html($('<div class="alert red"></div>').text(data.error).prepend('<i class="close" aria-hidden="true"></i>'));
             $('#cartSummary').spin(false);
             $('#coupon')[0].setSelectionRange(0, $('#coupon').val().length);
         }
         else
         {
             getCartSummary(function(){
-                $('.couponMessage').html($('<div class="alert green"></div>').text(data.message).prepend('<i class="close"></i>'))
+                $('.couponMessage').html($('<div class="alert green"></div>').text(data.message).prepend('<i class="close" aria-hidden="true"></i>'))
             })
         }
     }, 'json');

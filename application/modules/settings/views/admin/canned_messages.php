@@ -1,7 +1,7 @@
 <?php pageHeader(lang('canned_messages')) ?>
 
 <div class="text-right">
-    <a class="btn btn-primary" href="<?php echo site_url('admin/settings/canned_message_form/'); ?>"><i class="icon-plus"></i> <?php echo lang('add_canned_message'); ?></a>
+    <a class="btn btn-primary" href="<?php echo site_url('admin/settings/canned_message_form/'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> <?php echo lang('add_canned_message'); ?></a>
 </div>
 
 <?php if (count($canned_messages) > 0) : ?>
@@ -18,9 +18,9 @@
             <td><?php echo $message['name']; ?></td>
             <td class="text-right">
                 <span class="btn-group">
-                    <a class="btn btn-default" href="<?php echo site_url('admin/settings/canned_message_form/'.$message['id']); ?>"><i class="icon-pencil"></i></a>
+                    <a class="btn btn-default" href="<?php echo site_url('admin/settings/canned_message_form/'.$message['id']); ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                     <?php if ($message['deletable'] === 1) : ?>   
-                        <a class="btn btn-danger" href="<?php echo site_url('admin/settings/delete_message/'.$message['id']); ?>" onclick="return areyousure();"><i class="icon-times"></i></a>
+                        <a class="btn btn-danger" href="<?php echo site_url('admin/settings/delete_message/'.$message['id']); ?>" onclick="return areyousure();"><i class="fa fa-times" aria-hidden="true"></i></a>
                     <?php endif; ?>
                 </span>
             </td>

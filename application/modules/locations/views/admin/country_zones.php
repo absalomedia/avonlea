@@ -7,8 +7,8 @@ function areyousure()
 </script>
 
 <div class="text-right">
-    <a class="btn btn-primary" href="<?php echo site_url('admin/locations/country_form'); ?>"><i class="icon-plus"></i> <?php echo lang('add_new_country'); ?></a>
-    <a class="btn btn-primary" href="<?php echo site_url('admin/locations/zone_form'); ?>"><i class="icon-plus"></i> <?php echo lang('add_new_zone'); ?></a>
+    <a class="btn btn-primary" href="<?php echo site_url('admin/locations/country_form'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> <?php echo lang('add_new_country'); ?></a>
+    <a class="btn btn-primary" href="<?php echo site_url('admin/locations/zone_form'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> <?php echo lang('add_new_zone'); ?></a>
 </div>
 
 <table class="table table-striped">
@@ -22,7 +22,7 @@ function areyousure()
         </tr>
     </thead>
     <tbody>
-<?php foreach ($zones as $location):?>
+<?php foreach ($zones as $location) :?>
         <tr>
             <td class="gc_cell_left"><?php echo  $location->name; ?></td>
             <td><?php echo $location->code; ?></td>
@@ -30,9 +30,9 @@ function areyousure()
             <td><?php echo ((bool) $location->status) ? 'enabled' : 'disabled'; ?></td>
             <td class="text-right">
                 <div class="btn-group">
-                    <a class="btn btn-default" href="<?php echo site_url('admin/locations/zone_form/'.$location->id); ?>"><i class="icon-pencil"></i></a>
-                    <a class="btn btn-default" href="<?php echo site_url('admin/locations/zone_areas/'.$location->id); ?>"><i class="icon-map-marker"></i></a>
-                    <a class="btn btn-danger" href="<?php echo site_url('admin/locations/delete_zone/'.$location->id); ?>" onclick="return areyousure();"><i class="icon-times "></i></a>
+                    <a class="btn btn-default" href="<?php echo site_url('admin/locations/zone_form/'.$location->id); ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                    <a class="btn btn-default" href="<?php echo site_url('admin/locations/zone_areas/'.$location->id); ?>"><i class="fa fa-map-marker" aria-hidden="true"></i></a>
+                    <a class="btn btn-danger" href="<?php echo site_url('admin/locations/delete_zone/'.$location->id); ?>" onclick="return areyousure();"><i class="fa fa-times " aria-hidden="true"></i></a>
                 </div>
             </td>
       </tr>

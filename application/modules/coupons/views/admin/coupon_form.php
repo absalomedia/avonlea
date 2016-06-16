@@ -73,7 +73,7 @@
 </form>
 <?php
 function related_items($id, $name)
-            {
+{
                 return '
             <tr id="related_product_'.$id.'">
                 <td>
@@ -81,11 +81,11 @@ function related_items($id, $name)
                     <input type="hidden" name="product['.$id.'][name]" value=\''.htmlspecialchars($name).'\'/>
                     '.$name.'</td>
                 <td class="text-right">
-                    <a class="btn-xs btn-default btn-danger" href="#" onclick="remove_product('.$id.'); return false;"><i class="icon-times"></i></a>
+                    <a class="btn-xs btn-default btn-danger" href="#" onclick="remove_product('.$id.'); return false;"><i class="fa fa-times" aria-hidden="true"></i></a>
                 </td>
             </tr>
         ';
-            }
+}
 ?>
 <script id="productTemplate" type="text/template">
     <?php echo related_items('{{id}}', '{{name}}'); ?>

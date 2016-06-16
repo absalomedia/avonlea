@@ -28,8 +28,8 @@
                             <?php echo lang('shipping'); ?></label>
                         </td>
                         <td>
-                            <i class="icon-pencil" onclick="editAddress(<?php echo $a['id']; ?>)"></i>
-                            <i class="icon-x text-red" onclick="deleteAddress(<?php echo $a['id']; ?>)"></i>
+                            <i class="fa fa-pencil" onclick="editAddress(<?php echo $a['id']; ?>)" aria-hidden="true"></i>
+                            <i class="fa fa-x text-red" onclick="deleteAddress(<?php echo $a['id']; ?>)" aria-hidden="true"></i>
                         </td>
                     </tr>
                 <?php endforeach; ?>

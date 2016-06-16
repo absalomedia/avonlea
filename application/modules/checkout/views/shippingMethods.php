@@ -26,7 +26,7 @@
             $.post('<?php echo site_url('checkout/set-shipping-method'); ?>', {'method':$(this).val()}, function(data){
                 if(data.error)
                 {
-                    $('.shippingError').html('<div class="alert red"><i class="close"></i> '+data.error+'</div>');
+                    $('.shippingError').html('<div class="alert red"><i class="close" aria-hidden="true"></i> '+data.error+'</div>');
                 }
                 else
                 {

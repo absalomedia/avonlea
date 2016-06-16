@@ -8,7 +8,7 @@ function areyousure()
 </script>
 
 <div class="text-right">
-    <a class="btn btn-primary" href="<?php echo site_url('admin/users/form'); ?>"><i class="icon-plus"></i> <?php echo lang('add_new_admin'); ?></a>
+    <a class="btn btn-primary" href="<?php echo site_url('admin/users/form'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> <?php echo lang('add_new_admin'); ?></a>
 </div>
 
 <table class="table table-striped">
@@ -23,7 +23,7 @@ function areyousure()
         </tr>
     </thead>
     <tbody>
-<?php foreach ($admins as $admin):?>
+<?php foreach ($admins as $admin) :?>
         <tr>
             <td><?php echo $admin->firstname; ?></td>
             <td><?php echo $admin->lastname; ?></td>
@@ -32,12 +32,12 @@ function areyousure()
             <td><?php echo $admin->access; ?></td>
             <td class="text-right">
                 <div class="btn-group">
-                    <a class="btn btn-default" href="<?php echo site_url('admin/users/form/'.$admin->id); ?>"><i class="icon-pencil"></i></a> 
+                    <a class="btn btn-default" href="<?php echo site_url('admin/users/form/'.$admin->id); ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a> 
                     <?php
                     $current_admin = \CI::session()->userdata('admin');
-                    if ($current_admin['id'] != $admin->id): ?>
-                    <a class="btn btn-danger" href="<?php echo site_url('admin/users/delete/'.$admin->id); ?>" onclick="return areyousure();"><i class="icon-times "></i></a>
-                    <?php endif; ?>
+                    if ($current_admin['id'] != $admin->id) : ?>
+                    <a class="btn btn-danger" href="<?php echo site_url('admin/users/delete/'.$admin->id); ?>" onclick="return areyousure();"><i class="fa fa-times " aria-hidden="true"></i></a>
+                    <?php                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         endif; ?>
                 </div>
             </td>
         </tr>

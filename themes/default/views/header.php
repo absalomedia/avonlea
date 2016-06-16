@@ -69,7 +69,7 @@ if (isset($additional_header_info)) {
                             <li class="pure-menu-item"><a href="<?php echo site_url('login'); ?>" class="pure-menu-link"><?php echo lang('login'); ?></a></li>
                         <?php endif; ?>
                         <li class="pure-menu-item">
-                            <a href="<?php echo site_url('checkout'); ?>" class="pure-menu-link"><i class="icon-cart"></i></a>
+                            <a href="<?php echo site_url('checkout'); ?>" class="pure-menu-link"><i class="fa fa-cart" aria-hidden="true"></i></a>
                         </li>
                     <li class="pure-menu-item" role="search">
                         <?php echo form_open('search', 'class="navbar-search pull-right"'); ?>

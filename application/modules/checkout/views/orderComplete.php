@@ -76,7 +76,7 @@
                                 if (isset($order->files[$product->id])) {
                                     foreach ($order->files[$product->id] as $file) {
                                         if ($file->max_downloads === 0 || $file->downloads_used < $file->max_downloads) {
-                                            echo '<div class="orderCompleteFileDownload">'.anchor('digital-products/download/'.$file->id.'/'.$file->order_id, '<i class="icon-chevron-down"></i>', 'class="btn input-xs"');
+                                            echo '<div class="orderCompleteFileDownload">'.anchor('digital-products/download/'.$file->id.'/'.$file->order_id, '<i class="fa fa-chevron-down" aria-hidden="true"></i>', 'class="btn input-xs"');
                                             echo ' '.$file->title.' <small>';
                                             if ($file->max_downloads > 0) {
                                                 echo ' '.str_replace('{quantity}', ($file->max_downloads - $file->downloads_used), lang('downloads_remaining'));

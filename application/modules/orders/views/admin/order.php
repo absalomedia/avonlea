@@ -3,10 +3,10 @@
 </div>
 <div class="row">
     <div class="col-md-6">
-        <a class="btn btn-primary" href="<?php echo site_url('admin/orders/packing_slip/'.$order->order_number); ?>" target="_blank"><i class="icon-file"></i> <?php echo lang('packing_slip'); ?></a>
+        <a class="btn btn-primary" href="<?php echo site_url('admin/orders/packing_slip/'.$order->order_number); ?>" target="_blank"><i class="fa fa-file" aria-hidden="true"></i> <?php echo lang('packing_slip'); ?></a>
     </div>
     <div class="col-md-6 text-right">
-        <a class="btn btn-danger" onclick="if(!confirm('<?php echo lang('confirm_delete_order'); ?>')) { return false; }" href="<?php echo site_url('admin/orders/delete/'.$order->id); ?>" target="_blank"><i class="icon-cancel"></i> <?php echo lang('delete'); ?></a>
+        <a class="btn btn-danger" onclick="if(!confirm('<?php echo lang('confirm_delete_order'); ?>')) { return false; }" href="<?php echo site_url('admin/orders/delete/'.$order->id); ?>" target="_blank"><i class="fa fa-cancel" aria-hidden="true"></i> <?php echo lang('delete'); ?></a>
     </div>
 </div>
 

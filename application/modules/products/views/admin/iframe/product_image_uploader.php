@@ -2,13 +2,13 @@
 
 <script type="text/javascript">
 
-<?php if (CI::input()->post('submit')):?>
+<?php if (CI::input()->post('submit')) :?>
 $(window).ready(function(){
     $('#iframe_uploader', window.parent.document).height($('body').height());
 });
 <?php endif; ?>
 
-<?php if ($file_name):?>
+<?php if ($file_name) :?>
     var filename = '<?php echo $file_name; ?>';
     var uploaded = filename.split('.');
     parent.addProductImage(uploaded[0], filename, '', '', '');
@@ -16,7 +16,7 @@ $(window).ready(function(){
 
 </script>
 
-<?php if (!empty($error)): ?>
+<?php if (!empty($error)) : ?>
     <div class="alert alert-warning alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <?php echo $error; ?>
@@ -27,7 +27,7 @@ $(window).ready(function(){
     <div class="input-group">
         <?php echo form_upload(['name' => 'userfile', 'class' => 'form-control']); ?>
         <span class="input-group-btn">
-            <button class="btn btn-primary" name="submit" type="submit"><i class="icon-upload"></i></button>
+            <button class="btn btn-primary" name="submit" type="submit"><i class="fa fa-upload" aria-hidden="true"></i></button>
         </span>
     </div>
     
