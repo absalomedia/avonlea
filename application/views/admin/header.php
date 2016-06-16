@@ -4,8 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>AVL <?php echo (isset($page_title)) ? ' :: '.$page_title : ''; ?></title>
 
-<link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
 
 <?php
 $_css = new CSSCrunch();
@@ -21,7 +21,7 @@ $_css->addFile('trumb');
 $_css->addFile('flatpickr.min');
 
 ?>
-
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/css-toggle-switch/latest/toggle-switch.css" />
 <link href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>" rel="stylesheet" type="text/css" />
 <link href="<?php echo base_url('assets/css/admin.css'); ?>" rel="stylesheet" type="text/css" />
 
