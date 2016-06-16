@@ -43,6 +43,7 @@ $lang['no'] = 'No';
 $lang['save'] = 'Save';
 $lang['edit'] = 'Edit';
 $lang['cancel'] = 'Cancel';
+$lang['status'] = 'Status';
 $lang['delete'] = 'Delete';
 $lang['search'] = 'Search';
 $lang['toggle_wysiwyg'] = 'Toggle WYSIWYG';
