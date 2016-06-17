@@ -27,7 +27,7 @@ class Products extends CI_Model
         return $product;
     }
 
-    public function product_autocomplete($name, $limit)
+    public function productAutoCom($name, $limit)
     {
         return  CI::db()->like('name', $name)->get('products', $limit)->result();
     }
@@ -117,12 +117,12 @@ class Products extends CI_Model
         }
     }
 
-    public function count_all_products()
+    public function countAllProducts()
     {
         return CI::db()->count_all_results('products');
     }
 
-    public function count_products($id)
+    public function countProducts($id)
     {
         return CI::db()->select('product_id')->from('category_products')->join('products', 'category_products.product_id=products.id')->where(['category_id' => $id, 'enabled'.$this->customer->group_id => 1])->count_all_results();
     }
@@ -257,7 +257,7 @@ class Products extends CI_Model
         return $id;
     }
 
-    public function delete_product($id)
+    public function deleteProduct($id)
     {
         // delete product
         CI::db()->where('id', $id);
@@ -272,7 +272,7 @@ class Products extends CI_Model
         CI::db()->delete('coupons_products');
     }
 
-    public function search_products($term, $limit = false, $offset = false, $by = false, $sort = false)
+    public function searchProduct($term, $limit = false, $offset = false, $by = false, $sort = false)
     {
         $results = [];
 
@@ -316,7 +316,7 @@ class Products extends CI_Model
         }
     }
 
-    public function validate_slug($slug, $id = false, $counter = false)
+    public function validateSlug($slug, $id = false, $counter = false)
     {
         CI::db()->select('slug');
         CI::db()->from('products');
@@ -333,7 +333,7 @@ class Products extends CI_Model
                 $counter++;
             }
 
-            return $this->validate_slug($slug, $id, $counter);
+            return $this->validateSlug($slug, $id, $counter);
         } else {
             return $slug.$counter;
         }

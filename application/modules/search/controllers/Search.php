@@ -56,7 +56,7 @@ class Search extends Front
 
             return;
         } else {
-            $result = \CI::Products()->search_products($term, $per_page, $page, $sort, $dir);
+            $result = \CI::Products()->searchProduct($term, $per_page, $page, $sort, $dir);
 
             $config['total_rows'] = $result['count'];
 

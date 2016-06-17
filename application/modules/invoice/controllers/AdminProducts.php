@@ -93,7 +93,7 @@ class AdminProducts extends Admin
     }
 
     //basic category search
-    public function product_autocomplete()
+    public function productAutoCom()
     {
         $name = trim(\CI::input()->post('name'));
         $limit = \CI::input()->post('limit');
@@ -101,7 +101,7 @@ class AdminProducts extends Admin
         if (empty($name)) {
             echo json_encode([]);
         } else {
-            $results = \CI::Products()->product_autocomplete($name, $limit);
+            $results = \CI::Products()->productAutoCom($name, $limit);
 
             $return = [];
 
@@ -302,7 +302,7 @@ class AdminProducts extends Admin
             $slug = url_title(convert_accented_characters($slug), '-', true);
 
             //validate the slug
-            $slug = ($id) ? \CI::Products()->validate_slug($slug, $product->id) : \CI::Products()->validate_slug($slug);
+            $slug = ($id) ? \CI::Products()->validateSlug($slug, $product->id) : \CI::Products()->validateSlug($slug);
 
 
             $save['id'] = $id;
@@ -531,7 +531,7 @@ class AdminProducts extends Admin
             $slug = url_title(convert_accented_characters($slug), '-', true);
 
             //validate the slug
-            $slug = ($id) ? \CI::Products()->validate_slug($slug, $product->id) : \CI::Products()->validate_slug($slug);
+            $slug = ($id) ? \CI::Products()->validateSlug($slug, $product->id) : \CI::Products()->validateSlug($slug);
 
 
             $save['id'] = $id;
@@ -740,7 +740,7 @@ class AdminProducts extends Admin
             } else {
 
                 //if the product is legit, delete them
-                \CI::Products()->delete_product($id);
+                \CI::Products()->deleteProduct($id);
 
                 \CI::session()->set_flashdata('message', lang('message_deleted_product'));
                 redirect('admin/products');

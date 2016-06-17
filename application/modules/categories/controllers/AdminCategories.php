@@ -200,9 +200,9 @@ class AdminCategories extends Admin
             $slug = url_title(convert_accented_characters($slug), 'dash', true);
 
             if ($id) {
-                $slug = \CI::Categories()->validate_slug($slug, $category->id);
+                $slug = \CI::Categories()->validateSlug($slug, $category->id);
             } else {
-                $slug = \CI::Categories()->validate_slug($slug);
+                $slug = \CI::Categories()->validateSlug($slug);
             }
 
             $save['id'] = $id;

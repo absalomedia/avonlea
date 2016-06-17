@@ -98,7 +98,7 @@ class AdminPages extends Admin
             $slug = url_title(convert_accented_characters($slug), 'dash', true);
 
             //validate the slug
-            $slug = ($id) ? \CI::Pages()->validate_slug($slug, $page->id) : \CI::Pages()->validate_slug($slug);
+            $slug = ($id) ? \CI::Pages()->validateSlug($slug, $page->id) : \CI::Pages()->validateSlug($slug);
 
             $save = [];
             $save['id'] = $id;

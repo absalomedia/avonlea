@@ -56,7 +56,7 @@ class Categories
         $data['seo_title'] = (!empty($category->seo_title)) ? $category->seo_title : $category->name;
         $data['category'] = $category;
 
-        $data['total_products'] = CI::Products()->count_products($category->id);
+        $data['total_products'] = CI::Products()->countProducts($category->id);
         $data['products'] = CI::Products()->getProducts($category->id, $products_per_page, $page, $sort, $direction);
 
         return $data;
@@ -221,7 +221,7 @@ class Categories
     * check if slug already exists
     */
 
-    public function validate_slug($slug, $id = false, $counter = false)
+    public function validateSlug($slug, $id = false, $counter = false)
     {
         CI::db()->select('slug');
         CI::db()->from('categories');
@@ -238,7 +238,7 @@ class Categories
                 $counter++;
             }
 
-            return $this->validate_slug($slug, $id, $counter);
+            return $this->validateSlug($slug, $id, $counter);
         } else {
             return $slug.$counter;
         }

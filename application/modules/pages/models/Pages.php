@@ -105,7 +105,7 @@ class Pages extends CI_Model
         CI::db()->delete('pages');
     }
 
-    public function validate_slug($slug, $id = false, $counter = false)
+    public function validateSlug($slug, $id = false, $counter = false)
     {
         CI::db()->select('slug');
         CI::db()->from('pages');
@@ -122,7 +122,7 @@ class Pages extends CI_Model
                 $counter++;
             }
 
-            return $this->validate_slug($slug, $id, $counter);
+            return $this->validateSlug($slug, $id, $counter);
         } else {
             return $slug.$counter;
         }
