@@ -11,7 +11,6 @@ namespace Avonlea\Controller;
  *
  * @link        http://avonlea.absalom.net.au
  */
-
 class Clients extends Admin
 {
     public function __construct()
