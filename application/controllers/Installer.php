@@ -7,7 +7,7 @@ class Installer extends CI_Controller
     public function init()
     {
         $this->load->helper(['form', 'file', 'url']);
-        $this->load->library(['form_validation','profiler', 'console']);
+        $this->load->library(['form_validation', 'profiler', 'console']);
 
         if (defined('ENVIRONMENT')) {
             if (ENVIRONMENT === 'development') {
