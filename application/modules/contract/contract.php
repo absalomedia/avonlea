@@ -343,7 +343,7 @@ if ($CLIENT_SIGNATURE == null) {
 // Get the current file URL and replaces the .php extension with .html
 function getUrl()
 {
-    $url = @($_SERVER['HTTPS'] != 'on') ? 'http://'.$_SERVER['SERVER_NAME'] :  'https://'.$_SERVER['SERVER_NAME'];
+    $url = @($_SERVER['HTTPS'] != 'on') ? 'http://'.$_SERVER['SERVER_NAME'] : 'https://'.$_SERVER['SERVER_NAME'];
     $url .= ($_SERVER['SERVER_PORT'] !== 80) ? ':'.$_SERVER['SERVER_PORT'] : '';
     $url .= $_SERVER['REQUEST_URI'];
     $url = substr($url, 0, -4).'.html';
