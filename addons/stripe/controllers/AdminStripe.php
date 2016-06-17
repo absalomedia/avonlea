@@ -47,16 +47,15 @@ class AdminStripe extends Admin
 
         \CI::form_validation()->set_rules('enabled', 'lang:enabled', 'trim|numeric');
 
-        if (\CI::form_validation()->run() === false) {
-            $settings = \CI::Settings()->getSettings('stripe');
-            $enabled = (isset($settings['enabled']) ?  $settings['enabled'] : null);
-
-            $this->view('stripe_form', ['enabled' => $enabled]);
-        } else {
-            \CI::Settings()->saveSettings('stripe', ['enabled' => $_POST['enabled']]);
-            if ($_POST['enabled']) {
+        if (\CI::form_validation()->run() === true) {
+            \CI::Settings()->saveSettings('stripe', ['enabled' =>  filter_input(INPUT_POST, 'enabled', FILTER_VALIDATE_INT)]);
+            if (filter_input(INPUT_POST, 'enabled', FILTER_VALIDATE_INT)) {
                 redirect('admin/payments');
             }
         }
+          
+        $settings = \CI::Settings()->getSettings('stripe');
+        $enabled = (isset($settings['enabled']) ?  $settings['enabled'] : null);
+        $this->view('stripe_form', ['enabled' => $enabled]);
     }
 }

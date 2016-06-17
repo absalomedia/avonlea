@@ -47,16 +47,16 @@ class AdminCod extends Admin
 
         \CI::form_validation()->set_rules('enabled', 'lang:enabled', 'trim|numeric');
 
-        if (\CI::form_validation()->run() === false) {
-            $settings = \CI::Settings()->getSettings('cod');
-            $enabled = (isset($settings['enabled']) ?  $settings['enabled'] : null);
-
-            $this->view('cod_form', ['enabled' => $enabled]);
-        } else {
-            \CI::Settings()->saveSettings('cod', ['enabled' => $_POST['enabled']]);
-            if ($_POST['enabled']) {
+        if (\CI::form_validation()->run() === true) {
+            \CI::Settings()->saveSettings('cod', ['enabled' =>  filter_input(INPUT_POST, 'enabled', FILTER_VALIDATE_INT)]);
+            if (filter_input(INPUT_POST, 'enabled', FILTER_VALIDATE_INT)) {
                 redirect('admin/payments');
             }
         }
+        
+        $settings = \CI::Settings()->getSettings('cod');
+        $enabled = (isset($settings['enabled']) ?  $settings['enabled'] : null);
+        $this->view('cod_form', ['enabled' => $enabled]);
+
     }
 }

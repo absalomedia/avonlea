@@ -216,7 +216,6 @@ class Bootstrap extends CI_Controller
                 call_user_func_array([$class, $target[1]], $match['params']);
             } catch (Exception $e) {
                 throw $e;
-                throw_404();
             }
         } // throw a 404 error
         else {

@@ -142,7 +142,7 @@
                                                 if (!!getDeep(data, trumbowyg.o.plugins.upload.statusPropertyName.split("."))) {
                                                     var url = getDeep(data, trumbowyg.o.plugins.upload.urlPropertyName.split("."));
                                                     trumbowyg.execCmd("insertImage", url);
-                                                    $("img[src="" + url + ""]:not([alt])", trumbowyg.$box).attr("alt", values.alt);
+                                                    $("img[src='' + url + '']:not([alt])", trumbowyg.$box).attr("alt", values.alt);
                                                     setTimeout(function () {
                                                         trumbowyg.closeModal();
                                                     }, 250);
