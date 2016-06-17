@@ -2,7 +2,7 @@
 
 class Messages extends CI_Model
 {
-    public function get_list($type = '')
+    public function getList($type = '')
     {
         if ($type != '') {
             CI::db()->where('type', $type);
@@ -12,14 +12,14 @@ class Messages extends CI_Model
         return $res->result_array();
     }
 
-    public function get_message($id)
+    public function getMessage($id)
     {
         $res = CI::db()->where('id', $id)->get('canned_messages');
 
         return $res->row_array();
     }
 
-    public function save_message($data)
+    public function saveMessage($data)
     {
         if ($data['id']) {
             CI::db()->where('id', $data['id'])->update('canned_messages', $data);
@@ -32,7 +32,7 @@ class Messages extends CI_Model
         }
     }
 
-    public function delete_message($id)
+    public function deleteMessage($id)
     {
         CI::db()->where('id', $id)->delete('canned_messages');
 

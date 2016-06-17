@@ -6,7 +6,7 @@ include 'content_filter.php';
 
 function category_loop($parent = 0, $ulattribs = false, $ul = true)
 {
-    $cats = CI::Categories()->get_categories_tiered();
+    $cats = CI::Categories()->getCategoryTier();
 
     $items = false;
     if (isset($cats[$parent])) {
@@ -34,9 +34,9 @@ function category_loop($parent = 0, $ulattribs = false, $ul = true)
     }
 }
 
-function page_loop($parent = 0, $ulattribs = false, $ul = true)
+function pageLooper($parent = 0, $ulattribs = false, $ul = true)
 {
-    $pages = CI::Pages()->get_pages_tiered();
+    $pages = CI::Pages()->getPagesTier();
 
     $items = false;
     if (isset($pages[$parent])) {
@@ -69,7 +69,7 @@ function page_loop($parent = 0, $ulattribs = false, $ul = true)
             }
 
             echo $anchor;
-            page_loop($item->id);
+            pageLooper($item->id);
             echo '</li>';
         }
         echo ($ul) ? '</ul>' : '';

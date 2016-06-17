@@ -1,9 +1,9 @@
 <div class="addressFormContainer">
     <?php
-    $countries = CI::Locations()->get_countries_menu();
+    $countries = CI::Locations()->getCountryMenu();
 
     $country_keys = array_keys($countries);
-    $zone_menu = ['' => ''] + CI::Locations()->get_zones_menu(array_shift($country_keys));
+    $zone_menu = ['' => ''] + CI::Locations()->getZoneMenu(array_shift($country_keys));
 
     ?>
     <div id="addressError" class="alert red hide"></div>

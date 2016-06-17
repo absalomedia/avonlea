@@ -54,7 +54,7 @@ class AdminSitemap extends Admin
 
     public function generateCategories()
     {
-        $categories = \CI::Categories()->get_categories_tiered();
+        $categories = \CI::Categories()->getCategoryTier();
 
         $xml = $this->partial('category_xml', ['categories' => $categories['all']], true);
         echo $xml;
@@ -65,7 +65,7 @@ class AdminSitemap extends Admin
 
     public function generatePages()
     {
-        $pages = \CI::Pages()->get_pages_tiered();
+        $pages = \CI::Pages()->getPagesTier();
 
         $xml = $this->partial('page_xml', ['pages' => $pages['all']], true);
         echo $xml;

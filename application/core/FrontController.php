@@ -14,7 +14,7 @@ class Front extends \Avonlea\Controller
 
         //load in some base information
         \CI::lang()->load('common');
-        $this->pages = \CI::Pages()->get_pages_tiered();
+        $this->pages = \CI::Pages()->getPagesTier();
 
         //see if the customer is logged in.
         //if the customer is not logged in, then we'll have a temporary guest customer created.

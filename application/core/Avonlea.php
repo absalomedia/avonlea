@@ -17,7 +17,7 @@ class Avonlea
 
     public function __construct()
     {
-        $this->groups = \CI::Customers()->get_groups();
+        $this->groups = \CI::Customers()->getGroups();
         /*
         $this->getCart(true);
         */

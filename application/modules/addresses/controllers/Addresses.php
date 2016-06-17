@@ -59,17 +59,17 @@ class Addresses extends Front
             }
 
             $data = array_merge($data, $a);
-            $data['zones_menu'] = \CI::Locations()->get_zones_menu($data['country_id']);
+            $data['zones_menu'] = \CI::Locations()->getZoneMenu($data['country_id']);
         }
 
         //get the countries list for the dropdown
-        $data['countries_menu'] = \CI::Locations()->get_countries_menu();
+        $data['countries_menu'] = \CI::Locations()->getCountryMenu();
 
         if ($id == 0) {
             //if there is no set ID, the get the zones of the first country in the countries menu
-            $data['zones_menu'] = \CI::Locations()->get_zones_menu(array_shift((array_keys($data['countries_menu']))));
+            $data['zones_menu'] = \CI::Locations()->getZoneMenu(array_shift((array_keys($data['countries_menu']))));
         } else {
-            $data['zones_menu'] = \CI::Locations()->get_zones_menu($data['country_id']);
+            $data['zones_menu'] = \CI::Locations()->getZoneMenu($data['country_id']);
         }
 
         \CI::load()->library('form_validation');
@@ -125,7 +125,7 @@ class Addresses extends Front
 
     public function getZoneOptions($id)
     {
-        $zones = \CI::Locations()->get_zones_menu($id);
+        $zones = \CI::Locations()->getZoneMenu($id);
 
         foreach ($zones as $id => $z) :?>
 

@@ -25,7 +25,7 @@ class AdminPages extends Admin
     public function index()
     {
         $data['page_title'] = lang('pages');
-        $data['pages'] = \CI::Pages()->get_pages_tiered();
+        $data['pages'] = \CI::Pages()->getPagesTier();
 
         $this->view('pages', $data);
     }

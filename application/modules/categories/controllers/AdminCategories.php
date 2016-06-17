@@ -24,16 +24,16 @@ class AdminCategories extends Admin
 
     public function index()
     {
-        $data['groups'] = \CI::Customers()->get_groups();
+        $data['groups'] = \CI::Customers()->getGroups();
         $data['page_title'] = lang('categories');
-        $data['categories'] = \CI::Categories()->get_categories_tiered(true);
+        $data['categories'] = \CI::Categories()->getCategoryTier(true);
 
         $this->view('categories', $data);
     }
 
     public function form($id = false)
     {
-        $data['groups'] = \CI::Customers()->get_groups();
+        $data['groups'] = \CI::Customers()->getGroups();
 
         $config['upload_path'] = 'uploads/images/full';
         $config['allowed_types'] = 'gif|jpg|png';

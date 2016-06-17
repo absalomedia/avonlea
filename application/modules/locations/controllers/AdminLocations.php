@@ -204,7 +204,7 @@ class AdminLocations extends Admin
     public function get_zone_menu()
     {
         $id = \CI::input()->post('id');
-        $zones = \CI::Locations()->get_zones_menu($id);
+        $zones = \CI::Locations()->getZoneMenu($id);
 
         foreach ($zones as $id => $z) :?>
         

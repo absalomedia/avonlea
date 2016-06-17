@@ -134,7 +134,7 @@ class Locations extends CI_Model
         CI::db()->delete('countries');
     }
 
-    public function get_countries_menu()
+    public function getCountryMenu()
     {
         $countries = CI::db()->order_by('sequence', 'ASC')->where('status', 1)->get('countries')->result();
         $return = [];
@@ -145,7 +145,7 @@ class Locations extends CI_Model
         return $return;
     }
 
-    public function get_zones_menu($country_id)
+    public function getZoneMenu($country_id)
     {
         $zones = CI::db()->where(['status' => 1, 'country_id' => $country_id])->get('country_zones')->result();
         $return = [];

@@ -98,7 +98,7 @@ class AdminCustomers extends Admin
         $data['active'] = false;
 
         // get group list
-        $groups = \CI::Customers()->get_groups();
+        $groups = \CI::Customers()->getGroups();
         foreach ($groups as $group) {
             $group_list[$group->id] = $group->name;
         }
@@ -219,7 +219,7 @@ class AdminCustomers extends Admin
     // customer groups
     public function groups()
     {
-        $data['groups'] = \CI::Customers()->get_groups();
+        $data['groups'] = \CI::Customers()->getGroups();
         $data['page_title'] = lang('customer_groups');
 
         $this->view('customer_groups', $data);
@@ -300,7 +300,7 @@ class AdminCustomers extends Admin
 
         $data['page_title'] = lang('address_form');
         //get the countries list for the dropdown
-        $data['countries_menu'] = \CI::Locations()->get_countries_menu();
+        $data['countries_menu'] = \CI::Locations()->getCountryMenu();
 
         if ($id) {
             $address = \CI::Customers()->getAddress($id);
@@ -311,11 +311,11 @@ class AdminCustomers extends Admin
             //merge the array
             $data = array_merge($data, $address);
 
-            $data['zones_menu'] = \CI::Locations()->get_zones_menu($data['country_id']);
+            $data['zones_menu'] = \CI::Locations()->getZoneMenu($data['country_id']);
         } else {
             //if there is no set ID, the get the zones of the first country in the countries menu
             $country_keys = array_keys($data['countries_menu']);
-            $data['zones_menu'] = \CI::Locations()->get_zones_menu(array_shift($country_keys));
+            $data['zones_menu'] = \CI::Locations()->getZoneMenu(array_shift($country_keys));
         }
         \CI::load()->library('form_validation');
         \CI::form_validation()->set_rules('company', 'lang:company', 'trim|max_length[128]');

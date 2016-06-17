@@ -206,7 +206,7 @@ class Customers extends CI_Model
     }
 
     // Customer groups public functions
-    public function get_groups()
+    public function getGroups()
     {
         return CI::db()->get('customer_groups')->result();
     }

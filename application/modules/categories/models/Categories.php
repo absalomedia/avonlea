@@ -16,7 +16,7 @@ class Categories
     {
         $this->tiered = [];
         $this->customer = \CI::Login()->customer();
-        $this->get_categories_tiered();
+        $this->getCategoryTier();
     }
 
     public function tier($parent_id)
@@ -82,7 +82,7 @@ class Categories
         return $categories;
     }
 
-    public function get_categories_tiered($admin = false)
+    public function getCategoryTier($admin = false)
     {
         if (!$admin && !empty($this->tiered)) {
             return $this->tiered;
@@ -119,7 +119,7 @@ class Categories
 
     public function getCategoryOptionsMenu($hideId = false)
     {
-        $cats = $this->get_categories_tiered(true);
+        $cats = $this->getCategoryTier(true);
         $options = [-1 => lang('hidden'), 0 => lang('top_level_category')];
         $listCategories = function ($parent_id, $sub = '') use (&$options, $cats, &$listCategories, $hideId) {
             if (isset($cats[$parent_id])) {

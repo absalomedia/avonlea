@@ -26,7 +26,7 @@ class AdminProducts extends Admin
 
     public function index($rows = 100, $order_by = 'name', $sort_order = 'ASC', $code = 0, $page = 0)
     {
-        $data['groups'] = \CI::Customers()->get_groups();
+        $data['groups'] = \CI::Customers()->getGroups();
         $data['page_title'] = lang('products');
 
         $data['code'] = $code;
@@ -138,8 +138,8 @@ class AdminProducts extends Admin
         \CI::lang()->load('digital_products');
         \CI::form_validation()->set_error_delimiters('<div class="error">', '</div>');
 
-        $data['groups'] = \CI::Customers()->get_groups();
-        $data['categories'] = \CI::Categories()->get_categories_tiered();
+        $data['groups'] = \CI::Customers()->getGroups();
+        $data['categories'] = \CI::Categories()->getCategoryTier();
         $data['file_list'] = \CI::DigitalProducts()->getList();
 
         $data['page_title'] = lang('product_form');
@@ -402,9 +402,9 @@ class AdminProducts extends Admin
         \CI::load()->model(['ProductOptions', 'Categories']);
         \CI::form_validation()->set_error_delimiters('<div class="error">', '</div>');
 
-        $data['categories'] = \CI::Categories()->get_categories_tiered();
+        $data['categories'] = \CI::Categories()->getCategoryTier();
         $data['page_title'] = lang('giftcard_product_form');
-        $data['groups'] = \CI::Customers()->get_groups();
+        $data['groups'] = \CI::Customers()->getGroups();
 
         //default values are empty if the product is new
         $data['id'] = '';

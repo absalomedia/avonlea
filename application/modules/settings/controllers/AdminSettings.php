@@ -154,17 +154,17 @@ class AdminSettings extends Admin
         }
         asort($data['iso_4217']);
 
-        $data['countries_menu'] = \CI::Locations()->get_countries_menu();
+        $data['countries_menu'] = \CI::Locations()->getCountryMenu();
         if (!empty($data['country_id'])) {
-            $data['zones_menu'] = \CI::Locations()->get_zones_menu($data['country_id']);
+            $data['zones_menu'] = \CI::Locations()->getZoneMenu($data['country_id']);
         } else {
             $countries_menu = array_keys($data['countries_menu']);
-            $data['zones_menu'] = \CI::Locations()->get_zones_menu(array_shift($countries_menu));
+            $data['zones_menu'] = \CI::Locations()->getZoneMenu(array_shift($countries_menu));
         }
 
         $data['page_title'] = lang('common_Avonlea_configuration');
 
-        $pages = \CI::Pages()->get_pages_tiered();
+        $pages = \CI::Pages()->getPagesTier();
         $data['pages'] = [];
         foreach ($pages['all'] as $page) {
             if (empty($page->url)) {
@@ -196,7 +196,7 @@ class AdminSettings extends Admin
 
     public function canned_messages()
     {
-        $data['canned_messages'] = \CI::Messages()->get_list();
+        $data['canned_messages'] = \CI::Messages()->getList();
         $data['page_title'] = lang('common_canned_messages');
         $this->view('canned_messages', $data);
     }
@@ -212,7 +212,7 @@ class AdminSettings extends Admin
         $data['deletable'] = 1;
 
         if ($id) {
-            $message = \CI::Messages()->get_message($id);
+            $message = \CI::Messages()->getMessage($id);
             $data = array_merge($data, $message);
         }
 
@@ -237,16 +237,16 @@ class AdminSettings extends Admin
             if ($data['deletable']) {
                 $save['type'] = 'order';
             }
-            \CI::Messages()->save_message($save);
+            \CI::Messages()->saveMessage($save);
 
             \CI::session()->set_flashdata('message', lang('message_saved_message'));
             redirect('admin/settings/canned_messages');
         }
     }
 
-    public function delete_message($id)
+    public function deleteMessage($id)
     {
-        \CI::Messages()->delete_message($id);
+        \CI::Messages()->deleteMessage($id);
 
         \CI::session()->set_flashdata('message', lang('message_deleted_message'));
         redirect('admin/settings/canned_messages');

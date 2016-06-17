@@ -8,7 +8,7 @@ class Pages extends CI_Model
     {
         parent::__construct();
         $this->tiered = [];
-        $this->get_pages_tiered();
+        $this->getPagesTier();
     }
 
     /********************************************************************
@@ -37,7 +37,7 @@ class Pages extends CI_Model
         return $return;
     }
 
-    public function get_pages_tiered()
+    public function getPagesTier()
     {
         if (!empty($this->tiered)) {
             return $this->tiered;
