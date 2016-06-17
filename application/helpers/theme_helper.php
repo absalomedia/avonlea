@@ -4,7 +4,7 @@ include 'crunch.php';
 include 'Parsedown.php';
 include 'content_filter.php';
 
-function category_loop($parent = 0, $ulattribs = false, $ul = true)
+function categoryLoop($parent = 0, $ulattribs = false, $ul = true)
 {
     $cats = CI::Categories()->getCategoryTier();
 
@@ -27,7 +27,7 @@ function category_loop($parent = 0, $ulattribs = false, $ul = true)
             $anchor = anchor('category/'.$item->slug, $name, $selected);
 
             echo '<li>'.$anchor;
-            category_loop($item->id);
+            categoryLoop($item->id);
             echo '</li>';
         }
         echo ($ul) ? '</ul>' : '';
@@ -73,5 +73,30 @@ function pageLooper($parent = 0, $ulattribs = false, $ul = true)
             echo '</li>';
         }
         echo ($ul) ? '</ul>' : '';
+    }
+}
+
+function filterInputFix($type, $variable_name, $filter = FILTER_DEFAULT, $options = null)
+{
+    $checkTypes =[
+        INPUT_GET,
+        INPUT_POST,
+        INPUT_COOKIE
+    ];
+
+    if ($options === null) {
+        // No idea if this should be here or not
+        // Maybe someone could let me know if this should be removed?
+        $options = FILTER_NULL_ON_FAILURE;
+    }
+
+    if (in_array($type, $checkTypes) || filter_has_var($type, $variable_name)) {
+        return filter_input($type, $variable_name, $filter, $options);
+    } else if ($type == INPUT_SERVER && isset($_SERVER[$variable_name])) {
+        return filter_var($_SERVER[$variable_name], $filter, $options);
+    } else if ($type == INPUT_ENV && isset($_ENV[$variable_name])) {
+        return filter_var($_ENV[$variable_name], $filter, $options);
+    } else {
+        return null;
     }
 }
