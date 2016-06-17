@@ -52,7 +52,7 @@ rest of the itemized items. -->
         </p>
       </td>
       <td><p><label><input type="checkbox" name="items[1][taxable]" value="1" onclick="recalculate_items();" <?php if ($row->tax_status) {
-            echo 'checked="checked" ';
+    echo 'checked="checked" ';
 }?>/><span><?php echo $this->lang->line('invoice_taxable'); ?>?</span></label></p></td>
       <td nowrap="nowrap"><p><label><span><?php echo $this->lang->line('invoice_amount'); ?></span><?php echo \CI::Settings()->getSettings('currency_symbol'); ?><input type="text" id="amount" name="items[1][amount]" size="5" value="0.00" onkeyup="recalculate_items();" value="" /></label></p></td>
       <td>&nbsp;</td>

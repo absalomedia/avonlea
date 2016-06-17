@@ -1,56 +1,56 @@
 <?php
+
 class PayNow extends Controller
 {
-    function __construct()
+    public function __construct()
     {
         parent::Controller();
         $this->load->model('invoices_model');
         $this->load->model('settings_model');
     }
-    
+
     // --------------------------------------------------------------------
 
-    function index()
+    public function index()
     {
         redirect('');
     }
-    
-    // --------------------------------------------------------------------
-    
-    function getcurrency()
-    {
 
+    // --------------------------------------------------------------------
+
+    public function getcurrency()
+    {
         if (\CI::Settings()->getSettings('currency_type')) {
             return \CI::Settings()->getSettings('currency_type');
         } else {
             $cur_symbol = \CI::Settings()->getSettings('currency_symbol');
-            
+
             if ($cur_symbol == htmlentities('$')) {
                 return 'USD';
-            } else if ($cur_symbol == '€') {
+            } elseif ($cur_symbol == '€') {
                 return 'EUR';
-            } else if ($cur_symbol == '£') {
+            } elseif ($cur_symbol == '£') {
                 return 'GBP';
-            } else if ($cur_symbol == '¥') {
+            } elseif ($cur_symbol == '¥') {
                 return 'JPY';
             }
         }
     }
-    
+
     // --------------------------------------------------------------------
 
-    function googlecheckout($id)
+    public function googlecheckout($id)
     {
         if (!$id) {
             redirect('');
         }
-            
+
         $data['row'] = \CI::Invoices()->getSingleInvoice($id)->row();
-        
+
         if (!$data['row']) {
             redirect('');
         }
-        
+
         echo '<html>
             <head>
                 <title>Redirecting to Google Checkout ...</title>
@@ -69,21 +69,21 @@ class PayNow extends Controller
             </body>
 		</html>';
     }
-    
+
     // --------------------------------------------------------------------
 
-    function paypal($id)
+    public function paypal($id)
     {
         if (!$id) {
             redirect('');
         }
-            
+
         $data['row'] = \CI::Invoices()->getSingleInvoice($id)->row();
-        
+
         if (!$data['row']) {
             redirect('');
         }
-        
+
         echo '<html>
             <head>
                 <title>Redirecting to PayPal ...</title>
