@@ -1,4 +1,5 @@
-<?php /*
+<?php
+/*
 client@example.com
 dev@example.com
 contract-1448515317.php
@@ -20,7 +21,7 @@ You can generate a new signature @ http://cdpn.io/JYpjvE and replace the data ab
 $clientSig = filter_input(INPUT_POST, 'client_signature');
 $CLIENT_SIGNATURE = isset($clientSig) ? $clientSig : null;
 if (substr($CLIENT_SIGNATURE, 0, 22) === 'data:image/png;base64,') {
-    $CLIENT_SIGNATURE = '<img id="hk" src="' . htmlspecialchars($CLIENT_SIGNATURE) . '" >';
+    $CLIENT_SIGNATURE = '<img id="hk" src="'.htmlspecialchars($CLIENT_SIGNATURE).'" >';
 } else {
     $CLIENT_SIGNATURE = null;
 }
@@ -29,9 +30,9 @@ $lines = file(__FILE__);
 $clientEmail = trim($lines[1]);
 $devEmail = trim($lines[2]);
 $DEV_SIGNATURE = trim($lines[4]);
-$DEV_SIGNATURE = '<img id="dev_signature" src="' . $DEV_SIGNATURE . '" >';
+$DEV_SIGNATURE = '<img id="dev_signature" src="'.$DEV_SIGNATURE.'" >';
 
-$phpName  = basename($_SERVER['PHP_SELF']) ? basename($_SERVER['PHP_SELF']) : 'index.php';
+$phpName = basename($_SERVER['PHP_SELF']) ? basename($_SERVER['PHP_SELF']) : 'index.php';
 $fileName = substr($phpName, 0, -4);
 $htmlName = $fileName.'.html';
 
@@ -43,9 +44,9 @@ if (substr($fileName, 0, 4) == 'test' || substr($fileName, 0, 4) == 'demo') {
 }
 
 /**
-The HTML code (and some PHP) is kept in PHP variables like $HEADER, $CONTRACT_HTML, $FOOTER_UNSIGNED, and $FOOTER_SIGNED_PHP.
-**/
-$HEADER ='<!DOCTYPE html>
+ The HTML code (and some PHP) is kept in PHP variables like $HEADER, $CONTRACT_HTML, $FOOTER_UNSIGNED, and $FOOTER_SIGNED_PHP.
+ **/
+$HEADER = '<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -148,7 +149,7 @@ button:hover {
 <div id="content">
 
 ';
-$CONTRACT_HTML='<h1>Contract of work for website design and development</h1>
+$CONTRACT_HTML = '<h1>Contract of work for website design and development</h1>
 <p>Between <strong>Alice</strong>, referred to below as "Designer", and <strong>Bob</strong>, referred to below as "Customer".</p>
 <h2>1. Agreement of parties</h2>
 <p>Customer hires Designer to redesign the current website, <strong>bobswebsite.com</strong>, for the estimated total price of <strong>$PRICE</strong>. Designer agrees to provide quality service and to answer to the Customers requests in a timely manner.</p>
@@ -232,7 +233,7 @@ $(document).ready(function() {
 </html>';
 
 if ($CLIENT_SIGNATURE) {
-    $FOOTER_SIGNED_PHP ='
+    $FOOTER_SIGNED_PHP = '
   $phpName  = basename($_SERVER["PHP_SELF"]) ? basename($_SERVER["PHP_SELF"]) : "index.php";
   $fileName = substr($phpName , 0, -4);
   $htmlName = $fileName.".html";
@@ -294,18 +295,18 @@ function generatePdf() {
 }
 
 
-if ($CLIENT_SIGNATURE==null) {
+if ($CLIENT_SIGNATURE == null) {
     if ($selfDelete && file_exists($htmlName)) {
         header('Location: '.$htmlName.'#hk');
         die();
     }
-    /** Waiting for Client to sign: include signature elements and javascript **/
+    /* Waiting for Client to sign: include signature elements and javascript **/
     echo $HEADER;
     echo $CONTRACT_HTML;
     echo $DEV_SIGNATURE;
-    eval(' ?>'. $FOOTER_UNSIGNED .'<?php ');
+    eval(' ?>'.$FOOTER_UNSIGNED.'<?php ');
 } else {
-    /** Contract was just signed: put $CLIENT_SIGNATURE and the other parts in the .html file **/
+    /* Contract was just signed: put $CLIENT_SIGNATURE and the other parts in the .html file **/
     file_put_contents($htmlName, $HEADER);
     file_put_contents($htmlName, $CONTRACT_HTML, FILE_APPEND | LOCK_EX);
     file_put_contents($htmlName, $DEV_SIGNATURE, FILE_APPEND | LOCK_EX);
@@ -318,18 +319,18 @@ if ($CLIENT_SIGNATURE==null) {
 
     // Email client & dev, delete php, redirect to html
     if ($clientEmail) {
-        $headers = "From: " . $devEmail . "\r\n";
+        $headers = 'From: '.$devEmail."\r\n";
         $headers .= "MIME-Version: 1.0\r\n";
         $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-        $msg = 'The contract was signed. You can <a href="' .getUrl(). '">view or download this contract from here</a>.';
+        $msg = 'The contract was signed. You can <a href="'.getUrl().'">view or download this contract from here</a>.';
         mail($clientEmail, 'Contract signed', $msg, $headers);
     }
     if ($devEmail) {
-        $headers = "From: " . $clientEmail . "\r\n";
+        $headers = 'From: '.$clientEmail."\r\n";
         $headers .= "MIME-Version: 1.0\r\n";
         $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-        $msg = '<p>A new contract was signed. You can <a href="' .getUrl(). '">view or download this contract from here</a>.</p>';
-        $msg.= 'The contract was signed by: ' .$clientEmail;
+        $msg = '<p>A new contract was signed. You can <a href="'.getUrl().'">view or download this contract from here</a>.</p>';
+        $msg .= 'The contract was signed by: '.$clientEmail;
         mail($devEmail, 'Contract signed!', $msg, $headers);
     }
     if ($selfDelete) {
@@ -342,9 +343,10 @@ if ($CLIENT_SIGNATURE==null) {
 // Get the current file URL and replaces the .php extension with .html
 function getUrl()
 {
-    $url  = @( $_SERVER["HTTPS"] != 'on' ) ? 'http://'.$_SERVER["SERVER_NAME"] :  'https://'.$_SERVER["SERVER_NAME"];
-    $url .= ( $_SERVER["SERVER_PORT"] !== 80 ) ? ":".$_SERVER["SERVER_PORT"] : "";
-    $url .= $_SERVER["REQUEST_URI"];
-    $url = substr($url, 0, -4) . '.html';
+    $url = @($_SERVER['HTTPS'] != 'on') ? 'http://'.$_SERVER['SERVER_NAME'] :  'https://'.$_SERVER['SERVER_NAME'];
+    $url .= ($_SERVER['SERVER_PORT'] !== 80) ? ':'.$_SERVER['SERVER_PORT'] : '';
+    $url .= $_SERVER['REQUEST_URI'];
+    $url = substr($url, 0, -4).'.html';
+
     return $url;
 }
