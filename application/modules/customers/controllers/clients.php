@@ -11,7 +11,6 @@ namespace Avonlea\Controller;
  *
  * @link        http://avonlea.absalom.net.au
  */
-
 class Clients extends Admin
 {
     public function __construct()
@@ -23,7 +22,7 @@ class Clients extends Admin
         \CI::lang()->load('customers');
     }
 
-  // --------------------------------------------------------------------
+    // --------------------------------------------------------------------
 
     public function index()
     {
@@ -50,7 +49,7 @@ class Clients extends Admin
         $this->load->view('clients/index', $data);
     }
 
-  // --------------------------------------------------------------------
+    // --------------------------------------------------------------------
 
     public function newclient()
     {
@@ -112,7 +111,7 @@ class Clients extends Admin
         }
     }
 
-  // --------------------------------------------------------------------
+    // --------------------------------------------------------------------
 
     public function notes($client_id)
     {
@@ -121,7 +120,7 @@ class Clients extends Admin
 
         $data['row'] = \CI::Clients()->get_client_info($client_id);
 
-      // new notes?  Update, move them on, and tell them its good
+        // new notes?  Update, move them on, and tell them its good
         if ($notes_submit) {
             \CI::Clients()->updateClient($client_id, ['client_notes' => $notes]);
 
@@ -134,7 +133,7 @@ class Clients extends Admin
         }
     }
 
-  // --------------------------------------------------------------------
+    // --------------------------------------------------------------------
 
     public function edit()
     {
@@ -169,7 +168,7 @@ class Clients extends Admin
         }
     }
 
-  // --------------------------------------------------------------------
+    // --------------------------------------------------------------------
 
     public function delete($client_id)
     {
@@ -183,7 +182,7 @@ class Clients extends Admin
         $this->load->view('clients/delete', $data);
     }
 
-  // --------------------------------------------------------------------
+    // --------------------------------------------------------------------
 
     public function delete_confirmed()
     {
@@ -198,7 +197,7 @@ class Clients extends Admin
         }
     }
 
-  // --------------------------------------------------------------------
+    // --------------------------------------------------------------------
 
     public function _validation()
     {
@@ -229,7 +228,7 @@ class Clients extends Admin
         $this->validation->set_error_delimiters('<span class="error">', '</span>');
     }
 
-  // --------------------------------------------------------------------
+    // --------------------------------------------------------------------
 
     public function _validation_client_contact()
     {
