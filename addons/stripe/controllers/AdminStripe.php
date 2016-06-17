@@ -55,7 +55,7 @@ class AdminStripe extends Admin
         }
           
         $settings = \CI::Settings()->getSettings('stripe');
-        $enabled = (isset($settings['enabled']) ?  $settings['enabled'] : null);
+        $enabled = (isset($settings['enabled']) ? $settings['enabled'] : null);
         $this->view('stripe_form', ['enabled' => $enabled]);
     }
 }

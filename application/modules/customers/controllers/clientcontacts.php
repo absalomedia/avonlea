@@ -2,72 +2,72 @@
 
 class Clientcontacts extends MY_Controller {
 
-  function Clientcontacts()
-  {
+    function Clientcontacts()
+    {
     parent::MY_Controller();
     $this->load->library('validation');
     $this->load->helper('ajax');
     $this->load->model('clientcontacts_model');
-  }
+    }
 
-  // --------------------------------------------------------------------
+    // --------------------------------------------------------------------
 
-  function index()
-  {
+    function index()
+    {
     /**
      * This controller is only used from the clients controller, and so is called directly.
      * If anyone access it directly, let's just move them over to clients.
      */
     redirect('clients/');
-  }
+    }
 
-  // --------------------------------------------------------------------
+    // --------------------------------------------------------------------
 
-  function add()
-  {
+    function add()
+    {
     $this->_validation_client_contact(); // validation info for id, first_name, last_name, email, phone
 
     if ($this->validation->run() == FALSE)
     {
-      if (isAjax())
-      {
+        if (isAjax())
+        {
         echo $this->lang->line('clients_new_contact_fail');
-      }
-      else
-      {
+        }
+        else
+        {
         $cid = (int) $this->input->post('client_id');
         $data['client_id'] = ($cid) ? $cid : $this->uri->segment(3);
         $data['page_title'] = $this->lang->line('clients_add_contact');
         $this->load->view('clientcontacts/add', $data);
-      }
+        }
     }
     else
     {
-      $client_id = $this->clientcontacts_model->addClientContact(
+        $client_id = $this->clientcontacts_model->addClientContact(
                                     $this->input->post('client_id'), 
                                     $this->input->post('first_name'), 
                                     $this->input->post('last_name'), 
                                     $this->input->post('email'), 
                                     $this->input->post('phone'),
                                     $this->input->post('title')
-                                  );
+                                    );
 
-      if (isAjax())
-      {
+        if (isAjax())
+        {
         echo $client_id;
-      }
-      else
-      {
+        }
+        else
+        {
         $this->session->set_flashdata('clientContact', (int) $this->input->post('client_id'));
         redirect('clients/');
-      }
+        }
     }
-  }
+    }
 
-  // --------------------------------------------------------------------
+    // --------------------------------------------------------------------
 
-  function edit()
-  {
+    function edit()
+    {
     $rules['id'] = 'trim|required|numeric';
     $fields['id'] = 'id';
 
@@ -77,59 +77,59 @@ class Clientcontacts extends MY_Controller {
 
     if ($this->validation->run() == FALSE)
     {
-      $data['clientContactData'] = $this->clientcontacts_model->getContactInfo($data['id']);
-      $data['page_title'] = $this->lang->line('clients_edit_contact');
-      $this->load->view('clientcontacts/edit', $data);
+        $data['clientContactData'] = $this->clientcontacts_model->getContactInfo($data['id']);
+        $data['page_title'] = $this->lang->line('clients_edit_contact');
+        $this->load->view('clientcontacts/edit', $data);
     }
     else
     {
-      $this->clientcontacts_model->editClientContact(
-                              $this->input->post('id'), 
-                              $this->input->post('client_id'),
-                              $this->input->post('first_name'),
-                              $this->input->post('last_name'), 
-                              $this->input->post('email'), 
-                              $this->input->post('phone'),
-                              $this->input->post('title')
+        $this->clientcontacts_model->editClientContact(
+                                $this->input->post('id'), 
+                                $this->input->post('client_id'),
+                                $this->input->post('first_name'),
+                                $this->input->post('last_name'), 
+                                $this->input->post('email'), 
+                                $this->input->post('phone'),
+                                $this->input->post('title')
                             );
 
-      $this->session->set_flashdata('message', $this->lang->line('clients_edited_contact_info'));
-      $this->session->set_flashdata('clientEdit', $this->input->post('client_id'));
-      redirect('clients/');
+        $this->session->set_flashdata('message', $this->lang->line('clients_edited_contact_info'));
+        $this->session->set_flashdata('clientEdit', $this->input->post('client_id'));
+        redirect('clients/');
     }
-  }
+    }
 
-  // --------------------------------------------------------------------
+    // --------------------------------------------------------------------
 
-  function delete()
-  {
+    function delete()
+    {
     $id = ($this->input->post('id')) ? (int) $this->input->post('id') : $this->uri->segment(3);
 
     if ($this->clientcontacts_model->deleteClientContact($id))
     {
-      if (isAjax())
-      {
+        if (isAjax())
+        {
         return $id;
-      }
-      else
-      {
+        }
+        else
+        {
         $this->session->set_flashdata('clientContact', $id);
         redirect('clients/');
-      }
+        }
     }
     else
     {
-      $this->session->set_flashdata('message', $this->lang->line('clients_contact_delete_fail'));
-      redirect('clients/');
+        $this->session->set_flashdata('message', $this->lang->line('clients_contact_delete_fail'));
+        redirect('clients/');
     }
-  }
+    }
 
-  // --------------------------------------------------------------------
+    // --------------------------------------------------------------------
 
-  function _validation_client_contact()
-  {
+    function _validation_client_contact()
+    {
     $rules['client_id']   = 'trim|required|numeric';
-    $rules['first_name']   = 'trim|required|max_length[25]';
+    $rules['first_name'] = 'trim|required|max_length[25]';
     $rules['last_name']   = 'trim|required|max_length[25]';
     $rules['email']     = 'trim|required|max_length[127]|valid_email';
     $rules['phone']     = 'trim|max_length[20]';
@@ -137,7 +137,7 @@ class Clientcontacts extends MY_Controller {
     $this->validation->set_rules($rules);
 
     $fields['client_id']   = $this->lang->line('clients_id');
-    $fields['first_name']   = $this->lang->line('clients_first_name');
+    $fields['first_name'] = $this->lang->line('clients_first_name');
     $fields['last_name']   = $this->lang->line('clients_last_name');
     $fields['email']     = $this->lang->line('clients_email');
     $fields['phone']     = $this->lang->line('clients_phone');
@@ -145,7 +145,7 @@ class Clientcontacts extends MY_Controller {
     $this->validation->set_fields($fields);
 
     $this->validation->set_error_delimiters('<span class="error">', '</span>');
-  }
+    }
 
 }
 ?>

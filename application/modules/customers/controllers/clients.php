@@ -28,9 +28,9 @@ class Clients extends Admin
     function index()
     {
         $data['clientList'] = \CI::Clients()->getAllClients(); // activate the option
-        $data['extraHeadContent'] = "<link type=\"text/css\" rel=\"stylesheet\" href=\"" . base_url()."css/clients.css\" />\n";
-        $data['extraHeadContent'] .= "<script type=\"text/javascript\" src=\"" . base_url()."js/newinvoice.js\"></script>\n";
-        $data['extraHeadContent'] .= "<script type=\"text/javascript\" src=\"" . base_url()."js/clients.js\"></script>\n";
+        $data['extraHeadContent'] = "<link type=\"text/css\" rel=\"stylesheet\" href=\"".base_url()."css/clients.css\" />\n";
+        $data['extraHeadContent'] .= "<script type=\"text/javascript\" src=\"".base_url()."js/newinvoice.js\"></script>\n";
+        $data['extraHeadContent'] .= "<script type=\"text/javascript\" src=\"".base_url()."js/clients.js\"></script>\n";
 
         if ($this->session->flashdata('clientEdit')) {
             $data['message'] = $this->lang->line('clients_edited');
@@ -203,27 +203,27 @@ class Clients extends Admin
     function _validation()
     {
         $rules['clientName']   = 'trim|required|max_length[75]|htmlspecialchars';
-        $rules['website']     = 'trim|htmlspecialchars|max_length[150]';
+        $rules['website'] = 'trim|htmlspecialchars|max_length[150]';
         $rules['address1']     = 'trim|htmlspecialchars|max_length[100]';
         $rules['address2']     = 'trim|htmlspecialchars|max_length[100]';
-        $rules['city']       = 'trim|htmlspecialchars|max_length[50]';
+        $rules['city'] = 'trim|htmlspecialchars|max_length[50]';
         $rules['province']     = 'trim|htmlspecialchars|max_length[25]';
-        $rules['country']     = 'trim|htmlspecialchars|max_length[25]';
-        $rules['postal_code']   = 'trim|htmlspecialchars|max_length[10]';
+        $rules['country'] = 'trim|htmlspecialchars|max_length[25]';
+        $rules['postal_code'] = 'trim|htmlspecialchars|max_length[10]';
         $rules['tax_status']   = 'trim|htmlspecialchars|exact_length[1]|numeric|required';
         $rules['tax_code']     = 'max_length[75]';
         $this->validation->set_rules($rules);
 
-        $fields['clientName']   = $this->lang->line('clients_name');
-        $fields['website']     = $this->lang->line('clients_website');
+        $fields['clientName'] = $this->lang->line('clients_name');
+        $fields['website'] = $this->lang->line('clients_website');
         $fields['address1']   = $this->lang->line('clients_address1');
         $fields['address2']   = $this->lang->line('clients_address2');
-        $fields['city']     = $this->lang->line('clients_cityt');
+        $fields['city'] = $this->lang->line('clients_cityt');
         $fields['province']   = $this->lang->line('clients_province');
-        $fields['country']     = $this->lang->line('clients_country');
-        $fields['postal_code']   = $this->lang->line('clients_postal');
-        $fields['tax_status']   = $this->lang->line('invoice_tax_status');
-        $fields['tax_code']   = $this->lang->line('settings_tax_code');
+        $fields['country'] = $this->lang->line('clients_country');
+        $fields['postal_code'] = $this->lang->line('clients_postal');
+        $fields['tax_status'] = $this->lang->line('invoice_tax_status');
+        $fields['tax_code'] = $this->lang->line('settings_tax_code');
         $this->validation->set_fields($fields);
 
         $this->validation->set_error_delimiters('<span class="error">', '</span>');
@@ -234,7 +234,7 @@ class Clients extends Admin
     function _validation_client_contact()
     {
         $rules['client_id']   = 'trim|required|htmlspecialchars|numeric';
-        $rules['first_name']   = 'trim|required|htmlspecialchars|max_length[25]';
+        $rules['first_name'] = 'trim|required|htmlspecialchars|max_length[25]';
         $rules['last_name']   = 'trim|required|htmlspecialchars|max_length[25]';
         $rules['email']     = 'trim|required|htmlspecialchars|max_length[127]|valid_email';
         $rules['phone']     = 'trim|htmlspecialchars|max_length[20]';
@@ -242,7 +242,7 @@ class Clients extends Admin
         $this->validation->set_rules($rules);
 
         $fields['client_id']   = $this->lang->line('clients_id');
-        $fields['first_name']   = $this->lang->line('clients_first_name');
+        $fields['first_name'] = $this->lang->line('clients_first_name');
         $fields['last_name']   = $this->lang->line('clients_last_name');
         $fields['email']     = $this->lang->line('clients_email');
         $fields['phone']     = $this->lang->line('clients_phone');

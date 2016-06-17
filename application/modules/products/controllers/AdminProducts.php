@@ -356,7 +356,7 @@ class AdminProducts extends Admin
                 $categories = [];
             }
 
-             //(\CI::input()->post('primary_category')) ? \CI::input()->post('primary_category') : 0;
+                //(\CI::input()->post('primary_category')) ? \CI::input()->post('primary_category') : 0;
             if (!\CI::input()->post('primary_category') && $categories) {
                 $save['primary_category'] = $categories[0];
             } elseif (!\CI::input()->post('primary_category') && !$categories) {
@@ -582,7 +582,7 @@ class AdminProducts extends Admin
                 $categories = [];
             }
 
-             //(\CI::input()->post('primary_category')) ? \CI::input()->post('primary_category') : 0;
+                //(\CI::input()->post('primary_category')) ? \CI::input()->post('primary_category') : 0;
             if (!\CI::input()->post('primary_category') && $categories) {
                 $save['primary_category'] = $categories[0];
             } elseif (!\CI::input()->post('primary_category') && !$categories) {

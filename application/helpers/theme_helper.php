@@ -78,7 +78,7 @@ function pageLooper($parent = 0, $ulattribs = false, $ul = true)
 
 function filterInputFix($type, $variable_name, $filter = FILTER_DEFAULT, $options = null)
 {
-    $checkTypes =[
+    $checkTypes = [
         INPUT_GET,
         INPUT_POST,
         INPUT_COOKIE

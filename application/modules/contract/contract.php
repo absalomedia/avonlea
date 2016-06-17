@@ -298,13 +298,13 @@ if ($CLIENT_SIGNATURE==null) {
         header('Location: '.$htmlName.'#hk');
         die();
     }
-  /** Waiting for Client to sign: include signature elements and javascript **/
+    /** Waiting for Client to sign: include signature elements and javascript **/
     echo $HEADER;
     echo $CONTRACT_HTML;
     echo $DEV_SIGNATURE;
     eval(' ?>'. $FOOTER_UNSIGNED .'<?php ');
 } else {
-  /** Contract was just signed: put $CLIENT_SIGNATURE and the other parts in the .html file **/
+    /** Contract was just signed: put $CLIENT_SIGNATURE and the other parts in the .html file **/
     file_put_contents($htmlName, $HEADER);
     file_put_contents($htmlName, $CONTRACT_HTML, FILE_APPEND | LOCK_EX);
     file_put_contents($htmlName, $DEV_SIGNATURE, FILE_APPEND | LOCK_EX);
@@ -315,7 +315,7 @@ if ($CLIENT_SIGNATURE==null) {
     ob_end_clean();
     file_put_contents($htmlName, $FOOTER_SIGNED_COMPILED, FILE_APPEND | LOCK_EX);
 
-  // Email client & dev, delete php, redirect to html
+    // Email client & dev, delete php, redirect to html
     if ($clientEmail) {
         $headers = "From: " . $devEmail . "\r\n";
         $headers .= "MIME-Version: 1.0\r\n";

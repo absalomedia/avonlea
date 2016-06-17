@@ -149,7 +149,7 @@ function remove_option(id)
                             <?php
                             if (isset($cats[$cat->id]) && count($cats[$cat->id]) > 0) {
                                 $sub2 = str_replace('&rarr;&nbsp;', '&nbsp;', $sub);
-                                $sub2 .=  '&nbsp;&nbsp;&nbsp;&rarr;&nbsp;';
+                                $sub2 .= '&nbsp;&nbsp;&nbsp;&rarr;&nbsp;';
                                 list_categories($cat->id, $cats, $sub2, $product_categories, $primary_category);
                             }
                             endforeach;
@@ -317,6 +317,9 @@ function add_image($photo_id, $filename, $alt, $caption, $primary = false)
 }
 
 //this makes it easy to use the same code for initial generation of the form as well as javascript additions
+/**
+ * @param string $string
+ */
 function replace_newline($string)
 {
     return trim((string) str_replace(["\r", "\r\n", "\n", "\t"], ' ', $string));

@@ -424,7 +424,7 @@ class CI_Profiler extends CI_Loader
      *
      * Allows any data passed to views to be available in the profiler bar.
      *
-     * @return array
+     * @return string
      */
     public function _compile_view_data()
     {
