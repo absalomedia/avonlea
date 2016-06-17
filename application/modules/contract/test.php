@@ -230,13 +230,13 @@ $(document).ready(function() {
 </body>
 </html>';
 
-if ($CLIENT_SIGNATURE !== null) {
-    $FOOTER_SIGNED_PHP = null;
-    $phpName  = basename($_SERVER["PHP_SELF"]) ? basename($_SERVER["PHP_SELF"]) : "index.php";
-    $fileName = substr($phpName, 0, -4);
-    $htmlName = $fileName.".html";
-    $pdfName = $fileName.".pdf";
-    ?>
+if ($CLIENT_SIGNATURE) {
+    $FOOTER_SIGNED_PHP ='
+  $phpName  = basename($_SERVER["PHP_SELF"]) ? basename($_SERVER["PHP_SELF"]) : "index.php";
+  $fileName = substr($phpName , 0, -4);
+  $htmlName = $fileName.".html";
+  $pdfName = $fileName.".pdf";
+  ?>
 
   <div id="date-ip">
     <strong>Signed on:</strong> <?php echo date("j F Y"); ?>
@@ -244,27 +244,25 @@ if ($CLIENT_SIGNATURE !== null) {
     <?php echo get_client_ip_env(); ?><br>
   </div>
 
-    <?php // Function to get the client ip address
-    function get_client_ip_env()
-    {
-        $ipaddress = "";
-        if (getenv("HTTP_CLIENT_IP")) {
-            $ipaddress = getenv("HTTP_CLIENT_IP");
-        } else if (getenv("HTTP_X_FORWARDED_FOR")) {
-                  $ipaddress = getenv("HTTP_X_FORWARDED_FOR");
-        } else if (getenv("HTTP_X_FORWARDED")) {
-                  $ipaddress = getenv("HTTP_X_FORWARDED");
-        } else if (getenv("HTTP_FORWARDED_FOR")) {
-                  $ipaddress = getenv("HTTP_FORWARDED_FOR");
-        } else if (getenv("HTTP_FORWARDED")) {
-                  $ipaddress = getenv("HTTP_FORWARDED");
-        } else if (getenv("REMOTE_ADDR")) {
-                  $ipaddress = getenv("REMOTE_ADDR");
-        } else {
-            $ipaddress = "UNKNOWN";
-        }
-        return $ipaddress;
-    } ?>
+  <?php // Function to get the client ip address
+  function get_client_ip_env() {
+  	$ipaddress = "";
+  	if (getenv("HTTP_CLIENT_IP"))
+  		$ipaddress = getenv("HTTP_CLIENT_IP");
+  	else if(getenv("HTTP_X_FORWARDED_FOR"))
+  		$ipaddress = getenv("HTTP_X_FORWARDED_FOR");
+  	else if(getenv("HTTP_X_FORWARDED"))
+  		$ipaddress = getenv("HTTP_X_FORWARDED");
+  	else if(getenv("HTTP_FORWARDED_FOR"))
+  		$ipaddress = getenv("HTTP_FORWARDED_FOR");
+  	else if(getenv("HTTP_FORWARDED"))
+  		$ipaddress = getenv("HTTP_FORWARDED");
+  	else if(getenv("REMOTE_ADDR"))
+  		$ipaddress = getenv("REMOTE_ADDR");
+  	else
+  		$ipaddress = "UNKNOWN";
+  	return $ipaddress;
+  } ?>
 
   <div class="noprint" id="print-pdf">
     <button id="print" type="button" class="button-secondary" onclick="printContract()">
@@ -304,7 +302,7 @@ if ($CLIENT_SIGNATURE==null) {
     echo $HEADER;
     echo $CONTRACT_HTML;
     echo $DEV_SIGNATURE;
-    eval(' ?>'. $FOOTER_UNSIGNED .'<?php );
+    eval(' ?>'. $FOOTER_UNSIGNED .'<?php ');
 } else {
   /** Contract was just signed: put $CLIENT_SIGNATURE and the other parts in the .html file **/
     file_put_contents($htmlName, $HEADER);
