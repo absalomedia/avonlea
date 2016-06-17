@@ -11,10 +11,8 @@ namespace Avonlea\Controller;
  *
  * @link        http://avonlea.absalom.net.au
  */
-
 class Invoices extends Admin
 {
-
     public function __construct()
     {
         parent::__construct();
@@ -27,12 +25,12 @@ class Invoices extends Admin
 
     // --------------------------------------------------------------------
 
-    function index()
+    public function index()
     {
         $data['clientList'] = \CI::Clients()->getAllClients(); // activate the option
-        $data['extraHeadContent'] = "<script type=\"text/javascript\" src=\"".base_url()."js/newinvoice.js\"></script>\n";
-        $data['extraHeadContent'] .= "<script type=\"text/javascript\" src=\"".base_url()."js/search.js\"></script>\n";
-        $data['extraHeadContent'] .= "<link type=\"text/css\" rel=\"stylesheet\" href=\"".base_url()."css/invoice.css\" />\n";
+        $data['extraHeadContent'] = '<script type="text/javascript" src="'.base_url()."js/newinvoice.js\"></script>\n";
+        $data['extraHeadContent'] .= '<script type="text/javascript" src="'.base_url()."js/search.js\"></script>\n";
+        $data['extraHeadContent'] .= '<link type="text/css" rel="stylesheet" href="'.base_url()."css/invoice.css\" />\n";
         $offset = (int) $this->uri->segment(3, 0);
 
         $data['query'] = \CI::Invoices()->getInvoices('open', \CI::Settings()->getSettings('days_payment_due'), $offset, 5000);
@@ -55,11 +53,11 @@ class Invoices extends Admin
 
     // --------------------------------------------------------------------
 
-    function overdue($offset = 0)
+    public function overdue($offset = 0)
     {
         $data['clientList'] = \CI::Clients()->getAllClients(); // activate the option
-        $data['extraHeadContent'] = "<script type=\"text/javascript\" src=\"".base_url()."js/newinvoice.js\"></script>\n";
-        $data['extraHeadContent'] .= "<link type=\"text/css\" rel=\"stylesheet\" href=\"".base_url()."css/invoice.css\" />\n";
+        $data['extraHeadContent'] = '<script type="text/javascript" src="'.base_url()."js/newinvoice.js\"></script>\n";
+        $data['extraHeadContent'] .= '<link type="text/css" rel="stylesheet" href="'.base_url()."css/invoice.css\" />\n";
 
         $data['query'] = \CI::Invoices()->getInvoices('overdue', \CI::Settings()->getSettings('days_payment_due'), $offset, 20);
 
@@ -76,11 +74,11 @@ class Invoices extends Admin
 
     // --------------------------------------------------------------------
 
-    function open($offset = 0)
+    public function open($offset = 0)
     {
         $data['clientList'] = \CI::Clients()->getAllClients(); // activate the option
-        $data['extraHeadContent'] = "<script type=\"text/javascript\" src=\"".base_url()."js/newinvoice.js\"></script>\n";
-        $data['extraHeadContent'] .= "<link type=\"text/css\" rel=\"stylesheet\" href=\"".base_url()."css/invoice.css\" />\n";
+        $data['extraHeadContent'] = '<script type="text/javascript" src="'.base_url()."js/newinvoice.js\"></script>\n";
+        $data['extraHeadContent'] .= '<link type="text/css" rel="stylesheet" href="'.base_url()."css/invoice.css\" />\n";
 
         $data['query'] = \CI::Invoices()->getInvoices('open', \CI::Settings()->getSettings('days_payment_due'), $offset, 20);
 
@@ -98,11 +96,11 @@ class Invoices extends Admin
 
     // --------------------------------------------------------------------
 
-    function closed($offset = 0)
+    public function closed($offset = 0)
     {
         $data['clientList'] = \CI::Clients()->getAllClients(); // activate the option
-        $data['extraHeadContent'] = "<script type=\"text/javascript\" src=\"".base_url()."js/newinvoice.js\"></script>\n";
-        $data['extraHeadContent'] .= "<link type=\"text/css\" rel=\"stylesheet\" href=\"".base_url()."css/invoice.css\" />\n";
+        $data['extraHeadContent'] = '<script type="text/javascript" src="'.base_url()."js/newinvoice.js\"></script>\n";
+        $data['extraHeadContent'] .= '<link type="text/css" rel="stylesheet" href="'.base_url()."css/invoice.css\" />\n";
 
         $data['query'] = \CI::Invoices()->getInvoices('closed', \CI::Settings()->getSettings('days_payment_due'), $offset, 20);
 
@@ -120,11 +118,11 @@ class Invoices extends Admin
 
     // --------------------------------------------------------------------
 
-    function all($offset = 0)
+    public function all($offset = 0)
     {
         $data['clientList'] = \CI::Clients()->getAllClients(); // activate the option
-        $data['extraHeadContent'] = "<script type=\"text/javascript\" src=\"".base_url()."js/newinvoice.js\"></script>\n";
-        $data['extraHeadContent'] .= "<link type=\"text/css\" rel=\"stylesheet\" href=\"".base_url()."css/invoice.css\" />\n";
+        $data['extraHeadContent'] = '<script type="text/javascript" src="'.base_url()."js/newinvoice.js\"></script>\n";
+        $data['extraHeadContent'] .= '<link type="text/css" rel="stylesheet" href="'.base_url()."css/invoice.css\" />\n";
 
         $data['query'] = \CI::Invoices()->getInvoices('all', \CI::Settings()->getSettings('days_payment_due'), $offset, 20);
         $data['total_rows'] = $data['query']->num_rows();
@@ -142,7 +140,7 @@ class Invoices extends Admin
 
     // --------------------------------------------------------------------
 
-    function recalculate_items()
+    public function recalculate_items()
     {
         $amount = 0;
         $tax1_amount = 0;
@@ -165,7 +163,7 @@ class Invoices extends Admin
 
     // --------------------------------------------------------------------
 
-    function newinvoice()
+    public function newinvoice()
     {
         $this->load->library('validation');
         $this->load->plugin('js_calendar');
@@ -175,7 +173,7 @@ class Invoices extends Admin
         $newName = $this->input->post('newClient');
 
         if (!isset($id)) {
-        // if they don't already have a client id, then they need to create the
+            // if they don't already have a client id, then they need to create the
             // client first, so send them off to do that
             $this->session->set_flashdata('clientName', $newName);
             redirect('clients/newclient');
@@ -195,15 +193,15 @@ class Invoices extends Admin
 
         $taxable = ($data['row']->tax_status == 1) ? 'true' : 'false';
 
-        $data['extraHeadContent'] = "<link type=\"text/css\" rel=\"stylesheet\" href=\"".base_url()."css/calendar.css\" />\n";
-        $data['extraHeadContent'] .= "<link type=\"text/css\" rel=\"stylesheet\" href=\"".base_url()."css/invoice.css\" />\n";
-        $data['extraHeadContent'] .= "<script type=\"text/javascript\">\nvar taxable = ".$taxable.";\nvar tax1_rate = ".$data['tax1_rate'].";\nvar tax2_rate = ".$data['tax2_rate'].";\nvar datePicker1 = \"".date("Y-m-d")."\";\nvar datePicker2 = \"".date("F j, Y")."\";\n</script>\n";
-        $data['extraHeadContent'] .= "<script type=\"text/javascript\" src=\"".base_url()."js/createinvoice.js\"></script>\n";
+        $data['extraHeadContent'] = '<link type="text/css" rel="stylesheet" href="'.base_url()."css/calendar.css\" />\n";
+        $data['extraHeadContent'] .= '<link type="text/css" rel="stylesheet" href="'.base_url()."css/invoice.css\" />\n";
+        $data['extraHeadContent'] .= "<script type=\"text/javascript\">\nvar taxable = ".$taxable.";\nvar tax1_rate = ".$data['tax1_rate'].";\nvar tax2_rate = ".$data['tax2_rate'].";\nvar datePicker1 = \"".date('Y-m-d')."\";\nvar datePicker2 = \"".date('F j, Y')."\";\n</script>\n";
+        $data['extraHeadContent'] .= '<script type="text/javascript" src="'.base_url()."js/createinvoice.js\"></script>\n";
         $data['extraHeadContent'] .= js_calendar_script('my_form');
 
         $this->_validation(); // Load the validation rules and fields
 
-        $data['invoiceDate'] = date("Y-m-d");
+        $data['invoiceDate'] = date('Y-m-d');
 
         if ($this->validation->run() == false) {
             $this->session->keep_flashdata('clientId');
@@ -211,16 +209,16 @@ class Invoices extends Admin
             $data['page_title'] = $this->lang->line('invoice_new_invoice');
             $this->load->view('invoices/newinvoice', $data);
         } else {
-            $invoice_data = array(
-                                    'client_id' => $this->input->post('client_id'),
+            $invoice_data = [
+                                    'client_id'      => $this->input->post('client_id'),
                                     'invoice_number' => $this->input->post('invoice_number'),
-                                    'dateIssued' => $this->input->post('dateIssued'),
-                                    'tax1_desc' => $this->input->post('tax1_description'),
-                                    'tax1_rate' => $this->input->post('tax1_rate'),
-                                    'tax2_desc' => $this->input->post('tax2_description'),
-                                    'tax2_rate' => $this->input->post('tax2_rate'),
-                                    'invoice_note' => $this->input->post('invoice_note')
-                                );
+                                    'dateIssued'     => $this->input->post('dateIssued'),
+                                    'tax1_desc'      => $this->input->post('tax1_description'),
+                                    'tax1_rate'      => $this->input->post('tax1_rate'),
+                                    'tax2_desc'      => $this->input->post('tax2_description'),
+                                    'tax2_rate'      => $this->input->post('tax2_rate'),
+                                    'invoice_note'   => $this->input->post('invoice_note'),
+                                ];
 
             $invoice_id = \CI::Invoices()->addInvoice($invoice_data);
 
@@ -231,13 +229,13 @@ class Invoices extends Admin
                 foreach ($items as $item) {
                     $taxable = (isset($item['taxable']) && $item['taxable'] == 1) ? 1 : 0;
 
-                    $invoice_items = array(
+                    $invoice_items = [
                                             'invoice_id'        => $invoice_id,
                                             'quantity'          => $item['quantity'],
                                             'amount'            => $item['amount'],
                                             'work_description'  => $item['work_description'],
-                                            'taxable'           => $taxable
-                                        );
+                                            'taxable'           => $taxable,
+                                        ];
 
                     \CI::Invoices()->addInvoiceItem($invoice_items);
                 }
@@ -253,7 +251,7 @@ class Invoices extends Admin
 
     // --------------------------------------------------------------------
 
-    function newinvoice_first()
+    public function newinvoice_first()
     {
         // page for users without javascript enabled
         $data['page_title'] = $this->lang->line('menu_new_invoice');
@@ -263,7 +261,7 @@ class Invoices extends Admin
 
     // --------------------------------------------------------------------
 
-    function view($id)
+    public function view($id)
     {
         $this->lang->load('date');
         $this->load->plugin('js_calendar');
@@ -271,13 +269,13 @@ class Invoices extends Admin
 
         $data['message'] = ($this->session->flashdata('message') != '') ? $this->session->flashdata('message') : '';
 
-        $data['extraHeadContent'] = "<link type=\"text/css\" rel=\"stylesheet\" href=\"".base_url()."css/calendar.css\" />\n";
-        $data['extraHeadContent'] .= "<link type=\"text/css\" rel=\"stylesheet\" href=\"".base_url()."css/invoice.css\" />\n";
-        $data['extraHeadContent'] .= "<script type=\"text/javascript\" src=\"".base_url()."js/emailinvoice.js\"></script>\n";
-        $data['extraHeadContent'] .= "<script type=\"text/javascript\">\nvar datePicker1 = \"".date("Y-m-d")."\";\nvar datePicker2 = \"".date("F j, Y")."\";\n\n</script>";
-        $data['extraHeadContent'] .= "<script type=\"text/javascript\" src=\"".base_url()."js/payinvoice.js\"></script>\n";
+        $data['extraHeadContent'] = '<link type="text/css" rel="stylesheet" href="'.base_url()."css/calendar.css\" />\n";
+        $data['extraHeadContent'] .= '<link type="text/css" rel="stylesheet" href="'.base_url()."css/invoice.css\" />\n";
+        $data['extraHeadContent'] .= '<script type="text/javascript" src="'.base_url()."js/emailinvoice.js\"></script>\n";
+        $data['extraHeadContent'] .= "<script type=\"text/javascript\">\nvar datePicker1 = \"".date('Y-m-d')."\";\nvar datePicker2 = \"".date('F j, Y')."\";\n\n</script>";
+        $data['extraHeadContent'] .= '<script type="text/javascript" src="'.base_url()."js/payinvoice.js\"></script>\n";
         $data['extraHeadContent'] .= js_calendar_script('my_form');
-        $data['invoiceDate'] = date("Y-m-d");
+        $data['invoiceDate'] = date('Y-m-d');
 
         $invoiceInfo = \CI::Invoices()->getSingleInvoice($id);
 
@@ -291,10 +289,10 @@ class Invoices extends Admin
         $data['date_invoice_due'] = formatted_invoice_date($data['row']->dateIssued, \CI::Settings()->getSettings('days_payment_due'));
 
         if ($data['row']->amount_paid >= $data['row']->total_with_tax) {
-        // paid invoices
+            // paid invoices
             $data['status'] = '<span>'.$this->lang->line('invoice_closed').'</span>';
         } elseif (mysql_to_unix($data['row']->dateIssued) >= time() - (\CI::Settings()->getSettings('days_payment_due') * 60 * 60 * 24)) {
-        // owing less then 30 days
+            // owing less then 30 days
             $data['status'] = '<span>'.$this->lang->line('invoice_open').'</span>';
         } else {
             // owing more then 30 days
@@ -310,12 +308,12 @@ class Invoices extends Admin
         $data['tax_info'] = $this->_tax_info($data['row']);
 
         $data['total_with_tax'] = $this->lang->line('invoice_total').': '.\CI::Settings()->getSettings('currency_symbol').number_format($data['row']->total_with_tax, 2, $this->config->item('currency_decimal'), '')."<br />\n";
-        ;
+
         // end amount and taxes
 
         if ($data['row']->amount_paid > 0) {
             $data['total_paid'] = $this->lang->line('invoice_amount_paid').': '.\CI::Settings()->getSettings('currency_symbol').number_format($data['row']->amount_paid, 2, $this->config->item('currency_decimal'), '')."<br />\n";
-            ;
+
             $data['total_outstanding'] = $this->lang->line('invoice_amount_outstanding').': '.\CI::Settings()->getSettings('currency_symbol').number_format($data['row']->total_with_tax - $data['row']->amount_paid, 2, $this->config->item('currency_decimal'), '');
         } else {
             $data['total_paid'] = '';
@@ -335,7 +333,7 @@ class Invoices extends Admin
 
     // --------------------------------------------------------------------
 
-    function edit($id)
+    public function edit($id)
     {
         $this->load->library('validation');
         $this->load->plugin('js_calendar');
@@ -347,20 +345,20 @@ class Invoices extends Admin
         $data['action'] = 'edit';
 
         // some hidden form data
-        $data['form_hidden'] = array(
-                                        'id'    => $data['row']->id,
-                                        'tax1_rate'     => $data['row']->tax1_rate,
+        $data['form_hidden'] = [
+                                        'id'                => $data['row']->id,
+                                        'tax1_rate'         => $data['row']->tax1_rate,
                                         'tax1_description'  => $data['row']->tax1_desc,
-                                        'tax2_rate'     => $data['row']->tax2_rate,
+                                        'tax2_rate'         => $data['row']->tax2_rate,
                                         'tax2_description'  => $data['row']->tax2_desc,
-                                    );
+                                    ];
 
         $taxable = (\CI::Clients()->get_client_info($data['row']->client_id, 'tax_status')->tax_status == 1) ? 'true' : 'false';
 
-        $data['extraHeadContent'] = "<link type=\"text/css\" rel=\"stylesheet\" href=\"".base_url()."css/calendar.css\" />\n";
-        $data['extraHeadContent'] .= "<script type=\"text/javascript\">\nvar taxable = ".$taxable.";\nvar tax1_rate = ".$data['row']->tax1_rate.";\nvar tax2_rate = ".$data['row']->tax2_rate.";\nvar datePicker1 = \"".date("Y-m-d", mysql_to_unix($data['row']->dateIssued))."\";\nvar datePicker2 = \"".date("F j, Y", mysql_to_unix($data['row']->dateIssued))."\";\n\n</script>";
-        $data['extraHeadContent'] .= "<link type=\"text/css\" rel=\"stylesheet\" href=\"".base_url()."css/invoice.css\" />\n";
-        $data['extraHeadContent'] .= "<script type=\"text/javascript\" src=\"".base_url()."js/createinvoice.js\"></script>\n";
+        $data['extraHeadContent'] = '<link type="text/css" rel="stylesheet" href="'.base_url()."css/calendar.css\" />\n";
+        $data['extraHeadContent'] .= "<script type=\"text/javascript\">\nvar taxable = ".$taxable.";\nvar tax1_rate = ".$data['row']->tax1_rate.";\nvar tax2_rate = ".$data['row']->tax2_rate.";\nvar datePicker1 = \"".date('Y-m-d', mysql_to_unix($data['row']->dateIssued))."\";\nvar datePicker2 = \"".date('F j, Y', mysql_to_unix($data['row']->dateIssued))."\";\n\n</script>";
+        $data['extraHeadContent'] .= '<link type="text/css" rel="stylesheet" href="'.base_url()."css/invoice.css\" />\n";
+        $data['extraHeadContent'] .= '<script type="text/javascript" src="'.base_url()."js/createinvoice.js\"></script>\n";
         $data['extraHeadContent'] .= js_calendar_script('my_form');
         $data['clientListEdit'] = \CI::Clients()->getAllClients();
 
@@ -381,7 +379,7 @@ class Invoices extends Admin
             $this->load->view('invoices/edit', $data);
         } else {
             if (\CI::Invoices()->uniqueInvoiceNumberEdit($this->input->post('invoice_number'), $this->input->post('id'))) {
-                $invoice_data = array(
+                $invoice_data = [
                                             'client_id'         => $this->input->post('client_id'),
                                             'invoice_number'    => $this->input->post('invoice_number'),
                                             'dateIssued'        => $this->input->post('dateIssued'),
@@ -389,8 +387,8 @@ class Invoices extends Admin
                                             'tax1_rate'         => $this->input->post('tax1_rate'),
                                             'tax2_desc'         => $this->input->post('tax2_description'),
                                             'tax2_rate'         => $this->input->post('tax2_rate'),
-                                            'invoice_note'      => $this->input->post('invoice_note')
-                                    );
+                                            'invoice_note'      => $this->input->post('invoice_note'),
+                                    ];
 
                 $invoice_id = \CI::Invoices()->updateInvoice($this->input->post('id'), $invoice_data);
 
@@ -405,13 +403,13 @@ class Invoices extends Admin
                 foreach ($items as $item) {
                     $taxable = (isset($item['taxable']) && $item['taxable'] == 1) ? 1 : 0;
 
-                    $invoice_items = array(
+                    $invoice_items = [
                                             'invoice_id'        => $invoice_id,
                                             'quantity'          => $item['quantity'],
                                             'amount'            => $item['amount'],
                                             'work_description'  => $item['work_description'],
-                                            'taxable'           => $taxable
-                                        );
+                                            'taxable'           => $taxable,
+                                        ];
 
                     \CI::Invoices()->addInvoiceItem($invoice_items);
                 }
@@ -438,7 +436,7 @@ class Invoices extends Admin
 
     // --------------------------------------------------------------------
 
-    function duplicate($id)
+    public function duplicate($id)
     {
         $this->load->library('validation');
         $this->load->plugin('js_calendar');
@@ -448,19 +446,19 @@ class Invoices extends Admin
         $data['action'] = 'duplicate';
 
         // some hidden form data
-        $data['form_hidden'] = array(
-                                        'tax1_rate'     => $data['row']->tax1_rate,
+        $data['form_hidden'] = [
+                                        'tax1_rate'         => $data['row']->tax1_rate,
                                         'tax1_description'  => $data['row']->tax1_desc,
-                                        'tax2_rate'     => $data['row']->tax2_rate,
+                                        'tax2_rate'         => $data['row']->tax2_rate,
                                         'tax2_description'  => $data['row']->tax2_desc,
-                                    );
+                                    ];
 
         $taxable = (\CI::Clients()->get_client_info($data['row']->client_id, 'tax_status')->tax_status == 1) ? 'true' : 'false';
 
-        $data['extraHeadContent'] = "<link type=\"text/css\" rel=\"stylesheet\" href=\"".base_url()."css/calendar.css\" />\n";
-        $data['extraHeadContent'] .= "<script type=\"text/javascript\">\nvar taxable = ".$taxable.";\nvar tax1_rate = ".$data['row']->tax1_rate.";\nvar tax2_rate = ".$data['row']->tax2_rate.";\nvar datePicker1 = \"".date("Y-m-d", mysql_to_unix($data['row']->dateIssued))."\";\nvar datePicker2 = \"".date("F j, Y", mysql_to_unix($data['row']->dateIssued))."\";\n\n</script>";
-        $data['extraHeadContent'] .= "<link type=\"text/css\" rel=\"stylesheet\" href=\"".base_url()."css/invoice.css\" />\n";
-        $data['extraHeadContent'] .= "<script type=\"text/javascript\" src=\"".base_url()."js/createinvoice.js\"></script>\n";
+        $data['extraHeadContent'] = '<link type="text/css" rel="stylesheet" href="'.base_url()."css/calendar.css\" />\n";
+        $data['extraHeadContent'] .= "<script type=\"text/javascript\">\nvar taxable = ".$taxable.";\nvar tax1_rate = ".$data['row']->tax1_rate.";\nvar tax2_rate = ".$data['row']->tax2_rate.";\nvar datePicker1 = \"".date('Y-m-d', mysql_to_unix($data['row']->dateIssued))."\";\nvar datePicker2 = \"".date('F j, Y', mysql_to_unix($data['row']->dateIssued))."\";\n\n</script>";
+        $data['extraHeadContent'] .= '<link type="text/css" rel="stylesheet" href="'.base_url()."css/invoice.css\" />\n";
+        $data['extraHeadContent'] .= '<script type="text/javascript" src="'.base_url()."js/createinvoice.js\"></script>\n";
         $data['extraHeadContent'] .= js_calendar_script('my_form');
         $data['clientListEdit'] = \CI::Clients()->getAllClients();
 
@@ -486,16 +484,16 @@ class Invoices extends Admin
             $this->load->view('invoices/edit', $data);
         } else {
             if (\CI::Invoices()->uniqueInvoiceNumber($this->input->post('invoice_number'), $this->input->post('id'))) {
-                $invoice_data = array(
-                                        'client_id' => $this->input->post('client_id'),
+                $invoice_data = [
+                                        'client_id'      => $this->input->post('client_id'),
                                         'invoice_number' => $this->input->post('invoice_number'),
-                                        'dateIssued' => $this->input->post('dateIssued'),
-                                        'tax1_desc' => $this->input->post('tax1_description'),
-                                        'tax1_rate' => $this->input->post('tax1_rate'),
-                                        'tax2_desc' => $this->input->post('tax2_description'),
-                                        'tax2_rate' => $this->input->post('tax2_rate'),
-                                        'invoice_note' => $this->input->post('invoice_note')
-                                    );
+                                        'dateIssued'     => $this->input->post('dateIssued'),
+                                        'tax1_desc'      => $this->input->post('tax1_description'),
+                                        'tax1_rate'      => $this->input->post('tax1_rate'),
+                                        'tax2_desc'      => $this->input->post('tax2_description'),
+                                        'tax2_rate'      => $this->input->post('tax2_rate'),
+                                        'invoice_note'   => $this->input->post('invoice_note'),
+                                    ];
 
                 $invoice_id = \CI::Invoices()->addInvoice($invoice_data);
 
@@ -506,13 +504,13 @@ class Invoices extends Admin
                     foreach ($items as $item) {
                         $taxable = (isset($item['taxable']) && $item['taxable'] == 1) ? 1 : 0;
 
-                        $invoice_items = array(
-                                                'invoice_id' => htmlspecialchars($invoice_id),
-                                                'quantity' => htmlspecialchars($item['quantity']),
-                                                'amount' => htmlspecialchars($item['amount']),
+                        $invoice_items = [
+                                                'invoice_id'       => htmlspecialchars($invoice_id),
+                                                'quantity'         => htmlspecialchars($item['quantity']),
+                                                'amount'           => htmlspecialchars($item['amount']),
                                                 'work_description' => htmlspecialchars($item['work_description']),
-                                                'taxable' => htmlspecialchars($taxable)
-                                            );
+                                                'taxable'          => htmlspecialchars($taxable),
+                                            ];
 
                         \CI::Invoices()->addInvoiceItem($invoice_items);
                     }
@@ -540,7 +538,7 @@ class Invoices extends Admin
 
     // --------------------------------------------------------------------
 
-    function notes($id)
+    public function notes($id)
     {
         $this->load->model('invoice_histories_model');
 
@@ -552,11 +550,11 @@ class Invoices extends Admin
 
     // --------------------------------------------------------------------
 
-    function email($id)
+    public function email($id)
     {
         $this->lang->load('date');
         $this->load->plugin('to_pdf');
-        $this->load->helper(array('logo', 'file'));
+        $this->load->helper(['logo', 'file']);
         $this->load->library('email');
         $this->load->model('clientcontacts_model');
         $this->load->model('invoice_histories_model', '', true);
@@ -589,11 +587,11 @@ class Invoices extends Admin
         $data['tax_info'] = $this->_tax_info($data['row']);
 
         $data['total_with_tax'] = $this->lang->line('invoice_total').': '.\CI::Settings()->getSettings('currency_symbol').number_format($data['row']->total_with_tax, 2, $this->config->item('currency_decimal'), '')."<br />\n";
-        ;
+
 
         if ($data['row']->amount_paid > 0) {
             $data['total_paid'] = $this->lang->line('invoice_amount_paid').': '.\CI::Settings()->getSettings('currency_symbol').number_format($data['row']->amount_paid, 2, $this->config->item('currency_decimal'), '')."<br />\n";
-            ;
+
             $data['total_outstanding'] = $this->lang->line('invoice_amount_outstanding').': '.\CI::Settings()->getSettings('currency_symbol').number_format($data['row']->total_with_tax - $data['row']->amount_paid, 2, $this->config->item('currency_decimal'), '');
         } else {
             $data['total_paid'] = '';
@@ -651,7 +649,7 @@ class Invoices extends Admin
         $this->email->from($data['companyInfo']->primary_contact_email, $data['companyInfo']->primary_contact);
         $this->email->subject($this->lang->line('invoice_invoice')." $invoice_number : ".$data['companyInfo']->company_name);
         $this->email->message(stripslashes($email_body));
-        $this->email->attach("./invoices_temp/".$invoice_localized."_"."$invoice_number.pdf");
+        $this->email->attach('./invoices_temp/'.$invoice_localized.'_'."$invoice_number.pdf");
 
         // for the demo, I don't want actual emails sent out, so this provides an easy
         // override.
@@ -668,7 +666,7 @@ class Invoices extends Admin
         //show_error($this->email->print_debugger());
 
         if ($this->input->post('isAjax') == 'true') {
-        // for future ajax functionality, right now this is permanently set to false
+            // for future ajax functionality, right now this is permanently set to false
         } else {
             if (\CI::Settings()->getSettings('demo_flag') == 'y') {
                 $this->session->set_flashdata('message', $this->lang->line('invoice_email_demo'));
@@ -682,7 +680,7 @@ class Invoices extends Admin
 
     // --------------------------------------------------------------------
 
-    function pdf($id, $output = true)
+    public function pdf($id, $output = true)
     {
         $this->lang->load('date');
         $this->load->plugin('to_pdf');
@@ -714,11 +712,11 @@ class Invoices extends Admin
         $data['tax_info'] = $this->_tax_info($data['row']);
 
         $data['total_with_tax'] = $this->lang->line('invoice_total').': '.\CI::Settings()->getSettings('currency_symbol').number_format($data['row']->total_with_tax, 2, $this->config->item('currency_decimal'), '')."<br />\n";
-        ;
+
 
         if ($data['row']->amount_paid > 0) {
             $data['total_paid'] = $this->lang->line('invoice_amount_paid').': '.\CI::Settings()->getSettings('currency_symbol').number_format($data['row']->amount_paid, 2, $this->config->item('currency_decimal'), '')."<br />\n";
-            ;
+
             $data['total_outstanding'] = $this->lang->line('invoice_amount_outstanding').': '.\CI::Settings()->getSettings('currency_symbol').number_format($data['row']->total_with_tax - $data['row']->amount_paid, 2, $this->config->item('currency_decimal'), '');
         } else {
             $data['total_paid'] = '';
@@ -744,14 +742,14 @@ class Invoices extends Admin
     // --------------------------------------------------------------------
 
     /**
-     * Batch PDF
+     * Batch PDF.
      *
      * This function is in here for the convenience of people who need it, but is not accessible currently
      * via the "front end".  It is very memory intensive, and unlikely that most servers could handle it
      * even with resetting memory and timeout options... thus, its in here for people who need it, and for
      * me, but not currently publicly accessible.
      */
-    function batch_pdf()
+    public function batch_pdf()
     {
         $start_id = $this->uri->segment(3);
         $end_id = $this->uri->segment(4);
@@ -773,7 +771,7 @@ class Invoices extends Admin
 
     // --------------------------------------------------------------------
 
-    function payment()
+    public function payment()
     {
         $id = (int) $this->input->post('id');
         $date_paid = $this->input->post('date_paid');
@@ -783,12 +781,12 @@ class Invoices extends Admin
         if (!preg_match("/(19|20)\d\d[-](0[1-9]|1[012])[-](0[1-9]|[12][0-9]|3[01])/", $date_paid) || !is_numeric($amount)) {
             show_error($this->lang->line('error_date_fill'));
         } else {
-            $data = array(
-                            'invoice_id' => $id,
-                            'amount_paid' => $amount,
-                            'date_paid' => $date_paid,
-                            'payment_note' => $payment_note
-                        );
+            $data = [
+                            'invoice_id'   => $id,
+                            'amount_paid'  => $amount,
+                            'date_paid'    => $date_paid,
+                            'payment_note' => $payment_note,
+                        ];
 
             \CI::Invoices()->payment($data);
 
@@ -800,7 +798,7 @@ class Invoices extends Admin
 
     // --------------------------------------------------------------------
 
-    function delete($id)
+    public function delete($id)
     {
         $this->session->set_flashdata('deleteInvoice', $id);
         $data['deleteInvoice'] = \CI::Invoices()->getSingleInvoice($id)->row()->invoice_number;
@@ -810,7 +808,7 @@ class Invoices extends Admin
 
     // --------------------------------------------------------------------
 
-    function delete_confirmed()
+    public function delete_confirmed()
     {
         $invoice_id = $this->session->flashdata('deleteInvoice');
         \CI::Invoices()->delete_invoice($invoice_id);
@@ -820,7 +818,7 @@ class Invoices extends Admin
 
     // --------------------------------------------------------------------
 
-    function retrieveInvoices()
+    public function retrieveInvoices()
     {
         $query = \CI::Invoices()->getInvoicesAJAX($this->input->post('status'), $this->input->post('client_id'), \CI::Settings()->getSettings('days_payment_due'));
 
@@ -843,10 +841,10 @@ class Invoices extends Admin
                 $invoiceResults .= '", "clientName" : "'.$row->name.'", "amount" : "'.number_format($row->subtotal, 2, $this->config->item('currency_decimal'), '').'", "status" : "';
 
                 if ($row->amount_paid >= $row->subtotal) {
-                // paid invoices
+                    // paid invoices
                     $invoiceResults .= $this->lang->line('invoice_closed');
                 } elseif (mysql_to_unix($row->dateIssued) >= strtotime('-'.\CI::Settings()->getSettings('days_payment_due').' days')) {
-                // owing less then the overdue days amount
+                    // owing less then the overdue days amount
                     $invoiceResults .= $this->lang->line('invoice_open');
                 } else {
                     // owing more then the overdue days amount
@@ -864,28 +862,29 @@ class Invoices extends Admin
 
     // --------------------------------------------------------------------
 
-    function dateIssued($str)
+    public function dateIssued($str)
     {
         if (preg_match("/(19|20)\d\d[-](0[1-9]|1[012])[-](0[1-9]|[12][0-9]|3[01])/", $str)) {
             return true;
         } else {
             $this->validation->set_message('dateIssued', $this->lang->line('error_date_format'));
+
             return false;
         }
     }
 
     // --------------------------------------------------------------------
 
-    function _delete_stored_files()
+    public function _delete_stored_files()
     {
-        if (\CI::Settings()->getSettings('save_invoices') == "n") {
-            delete_files("./invoices_temp/");
+        if (\CI::Settings()->getSettings('save_invoices') == 'n') {
+            delete_files('./invoices_temp/');
         }
     }
 
     // --------------------------------------------------------------------
 
-    function _get_logo($target = '', $context = 'web')
+    public function _get_logo($target = '', $context = 'web')
     {
         $this->load->helper('logo');
         $this->load->helper('path');
@@ -895,16 +894,16 @@ class Invoices extends Admin
 
     // --------------------------------------------------------------------
 
-    function _tax_info($data)
+    public function _tax_info($data)
     {
         $tax_info = '';
 
         if ($data->total_tax1 != 0) {
-            $tax_info .= $data->tax1_desc." (".$data->tax1_rate."%): ".\CI::Settings()->getSettings('currency_symbol').number_format($data->total_tax1, 2, $this->config->item('currency_decimal'), '')."<br />\n";
+            $tax_info .= $data->tax1_desc.' ('.$data->tax1_rate.'%): '.\CI::Settings()->getSettings('currency_symbol').number_format($data->total_tax1, 2, $this->config->item('currency_decimal'), '')."<br />\n";
         }
 
         if ($data->total_tax2 != 0) {
-            $tax_info .= $data->tax2_desc." (".$data->tax2_rate."%): ".\CI::Settings()->getSettings('currency_symbol').number_format($data->total_tax2, 2, $this->config->item('currency_decimal'), '')."<br />\n";
+            $tax_info .= $data->tax2_desc.' ('.$data->tax2_rate.'%): '.\CI::Settings()->getSettings('currency_symbol').number_format($data->total_tax2, 2, $this->config->item('currency_decimal'), '')."<br />\n";
         }
 
         return $tax_info;
@@ -912,26 +911,26 @@ class Invoices extends Admin
 
     // --------------------------------------------------------------------
 
-    function _validation()
+    public function _validation()
     {
-        $rules['client_id']         = 'required|numeric';
-        $rules['invoice_number']    = 'trim|required|htmlspecialchars|max_length[12]|alpha_dash|callback_uniqueInvoice';
-        $rules['dateIssued']        = 'trim|htmlspecialchars|callback_dateIssued';
-        $rules['invoice_note']      = 'trim|htmlspecialchars|max_length[2000]';
-        $rules['tax1_description']  = 'trim|htmlspecialchars|max_length[50]';
-        $rules['tax1_rate']         = 'trim|htmlspecialchars';
-        $rules['tax2_description']  = 'trim|htmlspecialchars|max_length[50]';
-        $rules['tax2_rate']         = 'trim|htmlspecialchars';
+        $rules['client_id'] = 'required|numeric';
+        $rules['invoice_number'] = 'trim|required|htmlspecialchars|max_length[12]|alpha_dash|callback_uniqueInvoice';
+        $rules['dateIssued'] = 'trim|htmlspecialchars|callback_dateIssued';
+        $rules['invoice_note'] = 'trim|htmlspecialchars|max_length[2000]';
+        $rules['tax1_description'] = 'trim|htmlspecialchars|max_length[50]';
+        $rules['tax1_rate'] = 'trim|htmlspecialchars';
+        $rules['tax2_description'] = 'trim|htmlspecialchars|max_length[50]';
+        $rules['tax2_rate'] = 'trim|htmlspecialchars';
         $this->validation->set_rules($rules);
 
-        $fields['client_id']        = $this->lang->line('invoice_client_id');
-        $fields['invoice_number']   = $this->lang->line('invoice_number');
-        $fields['dateIssued']       = $this->lang->line('invoice_date_issued');
-        $fields['invoice_note']     = $this->lang->line('invoice_note');
-        $fields['tax1_description']     = \CI::Settings()->getSettings('tax1_desc');
-        $fields['tax1_rate']        = \CI::Settings()->getSettings('tax1_rate');
-        $fields['tax2_description']     = \CI::Settings()->getSettings('tax1_desc');
-        $fields['tax2_rate']        = \CI::Settings()->getSettings('tax2_rate');
+        $fields['client_id'] = $this->lang->line('invoice_client_id');
+        $fields['invoice_number'] = $this->lang->line('invoice_number');
+        $fields['dateIssued'] = $this->lang->line('invoice_date_issued');
+        $fields['invoice_note'] = $this->lang->line('invoice_note');
+        $fields['tax1_description'] = \CI::Settings()->getSettings('tax1_desc');
+        $fields['tax1_rate'] = \CI::Settings()->getSettings('tax1_rate');
+        $fields['tax2_description'] = \CI::Settings()->getSettings('tax1_desc');
+        $fields['tax2_rate'] = \CI::Settings()->getSettings('tax2_rate');
         $this->validation->set_fields($fields);
 
         $this->validation->set_error_delimiters('<span class="error">', '</span>');
@@ -939,32 +938,32 @@ class Invoices extends Admin
 
     // --------------------------------------------------------------------
 
-    function _validation_edit()
+    public function _validation_edit()
     {
-        $rules['client_id']         = 'required|numeric';
-        $rules['invoice_number']    = 'trim|required|htmlspecialchars|max_length[50]|alpha_dash';
-        $rules['dateIssued']        = 'trim|htmlspecialchars|callback_dateIssued';
-        $rules['invoice_note']      = 'trim|htmlspecialchars|max_length[2000]';
-        $rules['tax1_description']  = 'trim|htmlspecialchars|max_length[50]';
-        $rules['tax1_rate']         = 'trim|htmlspecialchars';
-        $rules['tax2_description']  = 'trim|htmlspecialchars|max_length[50]';
-        $rules['tax2_rate']         = 'trim|htmlspecialchars';
+        $rules['client_id'] = 'required|numeric';
+        $rules['invoice_number'] = 'trim|required|htmlspecialchars|max_length[50]|alpha_dash';
+        $rules['dateIssued'] = 'trim|htmlspecialchars|callback_dateIssued';
+        $rules['invoice_note'] = 'trim|htmlspecialchars|max_length[2000]';
+        $rules['tax1_description'] = 'trim|htmlspecialchars|max_length[50]';
+        $rules['tax1_rate'] = 'trim|htmlspecialchars';
+        $rules['tax2_description'] = 'trim|htmlspecialchars|max_length[50]';
+        $rules['tax2_rate'] = 'trim|htmlspecialchars';
         $this->validation->set_rules($rules);
 
-        $fields['client_id']        = $this->lang->line('invoice_client_id');
-        $fields['invoice_number']   = $this->lang->line('invoice_number');
-        $fields['dateIssued']       = $this->lang->line('invoice_date_issued');
-        $fields['invoice_note']     = $this->lang->line('invoice_note');
-        $fields['tax1_description']     = \CI::Settings()->getSettings('tax1_desc');
-        $fields['tax1_rate']        = \CI::Settings()->getSettings('tax1_rate');
-        $fields['tax2_description']     = \CI::Settings()->getSettings('tax1_desc');
-        $fields['tax2_rate']        = \CI::Settings()->getSettings('tax2_rate');
+        $fields['client_id'] = $this->lang->line('invoice_client_id');
+        $fields['invoice_number'] = $this->lang->line('invoice_number');
+        $fields['dateIssued'] = $this->lang->line('invoice_date_issued');
+        $fields['invoice_note'] = $this->lang->line('invoice_note');
+        $fields['tax1_description'] = \CI::Settings()->getSettings('tax1_desc');
+        $fields['tax1_rate'] = \CI::Settings()->getSettings('tax1_rate');
+        $fields['tax2_description'] = \CI::Settings()->getSettings('tax1_desc');
+        $fields['tax2_rate'] = \CI::Settings()->getSettings('tax2_rate');
         $this->validation->set_fields($fields);
 
         $this->validation->set_error_delimiters('<span class="error">', '</span>');
     }
 
-    function uniqueInvoice()
+    public function uniqueInvoice()
     {
         $this->validation->set_message('uniqueInvoice', $this->lang->line('invoice_not_unique'));
 

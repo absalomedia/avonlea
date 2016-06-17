@@ -53,7 +53,7 @@ class AdminStripe extends Admin
                 redirect('admin/payments');
             }
         }
-          
+
         $settings = \CI::Settings()->getSettings('stripe');
         $enabled = (isset($settings['enabled']) ? $settings['enabled'] : null);
         $this->view('stripe_form', ['enabled' => $enabled]);

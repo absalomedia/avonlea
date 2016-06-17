@@ -1,4 +1,5 @@
 <?php
+
 if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
@@ -74,7 +75,7 @@ class CI_Profiler extends CI_Loader
         // default all sections to display
         foreach ($this->_available_sections as $section) {
             if (!isset($config[$section])) {
-                $this->_compile_{$section}
+                $this->_compile_[$section]
                 = true;
             }
         }
@@ -106,7 +107,7 @@ class CI_Profiler extends CI_Loader
     {
         foreach ($config as $method => $enable) {
             if (in_array($method, $this->_available_sections)) {
-                $this->_compile_{$method}
+                $this->_compile_[$method]
                 = ($enable !== false) ? true : false;
             }
         }
@@ -487,7 +488,7 @@ class CI_Profiler extends CI_Loader
         $fields_displayed = 0;
 
         foreach ($this->_available_sections as $section) {
-            if ($this->_compile_{$section} !== false) {
+            if ($this->_compile_[$section] !== false) {
                 $func = "_compile_{$section}";
                 if ($section === 'http_headers') {
                     $section = 'headers';

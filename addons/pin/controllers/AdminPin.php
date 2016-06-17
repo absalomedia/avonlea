@@ -53,7 +53,7 @@ class AdminPin extends Admin
                 redirect('admin/payments');
             }
         }
-        
+
         $settings = \CI::Settings()->getSettings('pin');
         $enabled = (isset($settings['enabled']) ?  $settings['enabled'] : null);
         $this->view('pin_form', ['enabled' => $enabled]);

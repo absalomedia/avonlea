@@ -37,6 +37,7 @@
             <label class="checklist">
                 <input type="checkbox" name="email_subscribe" value="1" <?php if ((bool) $customer['email_subscribe']) {
     ?> checked="checked" <?php
+
 } ?>/> <?php echo lang('account_newsletter_subscribe'); ?>
             </label>
         

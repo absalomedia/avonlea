@@ -1,7 +1,7 @@
 
         <h1><?php echo lang('pin_payments'); ?></h1>
 
-<?php echo form_open_multipart('admin/pin/form', array('class' => 'pure-form pure-form-stacked')); ?>
+<?php echo form_open_multipart('admin/pin/form', ['class' => 'pure-form pure-form-stacked']); ?>
                 <div class="pure-control-group">
                 	<label class="switch-light switch-ios" onclick="">
   						<input type="checkbox" name="<?php echo lang('status'); ?>">
