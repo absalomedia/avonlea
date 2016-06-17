@@ -25,7 +25,7 @@ function areyousure()
     <tbody>
         <?php echo (count($categories) < 1) ? '<tr><td style="text-align:center;" colspan="4">'.lang('no_categories').'</td></tr>' : ''?>
         <?php
-        function list_categories($parent_id, $cats, $groups, $sub = '', $hidden = false)
+        function listCategories($parent_id, $cats, $groups, $sub = '', $hidden = false)
         {
             foreach ($cats[$parent_id] as $cat) :?>
             <tr>
@@ -51,17 +51,17 @@ function areyousure()
             if (isset($cats[$cat->id]) && count($cats[$cat->id]) > 0) {
                 $sub2 = str_replace('&rarr;&nbsp;', '&nbsp;', $sub);
                 $sub2 .= '&nbsp;&nbsp;&nbsp;&rarr;&nbsp;';
-                list_categories($cat->id, $cats, $groups, $sub2, $hidden);
+                listCategories($cat->id, $cats, $groups, $sub2, $hidden);
             }
             endforeach;
         }
 
         if (isset($categories[-1])) {
-            list_categories(-1, $categories, $groups, '', true);
+            listCategories(-1, $categories, $groups, '', true);
         }
 
         if (isset($categories[0])) {
-            list_categories(0, $categories, $groups);
+            listCategories(0, $categories, $groups);
         }
 
         ?>

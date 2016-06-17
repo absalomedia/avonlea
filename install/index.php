@@ -109,7 +109,7 @@ switch (ENVIRONMENT) {
  *
  * NO TRAILING SLASH!
  */
-    $application_folder = 'installer';
+    $application_folder = '../application/';
 
 /*
  *---------------------------------------------------------------

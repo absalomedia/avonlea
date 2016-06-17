@@ -1,13 +1,19 @@
 <?php
 
-defined('BASEPATH') or exit('No direct script access allowed');
+defined('BASEPATH') || exit('No direct script access allowed');
 
 class Installer extends CI_Controller
 {
     public function init()
     {
         $this->load->helper(['form', 'file', 'url']);
-        $this->load->library(['form_validation']);
+        $this->load->library(['form_validation','profiler', 'console']);
+
+        if (defined('ENVIRONMENT')) {
+            if (ENVIRONMENT === 'development') {
+                $this->output->enable_profiler(true);
+            }
+        }
 
         $cartPath = dirname(FCPATH);
 
@@ -15,9 +21,9 @@ class Installer extends CI_Controller
         $testUploads = is_writable($cartPath.'/uploads/');
         $testIntl = class_exists('Locale');
 
-        $errors = (!$testConfig) ? '<div class="alert alert-danger" role="alert">The folder "'.$cartPath.'/application/config" must be writable.</div>' : '';
-        $errors .= (!$testUploads) ? '<div class="alert alert-danger" role="alert">The folder "'.$cartPath.'/uploads" must be writable.</div>' : '';
-        $errors .= (!$testIntl) ? '<div class="alert alert-danger" role="alert">The PHP_INTL Library is required for AVL and is not installed on your server. <a href="http://php.net/manual/en/book.intl.php">Read More</a></div>' : '';
+        $errors = (!$testConfig) ? '<div class="pure-alert pure-alert-danger" role="alert">The folder "'.$cartPath.'/application/config" must be writable.</div>' : '';
+        $errors .= (!$testUploads) ? '<div class="pure-alert pure-alert-danger" role="alert">The folder "'.$cartPath.'/uploads" must be writable.</div>' : '';
+        $errors .= (!$testIntl) ? '<div class="pure-alert pure-alert-danger" role="alert">The PHP_INTL Library is required for AVL and is not installed on your server. <a href="http://php.net/manual/en/book.intl.php">Read More</a></div>' : '';
 
         $this->form_validation->set_rules('hostname', 'Hostname', 'required');
         $this->form_validation->set_rules('database', 'Database Name', 'required');
@@ -29,10 +35,10 @@ class Installer extends CI_Controller
         if ($this->form_validation->run() === false || $errors != '') {
             $this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
             $errors .= validation_errors();
-
-            $this->load->view('index', ['errors' => $errors]);
+            $this->load->view('install', ['errors' => $errors]);
         } else {
             $dbCred = $this->input->post();
+
             //test the database
             mysqli_report(MYSQLI_REPORT_STRICT);
 
@@ -40,7 +46,7 @@ class Installer extends CI_Controller
                 $db = new mysqli($dbCred['hostname'], $dbCred['username'], $dbCred['password'], $dbCred['database']);
             } catch (Exception $e) {
                 $errors = '<div class="alert alert-danger" role="alert">There was an error connecting to the database</div>';
-                $this->load->view('index', ['errors' => $errors]);
+                $this->load->view('install', ['errors' => $errors]);
 
                 return;
             }

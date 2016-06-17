@@ -129,7 +129,7 @@ function remove_option(id)
                                 </tr>
                             </thead>
                         <?php
-                        function list_categories($parent_id, $cats, $sub, $product_categories, $primary_category)
+                        function listCategories($parent_id, $cats, $sub, $productCat, $primaryCat)
                         {
                             foreach ($cats[$parent_id] as $cat) :?>
                             <tr>
@@ -137,12 +137,12 @@ function remove_option(id)
                             ?></td>
                                 <td>
                                     <input type="checkbox" name="categories[]" value="<?php echo $cat->id;
-                            ?>" <?php echo(in_array($cat->id, $product_categories)) ? 'checked="checked"' : '';
+                            ?>" <?php echo(in_array($cat->id, $productCat)) ? 'checked="checked"' : '';
                             ?>/>
                                 </td>
                                 <td>
                                     <input type="radio" name="primary_category" value="<?php echo $cat->id;
-                            ?>" <?php echo ($primary_category === $cat->id) ? 'checked="checked"' : '';
+                            ?>" <?php echo ($primaryCat === $cat->id) ? 'checked="checked"' : '';
                             ?>/>
                                 </td>
                             </tr>
@@ -150,13 +150,13 @@ function remove_option(id)
                             if (isset($cats[$cat->id]) && count($cats[$cat->id]) > 0) {
                                 $sub2 = str_replace('&rarr;&nbsp;', '&nbsp;', $sub);
                                 $sub2 .= '&nbsp;&nbsp;&nbsp;&rarr;&nbsp;';
-                                list_categories($cat->id, $cats, $sub2, $product_categories, $primary_category);
+                                listCategories($cat->id, $cats, $sub2, $productCat, $primaryCat);
                             }
                             endforeach;
                         }
 
 
-                        list_categories(0, $categories, '', $product_categories, $primary_category);
+                        listCategories(0, $categories, '', $productCat, $primaryCat);
 
                         ?>
 
@@ -257,7 +257,7 @@ function remove_option(id)
 
 <?php
 function add_image($photo_id, $filename, $alt, $caption, $primary = false)
-                    {
+{
                         ob_start();
                         ?>
     <div class="row gc_photo" id="gc_photo_<?php echo $photo_id;
@@ -314,7 +314,7 @@ function add_image($photo_id, $filename, $alt, $caption, $primary = false)
                         ob_end_clean();
 
                         echo replace_newline($stuff);
-                    }
+}
 
 //this makes it easy to use the same code for initial generation of the form as well as javascript additions
 /**

@@ -1347,3 +1347,76 @@ form:after {
     background: #fff;
     border-radius: 5px;
 }
+
+/* More Pure stuff */
+
+/* Badges/Pills */
+.pure-badge,
+.pure-badge-error,
+.pure-badge-warning,
+.pure-badge-success,
+.pure-badge-info,
+.pure-badge-inverse {
+    padding: 0.35em 0.9em 0.35em;
+    background-color: #9D988E;
+    color: #fff;
+    display: inline-block;
+    font-size: 11.844px;
+    font-weight: bold;
+    line-height: 1.2em;
+    vertical-align: baseline;
+    white-space: nowrap;
+    border-radius: 20px;
+    margin: 0.2em;
+}
+.pure-badge-error {
+    background-color: #D13C38;
+}
+.pure-badge-warning {
+    background-color: #E78C05;
+}
+.pure-badge-success {
+    background-color: rgb(83, 180, 79);
+}
+.pure-badge-info {
+    background-color: rgb(18, 169, 218);
+}
+.pure-badge-inverse {
+    background-color: #4D370C;
+}
+
+/* Alerts */
+.pure-alert {
+    position: relative;
+    margin-bottom: 1em;
+    padding: 1em;
+    background: #ccc;
+    border-radius: 3px;
+}
+
+.pure-alert label {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+    *zoom: 1;
+    white-space: nowrap;
+}
+
+.pure-alert {
+    background-color: rgb(209, 235, 238);
+    color: rgb(102, 131, 145);
+}
+.pure-alert-error {
+    background-color: #D13C38;
+    color: #fff;
+}
+
+.pure-alert-danger {
+    background-color: rgb(250, 191, 103);
+    color: rgb(151, 96, 13);
+}
+
+.pure-alert-success {
+    background-color: rgb(83, 180, 79);
+    color: #fff;
+}

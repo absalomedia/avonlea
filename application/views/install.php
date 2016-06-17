@@ -23,10 +23,10 @@
         <h1>Avonlea Installer</h1>
 
     <?php if (isset($errors)) {
-    echo $errors;
+        echo $errors;
 } ?>
 
-    <form action="<?php echo base_url(); ?>" method="post" class="pure-form pure-form-stacked" accept-charset="utf-8">
+    <form action="<?php echo base_url(); ?>install/" method="post" class="pure-form pure-form-stacked" accept-charset="utf-8">
                 <div class="pure-control-group">
                     <label for="hostname-label">Host Name</label>
                     <?php echo form_input(['name' => 'hostname', 'class' => 'form-control', 'value' => set_value('hostname')]); ?>
@@ -34,6 +34,7 @@
                 <div class="pure-control-group">
                     <label for="database-name-label">Database Name</label>
                     <?php echo form_input(['name' => 'database', 'class' => 'form-control', 'value' => set_value('database')]); ?>
+
                 </div>
                 <div class="pure-control-group">
                     <label for="control-label">Username</label>

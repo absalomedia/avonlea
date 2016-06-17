@@ -132,7 +132,7 @@
                                 </tr>
                             </thead>
                         <?php
-                        function list_categories($parent_id, $cats, $sub, $product_categories, $primary_category, $groups, $hidden)
+                        function listCategories($parent_id, $cats, $sub, $productCat, $primaryCat, $groups, $hidden)
                         {
                             if (isset($cats[$parent_id])) {
                                 foreach ($cats[$parent_id] as $cat) :?>
@@ -148,11 +148,11 @@
                                 ?>
                                     <td class="text-center">
                                         <input type="checkbox" name="categories[]" value="<?php echo $cat->id;
-                                ?>" <?php echo(in_array($cat->id, $product_categories)) ? 'checked="checked"' : '';
+                                ?>" <?php echo(in_array($cat->id, $productCat)) ? 'checked="checked"' : '';
                                 ?>/>
                                         &nbsp;&nbsp;
                                         <input type="radio" name="primary_category" value="<?php echo $cat->id;
-                                ?>" <?php echo ($primary_category === $cat->id) ? 'checked="checked"' : '';
+                                ?>" <?php echo ($primaryCat === $cat->id) ? 'checked="checked"' : '';
                                 ?>/>
                                     </td>
                                 </tr>
@@ -160,14 +160,14 @@
                                 if (isset($cats[$cat->id]) && count($cats[$cat->id]) > 0) {
                                     $sub2 = str_replace('&rarr;&nbsp;', '&nbsp;', $sub);
                                     $sub2 .= '&nbsp;&nbsp;&nbsp;&rarr;&nbsp;';
-                                    list_categories($cat->id, $cats, $sub2, $product_categories, $primary_category, $groups, $hidden);
+                                    listCategories($cat->id, $cats, $sub2, $productCat, $primaryCat, $groups, $hidden);
                                 }
                                 endforeach;
                             }
                         }
 
-                        list_categories(-1, $categories, '', $product_categories, $primary_category, $groups, true);
-                        list_categories(0, $categories, '', $product_categories, $primary_category, $groups, false);
+                        listCategories(-1, $categories, '', $productCat, $primaryCat, $groups, true);
+                        listCategories(0, $categories, '', $productCat, $primaryCat, $groups, false);
                         ?>
 
                     </table>
