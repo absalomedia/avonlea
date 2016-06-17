@@ -3,7 +3,7 @@
 <footer>
     <div class="container">
         <nav>
-            <?php page_loop(0, 'class="nav nav-center"'); ?>
+            <?php pageLooper(0, 'class="nav nav-center"'); ?>
         </nav>
 
     </div>
