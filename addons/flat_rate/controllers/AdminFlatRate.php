@@ -47,13 +47,12 @@ class AdminFlatRate extends Admin
         \CI::form_validation()->set_rules('enabled', 'lang:enabled', 'trim|numeric');
         \CI::form_validation()->set_rules('rate', 'lang:rate', 'trim|floatval');
 
-        if (\CI::form_validation()->run() === false) {
-            $settings = \CI::Settings()->getSettings('FlatRate');
-
-            $this->view('flat_rate_form', $settings);
-        } else {
+        if (\CI::form_validation()->run() === true) {
             \CI::Settings()->saveSettings('FlatRate', \CI::input()->post());
             redirect('admin/shipping');
+            
         }
+        $settings = \CI::Settings()->getSettings('FlatRate');
+        $this->view('flat_rate_form', $settings);
     }
 }

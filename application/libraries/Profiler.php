@@ -1,7 +1,7 @@
 <?php
-    if (!defined('BASEPATH')) {
-        exit('No direct script access allowed');
-    }
+if (!defined('BASEPATH')) {
+    exit('No direct script access allowed');
+}
 /**
  * CodeIgniter.
  *
@@ -244,10 +244,10 @@ class CI_Profiler extends CI_Loader
     {
         $output = [];
 
-        if (count($_POST) === 0) {
+        if (count(filter_input_array(INPUT_POST)) === 0) {
             $output = $this->CI->lang->line('profiler_no_post');
         } else {
-            foreach ($_POST as $key => $val) {
+            foreach (filter_input_array(INPUT_POST) as $key => $val) {
                 if (!is_numeric($key)) {
                     $key = "'".$key."'";
                 }
