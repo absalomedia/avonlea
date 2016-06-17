@@ -53,10 +53,9 @@ class AdminCod extends Admin
                 redirect('admin/payments');
             }
         }
-        
+
         $settings = \CI::Settings()->getSettings('cod');
         $enabled = (isset($settings['enabled']) ?  $settings['enabled'] : null);
         $this->view('cod_form', ['enabled' => $enabled]);
-
     }
 }

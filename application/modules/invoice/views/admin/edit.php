@@ -58,8 +58,8 @@ $this->load->view('header');
             </p>
           </td>
           <td><p><label><input type="checkbox" name="items[<?php echo $item_count; ?>][taxable]" value="1" onclick="recalculate_items();" <?php if ($item->taxable === 1) {
-                echo 'checked="checked" ';
-}?>/><span><?php echo $this->lang->line('invoice_taxable'); ?>?</span></label></p></td>
+            echo 'checked="checked" ';
+        }?>/><span><?php echo $this->lang->line('invoice_taxable'); ?>?</span></label></p></td>
           <td nowrap="nowrap"><p><label><span><?php echo $this->lang->line('invoice_amount'); ?></span><?php echo \CI::Settings()->getSettings('currency_symbol'); ?><input type="text" id="amount" name="items[<?php echo $item_count; ?>][amount]" size="5" value="<?php echo $item->amount; ?>" onkeyup="recalculate_items();" value="" /></label></p></td>
           <td>
             <?php if ($item_count > 1) :?>

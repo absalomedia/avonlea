@@ -50,7 +50,6 @@ class AdminFlatRate extends Admin
         if (\CI::form_validation()->run() === true) {
             \CI::Settings()->saveSettings('FlatRate', \CI::input()->post());
             redirect('admin/shipping');
-            
         }
         $settings = \CI::Settings()->getSettings('FlatRate');
         $this->view('flat_rate_form', $settings);
