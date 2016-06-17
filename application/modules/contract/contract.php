@@ -17,7 +17,8 @@ You can generate a new signature @ http://cdpn.io/JYpjvE and replace the data ab
 
 4. The $CLIENT_SIGNATURE is received by this script from itself when Client signs the contract.
 */
-$CLIENT_SIGNATURE = isset(filter_input(INPUT_POST, 'client_signature')) ? filter_input(INPUT_POST, 'client_signature') : null;
+$clientSig = filter_input(INPUT_POST, 'client_signature');
+$CLIENT_SIGNATURE = isset($clientSig) ? $clientSig : null;
 if (substr($CLIENT_SIGNATURE, 0, 22) === 'data:image/png;base64,') {
     $CLIENT_SIGNATURE = '<img id="hk" src="' . htmlspecialchars($CLIENT_SIGNATURE) . '" >';
 } else {
@@ -222,9 +223,9 @@ $(document).ready(function() {
     $("#loading_area").append("<h2 id=\"loading\" style=\"text-align:center; color:green; display:none;\">Saving Contract…</h2>");
     $("#loading_area").append("<p id=\"loading2\" style=\"text-align:center; color:#222; display:none;\">This shouldn\'t take more than a minute.</p>");
     $("#loading").slideDown(300, function() {
-		 		$("#loading2").delay(2000).slideDown(300);
-  	});
-	});
+                $("#loading2").delay(2000).slideDown(300);
+    });
+    });
 });
 </script>
 </body>
@@ -246,22 +247,22 @@ if ($CLIENT_SIGNATURE) {
 
   <?php // Function to get the client ip address
   function get_client_ip_env() {
-  	$ipaddress = "";
-  	if (getenv("HTTP_CLIENT_IP"))
-  		$ipaddress = getenv("HTTP_CLIENT_IP");
-  	else if(getenv("HTTP_X_FORWARDED_FOR"))
-  		$ipaddress = getenv("HTTP_X_FORWARDED_FOR");
-  	else if(getenv("HTTP_X_FORWARDED"))
-  		$ipaddress = getenv("HTTP_X_FORWARDED");
-  	else if(getenv("HTTP_FORWARDED_FOR"))
-  		$ipaddress = getenv("HTTP_FORWARDED_FOR");
-  	else if(getenv("HTTP_FORWARDED"))
-  		$ipaddress = getenv("HTTP_FORWARDED");
-  	else if(getenv("REMOTE_ADDR"))
-  		$ipaddress = getenv("REMOTE_ADDR");
-  	else
-  		$ipaddress = "UNKNOWN";
-  	return $ipaddress;
+    $ipaddress = "";
+    if (getenv("HTTP_CLIENT_IP"))
+        $ipaddress = getenv("HTTP_CLIENT_IP");
+    else if(getenv("HTTP_X_FORWARDED_FOR"))
+        $ipaddress = getenv("HTTP_X_FORWARDED_FOR");
+    else if(getenv("HTTP_X_FORWARDED"))
+        $ipaddress = getenv("HTTP_X_FORWARDED");
+    else if(getenv("HTTP_FORWARDED_FOR"))
+        $ipaddress = getenv("HTTP_FORWARDED_FOR");
+    else if(getenv("HTTP_FORWARDED"))
+        $ipaddress = getenv("HTTP_FORWARDED");
+    else if(getenv("REMOTE_ADDR"))
+        $ipaddress = getenv("REMOTE_ADDR");
+    else
+        $ipaddress = "UNKNOWN";
+    return $ipaddress;
   } ?>
 
   <div class="noprint" id="print-pdf">
