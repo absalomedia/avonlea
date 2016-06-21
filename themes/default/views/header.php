@@ -29,7 +29,8 @@ $_css->addFile('styles');
 $_css->addFile('profiler');
 
 $_js = new JSCrunch();
-$_js->addFile('jquery');
+$_js->addFile('jquery-3.0.0.min');
+$_js->addFile('jquery-migrate-3.0.0');
 $_js->addFile('jquery.spin');
 
 /*
