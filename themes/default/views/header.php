@@ -27,17 +27,13 @@ $_css->addFile('pure.min');
 $_css->addFile('font-awesome.min');
 $_css->addFile('styles');
 $_css->addFile('profiler');
+$_css->addFile('side');
+
 
 $_js = new JSCrunch();
 $_js->addFile('jquery-3.0.0.min');
 $_js->addFile('jquery-migrate-3.0.0');
 $_js->addFile('jquery.spin');
-
-/*
-$_js->addFile('gumbo');
-$_js->addFile('profiler');
-$_js->addFile('elementQuery.min');
-*/
 
 if (true) { //Dev Mode
 //in development mode keep all the css files separate

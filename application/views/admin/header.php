@@ -14,18 +14,19 @@ $_css->addFile('fonts');
 $_css->addFile('pure.min');
 $_css->addFile('font-awesome.min');
 $_css->addFile('styles');
-$_css->addFile('side-menu');
+$_css->addFile('admin');
+$_css->addFile('responsive-nav');
 $_css->addFile('profiler');
 $_css->addFile('trumbowyg');
 $_css->addFile('trumb');
 $_css->addFile('flatpickr.min');
 
+$_js = new JSCrunch();
+$_js->addFile('jquery-3.0.0.min');
+$_js->addFile('jquery-migrate-3.0.0');
+
 ?>
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/css-toggle-switch/latest/toggle-switch.css" />
 <link href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>" rel="stylesheet" type="text/css" />
-<link href="<?php echo base_url('assets/css/admin.css'); ?>" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="<?php echo base_url('assets/js/jquery-3.0.0.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/js/jquery-migrate-3.0.0.min.js'); ?>"></script>
 
 <?php
 
@@ -33,9 +34,11 @@ $_css->addFile('flatpickr.min');
 if (true) { //Dev Mode
 //in development mode keep all the css files separate
     $_css->crunch(true);
+    $_js->crunch(true);
 } else {
     //combine all css files in live mode
     $_css->crunch();
+    $_js->crunch();
 }
 
 
@@ -55,17 +58,11 @@ if (isset($additional_header_info)) {
 <?php if (CI::auth()->isLoggedIn(false, false)) :?>
     <div id="layout">
     <!-- Menu toggle -->
-    <a href="#menu" id="menuLink" class="menu-link">
-        <!-- Hamburger icon -->
-        <span></span>
-    </a>
 
-    <nav id="menu" role="navigation">
-        <div class="pure-menu">
-
+    <nav role="navigation" id="foo" class="nav-collapse">
         <a class="pure-menu-heading" href="<?php echo site_url('admin'); ?>">Avonlea</a>
 
-            <ul class="pure-menu-list">
+            <ul>
 
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php echo lang('common_sales'); ?> <span class="caret"></span></a>
@@ -128,7 +125,9 @@ if (isset($additional_header_info)) {
 <div class="cover-image manager <?php if (CI::auth()->isLoggedIn(false, false)) :
 ?>logged<?php
 endif; ?>"></div>
-<div id="main">
+
+<div role="main" id="main" class="main">
+      <a href="#nav" class="nav-toggle">Menu</a>
     <div class="content <?php if (CI::auth()->isLoggedIn(false, false)) :
 ?>admin<?php
 endif; ?>">

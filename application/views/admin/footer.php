@@ -2,33 +2,43 @@
     <footer></footer>
 </div>
 
+
+
+<?php
+$_js2 = new JSCrunch();
+$_js2->addFile('barba.min');
+$_js2->addFile('flatpickr.min');
+$_js2->addFile('responsive-nav.min');
+
+if (true) { //Dev Mode
+    //in development mode keep all the css files separate
+    $_js2->crunch(true);
+} else {
+    //combine all css files in live mode
+    $_js2->crunch();
+}
+?>
+
 <script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap.min.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/js/trumb/trumbowyg.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/js/trumb/trumbowyg.table.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/js/trumb/trumbowyg.uploadcare.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/js/spin.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/js/mustache.min.js'); ?>"></script>
-<?php
-    $_js = new JSCrunch();
-    $_js->addFile('barba.min');
-    $_js->addFile('flatpickr.min');
-
-if (true) { //Dev Mode
-    //in development mode keep all the css files separate
-    $_js->crunch(true);
-} else {
-    //combine all css files in live mode
-    $_js->crunch();
-}
-?>
-
-
 
 
 <script type="text/javascript">
 $(document).ready(function(){
 
     var base = "<?php echo base_url(); ?>";
+
+var nav = responsiveNav(".nav-collapse", { // Selector
+  animate: true, // Boolean: Use CSS3 transitions, true or false
+  transition: 284, // Integer: Speed of the transition, in milliseconds
+  label: "Menu", // String: Label for the navigation toggle
+  insert: "before", // String: Insert the toggle before or after the navigation
+});
+
 
     flatpickr('.datepicker');
 
