@@ -15,13 +15,13 @@ class Products extends CI_Model
         $this->customer = \CI::Login()->customer();
     }
 
-    public function getProduct($id)
+    public function getProduct($optn)
     {
         //do this again right here since it can be used for combining the cart. We want to make sure it's fresh.
         $this->customer = \AVL::getCustomer();
 
         //find the product
-        $product = CI::db()->select('*, saleprice_'.$this->customer->group_id.' as saleprice, price_'.$this->customer->group_id.' as price')->where('id', $id)->where('enabled'.$this->customer->group_id, '1')->get('products')->row();
+        $product = CI::db()->select('*, saleprice_'.$this->customer->group_id.' as saleprice, price_'.$this->customer->group_id.' as price')->where('id', $optn)->where('enabled'.$this->customer->group_id, '1')->get('products')->row();
         $product = $this->processImageDecoding($product);
 
         return $product;
@@ -32,14 +32,14 @@ class Products extends CI_Model
         return  CI::db()->like('name', $name)->get('products', $limit)->result();
     }
 
-    public function touchInventory($id, $quantity)
+    public function touchInventory($optn, $quantity)
     {
-        $product = $this->getProduct($id);
+        $product = $this->getProduct($optn);
         if (!$product) {
             return false;
         }
 
-        CI::db()->where('id', $id)->update('products', ['quantity' => ($product->quantity - $quantity)]);
+        CI::db()->where('id', $optn)->update('products', ['quantity' => ($product->quantity - $quantity)]);
     }
 
     public function products($data = [], $return_count = false)
@@ -122,9 +122,9 @@ class Products extends CI_Model
         return CI::db()->count_all_results('products');
     }
 
-    public function countProducts($id)
+    public function countProducts($optn)
     {
-        return CI::db()->select('product_id')->from('category_products')->join('products', 'category_products.product_id=products.id')->where(['category_id' => $id, 'enabled'.$this->customer->group_id => 1])->count_all_results();
+        return CI::db()->select('product_id')->from('category_products')->join('products', 'category_products.product_id=products.id')->where(['category_id' => $optn, 'enabled'.$this->customer->group_id => 1])->count_all_results();
     }
 
     public function slug($slug, $related = true)
@@ -156,9 +156,9 @@ class Products extends CI_Model
         return $result;
     }
 
-    public function find($id, $related = true)
+    public function find($optn, $related = true)
     {
-        $result = CI::db()->get_where('products', ['id' => $id])->row();
+        $result = CI::db()->get_where('products', ['id' => $optn])->row();
         if (!$result) {
             return false;
         }
@@ -186,9 +186,9 @@ class Products extends CI_Model
         return $result;
     }
 
-    public function getProductCategories($id)
+    public function getProductCategories($optn)
     {
-        return CI::db()->where('product_id', $id)->join('categories', 'category_id = categories.id')->get('category_products')->result();
+        return CI::db()->where('product_id', $optn)->join('categories', 'category_id = categories.id')->get('category_products')->result();
     }
 
     public function save($product, $options = false, $categories = false)
@@ -197,23 +197,23 @@ class Products extends CI_Model
             CI::db()->where('id', $product['id']);
             CI::db()->update('products', $product);
 
-            $id = $product['id'];
+            $optn = $product['id'];
         } else {
             CI::db()->insert('products', $product);
-            $id = CI::db()->insert_id();
+            $optn = CI::db()->insert_id();
         }
 
         //loop through the product options and add them to the db
         if ($options !== false) {
             // wipe the slate
-            CI::ProductOptions()->clearOptions($id);
+            CI::ProductOptions()->clearOptions($optn);
 
             // save edited values
             $count = 1;
             foreach ($options as $option) {
                 $values = $option['values'];
                 unset($option['values']);
-                $option['product_id'] = $id;
+                $option['product_id'] = $optn;
                 $option['sequence'] = $count;
 
                 CI::ProductOptions()->saveOption($option, $values);
@@ -224,51 +224,51 @@ class Products extends CI_Model
         if ($categories !== false) {
             if ($product['id']) {
                 //get all the categories that the product is in
-                $cats = $this->getProductCategories($id);
+                $cats = $this->getProductCategories($optn);
 
                 //generate cat_id array
-                $ids = [];
+                $optns = [];
                 foreach ($cats as $c) {
-                    $ids[] = $c->id;
+                    $optns[] = $c->id;
                 }
 
                 //eliminate categories that products are no longer in
-                foreach ($ids as $c) {
+                foreach ($optns as $c) {
                     if (!in_array($c, $categories)) {
-                        CI::db()->delete('category_products', ['product_id' => $id, 'category_id' => $c]);
+                        CI::db()->delete('category_products', ['product_id' => $optn, 'category_id' => $c]);
                     }
                 }
 
                 //add products to new categories
                 foreach ($categories as $c) {
-                    if (!in_array($c, $ids)) {
-                        CI::db()->insert('category_products', ['product_id' => $id, 'category_id' => $c]);
+                    if (!in_array($c, $optns)) {
+                        CI::db()->insert('category_products', ['product_id' => $optn, 'category_id' => $c]);
                     }
                 }
             } else {
                 //new product add them all
                 foreach ($categories as $c) {
-                    CI::db()->insert('category_products', ['product_id' => $id, 'category_id' => $c]);
+                    CI::db()->insert('category_products', ['product_id' => $optn, 'category_id' => $c]);
                 }
             }
         }
 
         //return the product id
-        return $id;
+        return $optn;
     }
 
-    public function deleteProduct($id)
+    public function deleteProduct($optn)
     {
         // delete product
-        CI::db()->where('id', $id);
+        CI::db()->where('id', $optn);
         CI::db()->delete('products');
 
         //delete references in the product to category table
-        CI::db()->where('product_id', $id);
+        CI::db()->where('product_id', $optn);
         CI::db()->delete('category_products');
 
         // delete coupon reference
-        CI::db()->where('product_id', $id);
+        CI::db()->where('product_id', $optn);
         CI::db()->delete('coupons_products');
     }
 
@@ -316,13 +316,13 @@ class Products extends CI_Model
         }
     }
 
-    public function validateSlug($slug, $id = false, $counter = false)
+    public function validateSlug($slug, $optn = false, $counter = false)
     {
         CI::db()->select('slug');
         CI::db()->from('products');
         CI::db()->where('slug', $slug.$counter);
-        if ($id) {
-            CI::db()->where('id !=', $id);
+        if ($optn) {
+            CI::db()->where('id !=', $optn);
         }
         $count = CI::db()->count_all_results();
 
@@ -333,7 +333,7 @@ class Products extends CI_Model
                 $counter++;
             }
 
-            return $this->validateSlug($slug, $id, $counter);
+            return $this->validateSlug($slug, $optn, $counter);
         } else {
             return $slug.$counter;
         }

@@ -1,6 +1,6 @@
 <?php pageHeader(lang('link_form')); ?>
 
-<?php echo form_open('admin/pages/link_form/'.$id); ?>
+<?php echo form_open('admin/pages/link_form/'.$optn); ?>
 
     <div class="form-group">
         <label for="menu_title"><?php echo lang('title'); ?> </label>
@@ -35,20 +35,20 @@
                 <?php
                 $options = [];
                 $options[0] = lang('top_level');
-                function pageLink($pages, $dash = '', $id = 0)
+                function pageLink($pages, $dash = '', $optn = 0)
                 {
                     $options = [];
                     foreach ($pages as $page) {
                         //this is to stop the whole tree of a particular link from showing up while editing it
-                        if ($id != $page->id) {
+                        if ($optn != $page->id) {
                             $options[$page->id] = $dash.' '.$page->title;
-                            $options = $options + pageLink($page->children, $dash.'-', $id);
+                            $options = $options + pageLink($page->children, $dash.'-', $optn);
                         }
                     }
 
                     return $options;
                 }
-                $options = $options + pageLink($pages, '', $id);
+                $options = $options + pageLink($pages, '', $optn);
                 echo form_dropdown('parent_id', $options, assign_value('parent_id', $parent_id), 'class="form-control"');
                 ?>
             </div>

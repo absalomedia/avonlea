@@ -1,6 +1,6 @@
 <?php pageHeader(lang('admin_form')) ?>
 
-<?php echo form_open('admin/users/form/'.$id); ?>
+<?php echo form_open('admin/users/form/'.$optn); ?>
 
     <div class="form-group">
         <label><?php echo lang('firstname'); ?></label>

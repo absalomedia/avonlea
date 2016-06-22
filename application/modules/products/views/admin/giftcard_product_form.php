@@ -15,7 +15,7 @@ $(document).ready(function() {
     $(".sortable > col-md-").disableSelection();
     //if the image already exists (phpcheck) enable the selector
 
-    <?php if ($id) : ?>
+    <?php if ($optn) : ?>
     //options related
     var ct  = $('#option_list').children().size();
     // set initial count
@@ -66,7 +66,7 @@ function remove_option(id)
 </script>
 
 
-<?php echo form_open('admin/products/gift-card-form/'.$id); ?>
+<?php echo form_open('admin/products/gift-card-form/'.$optn); ?>
     <div class="row">
         <div class="col-md-9">
             <div class="tabbable">

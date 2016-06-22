@@ -30,19 +30,19 @@ class Coupons extends CI_Model
     }
 
     // update coupon
-    public function updateCoupon($id, $data)
+    public function updateCoupon($optn, $data)
     {
-        CI::db()->where('id', $id)->update('coupons', $data);
+        CI::db()->where('id', $optn)->update('coupons', $data);
     }
 
     // delete coupon
-    public function deleteCoupon($id)
+    public function deleteCoupon($optn)
     {
-        CI::db()->where('id', $id);
+        CI::db()->where('id', $optn);
         CI::db()->delete('coupons');
 
         // delete children
-        $this->removeProduct($id);
+        $this->removeProduct($optn);
     }
 
     // checks coupon dates and usage numbers
@@ -93,9 +93,9 @@ class Coupons extends CI_Model
     }
 
     // get coupon details, by id
-    public function getCoupon($id)
+    public function getCoupon($optn)
     {
-        return CI::db()->where('id', $id)->get('coupons')->row();
+        return CI::db()->where('id', $optn)->get('coupons')->row();
     }
 
     // get coupon details, by code
@@ -112,12 +112,12 @@ class Coupons extends CI_Model
         return $return;
     }
 
-    public function checkCode($str, $id = false)
+    public function checkCode($str, $optn = false)
     {
         CI::db()->select('code');
         CI::db()->where('code', $str);
-        if ($id) {
-            CI::db()->where('id !=', $id);
+        if ($optn) {
+            CI::db()->where('id !=', $optn);
         }
         $count = CI::db()->count_all_results('coupons');
 

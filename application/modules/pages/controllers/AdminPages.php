@@ -33,7 +33,7 @@ class AdminPages extends Admin
     /********************************************************************
     edit page
     ********************************************************************/
-    public function form($id = false)
+    public function form($optn = false)
     {
 
         //set the default values
@@ -50,8 +50,8 @@ class AdminPages extends Admin
         $data['page_title'] = lang('page_form');
         $data['pages'] = \CI::Pages()->get_pages();
 
-        if ($id) {
-            $page = \CI::Pages()->find($id);
+        if ($optn) {
+            $page = \CI::Pages()->find($optn);
 
             if (!$page) {
                 //page does not exist
@@ -98,10 +98,10 @@ class AdminPages extends Admin
             $slug = url_title(convert_accented_characters($slug), 'dash', true);
 
             //validate the slug
-            $slug = ($id) ? \CI::Pages()->validateSlug($slug, $page->id) : \CI::Pages()->validateSlug($slug);
+            $slug = ($optn) ? \CI::Pages()->validateSlug($slug, $page->id) : \CI::Pages()->validateSlug($slug);
 
             $save = [];
-            $save['id'] = $id;
+            $save['id'] = $optn;
             $save['parent_id'] = \CI::input()->post('parent_id');
             $save['title'] = \CI::input()->post('title');
             $save['menu_title'] = \CI::input()->post('menu_title');
@@ -126,7 +126,7 @@ class AdminPages extends Admin
         }
     }
 
-    public function link_form($id = false)
+    public function link_form($optn = false)
     {
 
         //set the default values
@@ -140,8 +140,8 @@ class AdminPages extends Admin
 
         $data['page_title'] = lang('link_form');
         $data['pages'] = \CI::Pages()->get_pages();
-        if ($id) {
-            $page = \CI::Pages()->find($id);
+        if ($optn) {
+            $page = \CI::Pages()->find($optn);
 
             if (!$page) {
                 //page does not exist
@@ -170,7 +170,7 @@ class AdminPages extends Admin
             $this->view('link_form', $data);
         } else {
             $save = [];
-            $save['id'] = $id;
+            $save['id'] = $optn;
             $save['parent_id'] = \CI::input()->post('parent_id');
             $save['title'] = \CI::input()->post('title');
             $save['menu_title'] = \CI::input()->post('title');
@@ -191,12 +191,12 @@ class AdminPages extends Admin
     /********************************************************************
     delete page
     ********************************************************************/
-    public function delete($id)
+    public function delete($optn)
     {
-        $page = \CI::Pages()->find($id);
+        $page = \CI::Pages()->find($optn);
 
         if ($page) {
-            \CI::Pages()->delete_page($id);
+            \CI::Pages()->delete_page($optn);
             \CI::session()->set_flashdata('message', lang('message_deleted_page'));
         } else {
             \CI::session()->set_flashdata('error', lang('error_page_not_found'));

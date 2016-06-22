@@ -35,9 +35,9 @@ class Giftcards extends CI_Model
         CI::db()->update('gift_cards');
     }
 
-    public function delete($id)
+    public function delete($optn)
     {
-        CI::db()->where('id', $id);
+        CI::db()->where('id', $optn);
         CI::db()->delete('gift_cards');
     }
 

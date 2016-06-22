@@ -7,7 +7,7 @@
     .sortable li>col-md- { position: absolute; margin-left: -1.3em; margin-top:.4em; }
 </style>
 
-<?php echo form_open('admin/products/form/'.$id); ?>
+<?php echo form_open('admin/products/form/'.$optn); ?>
     <div class="row">
         <div class="col-md-9">
             <div class="tabbable">

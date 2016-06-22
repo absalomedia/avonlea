@@ -98,17 +98,17 @@ class Checkout extends Front
     public function address()
     {
         $type = \CI::input()->post('type');
-        $id = \CI::input()->post('id');
+        $optn = \CI::input()->post('id');
 
-        $address = \CI::Customers()->getAddress($id);
+        $address = \CI::Customers()->getAddress($optn);
 
         if ($address['customer_id'] != $this->customer->id) {
             echo json_encode(['error' => lang('error_address_not_found')]);
         } else {
             if ($type === 'shipping') {
-                \AVL::setAttribute('shipping_address_id', $id);
+                \AVL::setAttribute('shipping_address_id', $optn);
             } elseif ($type === 'billing') {
-                \AVL::setAttribute('billing_address_id', $id);
+                \AVL::setAttribute('billing_address_id', $optn);
             }
 
             \AVL::saveCart();

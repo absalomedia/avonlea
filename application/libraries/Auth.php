@@ -217,10 +217,10 @@ class Auth
     /*
     This function gets an individual admin
     */
-    public function getAdmin($id)
+    public function getAdmin($optn)
     {
         CI::db()->select('*');
-        CI::db()->where('id', $id);
+        CI::db()->where('id', $optn);
         $result = CI::db()->get('admin');
         $result = $result->row();
 
@@ -241,13 +241,13 @@ class Auth
         }
     }
 
-    public function checkUsername($str, $id = false)
+    public function checkUsername($str, $optn = false)
     {
         CI::db()->select('username');
         CI::db()->from('admin');
         CI::db()->where('username', $str);
-        if ($id) {
-            CI::db()->where('id !=', $id);
+        if ($optn) {
+            CI::db()->where('id !=', $optn);
         }
         $count = CI::db()->count_all_results();
 
@@ -258,11 +258,11 @@ class Auth
         }
     }
 
-    public function delete($id)
+    public function delete($optn)
     {
-        if ($this->checkId($id)) {
-            $admin = $this->getAdmin($id);
-            CI::db()->where('id', $id);
+        if ($this->checkId($optn)) {
+            $admin = $this->getAdmin($optn);
+            CI::db()->where('id', $optn);
             CI::db()->limit(1);
             CI::db()->delete('admin');
 

@@ -303,10 +303,10 @@ class Avonlea
         return $this->items;
     }
 
-    public function getCartItem($id)
+    public function getCartItem($optn)
     {
         foreach ($this->items as $item) {
-            if ($item->id === $id) {
+            if ($item->id === $optn) {
                 return $item;
             }
         }
@@ -881,13 +881,13 @@ class Avonlea
         }
     }
 
-    public function removeItem($id)
+    public function removeItem($optn)
     {
-        CI::Orders()->removeItem($this->cart->id, $id);
+        CI::Orders()->removeItem($this->cart->id, $optn);
         $numitem = count($this->items);
 
         for ($i = 0; $i < $numitem; $i++) {
-            if ($this->items[$i]->id === $id) {
+            if ($this->items[$i]->id === $optn) {
                 unset($this->items[$i]);
             }
         }

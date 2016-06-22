@@ -98,7 +98,7 @@ class AdminBanners extends Admin
         $this->view('banner_collection', $data);
     }
 
-    public function banner_form($banner_collection_id, $id = false)
+    public function banner_form($banner_collection_id, $optn = false)
     {
         $config['upload_path'] = 'uploads';
         $config['allowed_types'] = 'gif|jpg|png';
@@ -110,7 +110,7 @@ class AdminBanners extends Admin
         \CI::load()->library('form_validation');
 
         //set the default values
-        $data = ['banner_id'                       => $id,
+        $data = ['banner_id'                       => $optn,
                             'banner_collection_id' => $banner_collection_id,
                             'name'                 => '',
                             'enable_date'          => '',
@@ -120,8 +120,8 @@ class AdminBanners extends Admin
                             'new_window'           => false,
                         ];
 
-        if ($id) {
-            $data = array_merge($data, (array) \CI::Banners()->banner($id));
+        if ($optn) {
+            $data = array_merge($data, (array) \CI::Banners()->banner($optn));
             $data['new_window'] = (bool) $data['new_window'];
         }
 
@@ -147,8 +147,8 @@ class AdminBanners extends Admin
             $save['link'] = \CI::input()->post('link');
             $save['new_window'] = (bool) \CI::input()->post('new_window');
 
-            if ($id) {
-                $save['banner_id'] = $id;
+            if ($optn) {
+                $save['banner_id'] = $optn;
 
                 //delete the original file if another is uploaded
                 if ($uploaded) {

@@ -1,6 +1,6 @@
 <?php pageHeader(lang('page_form')) ?>
 
-<?php echo form_open('admin/pages/form/'.$id); ?>
+<?php echo form_open('admin/pages/form/'.$optn); ?>
 
 <div class="row">
     <div class="col-md-3">
@@ -45,20 +45,20 @@
             $options = [];
             $options[-1] = lang('hidden');
             $options[0] = lang('top_level');
-            function pageLooper($pages, $dash = '', $id = 0)
+            function pageLooper($pages, $dash = '', $optn = 0)
             {
                 $options = [];
                 foreach ($pages as $page) {
                     //this is to stop the whole tree of a particular link from showing up while editing it
-                    if ($id != $page->id) {
+                    if ($optn != $page->id) {
                         $options[$page->id] = $dash.' '.$page->title;
-                        $options = $options + pageLooper($page->children, $dash.'-', $id);
+                        $options = $options + pageLooper($page->children, $dash.'-', $optn);
                     }
                 }
 
                 return $options;
             }
-            $options = $options + pageLooper($pages, '', $id);
+            $options = $options + pageLooper($pages, '', $optn);
             echo form_dropdown('parent_id', $options, assign_value('parent_id', $parent_id), 'class="form-control"');
             ?>
         </div>

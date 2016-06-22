@@ -36,14 +36,14 @@ class Invoicehistory extends CI_Model
 
     // --------------------------------------------------------------------
 
-    public function insertHistoryEmailInvoice($id, $email_body, $recipient_names)
+    public function insertHistoryEmailInvoice($optn, $email_body, $recipient_names)
     {
-        $this->insert_history_note($id, $email_body, $recipient_names, 1);
+        $this->insert_history_note($optn, $email_body, $recipient_names, 1);
     }
 
-    public function insertHistoryEmailQuote($id, $email_body, $recipient_names)
+    public function insertHistoryEmailQuote($optn, $email_body, $recipient_names)
     {
-        $this->insert_history_note($id, $email_body, $recipient_names, 2);
+        $this->insert_history_note($optn, $email_body, $recipient_names, 2);
     }
 
     public function insertNote($invoice_id, $note)

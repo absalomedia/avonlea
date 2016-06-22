@@ -31,7 +31,7 @@ class AdminCategories extends Admin
         $this->view('categories', $data);
     }
 
-    public function form($id = false)
+    public function form($optn = false)
     {
         $data['groups'] = \CI::Customers()->getGroups();
 
@@ -43,12 +43,12 @@ class AdminCategories extends Admin
         \CI::load()->library('upload', $config);
 
 
-        $this->category_id = $id;
+        $this->category_id = $optn;
         \CI::load()->helper('form');
         \CI::load()->library('form_validation');
         \CI::form_validation()->set_error_delimiters('<div class="error">', '</div>');
 
-        $data['categories'] = \CI::Categories()->getCategoryOptionsMenu($id);
+        $data['categories'] = \CI::Categories()->getCategoryOptionsMenu($optn);
         $data['page_title'] = lang('category_form');
 
         //default values are empty if the customer is new
@@ -71,8 +71,8 @@ class AdminCategories extends Admin
         //create the photos array for later use
         $data['photos'] = [];
 
-        if ($id) {
-            $category = \CI::Categories()->find($id);
+        if ($optn) {
+            $category = \CI::Categories()->find($optn);
 
             //if the category does not exist, redirect them to the category list with an error
             if (!$category) {
@@ -119,7 +119,7 @@ class AdminCategories extends Admin
         } else {
             $uploaded = \CI::upload()->do_upload('image');
 
-            if ($id) {
+            if ($optn) {
                 //delete the original file if another is uploaded
                 if ($uploaded) {
                     if ($data['image'] != '') {
@@ -199,13 +199,13 @@ class AdminCategories extends Admin
 
             $slug = url_title(convert_accented_characters($slug), 'dash', true);
 
-            if ($id) {
+            if ($optn) {
                 $slug = \CI::Categories()->validateSlug($slug, $category->id);
             } else {
                 $slug = \CI::Categories()->validateSlug($slug);
             }
 
-            $save['id'] = $id;
+            $save['id'] = $optn;
             $save['name'] = \CI::input()->post('name');
             $save['description'] = \CI::input()->post('description');
             $save['excerpt'] = \CI::input()->post('excerpt');
@@ -227,9 +227,9 @@ class AdminCategories extends Admin
         }
     }
 
-    public function delete($id)
+    public function delete($optn)
     {
-        $category = \CI::Categories()->find($id);
+        $category = \CI::Categories()->find($optn);
         //if the category does not exist, redirect them to the customer list with an error
         if ($category) {
             if ($category->image != '') {
@@ -247,7 +247,7 @@ class AdminCategories extends Admin
                 }
             }
 
-            \CI::Categories()->delete($id);
+            \CI::Categories()->delete($optn);
 
             \CI::session()->set_flashdata('message', lang('message_delete_category'));
             redirect('admin/categories');

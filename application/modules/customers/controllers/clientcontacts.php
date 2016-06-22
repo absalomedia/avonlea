@@ -91,13 +91,13 @@ class Clientcontacts extends MY_Controller
 
     public function delete()
     {
-        $id = ($this->input->post('id')) ? (int) $this->input->post('id') : $this->uri->segment(3);
+        $optn = ($this->input->post('id')) ? (int) $this->input->post('id') : $this->uri->segment(3);
 
-        if ($this->clientcontacts_model->deleteClientContact($id)) {
+        if ($this->clientcontacts_model->deleteClientContact($optn)) {
             if (isAjax()) {
-                return $id;
+                return $optn;
             } else {
-                $this->session->set_flashdata('clientContact', $id);
+                $this->session->set_flashdata('clientContact', $optn);
                 redirect('clients/');
             }
         } else {

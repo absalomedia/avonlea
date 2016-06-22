@@ -1,6 +1,6 @@
 <?php pageHeader(lang('address_form')); ?>
 
-<?php echo form_open('admin/customers/address_form/'.$customer_id.'/'.$id); ?>
+<?php echo form_open('admin/customers/address_form/'.$customer_id.'/'.$optn); ?>
 
 	<div class="row">
 		<div class="col-md-3">

@@ -121,8 +121,8 @@ class AdminProducts extends Admin
             redirect('admin/products');
         }
 
-        foreach ($products as $id => $product) {
-            $product['id'] = $id;
+        foreach ($products as $optn => $product) {
+            $product['id'] = $optn;
             \CI::Products()->save($product);
         }
 
@@ -130,9 +130,9 @@ class AdminProducts extends Admin
         redirect('admin/products');
     }
 
-    public function form($id = false, $duplicate = false)
+    public function form($optn = false, $duplicate = false)
     {
-        $this->product_id = $id;
+        $this->product_id = $optn;
         \CI::load()->library('form_validation');
         \CI::load()->model(['ProductOptions', 'Categories', 'DigitalProducts', 'Customers']);
         \CI::lang()->load('digital_products');
@@ -177,16 +177,16 @@ class AdminProducts extends Admin
         //create the photos array for later use
         $data['photos'] = [];
 
-        if ($id) {
+        if ($optn) {
             // get the existing file associations and create a format we can read from the form to set the checkboxes
-            $pr_files = \CI::DigitalProducts()->getAssociationsByProduct($id);
+            $pr_files = \CI::DigitalProducts()->getAssociationsByProduct($optn);
             foreach ($pr_files as $f) {
                 $data['product_files'][] = $f->file_id;
             }
 
             // get product & options data
-            $data['productOptions'] = \CI::ProductOptions()->getProductOptions($id);
-            $product = \CI::Products()->find($id, true);
+            $data['productOptions'] = \CI::ProductOptions()->getProductOptions($optn);
+            $product = \CI::Products()->find($optn, true);
 
             //if the product does not exist, redirect them to the product list with an error
             if (!$product) {
@@ -198,7 +198,7 @@ class AdminProducts extends Admin
             $this->product_name = \CI::input()->post('slug', $product->slug);
 
             //set values to db values
-            $data['id'] = $id;
+            $data['id'] = $optn;
             $data['sku'] = $product->sku;
             $data['primary_category'] = $product->primary_category;
             $data['name'] = $product->name;
@@ -302,10 +302,10 @@ class AdminProducts extends Admin
             $slug = url_title(convert_accented_characters($slug), '-', true);
 
             //validate the slug
-            $slug = ($id) ? \CI::Products()->validateSlug($slug, $product->id) : \CI::Products()->validateSlug($slug);
+            $slug = ($optn) ? \CI::Products()->validateSlug($slug, $product->id) : \CI::Products()->validateSlug($slug);
 
 
-            $save['id'] = $id;
+            $save['id'] = $optn;
             $save['sku'] = \CI::input()->post('sku');
             $save['name'] = \CI::input()->post('name');
             $save['seo_title'] = \CI::input()->post('seo_title');
@@ -395,9 +395,9 @@ class AdminProducts extends Admin
         }
     }
 
-    public function giftCardForm($id = false, $duplicate = false)
+    public function giftCardForm($optn = false, $duplicate = false)
     {
-        $this->product_id = $id;
+        $this->product_id = $optn;
         \CI::load()->library('form_validation');
         \CI::load()->model(['ProductOptions', 'Categories']);
         \CI::form_validation()->set_error_delimiters('<div class="error">', '</div>');
@@ -430,10 +430,10 @@ class AdminProducts extends Admin
         //create the photos array for later use
         $data['photos'] = [];
 
-        if ($id) {
+        if ($optn) {
             // get product & options data
-            $data['ProductOptions'] = \CI::ProductOptions()->getProductOptions($id);
-            $product = \CI::Products()->find($id, true);
+            $data['ProductOptions'] = \CI::ProductOptions()->getProductOptions($optn);
+            $product = \CI::Products()->find($optn, true);
 
             //if the product does not exist, redirect them to the product list with an error
             if (!$product) {
@@ -445,7 +445,7 @@ class AdminProducts extends Admin
             $this->product_name = \CI::input()->post('slug', $product->slug);
 
             //set values to db values
-            $data['id'] = $id;
+            $data['id'] = $optn;
             $data['sku'] = $product->sku;
             $data['primary_category'] = $product->primary_category;
             $data['name'] = $product->name;
@@ -531,10 +531,10 @@ class AdminProducts extends Admin
             $slug = url_title(convert_accented_characters($slug), '-', true);
 
             //validate the slug
-            $slug = ($id) ? \CI::Products()->validateSlug($slug, $product->id) : \CI::Products()->validateSlug($slug);
+            $slug = ($optn) ? \CI::Products()->validateSlug($slug, $product->id) : \CI::Products()->validateSlug($slug);
 
 
-            $save['id'] = $id;
+            $save['id'] = $optn;
             $save['sku'] = \CI::input()->post('sku');
             $save['name'] = \CI::input()->post('name');
             $save['seo_title'] = \CI::input()->post('seo_title');
@@ -729,10 +729,10 @@ class AdminProducts extends Admin
         $this->partial('iframe/product_image_uploader', $data);
     }
 
-    public function delete($id = false)
+    public function delete($optn = false)
     {
-        if ($id) {
-            $product = \CI::Products()->find($id);
+        if ($optn) {
+            $product = \CI::Products()->find($optn);
             //if the product does not exist, redirect them to the customer list with an error
             if (!$product) {
                 \CI::session()->set_flashdata('error', lang('error_not_found'));
@@ -740,7 +740,7 @@ class AdminProducts extends Admin
             } else {
 
                 //if the product is legit, delete them
-                \CI::Products()->deleteProduct($id);
+                \CI::Products()->deleteProduct($optn);
 
                 \CI::session()->set_flashdata('message', lang('message_deleted_product'));
                 redirect('admin/products');

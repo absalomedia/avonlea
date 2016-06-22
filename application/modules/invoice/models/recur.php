@@ -25,7 +25,7 @@ class Recur extends Controller
             $recur_interval = $row_a->recur_interval;
 
             if ($today == date('Y-m-d', strtotime($row_a->dateIssued) + ($recur_interval * 24 * 60 * 60))) {
-                $id = $row_a->id;
+                $optn = $row_a->id;
                 $invoice_number = $row_a->invoice_number;
 
                 // If it already has date attatched remove it
@@ -65,7 +65,7 @@ class Recur extends Controller
                     $new_id = $this->db->insert_id();
 
                     // Get items from invoice
-                    $result_b = $this->db->query('SELECT * FROM '.$this->db->dbprefix('invoice_items').' WHERE invoice_id = "'.$id.'"');
+                    $result_b = $this->db->query('SELECT * FROM '.$this->db->dbprefix('invoice_items').' WHERE invoice_id = "'.$optn.'"');
 
                     // Add them to the new invoice
                     foreach ($result_b->result() as $row_b) {
@@ -93,7 +93,7 @@ class Recur extends Controller
 
     // --------------------------------------------------------------------
 
-    public function _email($id)
+    public function _email($optn)
     {
         $this->lang->load('date');
         $this->load->plugin('to_pdf');
@@ -103,8 +103,8 @@ class Recur extends Controller
         $this->load->model('invoice_histories_model', '', true);
 
         // Collect information for PDF
-        $data['row'] = \CI::Invoices()->getSingleInvoice($id)->row();
-        $data['id'] = $id;
+        $data['row'] = \CI::Invoices()->getSingleInvoice($optn)->row();
+        $data['id'] = $optn;
 
         $data['companyInfo'] = \CI::Settings()->getCompanyInfo()->row();
         $data['company_logo'] = get_logo(\CI::Settings()->getSettings('logo_pdf'), 'pdf');
@@ -114,7 +114,7 @@ class Recur extends Controller
         $invoice_number = $data['row']->invoice_number;
 
         // Get invoice information
-        $items = \CI::Invoices()->getInvoiceItems($id);
+        $items = \CI::Invoices()->getInvoiceItems($optn);
 
         $data['items'] = $items;
         $data['total_no_tax'] = $this->lang->line('invoice_amount').': '.\CI::Settings()->getSettings('currency_symbol').number_format($data['row']->total_notax, 2, $this->config->item('currency_decimal'), '')."<br />\n";
@@ -156,7 +156,7 @@ class Recur extends Controller
         $this->email->send();
 
         // Save this email being sent in invoice history
-        $this->invoice_histories_model->insert_history_note($id, 'Sent by Recurring Invoices + PayNow mod.', $recipient_names);
+        $this->invoice_histories_model->insert_history_note($optn, 'Sent by Recurring Invoices + PayNow mod.', $recipient_names);
     }
 
     // --------------------------------------------------------------------

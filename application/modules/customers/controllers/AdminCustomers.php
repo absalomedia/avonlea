@@ -79,7 +79,7 @@ class AdminCustomers extends Admin
         force_download('customers.json', json_encode($customers));
     }
 
-    public function form($id = false)
+    public function form($optn = false)
     {
         \CI::load()->helper('form');
         \CI::load()->library('form_validation');
@@ -104,9 +104,9 @@ class AdminCustomers extends Admin
         }
         $data['group_list'] = $group_list;
 
-        if ($id) {
-            $this->customer_id = $id;
-            $customer = \CI::Customers()->getCustomer($id);
+        if ($optn) {
+            $this->customer_id = $optn;
+            $customer = \CI::Customers()->getCustomer($optn);
             //if the customer does not exist, redirect them to the customer list with an error
             if (!$customer) {
                 \CI::session()->set_flashdata('error', lang('error_not_found'));
@@ -144,7 +144,7 @@ class AdminCustomers extends Admin
         \CI::form_validation()->set_rules('email_subscribe', 'email_subscribe', 'numeric|max_length[1]');
 
         //if this is a new account require a password, or if they have entered either a password or a password confirmation
-        if (\CI::input()->post('password') != '' || \CI::input()->post('confirm') != '' || !$id) {
+        if (\CI::input()->post('password') != '' || \CI::input()->post('confirm') != '' || !$optn) {
             \CI::form_validation()->set_rules('password', 'lang:password', 'required|min_length[6]');
             \CI::form_validation()->set_rules('confirm', 'lang:confirm_password', 'required|matches[password]');
         }
@@ -153,7 +153,7 @@ class AdminCustomers extends Admin
         if (\CI::form_validation()->run() === false) {
             $this->view('customer_form', $data);
         } else {
-            $save['id'] = $id;
+            $save['id'] = $optn;
             $save['group_id'] = \CI::input()->post('group_id');
             $save['firstname'] = \CI::input()->post('firstname');
             $save['lastname'] = \CI::input()->post('lastname');
@@ -164,7 +164,7 @@ class AdminCustomers extends Admin
             $save['email_subscribe'] = (bool) \CI::input()->post('email_subscribe');
 
 
-            if (\CI::input()->post('password') != '' || !$id) {
+            if (\CI::input()->post('password') != '' || !$optn) {
                 $save['password'] = \CI::input()->post('password');
             }
 
@@ -177,9 +177,9 @@ class AdminCustomers extends Admin
         }
     }
 
-    public function addresses($id = false)
+    public function addresses($optn = false)
     {
-        $data['customer'] = \CI::Customers()->getCustomer($id);
+        $data['customer'] = \CI::Customers()->getCustomer($optn);
 
         //if the customer does not exist, redirect them to the customer list with an error
         if (!$data['customer']) {
@@ -187,24 +187,24 @@ class AdminCustomers extends Admin
             redirect('admin/customers');
         }
 
-        $data['addresses'] = \CI::Customers()->getAddressList($id);
+        $data['addresses'] = \CI::Customers()->getAddressList($optn);
 
         $data['page_title'] = sprintf(lang('addresses_for'), $data['customer']->firstname.' '.$data['customer']->lastname);
 
         $this->view('customer_addresses', $data);
     }
 
-    public function delete($id = false)
+    public function delete($optn = false)
     {
-        if ($id) {
-            $customer = \CI::Customers()->getCustomer($id);
+        if ($optn) {
+            $customer = \CI::Customers()->getCustomer($optn);
             //if the customer does not exist, redirect them to the customer list with an error
             if (!$customer) {
                 \CI::session()->set_flashdata('error', lang('error_not_found'));
                 redirect('admin/customers');
             } else {
                 //if the customer is legit, delete them
-                \CI::Customers()->delete($id);
+                \CI::Customers()->delete($optn);
 
                 \CI::session()->set_flashdata('message', lang('message_customer_deleted'));
                 redirect('admin/customers');
@@ -225,7 +225,7 @@ class AdminCustomers extends Admin
         $this->view('customer_groups', $data);
     }
 
-    public function groupForm($id = 0)
+    public function groupForm($optn = 0)
     {
         \CI::load()->helper('form');
         \CI::load()->library('form_validation');
@@ -236,8 +236,8 @@ class AdminCustomers extends Admin
         $data['id'] = '';
         $data['name'] = '';
 
-        if ($id) {
-            $group = \CI::Customers()->get_group($id);
+        if ($optn) {
+            $group = \CI::Customers()->get_group($optn);
 
             $data['id'] = $group->id;
             $data['name'] = $group->name;
@@ -248,8 +248,8 @@ class AdminCustomers extends Admin
         if (\CI::form_validation()->run() === false) {
             $this->view('customer_group_form', $data);
         } else {
-            if ($id) {
-                $save['id'] = $id;
+            if ($optn) {
+                $save['id'] = $optn;
             }
 
             $save['name'] = \CI::input()->post('name');
@@ -262,13 +262,13 @@ class AdminCustomers extends Admin
         }
     }
 
-    public function deleteGroup($id)
+    public function deleteGroup($optn)
     {
-        if (empty($id)) {
+        if (empty($optn)) {
             return;
         }
 
-        \CI::Customers()->delete_group($id);
+        \CI::Customers()->delete_group($optn);
 
         //go back to the customer list
         redirect('admin/customers/groups');
@@ -281,9 +281,9 @@ class AdminCustomers extends Admin
         $this->view('address_list', $data);
     }
 
-    public function addressForm($customer_id, $id = false)
+    public function addressForm($customer_id, $optn = false)
     {
-        $data['id'] = $id;
+        $data['id'] = $optn;
         $data['company'] = '';
         $data['firstname'] = '';
         $data['lastname'] = '';
@@ -302,8 +302,8 @@ class AdminCustomers extends Admin
         //get the countries list for the dropdown
         $data['countries_menu'] = \CI::Locations()->getCountryMenu();
 
-        if ($id) {
-            $address = \CI::Customers()->getAddress($id);
+        if ($optn) {
+            $address = \CI::Customers()->getAddress($optn);
 
             //fully escape the address
             form_decode($address);
@@ -334,7 +334,7 @@ class AdminCustomers extends Admin
             $this->view('customer_address_form', $data);
         } else {
             $a['customer_id'] = $customer_id; // this is needed for new records
-            $a['id'] = (empty($id)) ? '' : $id;
+            $a['id'] = (empty($optn)) ? '' : $optn;
             $a['field_data']['company'] = \CI::input()->post('company');
             $a['field_data']['firstname'] = \CI::input()->post('firstname');
             $a['field_data']['lastname'] = \CI::input()->post('lastname');
@@ -363,10 +363,10 @@ class AdminCustomers extends Admin
         }
     }
 
-    public function deleteAddress($customer_id = false, $id = false)
+    public function deleteAddress($customer_id = false, $optn = false)
     {
-        if ($id) {
-            $address = \CI::Customers()->getAddress($id);
+        if ($optn) {
+            $address = \CI::Customers()->getAddress($optn);
             //if the customer does not exist, redirect them to the customer list with an error
             if (!$address) {
                 \CI::session()->set_flashdata('error', lang('error_address_not_found'));
@@ -378,7 +378,7 @@ class AdminCustomers extends Admin
                 }
             } else {
                 //if the customer is legit, delete them
-                \CI::Customers()->deleteAddress($id, $customer_id);
+                \CI::Customers()->deleteAddress($optn, $customer_id);
                 \CI::session()->set_flashdata('message', lang('message_address_deleted'));
 
                 if ($customer_id) {

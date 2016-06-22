@@ -1,6 +1,6 @@
 <?php pageHeader(lang('coupon_form')); ?>
 
-<?php echo form_open('admin/coupons/form/'.$id); ?>
+<?php echo form_open('admin/coupons/form/'.$optn); ?>
     <div class="row">
         <div class="col-sm-4">
             <div class="alert alert-info" style="text-align:center;">
@@ -72,16 +72,16 @@
     
 </form>
 <?php
-function related_items($id, $name)
+function related_items($optn, $name)
             {
                 return '
-            <tr id="related_product_'.$id.'">
+            <tr id="related_product_'.$optn.'">
                 <td>
-                    <input type="hidden" name="product['.$id.'][id]" value="'.$id.'"/>
-                    <input type="hidden" name="product['.$id.'][name]" value=\''.htmlspecialchars($name).'\'/>
+                    <input type="hidden" name="product['.$optn.'][id]" value="'.$optn.'"/>
+                    <input type="hidden" name="product['.$optn.'][name]" value=\''.htmlspecialchars($name).'\'/>
                     '.$name.'</td>
                 <td class="text-right">
-                    <a class="btn-xs btn-default btn-danger" href="#" onclick="remove_product('.$id.'); return false;"><i class="fa fa-times" aria-hidden="true"></i></a>
+                    <a class="btn-xs btn-default btn-danger" href="#" onclick="remove_product('.$optn.'); return false;"><i class="fa fa-times" aria-hidden="true"></i></a>
                 </td>
             </tr>
         ';

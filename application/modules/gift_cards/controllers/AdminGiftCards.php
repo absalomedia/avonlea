@@ -70,9 +70,9 @@ class AdminGiftCards extends Admin
         }
     }
 
-    public function delete($id)
+    public function delete($optn)
     {
-        \CI::GiftCards()->delete($id);
+        \CI::GiftCards()->delete($optn);
 
         \CI::session()->set_flashdata('message', lang('message_deleted_gift_card'));
         redirect('admin/gift-cards');

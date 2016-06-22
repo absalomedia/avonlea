@@ -183,10 +183,10 @@ class Orders extends CI_Model
     }
 
     //get an individual customers orders
-    public function getCustomerOrders($id, $offset = 0)
+    public function getCustomerOrders($optn, $offset = 0)
     {
         CI::db()->order_by('ordered_on', 'DESC');
-        CI::db()->where(['customer_id' => $id, 'status !=' => 'cart']);
+        CI::db()->where(['customer_id' => $optn, 'status !=' => 'cart']);
 
         return CI::db()->get('orders')->result();
     }
@@ -199,9 +199,9 @@ class Orders extends CI_Model
         return CI::db()->get('orders')->row();
     }
 
-    public function countCustomerOrders($id)
+    public function countCustomerOrders($optn)
     {
-        CI::db()->where(['customer_id' => $id, 'status !=' => 'cart']);
+        CI::db()->where(['customer_id' => $optn, 'status !=' => 'cart']);
 
         return CI::db()->count_all_results('orders');
     }
@@ -230,17 +230,17 @@ class Orders extends CI_Model
         return $order;
     }
 
-    public function getItems($id)
+    public function getItems($optn)
     {
-        CI::db()->where('order_id', $id)->order_by('type', 'ASC')->order_by('id', 'ASC');
+        CI::db()->where('order_id', $optn)->order_by('type', 'ASC')->order_by('id', 'ASC');
         $items = CI::db()->get('order_items')->result();
 
         return $items;
     }
 
-    public function getItemFiles($id)
+    public function getItemFiles($optn)
     {
-        $files = CI::db()->select('*, order_item_files.id as id')->where('order_id', $id)->join('digital_products', 'digital_products.id = order_item_files.file_id')->get('order_item_files')->result();
+        $files = CI::db()->select('*, order_item_files.id as id')->where('order_id', $optn)->join('digital_products', 'digital_products.id = order_item_files.file_id')->get('order_item_files')->result();
 
         $return = [];
         foreach ($files as $file) {
@@ -270,11 +270,11 @@ class Orders extends CI_Model
         return $return;
     }
 
-    public function removeItem($order_id, $id)
+    public function removeItem($order_id, $optn)
     {
-        CI::db()->where('order_id', $order_id)->where('id', $id)->delete('order_items');
-        CI::db()->where('order_item_id', $id)->delete('order_item_files');
-        CI::db()->where('order_item_id', $id)->delete('order_item_options');
+        CI::db()->where('order_id', $order_id)->where('id', $optn)->delete('order_items');
+        CI::db()->where('order_item_id', $optn)->delete('order_item_files');
+        CI::db()->where('order_item_id', $optn)->delete('order_item_options');
     }
 
     public function saveOrderItemFile($file)
@@ -292,19 +292,19 @@ class Orders extends CI_Model
         return CI::db()->where('order_id', $orderId)->get('order_item_files')->result();
     }
 
-    public function delete($id)
+    public function delete($optn)
     {
-        CI::db()->where('id', $id);
+        CI::db()->where('id', $optn);
         CI::db()->delete('orders');
 
         //now delete the order items
-        CI::db()->where('order_id', $id);
+        CI::db()->where('order_id', $optn);
         CI::db()->delete('order_items');
 
-        CI::db()->where('order_id', $id);
+        CI::db()->where('order_id', $optn);
         CI::db()->delete('order_item_options');
 
-        CI::db()->where('order_id', $id);
+        CI::db()->where('order_id', $optn);
         CI::db()->delete('order_item_files');
     }
 
@@ -360,16 +360,16 @@ class Orders extends CI_Model
         if (isset($data['id'])) {
             CI::db()->where('id', $data['id']);
             CI::db()->update('orders', $data);
-            $id = $data['id'];
+            $optn = $data['id'];
         } else {
             CI::db()->insert('orders', $data);
-            $id = CI::db()->insert_id();
+            $optn = CI::db()->insert_id();
         }
 
         //if there are items being submitted with this order add them now
         if ($contents) {
             // clear existing order items
-            CI::db()->where('order_id', $id)->delete('order_items');
+            CI::db()->where('order_id', $optn)->delete('order_items');
             // update order items
             foreach ($contents as $item) {
                 $save = [];
@@ -378,12 +378,12 @@ class Orders extends CI_Model
                 $item = unserialize($item);
                 $save['product_id'] = $item['id'];
                 $save['quantity'] = $item['quantity'];
-                $save['order_id'] = $id;
+                $save['order_id'] = $optn;
                 CI::db()->insert('order_items', $save);
             }
         }
 
-        return $id;
+        return $optn;
     }
 
     public function getBestSellers($start, $end)

@@ -149,15 +149,15 @@ class Categories
         return CI::db()->get_where('categories', ['slug' => $slug])->row();
     }
 
-    public function find($id)
+    public function find($optn)
     {
-        return CI::db()->get_where('categories', ['id' => $id])->row();
+        return CI::db()->get_where('categories', ['id' => $optn])->row();
     }
 
-    public function get_category_products_admin($id)
+    public function get_category_products_admin($optn)
     {
         CI::db()->order_by('sequence', 'ASC');
-        $result = CI::db()->get_where('category_products', ['category_id' => $id]);
+        $result = CI::db()->get_where('category_products', ['category_id' => $optn]);
         $result = $result->result();
 
         $contents = [];
@@ -171,10 +171,10 @@ class Categories
         return $contents;
     }
 
-    public function get_category_products($id, $limit, $offset)
+    public function get_category_products($optn, $limit, $offset)
     {
         CI::db()->order_by('sequence', 'ASC');
-        $result = CI::db()->get_where('category_products', ['category_id' => $id], $limit, $offset);
+        $result = CI::db()->get_where('category_products', ['category_id' => $optn], $limit, $offset);
         $result = $result->result();
 
         $contents = [];
@@ -204,16 +204,16 @@ class Categories
         }
     }
 
-    public function delete($id)
+    public function delete($optn)
     {
-        CI::db()->where('id', $id);
+        CI::db()->where('id', $optn);
         CI::db()->delete('categories');
 
         //update child records to hidden
-        CI::db()->where('parent_id', $id)->set('parent_id', -1)->update('categories');
+        CI::db()->where('parent_id', $optn)->set('parent_id', -1)->update('categories');
 
         //delete references to this category in the product to category table
-        CI::db()->where('category_id', $id);
+        CI::db()->where('category_id', $optn);
         CI::db()->delete('category_products');
     }
 
@@ -221,13 +221,13 @@ class Categories
     * check if slug already exists
     */
 
-    public function validateSlug($slug, $id = false, $counter = false)
+    public function validateSlug($slug, $optn = false, $counter = false)
     {
         CI::db()->select('slug');
         CI::db()->from('categories');
         CI::db()->where('slug', $slug.$counter);
-        if ($id) {
-            CI::db()->where('id !=', $id);
+        if ($optn) {
+            CI::db()->where('id !=', $optn);
         }
         $count = CI::db()->count_all_results();
 
@@ -238,7 +238,7 @@ class Categories
                 $counter++;
             }
 
-            return $this->validateSlug($slug, $id, $counter);
+            return $this->validateSlug($slug, $optn, $counter);
         } else {
             return $slug.$counter;
         }

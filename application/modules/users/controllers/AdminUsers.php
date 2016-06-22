@@ -36,21 +36,21 @@ class AdminUsers extends Admin
         $this->view('users', $data);
     }
 
-    public function delete($id)
+    public function delete($optn)
     {
         //even though the link isn't displayed for an admin to delete themselves, if they try, this should stop them.
-        if ($this->current_admin['id'] === $id) {
+        if ($this->current_admin['id'] === $optn) {
             \CI::session()->set_flashdata('message', lang('error_self_delete'));
             redirect('admin/users');
         }
 
         //delete the user
-        \CI::auth()->delete($id);
+        \CI::auth()->delete($optn);
         \CI::session()->set_flashdata('message', lang('message_user_deleted'));
         redirect('admin/users');
     }
 
-    public function form($id = false)
+    public function form($optn = false)
     {
         \CI::load()->helper('form');
         \CI::load()->library('form_validation');
@@ -66,9 +66,9 @@ class AdminUsers extends Admin
         $data['username'] = '';
         $data['access'] = '';
 
-        if ($id) {
-            $this->admin_id = $id;
-            $admin = \CI::auth()->getAdmin($id);
+        if ($optn) {
+            $this->admin_id = $optn;
+            $admin = \CI::auth()->getAdmin($optn);
             //if the administrator does not exist, redirect them to the admin list with an error
             if (!$admin) {
                 \CI::session()->set_flashdata('message', lang('admin_not_found'));
@@ -99,7 +99,7 @@ class AdminUsers extends Admin
         \CI::form_validation()->set_rules('access', 'lang:access', 'trim|required');
 
         //if this is a new account require a password, or if they have entered either a password or a password confirmation
-        if (\CI::input()->post('password') != '' || \CI::input()->post('confirm') != '' || !$id) {
+        if (\CI::input()->post('password') != '' || \CI::input()->post('confirm') != '' || !$optn) {
             \CI::form_validation()->set_rules('password', 'lang:password', 'required|min_length[6]');
             \CI::form_validation()->set_rules('confirm', 'lang:confirm_password', 'required|matches[password]');
         }
@@ -107,14 +107,14 @@ class AdminUsers extends Admin
         if (\CI::form_validation()->run() === false) {
             $this->view('user_form', $data);
         } else {
-            $save['id'] = $id;
+            $save['id'] = $optn;
             $save['firstname'] = \CI::input()->post('firstname');
             $save['lastname'] = \CI::input()->post('lastname');
             $save['email'] = \CI::input()->post('email');
             $save['username'] = \CI::input()->post('username');
             $save['access'] = \CI::input()->post('access');
 
-            if (\CI::input()->post('password') != '' || !$id) {
+            if (\CI::input()->post('password') != '' || !$optn) {
                 $save['password'] = \CI::input()->post('password');
             }
 

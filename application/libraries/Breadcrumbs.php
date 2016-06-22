@@ -17,19 +17,19 @@ class Breadcrumbs
         $this->breadcrumbs = [];
     }
 
-    public function trace_categories($id)
+    public function traceCategories($optn)
     {
-        $category = CI::Categories()->find($id);
+        $category = CI::Categories()->find($optn);
         if ($category) {
             array_unshift($this->breadcrumbs, ['link' => site_url('category/'.$category->slug), 'name' => $category->name]);
             $this->trace_categories($category->parent_id);
         }
     }
 
-    public function trace_pages($id)
+    public function tracePages($optn)
     {
-        if (isset($this->CI->pages['all'][$id])) {
-            $page = $this->CI->pages['all'][$id];
+        if (isset($this->CI->pages['all'][$optn])) {
+            $page = $this->CI->pages['all'][$optn];
             array_unshift($this->breadcrumbs, ['link' => site_url('page/'.$page->slug), 'name' => $page->title]);
             $this->trace_pages($page->parent_id);
         }

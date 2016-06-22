@@ -8,7 +8,7 @@
     
     <div id="addressError" class="alert red hide"></div>
 
-    <?php echo form_open('addresses/form/'.$id, ['id' => 'addressForm']); ?>
+    <?php echo form_open('addresses/form/'.$optn, ['id' => 'addressForm']); ?>
         <div class="col-nest">
             <div class="col" data-cols="1">
             <label><?php echo lang('address_company'); ?></label>

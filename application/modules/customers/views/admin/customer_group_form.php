@@ -1,6 +1,6 @@
 <?php pageHeader(lang('customer_group_form')); ?>
 
-<?php echo form_open('admin/customers/group_form/'.$id); ?>
+<?php echo form_open('admin/customers/group_form/'.$optn); ?>
     <div class="row">
         <div class="col-md-3">
             <div class="form-group">

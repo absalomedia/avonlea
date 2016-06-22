@@ -33,14 +33,14 @@ class AdminCoupons extends Admin
         $this->view('coupons', $data);
     }
 
-    public function form($id = false)
+    public function form($optn = false)
     {
         \CI::load()->helper(['form', 'date']);
         \CI::load()->library('form_validation');
 
         \CI::form_validation()->set_error_delimiters('<div class="error">', '</div>');
 
-        $this->coupon_id = $id;
+        $this->coupon_id = $optn;
 
         $data['page_title'] = lang('coupon_form');
 
@@ -56,8 +56,8 @@ class AdminCoupons extends Admin
         $data['reduction_amount'] = '';
         $data['products'] = [];
 
-        if ($id) {
-            $coupon = \CI::Coupons()->getCoupon($id);
+        if ($optn) {
+            $coupon = \CI::Coupons()->getCoupon($optn);
 
             //if the product does not exist, redirect them to the product list with an error
             if (!$coupon) {
@@ -77,7 +77,7 @@ class AdminCoupons extends Admin
             $data['reduction_type'] = $coupon->reduction_type;
             $data['reduction_amount'] = $coupon->reduction_amount;
 
-            $data['products'] = \CI::Coupons()->getProducts($id);
+            $data['products'] = \CI::Coupons()->getProducts($optn);
         }
 
         \CI::form_validation()->set_rules(
@@ -112,7 +112,7 @@ class AdminCoupons extends Admin
 
             $this->view('coupon_form', $data);
         } else {
-            $save['id'] = $id;
+            $save['id'] = $optn;
             $save['code'] = \CI::input()->post('code');
             $save['start_date'] = \CI::input()->post('start_date');
             $save['end_date'] = \CI::input()->post('end_date');
@@ -132,11 +132,11 @@ class AdminCoupons extends Admin
             $products = \CI::input()->post('product');
 
             // save coupon
-            $id = \CI::Coupons()->save($save);
+            $optn = \CI::Coupons()->save($save);
 
-            \CI::Coupons()->removeProduct($id);
+            \CI::Coupons()->removeProduct($optn);
             if (!$save['whole_order_coupon'] && $products) {
-                \CI::Coupons()->addProducts($id, $products);
+                \CI::Coupons()->addProducts($optn, $products);
             }
 
             // We're done
@@ -147,16 +147,16 @@ class AdminCoupons extends Admin
         }
     }
 
-    public function delete($id = false)
+    public function delete($optn = false)
     {
-        if ($id) {
-            $coupon = \CI::Coupons()->getCoupon($id);
+        if ($optn) {
+            $coupon = \CI::Coupons()->getCoupon($optn);
             //if the promo does not exist, redirect them to the customer list with an error
             if (!$coupon) {
                 \CI::session()->set_flashdata('error', lang('error_not_found'));
                 redirect('admin/coupons');
             } else {
-                \CI::Coupons()->deleteCoupon($id);
+                \CI::Coupons()->deleteCoupon($optn);
 
                 \CI::session()->set_flashdata('message', lang('message_coupon_deleted'));
                 redirect('admin/coupons');

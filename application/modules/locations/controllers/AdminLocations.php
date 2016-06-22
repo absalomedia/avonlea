@@ -33,7 +33,7 @@ class AdminLocations extends Admin
         \CI::Locations()->organize_countries($countries);
     }
 
-    public function country_form($id = false)
+    public function country_form($optn = false)
     {
         \CI::load()->helper('form');
         \CI::load()->library('form_validation');
@@ -50,8 +50,8 @@ class AdminLocations extends Admin
         $data['address_format'] = '';
         $data['tax'] = 0;
 
-        if ($id) {
-            $country = (array) \CI::Locations()->get_country($id);
+        if ($optn) {
+            $country = (array) \CI::Locations()->get_country($optn);
             //if the country does not exist, redirect them to the country list with an error
             if (!$country) {
                 \CI::session()->set_flashdata('error', lang('error_country_not_found'));
@@ -75,7 +75,7 @@ class AdminLocations extends Admin
         if (\CI::form_validation()->run() === false) {
             $this->view('country_form', $data);
         } else {
-            $save['id'] = $id;
+            $save['id'] = $optn;
             $save['name'] = \CI::input()->post('name');
             $save['iso_code_2'] = \CI::input()->post('iso_code_2');
             $save['iso_code_3'] = \CI::input()->post('iso_code_3');
@@ -93,16 +93,16 @@ class AdminLocations extends Admin
         }
     }
 
-    public function delete_country($id = false)
+    public function delete_country($optn = false)
     {
-        if ($id) {
-            $location = \CI::Locations()->get_country($id);
+        if ($optn) {
+            $location = \CI::Locations()->get_country($optn);
             //if the promo does not exist, redirect them to the customer list with an error
             if (!$location) {
                 \CI::session()->set_flashdata('error', lang('error_country_not_found'));
                 redirect('admin/locations');
             } else {
-                \CI::Locations()->delete_country($id);
+                \CI::Locations()->delete_country($optn);
 
                 \CI::session()->set_flashdata('message', lang('message_deleted_country'));
                 redirect('admin/locations');
@@ -114,16 +114,16 @@ class AdminLocations extends Admin
         }
     }
 
-    public function delete_zone($id = false)
+    public function delete_zone($optn = false)
     {
-        if ($id) {
-            $location = \CI::Locations()->get_zone($id);
+        if ($optn) {
+            $location = \CI::Locations()->get_zone($optn);
             //if the promo does not exist, redirect them to the customer list with an error
             if (!$location) {
                 \CI::session()->set_flashdata('error', lang('error_zone_not_found'));
                 redirect('admin/locations');
             } else {
-                \CI::Locations()->delete_zone($id);
+                \CI::Locations()->delete_zone($optn);
 
                 \CI::session()->set_flashdata('message', lang('message_deleted_zone'));
                 redirect('admin/locations/zones/'.$location->country_id);
@@ -148,7 +148,7 @@ class AdminLocations extends Admin
         $this->view('country_zones', $data);
     }
 
-    public function zone_form($id = false)
+    public function zone_form($optn = false)
     {
         \CI::load()->helper('form');
         \CI::load()->library('form_validation');
@@ -165,8 +165,8 @@ class AdminLocations extends Admin
         $data['tax'] = 0;
         $data['status'] = false;
 
-        if ($id) {
-            $zone = (array) \CI::Locations()->get_zone($id);
+        if ($optn) {
+            $zone = (array) \CI::Locations()->get_zone($optn);
 
             //if the country does not exist, redirect them to the country list with an error
             if (!$zone) {
@@ -186,7 +186,7 @@ class AdminLocations extends Admin
         if (\CI::form_validation()->run() === false) {
             $this->view('country_zone_form', $data);
         } else {
-            $save['id'] = $id;
+            $save['id'] = $optn;
             $save['country_id'] = \CI::input()->post('country_id');
             $save['name'] = \CI::input()->post('name');
             $save['code'] = \CI::input()->post('code');
@@ -203,36 +203,36 @@ class AdminLocations extends Admin
 
     public function get_zone_menu()
     {
-        $id = \CI::input()->post('id');
-        $zones = \CI::Locations()->getZoneMenu($id);
+        $optn = \CI::input()->post('id');
+        $zones = \CI::Locations()->getZoneMenu($optn);
 
-        foreach ($zones as $id => $z) :?>
+        foreach ($zones as $optn => $z) :?>
         
-        <option value="<?php echo $id;
+        <option value="<?php echo $optn;
         ?>"><?php echo $z;
         ?></option>
         
         <?php                                                                                                                                                                                                                         endforeach;
     }
 
-    public function zone_areas($id)
+    public function zone_areas($optn)
     {
-        $data['zone'] = \CI::Locations()->get_zone($id);
-        $data['areas'] = \CI::Locations()->get_zone_areas($id);
+        $data['zone'] = \CI::Locations()->get_zone($optn);
+        $data['areas'] = \CI::Locations()->get_zone_areas($optn);
 
         $this->view('country_zone_areas', $data);
     }
 
-    public function delete_zone_area($id = false)
+    public function delete_zone_area($optn = false)
     {
-        if ($id) {
-            $location = \CI::Locations()->get_zone_area($id);
+        if ($optn) {
+            $location = \CI::Locations()->get_zone_area($optn);
             //if the promo does not exist, redirect them to the customer list with an error
             if (!$location) {
                 \CI::session()->set_flashdata('error', lang('error_zone_area_not_found'));
                 redirect('admin/locations');
             } else {
-                \CI::Locations()->delete_zone_area($id);
+                \CI::Locations()->delete_zone_area($optn);
 
                 \CI::session()->set_flashdata('message', lang('message_deleted_zone_area'));
                 redirect('admin/locations/zone_areas/'.$location->zone_id);

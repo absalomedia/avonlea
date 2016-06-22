@@ -201,18 +201,18 @@ class AdminSettings extends Admin
         $this->view('canned_messages', $data);
     }
 
-    public function canned_message_form($id = false)
+    public function canned_message_form($optn = false)
     {
         $data['page_title'] = lang('canned_message_form');
 
-        $data['id'] = $id;
+        $data['id'] = $optn;
         $data['name'] = '';
         $data['subject'] = '';
         $data['content'] = '';
         $data['deletable'] = 1;
 
-        if ($id) {
-            $message = \CI::Messages()->getMessage($id);
+        if ($optn) {
+            $message = \CI::Messages()->getMessage($optn);
             $data = array_merge($data, $message);
         }
 
@@ -228,7 +228,7 @@ class AdminSettings extends Admin
 
             $this->view('canned_message_form', $data);
         } else {
-            $save['id'] = $id;
+            $save['id'] = $optn;
             $save['name'] = \CI::input()->post('name');
             $save['subject'] = \CI::input()->post('subject');
             $save['content'] = \CI::input()->post('content');
@@ -244,9 +244,9 @@ class AdminSettings extends Admin
         }
     }
 
-    public function deleteMessage($id)
+    public function deleteMessage($optn)
     {
-        \CI::Messages()->deleteMessage($id);
+        \CI::Messages()->deleteMessage($optn);
 
         \CI::session()->set_flashdata('message', lang('message_deleted_message'));
         redirect('admin/settings/canned_messages');

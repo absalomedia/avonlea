@@ -34,16 +34,16 @@ class Productoptions extends CI_Model
         return $return;
     }
 
-    public function getOption($id, $as_array = false)
+    public function getOption($optn, $as_array = false)
     {
-        $result = CI::db()->get_where('options', ['id' => $id]);
+        $result = CI::db()->get_where('options', ['id' => $optn]);
 
         $data = $result->row();
 
         if ($as_array) {
-            $data->values = $this->getOptionValues($id, true);
+            $data->values = $this->getOptionValues($optn, true);
         } else {
-            $data->values = $this->getOptionValues($id);
+            $data->values = $this->getOptionValues($optn);
         }
 
         return $data;
@@ -54,19 +54,19 @@ class Productoptions extends CI_Model
         if (isset($option['id'])) {
             CI::db()->where('id', $option['id']);
             CI::db()->update('options', $option);
-            $id = $option['id'];
+            $optn = $option['id'];
 
             //eliminate existing options
-            $this->deleteOptionValues($id);
+            $this->deleteOptionValues($optn);
         } else {
             CI::db()->insert('options', $option);
-            $id = CI::db()->insert_id();
+            $optn = CI::db()->insert_id();
         }
 
         //add options to the database
         $sequence = 0;
         foreach ($values as $value) {
-            $value['option_id'] = $id;
+            $value['option_id'] = $optn;
             $value['sequence'] = $sequence;
             $value['weight'] = floatval($value['weight']);
             $value['price'] = floatval($value['price']);
@@ -75,7 +75,7 @@ class Productoptions extends CI_Model
             CI::db()->insert('option_values', $value);
         }
 
-        return $id;
+        return $optn;
     }
 
     // for product level options
@@ -90,12 +90,12 @@ class Productoptions extends CI_Model
     }
 
     // also deletes child records in optionValues and product_option
-    public function deleteOption($id)
+    public function deleteOption($optn)
     {
-        CI::db()->where('id', $id);
+        CI::db()->where('id', $optn);
         CI::db()->delete('options');
 
-        $this->deleteOptionValues($id);
+        $this->deleteOptionValues($optn);
     }
 
     /********************************************************************
@@ -117,9 +117,9 @@ class Productoptions extends CI_Model
         return CI::db()->get('option_values')->row();
     }
 
-    public function deleteOptionValues($id)
+    public function deleteOptionValues($optn)
     {
-        CI::db()->where('option_id', $id);
+        CI::db()->where('option_id', $optn);
         CI::db()->delete('option_values');
     }
 

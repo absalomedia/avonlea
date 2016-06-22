@@ -28,7 +28,7 @@ class AdminDigitalProducts extends Admin
         $this->view('digital_products', $data);
     }
 
-    public function form($id = 0)
+    public function form($optn = 0)
     {
         \CI::load()->helper('form_helper');
         \CI::load()->library('form_validation');
@@ -41,8 +41,8 @@ class AdminDigitalProducts extends Admin
                     'title'         => '',
                     'size'          => '',
                   ];
-        if ($id) {
-            $data = array_merge($data, (array) \CI::DigitalProducts()->getFileInfo($id));
+        if ($optn) {
+            $data = array_merge($data, (array) \CI::DigitalProducts()->getFileInfo($optn));
         }
 
         $data['page_title'] = lang('digital_products_form');
@@ -54,7 +54,7 @@ class AdminDigitalProducts extends Admin
         if (\CI::form_validation()->run() === false) {
             $this->view('digital_product_form', $data);
         } else {
-            if ($id == 0) {
+            if ($optn == 0) {
                 $data['file_name'] = false;
                 $data['error'] = false;
 
@@ -76,7 +76,7 @@ class AdminDigitalProducts extends Admin
                 $save['filename'] = $upload_data['file_name'];
                 $save['size'] = $upload_data['file_size'];
             } else {
-                $save['id'] = $id;
+                $save['id'] = $optn;
             }
 
             $save['max_downloads'] = \CI::input()->post('max_downloads');
@@ -88,9 +88,9 @@ class AdminDigitalProducts extends Admin
         }
     }
 
-    public function delete($id)
+    public function delete($optn)
     {
-        \CI::DigitalProducts()->delete($id);
+        \CI::DigitalProducts()->delete($optn);
 
         \CI::session()->set_flashdata('message', lang('message_deleted_file'));
         redirect('admin/digital_products');

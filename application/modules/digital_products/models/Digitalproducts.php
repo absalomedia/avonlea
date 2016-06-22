@@ -29,9 +29,9 @@ class Digitalproducts extends CI_Model
     }
 
     // Get file record
-    public function getFileInfo($id)
+    public function getFileInfo($optn)
     {
-        return CI::db()->where('id', $id)->get('digital_products')->row();
+        return CI::db()->where('id', $optn)->get('digital_products')->row();
     }
 
     // Verify upload path
@@ -89,9 +89,9 @@ class Digitalproducts extends CI_Model
         CI::db()->where($data)->delete('products_files');
     }
 
-    public function getAssociationsByFile($id)
+    public function getAssociationsByFile($optn)
     {
-        return CI::db()->where('file_id', $id)->get('products_files')->result();
+        return CI::db()->where('file_id', $optn)->get('products_files')->result();
     }
 
     public function getAssociationsByProduct($product_id)
@@ -100,11 +100,11 @@ class Digitalproducts extends CI_Model
     }
 
     // Delete file record & content
-    public function delete($id)
+    public function delete($optn)
     {
         CI::load()->model('Products');
 
-        $info = $this->getFileInfo($id);
+        $info = $this->getFileInfo($optn);
 
         if (!$info) {
             return false;
@@ -116,11 +116,11 @@ class Digitalproducts extends CI_Model
         }
 
         // Remove db associations
-        CI::db()->where('id', $id)->delete('digital_products');
-        $this->disassociate($id);
+        CI::db()->where('id', $optn)->delete('digital_products');
+        $this->disassociate($optn);
 
         //remove the item from orders that have a connection to this file
-        CI::db()->where('file_id', $id)->delete('order_item_files');
+        CI::db()->where('file_id', $optn)->delete('order_item_files');
     }
 
     public function touchDownload($file_id)

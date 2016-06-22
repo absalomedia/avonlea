@@ -169,17 +169,17 @@ class Invoices extends Admin
         $this->load->plugin('js_calendar');
 
         // check if it came from a post, or has a session of clientId
-        $id = ($this->input->post('client_id') != '') ? $this->input->post('client_id') : $this->session->flashdata('clientId');
+        $optn = ($this->input->post('client_id') != '') ? $this->input->post('client_id') : $this->session->flashdata('clientId');
         $newName = $this->input->post('newClient');
 
-        if (!isset($id)) {
+        if (!isset($optn)) {
             // if they don't already have a client id, then they need to create the
             // client first, so send them off to do that
             $this->session->set_flashdata('clientName', $newName);
             redirect('clients/newclient');
         }
 
-        $data['row'] = \CI::Clients()->get_client_info($id); // used to extract name, id and tax info
+        $data['row'] = \CI::Clients()->get_client_info($optn); // used to extract name, id and tax info
 
         $data['tax1_desc'] = \CI::Settings()->getSettings('tax1_desc');
         $data['tax1_rate'] = \CI::Settings()->getSettings('tax1_rate');
@@ -187,7 +187,7 @@ class Invoices extends Admin
         $data['tax2_rate'] = \CI::Settings()->getSettings('tax2_rate');
         $data['invoice_note_default'] = \CI::Settings()->getSettings('invoice_note_default');
 
-        $last_invoice_number = \CI::Invoices()->lastInvoiceNumber($id);
+        $last_invoice_number = \CI::Invoices()->lastInvoiceNumber($optn);
         ($last_invoice_number != '') ? $data['lastInvoiceNumber'] = $last_invoice_number : $data['lastInvoiceNumber'] = '';
         $data['suggested_invoice_number'] = (is_numeric($last_invoice_number)) ? $last_invoice_number + 1 : '';
 
@@ -261,7 +261,7 @@ class Invoices extends Admin
 
     // --------------------------------------------------------------------
 
-    public function view($id)
+    public function view($optn)
     {
         $this->lang->load('date');
         $this->load->plugin('js_calendar');
@@ -277,7 +277,7 @@ class Invoices extends Admin
         $data['extraHeadContent'] .= js_calendar_script('my_form');
         $data['invoiceDate'] = date('Y-m-d');
 
-        $invoiceInfo = \CI::Invoices()->getSingleInvoice($id);
+        $invoiceInfo = \CI::Invoices()->getSingleInvoice($optn);
 
         if ($invoiceInfo->num_rows() == 0) {
             redirect('invoices/');
@@ -300,7 +300,7 @@ class Invoices extends Admin
             $data['status'] = '<span class="error">'.timespan(mysql_to_unix($data['row']->dateIssued) + (\CI::Settings()->getSettings('days_payment_due') * 60 * 60 * 24), now()).' '.$this->lang->line('invoice_overdue').'</span>';
         }
 
-        $data['items'] = \CI::Invoices()->getInvoiceItems($id);
+        $data['items'] = \CI::Invoices()->getInvoiceItems($optn);
 
         // begin amount and taxes
         $data['total_no_tax'] = $this->lang->line('invoice_amount').': '.\CI::Settings()->getSettings('currency_symbol').number_format($data['row']->total_notax, 2, $this->config->item('currency_decimal'), '')."<br />\n";
@@ -322,8 +322,8 @@ class Invoices extends Admin
 
         $data['companyInfo'] = \CI::Settings()->getCompanyInfo()->row();
         $data['clientContacts'] = \CI::Clients()->getClientContacts($data['row']->client_id);
-        $data['invoiceHistory'] = \CI::Invoices()->getInvoiceHistory($id);
-        $data['paymentHistory'] = \CI::Invoices()->getInvoicePaymentHistory($id);
+        $data['invoiceHistory'] = \CI::Invoices()->getInvoiceHistory($optn);
+        $data['paymentHistory'] = \CI::Invoices()->getInvoicePaymentHistory($optn);
         $data['invoiceOptions'] = true; // create invoice options on sidebar
         $data['company_logo'] = $this->_get_logo();
         $data['page_title'] = 'Invoice Details';
@@ -333,13 +333,13 @@ class Invoices extends Admin
 
     // --------------------------------------------------------------------
 
-    public function edit($id)
+    public function edit($optn)
     {
         $this->load->library('validation');
         $this->load->plugin('js_calendar');
 
         // grab invoice info
-        $data['row'] = \CI::Invoices()->getSingleInvoice($id)->row();
+        $data['row'] = \CI::Invoices()->getSingleInvoice($optn)->row();
         $data['invoice_number'] = $data['row']->invoice_number;
         $data['last_number_suggestion'] = '';
         $data['action'] = 'edit';
@@ -368,7 +368,7 @@ class Invoices extends Admin
         $data['button_label'] = 'invoice_save_edited_invoice';
 
         if ($this->validation->run() == false) {
-            $data['items'] = \CI::Invoices()->getInvoiceItems($id);
+            $data['items'] = \CI::Invoices()->getInvoiceItems($optn);
 
             // begin amount and taxes
             $data['total_no_tax'] = $this->lang->line('invoice_amount').': '.\CI::Settings()->getSettings('currency_symbol').number_format($data['row']->total_notax, 2, $this->config->item('currency_decimal'), '')."<br />\n";
@@ -419,7 +419,7 @@ class Invoices extends Admin
                 redirect('invoices/view/'.$invoice_id);
             } else {
                 $data['invoice_number_error'] = true;
-                $data['items'] = \CI::Invoices()->getInvoiceItems($id);
+                $data['items'] = \CI::Invoices()->getInvoiceItems($optn);
 
                 // begin amount and taxes
                 $data['total_no_tax'] = $this->lang->line('invoice_amount').': '.\CI::Settings()->getSettings('currency_symbol').number_format($data['row']->total_notax, 2, $this->config->item('currency_decimal'), '')."<br />\n";
@@ -436,13 +436,13 @@ class Invoices extends Admin
 
     // --------------------------------------------------------------------
 
-    public function duplicate($id)
+    public function duplicate($optn)
     {
         $this->load->library('validation');
         $this->load->plugin('js_calendar');
 
         // grab invoice info
-        $data['row'] = \CI::Invoices()->getSingleInvoice($id)->row();
+        $data['row'] = \CI::Invoices()->getSingleInvoice($optn)->row();
         $data['action'] = 'duplicate';
 
         // some hidden form data
@@ -464,7 +464,7 @@ class Invoices extends Admin
 
         $this->_validation_edit(); // Load the validation rules and fields
 
-        $last_invoice_number = \CI::Invoices()->lastInvoiceNumber($id);
+        $last_invoice_number = \CI::Invoices()->lastInvoiceNumber($optn);
         ($last_invoice_number != '') ? $data['lastInvoiceNumber'] = $last_invoice_number : $data['lastInvoiceNumber'] = '';
         $data['invoice_number'] = (is_numeric($last_invoice_number)) ? $last_invoice_number + 1 : '';
         $data['last_number_suggestion'] = '('.$this->lang->line('invoice_last_used').' '.$last_invoice_number.')';
@@ -473,7 +473,7 @@ class Invoices extends Admin
         $data['button_label'] = 'actions_create_invoice';
 
         if ($this->validation->run() == false) {
-            $data['items'] = \CI::Invoices()->getInvoiceItems($id);
+            $data['items'] = \CI::Invoices()->getInvoiceItems($optn);
 
             // begin amount and taxes
             $data['total_no_tax'] = $this->lang->line('invoice_amount').': '.\CI::Settings()->getSettings('currency_symbol').number_format($data['row']->total_notax, 2, $this->config->item('currency_decimal'), '')."<br />\n";
@@ -521,7 +521,7 @@ class Invoices extends Admin
                 redirect('invoices/view/'.$invoice_id);
             } else {
                 $data['invoice_number_error'] = true;
-                $data['items'] = \CI::Invoices()->getInvoiceItems($id);
+                $data['items'] = \CI::Invoices()->getInvoiceItems($optn);
 
                 // begin amount and taxes
                 $data['total_no_tax'] = $this->lang->line('invoice_amount').': '.\CI::Settings()->getSettings('currency_symbol').number_format($data['row']->total_notax, 2, $this->config->item('currency_decimal'), '')."<br />\n";
@@ -538,19 +538,19 @@ class Invoices extends Admin
 
     // --------------------------------------------------------------------
 
-    public function notes($id)
+    public function notes($optn)
     {
         $this->load->model('invoice_histories_model');
 
-        $this->invoice_histories_model->insert_note($id, $this->input->post('private_note'));
+        $this->invoice_histories_model->insert_note($optn, $this->input->post('private_note'));
 
         $this->session->set_flashdata('message', $this->lang->line('invoice_comment_success'));
-        redirect('invoices/view/'.$id);
+        redirect('invoices/view/'.$optn);
     }
 
     // --------------------------------------------------------------------
 
-    public function email($id)
+    public function email($optn)
     {
         $this->lang->load('date');
         $this->load->plugin('to_pdf');
@@ -564,9 +564,9 @@ class Invoices extends Admin
         $data['companyInfo'] = \CI::Settings()->getCompanyInfo()->row();
         $data['company_logo'] = $this->_get_logo();
 
-        $data['row'] = \CI::Invoices()->getSingleInvoice($id)->row();
+        $data['row'] = \CI::Invoices()->getSingleInvoice($optn)->row();
 
-        $invoiceInfo = \CI::Invoices()->getSingleInvoice($id);
+        $invoiceInfo = \CI::Invoices()->getSingleInvoice($optn);
         if ($invoiceInfo->num_rows() == 0) {
             redirect('invoices/');
         }
@@ -578,7 +578,7 @@ class Invoices extends Admin
         $data['date_invoice_issued'] = formatted_invoice_date($data['row']->dateIssued);
         $data['date_invoice_due'] = formatted_invoice_date($data['row']->dateIssued, \CI::Settings()->getSettings('days_payment_due'));
 
-        $items = \CI::Invoices()->getInvoiceItems($id);
+        $items = \CI::Invoices()->getInvoiceItems($optn);
 
         $data['items'] = $items;
         $data['total_no_tax'] = $this->lang->line('invoice_amount').': '.\CI::Settings()->getSettings('currency_symbol').number_format($data['row']->total_notax, 2, $this->config->item('currency_decimal'), '')."<br />\n";
@@ -606,7 +606,7 @@ class Invoices extends Admin
             show_error($this->lang->line('error_problem_saving'));
         }
         // @todo: get PDF generation to only happen in one place..., the pdf() function
-//		$invoice_number = $this->pdf($id, FALSE);
+//		$invoice_number = $this->pdf($optn, FALSE);
 
         $recipients = $this->input->post('recipients');
 
@@ -660,7 +660,7 @@ class Invoices extends Admin
         $this->_delete_stored_files(); // remove saved invoice(s)
 
         // save this in the invoice_history
-        $this->invoice_histories_model->insert_history_note($id, $email_body, $recipient_names);
+        $this->invoice_histories_model->insert_history_note($optn, $email_body, $recipient_names);
 
         // next line for debugging
         //show_error($this->email->print_debugger());
@@ -674,13 +674,13 @@ class Invoices extends Admin
                 $this->session->set_flashdata('message', $this->lang->line('invoice_email_success'));
             }
 
-            redirect('invoices/view/'.$id); // send them back to the invoice view
+            redirect('invoices/view/'.$optn); // send them back to the invoice view
         }
     }
 
     // --------------------------------------------------------------------
 
-    public function pdf($id, $output = true)
+    public function pdf($optn, $output = true)
     {
         $this->lang->load('date');
         $this->load->plugin('to_pdf');
@@ -688,7 +688,7 @@ class Invoices extends Admin
 
         $data['page_title'] = $this->lang->line('menu_invoices');
 
-        $invoiceInfo = \CI::Invoices()->getSingleInvoice($id);
+        $invoiceInfo = \CI::Invoices()->getSingleInvoice($optn);
 
         if ($invoiceInfo->num_rows() == 0) {
             redirect('invoices/');
@@ -704,7 +704,7 @@ class Invoices extends Admin
         $data['companyInfo'] = \CI::Settings()->getCompanyInfo()->row();
         $data['company_logo'] = $this->_get_logo('_pdf', 'pdf');
 
-        $data['items'] = \CI::Invoices()->getInvoiceItems($id);
+        $data['items'] = \CI::Invoices()->getInvoiceItems($optn);
 
         $data['total_no_tax'] = $this->lang->line('invoice_amount').': '.\CI::Settings()->getSettings('currency_symbol').number_format($data['row']->total_notax, 2, $this->config->item('currency_decimal'), '')."<br />\n";
 
@@ -773,7 +773,7 @@ class Invoices extends Admin
 
     public function payment()
     {
-        $id = (int) $this->input->post('id');
+        $optn = (int) $this->input->post('id');
         $date_paid = $this->input->post('date_paid');
         $amount = $this->input->post('amount');
         $payment_note = substr($this->input->post('payment_note'), 0, 255);
@@ -782,7 +782,7 @@ class Invoices extends Admin
             show_error($this->lang->line('error_date_fill'));
         } else {
             $data = [
-                            'invoice_id'   => $id,
+                            'invoice_id'   => $optn,
                             'amount_paid'  => $amount,
                             'date_paid'    => $date_paid,
                             'payment_note' => $payment_note,
@@ -792,16 +792,16 @@ class Invoices extends Admin
 
             $this->session->set_flashdata('message', $this->lang->line('invoice_payment_success'));
 
-            redirect('invoices/view/'.$id);
+            redirect('invoices/view/'.$optn);
         }
     }
 
     // --------------------------------------------------------------------
 
-    public function delete($id)
+    public function delete($optn)
     {
-        $this->session->set_flashdata('deleteInvoice', $id);
-        $data['deleteInvoice'] = \CI::Invoices()->getSingleInvoice($id)->row()->invoice_number;
+        $this->session->set_flashdata('deleteInvoice', $optn);
+        $data['deleteInvoice'] = \CI::Invoices()->getSingleInvoice($optn)->row()->invoice_number;
         $data['page_title'] = $this->lang->line('menu_delete_invoice');
         $this->load->view('invoices/delete', $data);
     }

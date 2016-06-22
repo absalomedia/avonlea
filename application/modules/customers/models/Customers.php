@@ -42,14 +42,14 @@ class Customers extends CI_Model
         return CI::db()->where('is_guest', 0)->count_all_results('customers');
     }
 
-    public function getCustomer($id)
+    public function getCustomer($optn)
     {
-        $result = CI::db()->get_where('customers', ['id' => $id]);
+        $result = CI::db()->get_where('customers', ['id' => $optn]);
 
         return $result->row();
     }
 
-    public function getAddressList($id)
+    public function getAddressList($optn)
     {
         return CI::db()->where('deleted', 0)->
                 order_by('country', 'ASC')->
@@ -60,13 +60,13 @@ class Customers extends CI_Model
                 order_by('company', 'ASC')->
                 order_by('firstname', 'ASC')->
                 order_by('lastname', 'ASC')->
-                where('customer_id', $id)->
+                where('customer_id', $optn)->
                 get('customers_address_bank')->result_array();
     }
 
-    public function countAddresses($id)
+    public function countAddresses($optn)
     {
-        return CI::db()->where('deleted', 0)->where('customer_id', $id)->from('customers_address_bank')->count_all_results();
+        return CI::db()->where('deleted', 0)->where('customer_id', $optn)->from('customers_address_bank')->count_all_results();
     }
 
     public function getAddress($address_id)
@@ -104,11 +104,11 @@ class Customers extends CI_Model
         }
     }
 
-    public function deleteAddress($id, $customer_id)
+    public function deleteAddress($optn, $customer_id)
     {
-        CI::db()->where(['id' => $id, 'customer_id' => $customer_id])->update('customers_address_bank', ['deleted' => 1]);
+        CI::db()->where(['id' => $optn, 'customer_id' => $customer_id])->update('customers_address_bank', ['deleted' => 1]);
 
-        return $id;
+        return $optn;
     }
 
     public function save($customer)
@@ -125,13 +125,13 @@ class Customers extends CI_Model
         }
     }
 
-    public function deactivate($id)
+    public function deactivate($optn)
     {
-        $customer = ['id' => $id, 'active' => 0];
+        $customer = ['id' => $optn, 'active' => 0];
         $this->save_customer($customer);
     }
 
-    public function delete($id)
+    public function delete($optn)
     {
         /*
         deleting a customer will remove all their orders from the system
@@ -140,16 +140,16 @@ class Customers extends CI_Model
         */
 
         //this deletes the customers record
-        CI::db()->where('id', $id);
+        CI::db()->where('id', $optn);
         CI::db()->delete('customers');
 
         // Delete Address records
-        CI::db()->where('customer_id', $id);
+        CI::db()->where('customer_id', $optn);
         CI::db()->delete('customers_address_bank');
 
         //get all the orders the customer has made and delete the items from them
         CI::db()->select('id');
-        $result = CI::db()->get_where('orders', ['customer_id' => $id]);
+        $result = CI::db()->get_where('orders', ['customer_id' => $optn]);
         $result = $result->result();
         foreach ($result as $order) {
             CI::db()->where('order_id', $order->id);
@@ -157,17 +157,17 @@ class Customers extends CI_Model
         }
 
         //delete the orders after the items have already been deleted
-        CI::db()->where('customer_id', $id);
+        CI::db()->where('customer_id', $optn);
         CI::db()->delete('orders');
     }
 
-    public function checkEmail($str, $id = false)
+    public function checkEmail($str, $optn = false)
     {
         CI::db()->select('email');
         CI::db()->from('customers');
         CI::db()->where('is_guest', 0)->where('email', $str);
-        if ($id) {
-            CI::db()->where('id !=', $id);
+        if ($optn) {
+            CI::db()->where('id !=', $optn);
         }
         $count = CI::db()->count_all_results();
 
@@ -211,14 +211,14 @@ class Customers extends CI_Model
         return CI::db()->get('customer_groups')->result();
     }
 
-    public function get_group($id)
+    public function get_group($optn)
     {
-        return CI::db()->where('id', $id)->get('customer_groups')->row();
+        return CI::db()->where('id', $optn)->get('customer_groups')->row();
     }
 
-    public function delete_group($id)
+    public function delete_group($optn)
     {
-        CI::db()->where('id', $id);
+        CI::db()->where('id', $optn);
         CI::db()->delete('customer_groups');
     }
 

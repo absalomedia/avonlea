@@ -178,9 +178,9 @@ class Banners extends CI_Model
 
     public function organize($banners)
     {
-        foreach ($banners as $sequence => $id) {
+        foreach ($banners as $sequence => $optn) {
             $data = ['sequence' => $sequence];
-            CI::db()->where('banner_id', $id);
+            CI::db()->where('banner_id', $optn);
             CI::db()->update('banners', $data);
         }
     }

@@ -1,6 +1,6 @@
 <?php pageHeader(sprintf(lang('zone_area_form'), $zone->name)) ?>
 
-<?php echo form_open('admin/locations/zone_area_form/'.$zone_id.'/'.$id); ?>
+<?php echo form_open('admin/locations/zone_area_form/'.$zone_id.'/'.$optn); ?>
 
     <div class="form-group">
         <label for="code"><?php echo lang('code'); ?></label>

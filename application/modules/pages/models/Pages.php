@@ -66,9 +66,9 @@ class Pages extends CI_Model
         return $results;
     }
 
-    public function find($id)
+    public function find($optn)
     {
-        return CI::db()->where('id', $id)->get('pages')->row();
+        return CI::db()->where('id', $optn)->get('pages')->row();
     }
 
     public function slug($slug)
@@ -76,9 +76,9 @@ class Pages extends CI_Model
         return  CI::db()->where('slug', $slug)->get('pages')->row();
     }
 
-    public function get_slug($id)
+    public function get_slug($optn)
     {
-        $page = $this->get_page($id);
+        $page = $this->get_page($optn);
         if ($page) {
             return $page->slug;
         }
@@ -98,20 +98,20 @@ class Pages extends CI_Model
         }
     }
 
-    public function delete_page($id)
+    public function delete_page($optn)
     {
         //delete the page
-        CI::db()->where('id', $id);
+        CI::db()->where('id', $optn);
         CI::db()->delete('pages');
     }
 
-    public function validateSlug($slug, $id = false, $counter = false)
+    public function validateSlug($slug, $optn = false, $counter = false)
     {
         CI::db()->select('slug');
         CI::db()->from('pages');
         CI::db()->where('slug', $slug.$counter);
-        if ($id) {
-            CI::db()->where('id !=', $id);
+        if ($optn) {
+            CI::db()->where('id !=', $optn);
         }
         $count = CI::db()->count_all_results();
 
@@ -122,7 +122,7 @@ class Pages extends CI_Model
                 $counter++;
             }
 
-            return $this->validateSlug($slug, $id, $counter);
+            return $this->validateSlug($slug, $optn, $counter);
         } else {
             return $slug.$counter;
         }

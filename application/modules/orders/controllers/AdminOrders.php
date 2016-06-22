@@ -187,9 +187,9 @@ class AdminOrders extends Admin
         redirect('admin/orders/order/'.$order_id);
     }
 
-    public function delete($id)
+    public function delete($optn)
     {
-        \CI::Orders()->delete($id);
+        \CI::Orders()->delete($optn);
         \CI::session()->set_flashdata('message', lang('message_order_deleted'));
 
         //redirect as to change the url

@@ -31,7 +31,7 @@ class Addresses extends Front
         $this->partial('addresses', $data);
     }
 
-    public function form($id = 0)
+    public function form($optn = 0)
     {
         $data['addressCount'] = \CI::Customers()->countAddresses($this->customer->id);
         $customer = \CI::Login()->customer();
@@ -51,8 +51,8 @@ class Addresses extends Front
         $data['zip'] = '';
 
 
-        if ($id != 0) {
-            $a = \CI::Customers()->getAddress($id);
+        if ($optn != 0) {
+            $a = \CI::Customers()->getAddress($optn);
 
             if ($a['customer_id'] != $this->customer->id) {
                 redirect('addresses/form'); // don't allow cross-customer editing
@@ -65,7 +65,7 @@ class Addresses extends Front
         //get the countries list for the dropdown
         $data['countries_menu'] = \CI::Locations()->getCountryMenu();
 
-        if ($id == 0) {
+        if ($optn == 0) {
             //if there is no set ID, the get the zones of the first country in the countries menu
             $data['zones_menu'] = \CI::Locations()->getZoneMenu(array_shift((array_keys($data['countries_menu']))));
         } else {
@@ -89,7 +89,7 @@ class Addresses extends Front
             $this->partial('address_form', $data);
         } else {
             $a = [];
-            $a['id'] = ($id == 0) ? '' : $id;
+            $a['id'] = ($optn == 0) ? '' : $optn;
             $a['customer_id'] = $this->customer->id;
             $a['company'] = \CI::input()->post('company');
             $a['firstname'] = \CI::input()->post('firstname');
@@ -117,19 +117,19 @@ class Addresses extends Front
         }
     }
 
-    public function delete($id)
+    public function delete($optn)
     {
-        \CI::Customers()->deleteAddress($id, $this->customer->id);
+        \CI::Customers()->deleteAddress($optn, $this->customer->id);
         echo 1;
     }
 
-    public function getZoneOptions($id)
+    public function getZoneOptions($optn)
     {
-        $zones = \CI::Locations()->getZoneMenu($id);
+        $zones = \CI::Locations()->getZoneMenu($optn);
 
-        foreach ($zones as $id => $z) :?>
+        foreach ($zones as $optn => $z) :?>
 
-            <option value="<?php echo $id;
+            <option value="<?php echo $optn;
         ?>"><?php echo $z;
         ?></option>
 

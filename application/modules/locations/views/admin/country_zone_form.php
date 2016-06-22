@@ -1,6 +1,6 @@
 <?php pageHeader(lang('zone_form')) ?>
 
-<?php echo form_open('admin/locations/zone_form/'.$id); ?>
+<?php echo form_open('admin/locations/zone_form/'.$optn); ?>
 
     <div class="form-group">
         <label for="country_id"><?php echo lang('country'); ?></label>

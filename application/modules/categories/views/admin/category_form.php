@@ -1,6 +1,6 @@
 <?php pageHeader(lang('category_form')); ?>
 
-<?php echo form_open_multipart('admin/categories/form/'.$id); ?>
+<?php echo form_open_multipart('admin/categories/form/'.$optn); ?>
 
 <div class="row">
     <div class="col-md-8">
@@ -27,7 +27,7 @@
                 <?php echo form_upload(['name' => 'image', 'class' => 'form-control']); ?>
             </div>
                 
-            <?php if ($id && $image != '') :?>
+            <?php if ($optn && $image != '') :?>
             
             <div style="text-align:center; padding:5px; border:1px solid #ddd;"><img src="<?php echo base_url('uploads/images/small/'.$image); ?>" alt="current"/><br/><?php echo lang('current_file'); ?></div>
             

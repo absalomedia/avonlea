@@ -39,13 +39,13 @@ class PayNow extends Controller
 
     // --------------------------------------------------------------------
 
-    public function googlecheckout($id)
+    public function googlecheckout($optn)
     {
-        if (!$id) {
+        if (!$optn) {
             redirect('');
         }
 
-        $data['row'] = \CI::Invoices()->getSingleInvoice($id)->row();
+        $data['row'] = \CI::Invoices()->getSingleInvoice($optn)->row();
 
         if (!$data['row']) {
             redirect('');
@@ -72,13 +72,13 @@ class PayNow extends Controller
 
     // --------------------------------------------------------------------
 
-    public function paypal($id)
+    public function paypal($optn)
     {
-        if (!$id) {
+        if (!$optn) {
             redirect('');
         }
 
-        $data['row'] = \CI::Invoices()->getSingleInvoice($id)->row();
+        $data['row'] = \CI::Invoices()->getSingleInvoice($optn)->row();
 
         if (!$data['row']) {
             redirect('');

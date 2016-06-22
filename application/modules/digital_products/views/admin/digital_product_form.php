@@ -1,11 +1,11 @@
 <?php echo pageHeader(lang('digital_products_form')); ?>
-<?php echo form_open_multipart('admin/digital_products/form/'.$id); ?>
+<?php echo form_open_multipart('admin/digital_products/form/'.$optn); ?>
 
     <div class="row">
         <div class="col-md-6">
 
             <div class="form-group">
-                <?php if ($id == 0) : ?>
+                <?php if ($optn == 0) : ?>
                     <label for="file"><?php echo lang('file_label'); ?> </label>
                     <?php echo form_upload(['name' => 'userfile', 'class' => 'form-control']); ?>
                 <?php else : ?>

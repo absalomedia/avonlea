@@ -22,9 +22,9 @@ class Locations extends CI_Model
         CI::db()->where('zone_id', $country_id)->delete('country_zone_areas');
     }
 
-    public function delete_zone_area($id)
+    public function delete_zone_area($optn)
     {
-        CI::db()->where('id', $id);
+        CI::db()->where('id', $optn);
         CI::db()->delete('country_zone_areas');
     }
 
@@ -35,9 +35,9 @@ class Locations extends CI_Model
         return CI::db()->get('country_zone_areas')->result();
     }
 
-    public function get_zone_area($id)
+    public function get_zone_area($optn)
     {
-        CI::db()->where('id', $id);
+        CI::db()->where('id', $optn);
 
         return CI::db()->get('country_zone_areas')->row();
     }
@@ -62,11 +62,11 @@ class Locations extends CI_Model
         CI::db()->where('country_id', $country_id)->delete('country_zones');
     }
 
-    public function delete_zone($id)
+    public function delete_zone($optn)
     {
-        $this->delete_zone_areas($id);
+        $this->delete_zone_areas($optn);
 
-        CI::db()->where('id', $id);
+        CI::db()->where('id', $optn);
         CI::db()->delete('country_zones');
     }
 
@@ -77,9 +77,9 @@ class Locations extends CI_Model
         return CI::db()->get('country_zones')->result();
     }
 
-    public function get_zone($id)
+    public function get_zone($optn)
     {
-        CI::db()->where('id', $id);
+        CI::db()->where('id', $optn);
 
         return CI::db()->get('country_zones')->row();
     }
@@ -114,23 +114,23 @@ class Locations extends CI_Model
         return CI::db()->order_by('sequence', 'ASC')->get('countries')->result();
     }
 
-    public function get_country_by_zone_id($id)
+    public function get_country_by_zone_id($optn)
     {
-        $zone = $this->get_zone($id);
+        $zone = $this->get_zone($optn);
 
         return $this->get_country($zone->country_id);
     }
 
-    public function get_country($id)
+    public function get_country($optn)
     {
-        CI::db()->where('id', $id);
+        CI::db()->where('id', $optn);
 
         return CI::db()->get('countries')->row();
     }
 
-    public function delete_country($id)
+    public function delete_country($optn)
     {
-        CI::db()->where('id', $id);
+        CI::db()->where('id', $optn);
         CI::db()->delete('countries');
     }
 

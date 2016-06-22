@@ -1,6 +1,6 @@
 <?php pageHeader(lang('canned_message_form')) ?>
 
-<?php echo form_open('admin/settings/canned_message_form/'.$id); ?>
+<?php echo form_open('admin/settings/canned_message_form/'.$optn); ?>
 
     <div class="form-group">
         <label for="name"><?php echo lang('label_canned_name'); ?></label>

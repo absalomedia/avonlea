@@ -12,9 +12,9 @@ class Messages extends CI_Model
         return $res->result_array();
     }
 
-    public function getMessage($id)
+    public function getMessage($optn)
     {
-        $res = CI::db()->where('id', $id)->get('canned_messages');
+        $res = CI::db()->where('id', $optn)->get('canned_messages');
 
         return $res->row_array();
     }
@@ -32,10 +32,10 @@ class Messages extends CI_Model
         }
     }
 
-    public function deleteMessage($id)
+    public function deleteMessage($optn)
     {
-        CI::db()->where('id', $id)->delete('canned_messages');
+        CI::db()->where('id', $optn)->delete('canned_messages');
 
-        return $id;
+        return $optn;
     }
 }

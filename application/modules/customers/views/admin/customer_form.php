@@ -2,7 +2,7 @@
     <h1><?php echo lang('customer_form'); ?></h1>
 </div>
 
-<?php echo form_open('admin/customers/form/'.$id); ?>
+<?php echo form_open('admin/customers/form/'.$optn); ?>
 
     <div class="row">
         <div class="col-md-3">
