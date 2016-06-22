@@ -22,7 +22,7 @@ class Breadcrumbs
         $category = CI::Categories()->find($optn);
         if ($category) {
             array_unshift($this->breadcrumbs, ['link' => site_url('category/'.$category->slug), 'name' => $category->name]);
-            $this->trace_categories($category->parent_id);
+            $this->traceCategories($category->parent_id);
         }
     }
 
@@ -31,7 +31,7 @@ class Breadcrumbs
         if (isset($this->CI->pages['all'][$optn])) {
             $page = $this->CI->pages['all'][$optn];
             array_unshift($this->breadcrumbs, ['link' => site_url('page/'.$page->slug), 'name' => $page->title]);
-            $this->trace_pages($page->parent_id);
+            $this->tracePages($page->parent_id);
         }
     }
 
@@ -47,20 +47,20 @@ class Breadcrumbs
             if (!$category) {
                 return;
             }
-            $this->trace_categories($category->id);
+            $this->traceCategories($category->id);
         } elseif ($type === 'product') {
             $product = CI::Products()->slug($slug);
             if (!$product) {
                 return;
             }
             array_unshift($this->breadcrumbs, ['link' => site_url('product/'.$product->slug), 'name' => $product->name]);
-            $this->trace_categories($product->primary_category);
+            $this->traceCategories($product->primary_category);
         } elseif ($type === 'page') {
             $page = CI::Pages()->slug($slug);
             if (!$page) {
                 return;
             }
-            $this->trace_pages($page->id);
+            $this->tracePages($page->id);
         }
 
         echo Avonlea\Libraries\View::getInstance()->get('breadcrumbs', ['breadcrumbs' => $this->breadcrumbs]);
