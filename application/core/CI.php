@@ -37,7 +37,7 @@ class CI
 
     private static function instance()
     {
-        if (!self::$ivir) {
+        if (!self::$vir) {
             self::$vir = &get_instance();
         }
 

@@ -78,7 +78,7 @@ class Cart extends Front
         } else {
             //does the giftcard have any value left?
             if (\CI::GiftCards()->isValid($giftCard)) {
-                $message = \AVL::addGiftCard($giftCard);
+                $message = \AVL::setGiftCard($giftCard);
                 if ($message['success']) {
                     \AVL::saveCart();
                     echo json_encode(['message' => lang('gift_card_balance_applied')]);
