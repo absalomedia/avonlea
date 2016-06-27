@@ -41,7 +41,7 @@ class CI
             self::$vir = &get_instance();
         }
 
-        return self::$ivir;
+        return self::$vir;
     }
 
     public static function __callStatic($method, $parameters)

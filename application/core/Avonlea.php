@@ -50,7 +50,7 @@ class Avonlea
         $this->getCart(true);
     }
 
-    public function addGiftCard($giftCard)
+    public function setGiftCard($giftCard)
     {
         foreach ($this->items as $item) {
             if ($item->description === $giftCard->code && $item->type === 'gift card') {
@@ -64,7 +64,7 @@ class Avonlea
         return ['success' => true];
     }
 
-    public function addCoupon($code)
+    public function setCoupon($code)
     {
         //get the coupon
         $coupon = \CI::Coupons()->getCouponByCode($code);

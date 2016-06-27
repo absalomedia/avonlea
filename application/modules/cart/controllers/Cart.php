@@ -63,7 +63,7 @@ class Cart extends Front
 
     public function submitCoupon()
     {
-        $coupon = \AVL::addCoupon(\CI::input()->post('coupon'));
+        $coupon = \AVL::setCoupon(\CI::input()->post('coupon'));
         \AVL::saveCart();
         echo $coupon;
     }
