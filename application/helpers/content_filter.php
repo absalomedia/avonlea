@@ -15,9 +15,9 @@ class ContentFilter
 
         //baseURL & siteURL filter
         $filter = new \Twig_SimpleFilter('*URL', function ($name, $string) {
-            $f = $name.'_url';
+            $fin = $name.'_url';
 
-            return $f($string);
+            return $fin($string);
         });
         $twig->addFilter($filter);
 

@@ -33,26 +33,26 @@ class CI
     {
     }
 
-    private static $i;
+    private static $vir;
 
     private static function instance()
     {
-        if (!self::$i) {
-            self::$i = &get_instance();
+        if (!self::$ivir) {
+            self::$vir = &get_instance();
         }
 
-        return self::$i;
+        return self::$ivir;
     }
 
     public static function __callStatic($method, $parameters)
     {
         self::instance();
-        if (isset(self::$i->$method)) {
-            return self::$i->$method;
+        if (isset(self::$vir->$method)) {
+            return self::$vir->$method;
         } else {
-            self::$i->$method = new $method();
+            self::$vir->$method = new $method();
 
-            return self::$i->$method;
+            return self::$vir->$method;
         }
     }
 }

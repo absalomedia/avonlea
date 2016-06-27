@@ -10,13 +10,13 @@ function format_address($fields)
     $default = '<strong>{% if company %} {{company}}, {% endif %}{{firstname}} {{lastname}}</strong><br><small>{{phone}} | {{email}}<br>{{address1}}<br>{% if address2 %}{{address2}}<br>{% endif %}{{city}}, {{zone}} {{zip}}<br>{{country}}</small>';
 
     // Fetch country record to determine which format to use
-    $CI = &get_instance();
-    $CI->load->model('Locations');
-    $c_data = $CI->Locations->get_country($fields['country_id']);
+    $CIX = &get_instance();
+    $CIX->load->model('Locations');
+    $c_data = $CIX->Locations->get_country($fields['country_id']);
 
-    if (empty($c_data->address_format)) {
-        $formatted = $default;
-    } else {
+    $formatted = $default;
+
+    if (!empty($c_data->address_format)) {
         $formatted = $c_data->address_format;
     }
 

@@ -1217,7 +1217,7 @@ class Parsedown
     // ~
     //
 
-    protected function li($lines)
+    protected function liner($lines)
     {
         $markup = $this->lines($lines);
 

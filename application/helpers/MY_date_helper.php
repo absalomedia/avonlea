@@ -3,13 +3,13 @@
 function format_date($date)
 {
     if ($date != '' && $date != '0000-00-00') {
-        $d = explode('-', $date);
+        $day = explode('-', $date);
 
-        $m = [
+        $mon = [
         'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December',
         ];
 
-        return $m[$d[1] - 1].' '.$d[2].', '.$d[0];
+        return $mon[$day[1] - 1].' '.$day[2].', '.$day[0];
     } else {
         return false;
     }
@@ -21,9 +21,9 @@ function reverse_format($date)
         return;
     }
 
-    $d = explode('-', $date);
+    $day = explode('-', $date);
 
-    return "{$d[1]}-{$d[2]}-{$d[0]}";
+    return "{$day[1]}-{$day[2]}-{$day[0]}";
 }
 
 function format_ymd($date)
@@ -31,9 +31,9 @@ function format_ymd($date)
     if (empty($date) || $date === '00-00-0000') {
         return '';
     } else {
-        $d = explode('-', $date);
+        $day = explode('-', $date);
 
-        return $d[2].'-'.$d[0].'-'.$d[1];
+        return $day[2].'-'.$day[0].'-'.$day[1];
     }
 }
 

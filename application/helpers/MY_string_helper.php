@@ -23,10 +23,10 @@ function form_decode(&$x)
     return $x;
 }
 
-function my_character_limiter($str, $n = 500, $end_char = '&#8230;')
+function my_character_limiter($str, $num = 500, $end_char = '&#8230;')
 {
-    $output = substr($str, 0, $n);
-    if (strlen($str) > $n) {
+    $output = substr($str, 0, $num);
+    if (strlen($str) > $num) {
         $output .= $end_char;
     }
 
