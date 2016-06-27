@@ -22,7 +22,7 @@
         <h1>Avonlea Installer</h1>
 
     <?php if (isset($errors)) {
-        echo $errors;
+    echo $errors;
 } ?>
 
     <form action="<?php echo base_url(); ?>install/" method="post" class="pure-form pure-form-stacked" accept-charset="utf-8">
