@@ -15,8 +15,7 @@ echo config_item('company_name'); ?></title>
     <meta name="description" content="<?php echo config_item('default_meta_description'); ?>" />
 <?php endif; ?>
 
-<link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Comfortaa|Raleway' rel='stylesheet' type='text/css'>
 
 <?php
 $_css = new CSSCrunch();

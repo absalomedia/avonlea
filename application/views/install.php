@@ -5,8 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Install Avonlea Invoicing</title>
-<link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Comfortaa|Raleway' rel='stylesheet' type='text/css'>
 <link href="<?php echo base_url('../themes/default/assets/css/fonts.css'); ?>" rel="stylesheet" type="text/css" />
 <link href="<?php echo base_url('../themes/default/assets/css/pure.min.css'); ?>" rel="stylesheet" type="text/css" />
 <link href="<?php echo base_url('../themes/default/assets/css/font-awesome.min.css'); ?>" rel="stylesheet" type="text/css" />
@@ -23,7 +22,7 @@
         <h1>Avonlea Installer</h1>
 
     <?php if (isset($errors)) {
-    echo $errors;
+        echo $errors;
 } ?>
 
     <form action="<?php echo base_url(); ?>install/" method="post" class="pure-form pure-form-stacked" accept-charset="utf-8">

@@ -4,8 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>AVL <?php echo (isset($page_title)) ? ' :: '.$page_title : ''; ?></title>
 
-<link href='//fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet' type='text/css'>
-<link href='//fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Comfortaa|Raleway' rel='stylesheet' type='text/css'>
 
 <?php
 $_css = new CSSCrunch();
