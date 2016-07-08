@@ -14,7 +14,6 @@ $_css->addFile('pure.min');
 $_css->addFile('font-awesome.min');
 $_css->addFile('styles');
 $_css->addFile('admin');
-$_css->addFile('responsive-nav');
 $_css->addFile('profiler');
 $_css->addFile('trumbowyg');
 $_css->addFile('trumb');

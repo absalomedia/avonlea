@@ -5,18 +5,17 @@
 
 
 <?php
-$_js2 = new JSCrunch();
-$_js2->addFile('barba.min');
-$_js2->addFile('flatpickr.min');
-$_js2->addFile('responsive-nav.min');
+    $_js2 = new JSCrunch();
+    $_js2->addFile('barba.min');
+    $_js2->addFile('flatpickr.min');
 
-if (true) { //Dev Mode
-    //in development mode keep all the css files separate
-    $_js2->crunch(true);
-} else {
-    //combine all css files in live mode
-    $_js2->crunch();
-}
+    if (true) { //Dev Mode
+        //in development mode keep all the css files separate
+        $_js2->crunch(true);
+    } else {
+        //combine all css files in live mode
+        $_js2->crunch();
+    }
 ?>
 
 <script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap.min.js'); ?>"></script>

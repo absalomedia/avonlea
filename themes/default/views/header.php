@@ -26,7 +26,6 @@ $_css->addFile('pure.min');
 $_css->addFile('font-awesome.min');
 $_css->addFile('styles');
 $_css->addFile('profiler');
-$_css->addFile('side');
 
 
 $_js = new JSCrunch();
