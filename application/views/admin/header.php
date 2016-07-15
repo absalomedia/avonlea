@@ -66,9 +66,9 @@ if (isset($additional_header_info)) {
         <div class="pure-menu">
             <a class="pure-menu-heading" href="#" class="pure-menu-link"><span class="fa fa-cogs"> Avonlea</span></a>
             <ul class="pure-menu-list">
-                        <li class="pure-menu-item"><a href="<?php echo site_url('admin/orders'); ?>"><?php echo lang('common_orders'); ?> <span class="caret"></span></a>
+                        <li class="pure-menu-item pure-menu-has-children"><a href="<?php echo site_url('admin/orders'); ?>" class="pure-menu-link"><?php echo lang('common_orders'); ?> <span class="caret"></span></a>
                             <?php if (CI::auth()->checkAccess('Admin')) : ?>
-                            <ul class="pure-menu-list">
+                            <ul class="pure-menu-children">
                                 <li class="pure-menu-item"><a href="<?php echo site_url('admin/customers'); ?>" class="pure-menu-link"><?php echo lang('common_customers'); ?></a></li>
                                 <li class="pure-menu-item"><a href="<?php echo site_url('admin/customers/groups'); ?>" class="pure-menu-link"><?php echo lang('common_groups'); ?></a></li>
                                 <li class="pure-menu-item"><a href="<?php echo site_url('admin/reports'); ?>" class="pure-menu-link"><?php echo lang('common_reports'); ?></a></li>
@@ -78,26 +78,26 @@ if (isset($additional_header_info)) {
                         </li>
                             <?php endif; ?>
                     <?php if (CI::auth()->checkAccess('Admin')) : ?>
-                    <li class="pure-menu-item">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php echo lang('common_catalog'); ?> <span class="caret"></span></a></li>
-                        <ul class="pure-menu-list">
+                    <li class="pure-menu-item pure-menu-has-children">
+                        <a href="#" role="button" aria-expanded="false" class="pure-menu-link"><?php echo lang('common_catalog'); ?> <span class="caret"></span></a></li>
+                        <ul class="pure-menu-children">
                             <li class="pure-menu-item"><a href="<?php echo site_url('admin/categories'); ?>" class="pure-menu-link"><?php echo lang('common_categories'); ?></a></li>
                             <li class="pure-menu-item"><a href="<?php echo site_url('admin/products'); ?>" class="pure-menu-link"><?php echo lang('common_products'); ?></a></li>
                             <li class="pure-menu-item"><a href="<?php echo site_url('admin/digital_products'); ?>" class="pure-menu-link"><?php echo lang('common_digital_products'); ?></a></li>
                         </ul>
                     </li>
 
-                    <li class="pure-menu-item">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php echo lang('common_content'); ?> <span class="caret"></span></a>
-                        <ul class="pure-menu-list">
+                   <li class="pure-menu-item pure-menu-has-children">
+                        <a href="#" role="button" aria-expanded="false" class="pure-menu-link"><?php echo lang('common_content'); ?> <span class="caret"></span></a>
+                        <ul class="pure-menu-children">
                             <li class="pure-menu-link"><a href="<?php echo site_url('admin/banners'); ?>" class="pure-menu-link"><?php echo lang('common_banners'); ?></a></li>
                             <li class="pure-menu-link"><a href="<?php echo site_url('admin/pages'); ?>" class="pure-menu-link"><?php echo lang('common_pages'); ?></a></li>
                         </ul>
                     </li>
 
-                    <li class="pure-menu-item">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php echo lang('common_administrative'); ?> <span class="caret"></span></a>
-                        <ul class="pure-menu-list">
+                    <li class="pure-menu-item pure-menu-has-children">
+                        <a href="#" role="button" aria-expanded="false" class="pure-menu-link"><?php echo lang('common_administrative'); ?> <span class="caret"></span></a>
+                        <ul class="pure-menu-children">
                             <li class="pure-menu-link"><a href="<?php echo site_url('admin/settings'); ?>" class="pure-menu-link"><?php echo lang('common_Avonlea_configuration'); ?></a></li>
                             <li class="pure-menu-link"><a href="<?php echo site_url('admin/shipping'); ?>" class="pure-menu-link"><?php echo lang('common_shipping_modules'); ?></a></li>
                             <li class="pure-menu-link"><a href="<?php echo site_url('admin/payments'); ?>" class="pure-menu-link"><?php echo lang('common_payment_modules'); ?></a></li>
@@ -109,9 +109,9 @@ if (isset($additional_header_info)) {
                     </li>
                     <?php endif; ?>
 
-                    <li class="pure-menu-item">
+                    <li class="pure-menu-item pure-menu-has-children">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php echo lang('common_actions'); ?> <span class="caret"></span></a>
-                        <ul class="pure-menu-list">
+                        <ul class="pure-menu-children">
                             <li class="pure-menu-link"><a href="<?php echo site_url('admin/dashboard'); ?>" class="pure-menu-link"><?php echo lang('common_dashboard'); ?></a></li>
                             <li class="pure-menu-link"><a href="<?php echo site_url(); ?>" class="pure-menu-link"><?php echo lang('common_front_end'); ?></a></li>
                             <li class="pure-menu-link"><a href="<?php echo site_url('admin/logout'); ?>" class="pure-menu-link"><?php echo lang('common_log_out'); ?></a></li>
@@ -126,7 +126,6 @@ if (isset($additional_header_info)) {
 endif; ?>"></div>
 
 <div role="main" id="main" class="main">
-      <a href="#nav" class="nav-toggle">Menu</a>
     <div class="content <?php if (CI::auth()->isLoggedIn(false, false)) :
 ?>admin<?php
 endif; ?>">
