@@ -66,7 +66,7 @@ if (isset($additional_header_info)) {
         <div class="pure-menu">
             <a class="pure-menu-heading" href="#" class="pure-menu-link"><span class="fa fa-cogs"> Avonlea</span></a>
             <ul class="pure-menu-list">
-                        <li class="pure-menu-item pure-menu-has-children"><a href="<?php echo site_url('admin/orders'); ?>" class="pure-menu-link"><?php echo lang('common_orders'); ?> <span class="caret"></span></a>
+                        <li class="pure-menu-item pure-menu-has-children"><a href="<?php echo site_url('admin/orders'); ?>" class="pure-menu-link"><?php echo lang('common_orders'); ?></a>
                             <?php if (CI::auth()->checkAccess('Admin')) : ?>
                             <ul class="pure-menu-children">
                                 <li class="pure-menu-item"><a href="<?php echo site_url('admin/customers'); ?>" class="pure-menu-link"><?php echo lang('common_customers'); ?></a></li>
@@ -79,7 +79,7 @@ if (isset($additional_header_info)) {
                             <?php endif; ?>
                     <?php if (CI::auth()->checkAccess('Admin')) : ?>
                     <li class="pure-menu-item pure-menu-has-children">
-                        <a href="#" role="button" aria-expanded="false" class="pure-menu-link"><?php echo lang('common_catalog'); ?> <span class="caret"></span></a></li>
+                        <a href="#" role="button" aria-expanded="false" class="pure-menu-link"><?php echo lang('common_catalog'); ?> </a>
                         <ul class="pure-menu-children">
                             <li class="pure-menu-item"><a href="<?php echo site_url('admin/categories'); ?>" class="pure-menu-link"><?php echo lang('common_categories'); ?></a></li>
                             <li class="pure-menu-item"><a href="<?php echo site_url('admin/products'); ?>" class="pure-menu-link"><?php echo lang('common_products'); ?></a></li>
@@ -88,7 +88,7 @@ if (isset($additional_header_info)) {
                     </li>
 
                    <li class="pure-menu-item pure-menu-has-children">
-                        <a href="#" role="button" aria-expanded="false" class="pure-menu-link"><?php echo lang('common_content'); ?> <span class="caret"></span></a>
+                        <a href="#" role="button" aria-expanded="false" class="pure-menu-link"><?php echo lang('common_content'); ?> </a>
                         <ul class="pure-menu-children">
                             <li class="pure-menu-link"><a href="<?php echo site_url('admin/banners'); ?>" class="pure-menu-link"><?php echo lang('common_banners'); ?></a></li>
                             <li class="pure-menu-link"><a href="<?php echo site_url('admin/pages'); ?>" class="pure-menu-link"><?php echo lang('common_pages'); ?></a></li>
@@ -96,7 +96,7 @@ if (isset($additional_header_info)) {
                     </li>
 
                     <li class="pure-menu-item pure-menu-has-children">
-                        <a href="#" role="button" aria-expanded="false" class="pure-menu-link"><?php echo lang('common_administrative'); ?> <span class="caret"></span></a>
+                        <a href="#" role="button" aria-expanded="false" class="pure-menu-link"><?php echo lang('common_administrative'); ?> </a>
                         <ul class="pure-menu-children">
                             <li class="pure-menu-link"><a href="<?php echo site_url('admin/settings'); ?>" class="pure-menu-link"><?php echo lang('common_Avonlea_configuration'); ?></a></li>
                             <li class="pure-menu-link"><a href="<?php echo site_url('admin/shipping'); ?>" class="pure-menu-link"><?php echo lang('common_shipping_modules'); ?></a></li>
@@ -110,7 +110,7 @@ if (isset($additional_header_info)) {
                     <?php endif; ?>
 
                     <li class="pure-menu-item pure-menu-has-children">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php echo lang('common_actions'); ?> <span class="caret"></span></a>
+                        <a href="#" role="button" aria-expanded="false" class="pure-menu-link"><?php echo lang('common_actions'); ?></a>
                         <ul class="pure-menu-children">
                             <li class="pure-menu-link"><a href="<?php echo site_url('admin/dashboard'); ?>" class="pure-menu-link"><?php echo lang('common_dashboard'); ?></a></li>
                             <li class="pure-menu-link"><a href="<?php echo site_url(); ?>" class="pure-menu-link"><?php echo lang('common_front_end'); ?></a></li>
