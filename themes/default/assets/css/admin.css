@@ -147,13 +147,6 @@ The button to open/close the Menu is custom-made and not part of Pure. Here's
 how it works:
 */
 
-.pure-menu-list li:hover > ul {
-    display: block;
-    top: 0;
-    left: 100%;
-    visibility: visible;
-}
-
 /*
 `.menu-link` represents the responsive menu toggle that shows/hides on
 small screens.
@@ -304,4 +297,16 @@ fieldset { margin-bottom:15px; }
 
 .tableInput {
     max-width:100px;
+}
+
+
+ul.pure-menu-list, ul.pure-menu-list li ul, ul.pure-menu-list li ul li ul {
+    list-style: none;
+}
+
+.pure-menu li:hover > ul {
+    display: block;
+    top: 0;
+    left: 100%;
+    visibility: visible;
 }
