@@ -28,26 +28,18 @@ function areyousure()
         {
             foreach ($pages[$parent_id] as $page) :?>
             <tr>
-                <td style="width:20px;"><?php echo ($page->parent_id === -1) ? '<i class="fa fa-eye-slash" aria-hidden="true"></i>' : '';
-            ?></td>
-                <td><?php echo  $sub.$page->title;
-            ?></td>
+                <td style="width:20px;"><?php echo ($page->parent_id === -1) ? '<i class="fa fa-eye-slash" aria-hidden="true"></i>' : ''; ?></td>
+                <td><?php echo  $sub.$page->title; ?></td>
                 <td class="text-right">
                     <div class="btn-group">
                         <?php if (!empty($page->url)) : ?>
-                            <a class="btn btn-default" href="<?php echo site_url('admin/pages/link_form/'.$page->id);
-            ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                            <a class="btn btn-default" href="<?php echo $page->url;
-            ?>" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+                            <a class="btn btn-default" href="<?php echo site_url('admin/pages/link_form/'.$page->id); ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                            <a class="btn btn-default" href="<?php echo $page->url; ?>" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
                         <?php else : ?>
-                            <a class="btn btn-default" href="<?php echo site_url('admin/pages/form/'.$page->id);
-            ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                            <a class="btn btn-default" href="<?php echo site_url('page/'.$page->slug);
-            ?>" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                        <?php endif;
-            ?>
-                        <a class="btn btn-danger" href="<?php echo site_url('admin/pages/delete/'.$page->id);
-            ?>" onclick="return areyousure();"><i class="fa fa-times" aria-hidden="true"></i></a>
+                            <a class="btn btn-default" href="<?php echo site_url('admin/pages/form/'.$page->id); ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                            <a class="btn btn-default" href="<?php echo site_url('page/'.$page->slug); ?>" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                        <?php endif; ?>
+                        <a class="btn btn-danger" href="<?php echo site_url('admin/pages/delete/'.$page->id); ?>" onclick="return areyousure();"><i class="fa fa-times" aria-hidden="true"></i></a>
                     </div>
                 </td>
             </tr>

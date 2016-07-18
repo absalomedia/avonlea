@@ -85,10 +85,7 @@
                     <?php
                     if (isset($options[$product->id])) {
                         foreach ($options[$product->id] as $option) :?>
-                                <div class="cartItemOption"><?php echo ($product->is_giftcard) ? lang('gift_card_'.$option->option_name) : $option->option_name;
-                        ?> : <?php echo($option->price > 0) ? '['.format_currency($option->price).']' : '';
-                        ?> <?php echo $option->value;
-                        ?></div>
+                                <div class="cartItemOption"><?php echo ($product->is_giftcard) ? lang('gift_card_'.$option->option_name) : $option->option_name; ?> : <?php echo($option->price > 0) ? '['.format_currency($option->price).']' : ''; ?> <?php echo $option->value; ?></div>
                             <?php                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             endforeach;
                     }
                     ?>

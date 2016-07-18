@@ -7,8 +7,7 @@
 } else {
     ?>
             <script>
-        $('.checkoutAddress').load('<?php echo site_url('addresses/form');
-    ?>');
+        $('.checkoutAddress').load('<?php echo site_url('addresses/form'); ?>');
             </script>
             <?php //(new Avonlea\Controller\Addresses)->form();
 }

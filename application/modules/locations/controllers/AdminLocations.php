@@ -208,9 +208,7 @@ class AdminLocations extends Admin
 
         foreach ($zones as $optn => $z) :?>
         
-        <option value="<?php echo $optn;
-        ?>"><?php echo $z;
-        ?></option>
+        <option value="<?php echo $optn; ?>"><?php echo $z; ?></option>
         
         <?php                                                                                                                                                                                                                         endforeach;
     }

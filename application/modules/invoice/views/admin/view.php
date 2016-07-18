@@ -327,10 +327,7 @@ endif; // ends if ($invoiceHistory->num_rows() ==0)
             // localized month
             echo $this->lang->line('cal_'.strtolower(date('F', mysql_to_unix($row->date_paid))));
             // day and year numbers
-            echo date(' j, Y', mysql_to_unix($row->date_paid));
-            ?> : <?php echo \CI::Settings()->getSettings('currency_symbol').$row->amount_paid;
-            ?>. <em>&quot;<?php echo ($row->payment_note == '0') ? 'There was no payment note entered' : $row->payment_note;
-            ?>&quot;</em>
+            echo date(' j, Y', mysql_to_unix($row->date_paid)); ?> : <?php echo \CI::Settings()->getSettings('currency_symbol').$row->amount_paid; ?>. <em>&quot;<?php echo ($row->payment_note == '0') ? 'There was no payment note entered' : $row->payment_note; ?>&quot;</em>
           </li>
         <?php
             endforeach;
