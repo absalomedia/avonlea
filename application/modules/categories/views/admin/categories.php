@@ -29,21 +29,15 @@ function areyousure()
         {
             foreach ($cats[$parent_id] as $cat) :?>
             <tr>
-                <td><?php echo ($hidden) ? '<i class="fa fa-eye-slash" aria-hidden="true"></i>' : '';
-            ?></td>
-                <td><?php echo $sub.$cat->name;
-            ?></td>
+                <td><?php echo ($hidden) ? '<i class="fa fa-eye-slash" aria-hidden="true"></i>' : ''; ?></td>
+                <td><?php echo $sub.$cat->name; ?></td>
                 <?php foreach ($groups as $group) :?>
-                    <td><?php echo ($cat->{'enabled'.$group->id} === '1') ? lang('enabled') : lang('disabled');
-            ?></td>
-                <?php endforeach;
-            ?>
+                    <td><?php echo ($cat->{'enabled'.$group->id} === '1') ? lang('enabled') : lang('disabled'); ?></td>
+                <?php endforeach; ?>
                 <td class="text-right">
                     <div class="btn-group">
-                        <a class="btn btn-default" href="<?php echo  site_url('admin/categories/form/'.$cat->id);
-            ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                        <a class="btn btn-danger" href="<?php echo  site_url('admin/categories/delete/'.$cat->id);
-            ?>" onclick="return areyousure();"><i class="fa fa-times " aria-hidden="true"></i></a>
+                        <a class="btn btn-default" href="<?php echo  site_url('admin/categories/form/'.$cat->id); ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                        <a class="btn btn-danger" href="<?php echo  site_url('admin/categories/delete/'.$cat->id); ?>" onclick="return areyousure();"><i class="fa fa-times " aria-hidden="true"></i></a>
                     </div>
                 </td>
             </tr>

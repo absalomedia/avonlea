@@ -133,17 +133,12 @@ function remove_option(id)
                         {
                             foreach ($cats[$parent_id] as $cat) :?>
                             <tr>
-                                <td><?php echo  $sub.$cat->name;
-                            ?></td>
+                                <td><?php echo  $sub.$cat->name; ?></td>
                                 <td>
-                                    <input type="checkbox" name="categories[]" value="<?php echo $cat->id;
-                            ?>" <?php echo(in_array($cat->id, $productCat)) ? 'checked="checked"' : '';
-                            ?>/>
+                                    <input type="checkbox" name="categories[]" value="<?php echo $cat->id; ?>" <?php echo(in_array($cat->id, $productCat)) ? 'checked="checked"' : ''; ?>/>
                                 </td>
                                 <td>
-                                    <input type="radio" name="primary_category" value="<?php echo $cat->id;
-                            ?>" <?php echo ($primaryCat === $cat->id) ? 'checked="checked"' : '';
-                            ?>/>
+                                    <input type="radio" name="primary_category" value="<?php echo $cat->id; ?>" <?php echo ($primaryCat === $cat->id) ? 'checked="checked"' : ''; ?>/>
                                 </td>
                             </tr>
                             <?php
@@ -258,51 +253,36 @@ function remove_option(id)
 <?php
 function add_image($photo_id, $filename, $alt, $caption, $primary = false)
                     {
-                        ob_start();
-                        ?>
-    <div class="row gc_photo" id="gc_photo_<?php echo $photo_id;
-                        ?>" style="background-color:#fff; border-bottom:1px solid #ddd; padding-bottom:20px; margin-bottom:20px;">
+                        ob_start(); ?>
+    <div class="row gc_photo" id="gc_photo_<?php echo $photo_id; ?>" style="background-color:#fff; border-bottom:1px solid #ddd; padding-bottom:20px; margin-bottom:20px;">
         <div class="col-md-2">
-            <input type="hidden" name="images[<?php echo $photo_id;
-                        ?>][filename]" value="<?php echo $filename;
-                        ?>"/>
-            <img class="gc_thumbnail" src="<?php echo base_url('uploads/images/thumbnails/'.$filename);
-                        ?>" style="padding:5px; border:1px solid #ddd"/>
+            <input type="hidden" name="images[<?php echo $photo_id; ?>][filename]" value="<?php echo $filename; ?>"/>
+            <img class="gc_thumbnail" src="<?php echo base_url('uploads/images/thumbnails/'.$filename); ?>" style="padding:5px; border:1px solid #ddd"/>
         </div>
         <div class="col-md-10">
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
-                        <input name="images[<?php echo $photo_id;
-                        ?>][alt]" value="<?php echo $alt;
-                        ?>" class="form-control" placeholder="<?php echo lang('alt_tag');
-                        ?>"/>
+                        <input name="images[<?php echo $photo_id; ?>][alt]" value="<?php echo $alt; ?>" class="form-control" placeholder="<?php echo lang('alt_tag'); ?>"/>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="checkbox">
                         <label>
-                            <input type="radio" name="primary_image" value="<?php echo $photo_id;
-                        ?>" <?php if ($primary) {
+                            <input type="radio" name="primary_image" value="<?php echo $photo_id; ?>" <?php if ($primary) {
                             echo 'checked="checked"';
-                        }
-                        ?>/> <?php echo lang('main_image');
-                        ?>
+                        } ?>/> <?php echo lang('main_image'); ?>
                         </label>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <a onclick="return remove_image($(this));" rel="<?php echo $photo_id;
-                        ?>" class="btn btn-danger pull-right"><i class="fa fa-times " aria-hidden="true"></i></a>
+                    <a onclick="return remove_image($(this));" rel="<?php echo $photo_id; ?>" class="btn btn-danger pull-right"><i class="fa fa-times " aria-hidden="true"></i></a>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <label><?php echo lang('caption');
-                        ?></label>
-                    <textarea name="images[<?php echo $photo_id;
-                        ?>][caption]" class="form-control" rows="3"><?php echo $caption;
-                        ?></textarea>
+                    <label><?php echo lang('caption'); ?></label>
+                    <textarea name="images[<?php echo $photo_id; ?>][caption]" class="form-control" rows="3"><?php echo $caption; ?></textarea>
                 </div>
             </div>
         </div>
@@ -348,17 +328,13 @@ function photos_sortable()
 <?php
 function add_option_value($po, $count, $price)
 {
-    ob_start();
-    ?>
-    <tr id="giftcard_value_<?php echo $count;
-    ?>">
+    ob_start(); ?>
+    <tr id="giftcard_value_<?php echo $count; ?>">
         <td>
             <div class="input-group">
-                <input type="text" name="option[giftcard_values][<?php echo $count;
-    ?>]" value="<?php echo $price ?>" class="form-control"/>
+                <input type="text" name="option[giftcard_values][<?php echo $count; ?>]" value="<?php echo $price ?>" class="form-control"/>
                 <div class="input-group-btn">
-                    <button type="button" class="btn btn-danger" onclick="remove_giftcard_value(<?php echo $count;
-    ?>);"><i class="fa fa-times" aria-hidden="true"></i></button>
+                    <button type="button" class="btn btn-danger" onclick="remove_giftcard_value(<?php echo $count; ?>);"><i class="fa fa-times" aria-hidden="true"></i></button>
                 </div>
             </div>
         </td>

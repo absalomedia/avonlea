@@ -137,23 +137,15 @@
                             if (isset($cats[$parent_id])) {
                                 foreach ($cats[$parent_id] as $cat) :?>
                                 <tr>
-                                    <td><?php echo ($hidden) ? '<i class="fa fa-eye-slash">' : '';
-                                ?></i></td>
-                                    <td><?php echo  $sub.$cat->name;
-                                ?></td>
+                                    <td><?php echo ($hidden) ? '<i class="fa fa-eye-slash">' : ''; ?></i></td>
+                                    <td><?php echo  $sub.$cat->name; ?></td>
                                     <?php foreach ($groups as $group) :?>
-                                        <td><?php echo ($cat->{'enabled'.$group->id}) ? '<i class="fa fa-check" aria-hidden="true"></i>' : '';
-                                ?></td>
-                                    <?php endforeach;
-                                ?>
+                                        <td><?php echo ($cat->{'enabled'.$group->id}) ? '<i class="fa fa-check" aria-hidden="true"></i>' : ''; ?></td>
+                                    <?php endforeach; ?>
                                     <td class="text-center">
-                                        <input type="checkbox" name="categories[]" value="<?php echo $cat->id;
-                                ?>" <?php echo(in_array($cat->id, $productCat)) ? 'checked="checked"' : '';
-                                ?>/>
+                                        <input type="checkbox" name="categories[]" value="<?php echo $cat->id; ?>" <?php echo(in_array($cat->id, $productCat)) ? 'checked="checked"' : ''; ?>/>
                                         &nbsp;&nbsp;
-                                        <input type="radio" name="primary_category" value="<?php echo $cat->id;
-                                ?>" <?php echo ($primaryCat === $cat->id) ? 'checked="checked"' : '';
-                                ?>/>
+                                        <input type="radio" name="primary_category" value="<?php echo $cat->id; ?>" <?php echo ($primaryCat === $cat->id) ? 'checked="checked"' : ''; ?>/>
                                     </td>
                                 </tr>
                                 <?php
