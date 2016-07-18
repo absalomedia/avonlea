@@ -5,14 +5,11 @@ Add transition to containers so they can push in and out.
 #menu,
 .menu-link {
     -webkit-transition: all 0.2s ease-out;
-    -moz-transition: all 0.2s ease-out;
-    -ms-transition: all 0.2s ease-out;
-    -o-transition: all 0.2s ease-out;
     transition: all 0.2s ease-out;
 }
 
 /*
-This is the parent `<div>` that contains the menu and the content area.
+This is the parent `` that contains the menu and the content area.
 */
 #layout {
     position: relative;
@@ -27,7 +24,7 @@ This is the parent `<div>` that contains the menu and the content area.
         left: 180px;
     }
 /*
-The content `<div>` is where all your content goes.
+The content `` is where all your content goes.
 */
 .content {
     margin: 0 auto;
@@ -68,7 +65,7 @@ The content `<div>` is where all your content goes.
 
 
 /*
-The `#menu` `<div>` is the parent `<div>` that contains the `.pure-menu` that
+The `#menu` `` is the parent `` that contains the `.pure-menu` that
 appears on the left side of the page.
 */
 
@@ -118,14 +115,14 @@ appears on the left side of the page.
         }
 
     /*
-    This styles the selected menu item `<li>`.
+    This styles the selected menu item ``.
     */
     #menu .pure-menu-selected,
     #menu .pure-menu-heading {
         background: #1f8dd6;
     }
         /*
-        This styles a link within a selected menu item `<li>`.
+        This styles a link within a selected menu item ``.
         */
         #menu .pure-menu-selected a {
             color: #fff;
