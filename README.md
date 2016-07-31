@@ -4,10 +4,10 @@ This is a very, very alpah fork/code refactor of some long standing invoicing so
 - [x] Patch to CodeIgniter 3.x branch
 - [x] Standardise database between old to new schema for migration purposes
 - [x] Apply CI code quality enforcement
-- [] Remove redundant modules from codebase
-- [] Add in new modules based on updated/revised invoicing plan
-- [] Make sure all modules work as planned, using Travis, etc.
-- [] Do an official release
+- [ ] Remove redundant modules from codebase
+- [ ] Add in new modules based on updated/revised invoicing plan
+- [ ] Make sure all modules work as planned, using Travis, etc.
+- [ ] Do an official release
 
 [![Code Climate](https://codeclimate.com/github/absalomedia/avonlea/badges/gpa.svg)](https://codeclimate.com/github/absalomedia/avonlea)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/absalomedia/avonlea/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/absalomedia/avonlea/?branch=master)
