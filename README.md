@@ -1,12 +1,13 @@
 # Avonlea
 
-This is a very, very alpah fork/code refactor of some long standing invoicing software I've been using for years. It is by no means stable, let alone workable. Many dragons & gremlins live here for moment. Long term strategy is:
+This is a very, very alpha fork/code refactor of some long standing invoicing software I've been using for years. It is by no means stable, let alone workable. Many dragons & gremlins live here for moment. Long term strategy is:
 - [x] Patch to CodeIgniter 3.x branch
 - [x] Standardise database between old to new schema for migration purposes
 - [x] Apply CI code quality enforcement
 - [ ] Remove redundant modules from codebase
 - [ ] Add in new modules based on updated/revised invoicing plan
 - [ ] Make sure all modules work as planned, using Travis, etc.
+- [ ] Create API hooks so other sites can spawn invoices, contracts, quotes using it.
 - [ ] Do an official release
 
 [![Code Climate](https://codeclimate.com/github/absalomedia/avonlea/badges/gpa.svg)](https://codeclimate.com/github/absalomedia/avonlea)
