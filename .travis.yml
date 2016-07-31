@@ -28,3 +28,6 @@ matrix:
   exclude:
     - php: 7
       env: DB=mysql
+
+notifications:
+  email: false
