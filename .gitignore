@@ -14,8 +14,6 @@ application/cache/*
 !application/cache/index.html
 !application/cache/.htaccess
 
-composer.lock
-
 # Thumbnails
 ._*
 
