@@ -66,7 +66,7 @@ if (isset($additional_header_info)) {
         <div class="pure-menu">
             <a class="pure-menu-heading" href="#" class="pure-menu-link"><span class="fa fa-cogs"> Avonlea</span></a>
             <ul class="pure-menu-list">
-                        <li class="pure-menu-has-children"><a href="<?php echo site_url('admin/orders'); ?>" class="pure-menu-link"> <span class="fa fa-price"></span> <?php echo lang('common_orders'); ?></a>
+                        <li class="pure-menu-item pure-menu-has-children"><a href="<?php echo site_url('admin/orders'); ?>" class="pure-menu-link"> <span class="fa fa-price"></span> <?php echo lang('common_orders'); ?></a>
                             <?php if (CI::auth()->checkAccess('Admin')) : ?>
                             <ul class="pure-menu-children">
                                 <li class="pure-menu-item"><a href="<?php echo site_url('admin/customers'); ?>" class="pure-menu-link"><?php echo lang('common_customers'); ?></a></li>
@@ -78,7 +78,7 @@ if (isset($additional_header_info)) {
                         </li>
                             <?php endif; ?>
                     <?php if (CI::auth()->checkAccess('Admin')) : ?>
-                    <li class="pure-menu-has-children">
+                    <li class="pure-menu-item pure-menu-has-children">
                         <a href="#" role="button" aria-expanded="false" class="pure-menu-link"><span class="fa fa-book"></span> <?php echo lang('common_catalog'); ?> </a>
                         <ul class="pure-menu-children">
                             <li class="pure-menu-item"><a href="<?php echo site_url('admin/categories'); ?>" class="pure-menu-link"><?php echo lang('common_categories'); ?></a></li>
@@ -87,34 +87,34 @@ if (isset($additional_header_info)) {
                         </ul>
                     </li>
 
-                   <li class="pure-menu-has-children">
+                   <li class="pure-menu-item pure-menu-has-children">
                         <a href="#" role="button" aria-expanded="false" class="pure-menu-link"><span class="fa fa-list"></span> <?php echo lang('common_content'); ?> </a>
                         <ul class="pure-menu-children">
-                            <li class="pure-menu-link"><a href="<?php echo site_url('admin/banners'); ?>" class="pure-menu-link"><?php echo lang('common_banners'); ?></a></li>
-                            <li class="pure-menu-link"><a href="<?php echo site_url('admin/pages'); ?>" class="pure-menu-link"><?php echo lang('common_pages'); ?></a></li>
+                            <li class="pure-menu-item"><a href="<?php echo site_url('admin/banners'); ?>" class="pure-menu-link"><?php echo lang('common_banners'); ?></a></li>
+                            <li class="pure-menu-item"><a href="<?php echo site_url('admin/pages'); ?>" class="pure-menu-link"><?php echo lang('common_pages'); ?></a></li>
                         </ul>
                     </li>
 
-                    <li class="pure-menu-has-children">
+                    <li class="pure-menu-item pure-menu-has-children">
                         <a href="#" role="button" aria-expanded="false" class="pure-menu-link"><span class="fa fa-cogs"></span> <?php echo lang('common_administrative'); ?> </a>
                         <ul class="pure-menu-children">
-                            <li class="pure-menu-link"><a href="<?php echo site_url('admin/settings'); ?>" class="pure-menu-link"><?php echo lang('common_Avonlea_configuration'); ?></a></li>
-                            <li class="pure-menu-link"><a href="<?php echo site_url('admin/shipping'); ?>" class="pure-menu-link"><?php echo lang('common_shipping_modules'); ?></a></li>
-                            <li class="pure-menu-link"><a href="<?php echo site_url('admin/payments'); ?>" class="pure-menu-link"><?php echo lang('common_payment_modules'); ?></a></li>
-                            <li class="pure-menu-link"><a href="<?php echo site_url('admin/settings/canned_messages'); ?>" class="pure-menu-link"><?php echo lang('common_canned_messages'); ?></a></li>
-                            <li class="pure-menu-link"><a href="<?php echo site_url('admin/locations'); ?>" class="pure-menu-link"><?php echo lang('common_locations'); ?></a></li>
-                            <li class="pure-menu-link"><a href="<?php echo site_url('admin/users'); ?>" class="pure-menu-link"><?php echo lang('common_administrators'); ?></a></li>
-                            <li class="pure-menu-link"<a href="<?php echo site_url('admin/sitemap'); ?>" class="pure-menu-link"><?php echo 'Sitemap'; ?></a></li>
+                            <li class="pure-menu-item"><a href="<?php echo site_url('admin/settings'); ?>" class="pure-menu-link"><?php echo lang('common_Avonlea_configuration'); ?></a></li>
+                            <li class="pure-menu-item"><a href="<?php echo site_url('admin/shipping'); ?>" class="pure-menu-link"><?php echo lang('common_shipping_modules'); ?></a></li>
+                            <li class="pure-menu-item"><a href="<?php echo site_url('admin/payments'); ?>" class="pure-menu-link"><?php echo lang('common_payment_modules'); ?></a></li>
+                            <li class="pure-menu-item"><a href="<?php echo site_url('admin/settings/canned_messages'); ?>" class="pure-menu-link"><?php echo lang('common_canned_messages'); ?></a></li>
+                            <li class="pure-menu-item"><a href="<?php echo site_url('admin/locations'); ?>" class="pure-menu-link"><?php echo lang('common_locations'); ?></a></li>
+                            <li class="pure-menu-item"><a href="<?php echo site_url('admin/users'); ?>" class="pure-menu-link"><?php echo lang('common_administrators'); ?></a></li>
+                            <li class="pure-menu-item"><a href="<?php echo site_url('admin/sitemap'); ?>" class="pure-menu-link"><?php echo 'Sitemap'; ?></a></li>
                         </ul>
                     </li>
                     <?php endif; ?>
 
                     <li class="pure-menu-has-children">
                         <a href="#" role="button" aria-expanded="false" class="pure-menu-link"><?php echo lang('common_actions'); ?></a>
-                        <ul class="pure-menu-children">
-                            <li class="pure-menu-link"><a href="<?php echo site_url('admin/dashboard'); ?>" class="pure-menu-link"><?php echo lang('common_dashboard'); ?></a></li>
-                            <li class="pure-menu-link"><a href="<?php echo site_url(); ?>" class="pure-menu-link"><?php echo lang('common_front_end'); ?></a></li>
-                            <li class="pure-menu-link"><a href="<?php echo site_url('admin/logout'); ?>" class="pure-menu-link"><?php echo lang('common_log_out'); ?></a></li>
+                        <ul class="pure-menu-item pure-menu-children">
+                            <li class="pure-menu-item"><a href="<?php echo site_url('admin/dashboard'); ?>" class="pure-menu-link"><?php echo lang('common_dashboard'); ?></a></li>
+                            <li class="pure-menu-item"><a href="<?php echo site_url(); ?>" class="pure-menu-link"><?php echo lang('common_front_end'); ?></a></li>
+                            <li class="pure-menu-item"><a href="<?php echo site_url('admin/logout'); ?>" class="pure-menu-link"><?php echo lang('common_log_out'); ?></a></li>
                         </ul>
                     </li>
                 </ul>
