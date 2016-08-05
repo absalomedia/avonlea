@@ -133,7 +133,7 @@ appears on the left side of the page.
     This styles the menu heading.
     */
     #menu .pure-menu-heading {
-        font-size: 1.25em;
+        font-size: 1.4em;
         color: #fff;
         margin: 0;
     }
@@ -305,6 +305,13 @@ fieldset { margin-bottom:15px; }
     max-width:100px;
 }
 
+#logo {
+    max-width:25%;
+    max-height:25%;
+}
+
+
+
 /*
 ul.pure-menu-list, ul.pure-menu-list li ul, ul.pure-menu-list li ul li ul {
     list-style: none;
@@ -316,3 +323,4 @@ ul.pure-menu-list, ul.pure-menu-list li ul, ul.pure-menu-list li ul li ul {
     left: 100%;
     visibility: visible;
 }
+
