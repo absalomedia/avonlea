@@ -30,8 +30,8 @@ function areyousure()
                 <?php echo CI::pagination()->create_links(); ?>  &nbsp;
             </div>
             <div class="col-md-8">
-                <?php echo form_open('admin/products', 'class="form-inline form-group" style="float:right"'); ?>
-                    <div class="form-group">
+                <?php echo form_open('admin/products', 'class="form-inline pure-control-group" style="float:right"'); ?>
+                    <div class="pure-control-group">
                         <?php
                         unset($categories[-1]);
                         unset($categories[0]);
@@ -45,7 +45,7 @@ function areyousure()
                             echo '</select>';
                         }?>
                     </div>
-                     <div class="form-group">
+                     <div class="pure-control-group">
                         <input type="text" class="form-control" name="term" placeholder="<?php echo lang('search_term'); ?>" />
                     </div>
                         <button class="pure-button" name="submit" value="search"><?php echo lang('search')?></button>
@@ -57,7 +57,7 @@ function areyousure()
 </div>
 
 <?php echo form_open('admin/products/bulk_save', ['id' => 'bulk_form']); ?>
-<div class="text-right form-group">
+<div class="text-right pure-control-group">
     <button class="pure-button pure-button-primary" href="#"><i class="fa fa-ok" aria-hidden="true"></i> <?php echo lang('bulk_save'); ?></button>
     <a class="pure-button pure-button-primary" style="font-weight:normal;"href="<?php echo site_url('admin/products/form'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> <?php echo lang('add_new_product'); ?></a>
     <a class="pure-button pure-button-primary" style="font-weight:normal;"href="<?php echo site_url('admin/products/gift-card-form'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> <?php echo lang('add_new_gift_card'); ?></a>

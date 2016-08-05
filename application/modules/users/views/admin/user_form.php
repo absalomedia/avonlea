@@ -2,27 +2,27 @@
 
 <?php echo form_open('admin/users/form/'.$optn); ?>
 
-    <div class="form-group">
+    <div class="pure-control-group">
         <label><?php echo lang('firstname'); ?></label>
         <?php echo form_input(['name' => 'firstname', 'class' => 'form-control', 'value' => assign_value('firstname', $firstname)]); ?>
     </div>
     
-    <div class="form-group">
+    <div class="pure-control-group">
         <label><?php echo lang('lastname'); ?></label>
         <?php echo form_input(['name' => 'lastname', 'class' => 'form-control', 'value' => assign_value('lastname', $lastname)]); ?>
     </div>
 
-    <div class="form-group">
+    <div class="pure-control-group">
         <label><?php echo lang('username'); ?></label>
         <?php echo form_input(['name' => 'username', 'class' => 'form-control', 'value' => assign_value('username', $username)]); ?>
     </div>
 
-    <div class="form-group">
+    <div class="pure-control-group">
         <label><?php echo lang('email'); ?></label>
         <?php echo form_input(['name' => 'email', 'class' => 'form-control', 'value' => assign_value('email', $email)]); ?>
     </div>
 
-    <div class="form-group">
+    <div class="pure-control-group">
         <label><?php echo lang('access'); ?></label>
         <?php
         $options = ['Admin' => lang('admin'), 'Orders' => lang('orders')];
@@ -30,12 +30,12 @@
         ?>
     </div>
 
-    <div class="form-group">
+    <div class="pure-control-group">
         <label><?php echo lang('password'); ?></label>
         <?php echo form_password(['name' => 'password', 'class' => 'form-control']); ?>
     </div>
 
-    <div class="form-group">
+    <div class="pure-control-group">
         <label><?php echo lang('confirm_password'); ?></label>
         <?php echo form_password(['name' => 'confirm', 'class' => 'form-control']); ?>
     </div>

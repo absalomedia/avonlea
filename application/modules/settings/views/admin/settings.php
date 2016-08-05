@@ -5,28 +5,28 @@
         <legend><?php echo lang('shop_details'); ?></legend>
         <div class="row">
             <div class="col-md-3">
-                <div class="form-group">
+                <div class="pure-control-group">
                     <label><?php echo lang('company_name'); ?></label>
                     <?php echo form_input(['class' => 'form-control', 'name' => 'company_name', 'value' => assign_value('company_name', $company_name)]); ?>
                 </div>
             </div>
 
             <div class="col-md-3">
-                <div class="form-group">
+                <div class="pure-control-group">
                     <label><?php echo lang('theme'); ?></label>
                     <?php echo form_dropdown('theme', $themes, assign_value('theme', $theme), 'class="form-control"'); ?>
                 </div>
             </div>
 
             <div class="col-md-3">
-                <div class="form-group">
+                <div class="pure-control-group">
                     <label><?php echo lang('select_homepage'); ?></label>
                     <?php echo form_dropdown('homepage', $pages, assign_value('homepage', $homepage), 'class="form-control"'); ?>
                 </div>
             </div>
 
             <div class="col-md-3">
-                <div class="form-group">
+                <div class="pure-control-group">
                     <label><?php echo lang('products_per_page'); ?></label>
                     <?php echo form_input(['class' => 'form-control', 'name' => 'products_per_page', 'value' => assign_value('products_per_page', $products_per_page), 'class' => 'form-control']); ?>
                 </div>
@@ -34,14 +34,14 @@
         </div>
         <div class="row">
             <div class="col-md-6">
-                <div class="form-group">
+                <div class="pure-control-group">
                     <label><?php echo lang('default_meta_keywords'); ?></label>
                     <?php echo form_input(['class' => 'form-control', 'name' => 'default_meta_keywords', 'value' => assign_value('default_meta_keywords', $default_meta_keywords), 'class' => 'form-control']); ?>
                 </div>
             </div>
 
             <div class="col-md-6">
-                <div class="form-group">
+                <div class="pure-control-group">
                     <label><?php echo lang('default_meta_description'); ?></label>
                     <?php echo form_input(['class' => 'form-control', 'name' => 'default_meta_description', 'value' => assign_value('default_meta_description', $default_meta_description), 'class' => 'form-control']); ?>
                 </div>
@@ -51,53 +51,53 @@
 
     <fieldset>
         <legend><?php echo lang('email_settings'); ?></legend>
-        <div class="row form-group">
+        <div class="row pure-control-group">
             <div class="col-md-4">
-                <div class="form-group">
+                <div class="pure-control-group">
                     <label><?php echo lang('email_to'); ?></label>
                     <?php echo form_input(['class' => 'form-control', 'name' => 'email_to', 'value' => assign_value('email_to', $email_to), 'class' => 'form-control']); ?>
                 </div>
             </div>
 
             <div class="col-md-4">
-                <div class="form-group">
+                <div class="pure-control-group">
                     <label><?php echo lang('email_from'); ?></label>
                     <?php echo form_input(['class' => 'form-control', 'name' => 'email_from', 'value' => assign_value('email_from', $email_from), 'class' => 'form-control']); ?>
                 </div>
             </div>
 
             <div class="col-md-4">
-                <div class="form-group">
+                <div class="pure-control-group">
                     <label><?php echo lang('email_method'); ?></label>
                     <?php echo form_dropdown('email_method', ['mail' => 'Mail', 'smtp' => 'SMTP', 'sendmail' => 'Sendmail'], assign_value('email_method', $email_method), 'class="form-control" id="emailMethod"'); ?>
                 </div>
             </div>
         </div>
 
-        <div class="row emailMethods form-group" id="email_smtp">
+        <div class="row emailMethods pure-control-group" id="email_smtp">
             <div class="col-md-3">
-                <div class="form-group">
+                <div class="pure-control-group">
                 <label><?php echo lang('smtp_server'); ?></label>
                 <?php echo form_input(['class' => 'form-control', 'name' => 'smtp_server', 'value' => assign_value('smtp_server', $smtp_server)]); ?>
                 </div>
             </div>
 
             <div class="col-md-3">
-                <div class="form-group">
+                <div class="pure-control-group">
                     <label><?php echo lang('smtp_port'); ?></label>
                     <?php echo form_input(['class' => 'form-control', 'name' => 'smtp_port', 'value' => assign_value('smtp_port', $smtp_port)]); ?>
                 </div>
             </div>
 
             <div class="col-md-3">
-                <div class="form-group">
+                <div class="pure-control-group">
                     <label><?php echo lang('smtp_username'); ?></label>
                     <?php echo form_input(['class' => 'form-control', 'name' => 'smtp_username', 'value' => assign_value('smtp_username', $smtp_username)]); ?>
                 </div>
             </div>
 
             <div class="col-md-3">
-                <div class="form-group">
+                <div class="pure-control-group">
                     <label><?php echo lang('smtp_password'); ?></label>
                     <?php echo form_input(['class' => 'form-control', 'name' => 'smtp_password', 'value' => assign_value('smtp_password', $smtp_password)]); ?>
                 </div>
@@ -106,7 +106,7 @@
 
         <div class="row emailMethods" id="email_sendmail">
             <div class="col-md-4">
-                <div class="form-group">
+                <div class="pure-control-group">
                     <label><?php echo lang('sendmail_path'); ?></label>
                     <?php echo form_input(['class' => 'form-control', 'name' => 'sendmail_path', 'value' => assign_value('sendmail_path', $sendmail_path)]); ?>
                 </div>
@@ -118,35 +118,35 @@
     <fieldset>
         <legend><?php echo lang('ship_from_address'); ?></legend>
         
-        <div class="form-group">
+        <div class="pure-control-group">
             <label><?php echo lang('country'); ?></label>
             <?php echo form_dropdown('country_id', $countries_menu, assign_value('country_id', $country_id), 'id="country_id" class="form-control"'); ?>
         </div>
 
-        <div class="form-group">
+        <div class="pure-control-group">
             <label><?php echo lang('address1'); ?></label>
             <?php echo form_input(['name' => 'address1', 'class' => 'form-control', 'value' => assign_value('address1', $address1)]); ?>
         </div>
 
-        <div class="form-group">
+        <div class="pure-control-group">
             <?php echo form_input(['name' => 'address2', 'class' => 'form-control', 'value' => assign_value('address2', $address2)]); ?>
         </div>
 
         <div class="row">
             <div class="col-md-4">
-                <div class="form-group">
+                <div class="pure-control-group">
                     <label><?php echo lang('city'); ?></label>
                     <?php echo form_input(['name' => 'city', 'class' => 'form-control', 'value' => assign_value('city', $city)]); ?>
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="form-group">
+                <div class="pure-control-group">
                     <label><?php echo lang('state'); ?></label>
                     <?php echo form_dropdown('zone_id', $zones_menu, assign_value('zone_id', $zone_id), 'id="zone_id" class="form-control"'); ?>
                 </div>
             </div>
             <div class="col-md-2">
-                <div class="form-group">
+                <div class="pure-control-group">
                     <label><?php echo lang('zip'); ?></label>
                     <?php echo form_input(['maxlength' => '10', 'class' => 'form-control', 'name' => 'zip', 'value' => assign_value('zip', $zip)]); ?>
                 </div>
@@ -159,19 +159,19 @@
 
         <div class="row">
             <div class="col-md-4">
-                <div class="form-group">
+                <div class="pure-control-group">
                     <label><?php echo lang('locale'); ?></label>
                     <?php echo form_dropdown('locale', $locales, assign_value('locale', $locale), 'class="form-control"'); ?>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="form-group">
+                <div class="pure-control-group">
                     <label><?php echo lang('timezone'); ?></label>
                     <?php echo form_dropdown('timezone', array_combine(timezone_identifiers_list(), timezone_identifiers_list()), assign_value('timezone', $timezone), 'class="form-control"'); ?>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="form-group">
+                <div class="pure-control-group">
                     <label><?php echo lang('currency'); ?></label>
                     <?php echo form_dropdown('currency_iso', $iso_4217, assign_value('currency_iso', $currency_iso), 'class="form-control"'); ?>
                 </div>
@@ -185,13 +185,13 @@
 
         <div class="row">
             <div class="col-md-6">
-                <div class="form-group">
+                <div class="pure-control-group">
                     <label><?php echo lang('stage_username'); ?></label>
                     <?php echo form_input(['class' => 'form-control', 'name' => 'stage_username', 'value' => assign_value('stage_username', $stage_username)]); ?>
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="form-group">
+                <div class="pure-control-group">
                     <label><?php echo lang('stage_password'); ?></label>
                     <?php echo form_input(['class' => 'form-control', 'name' => 'stage_password', 'value' => assign_value('stage_password', $stage_password)]); ?>
                 </div>
@@ -222,13 +222,13 @@
         <legend><?php echo lang('package_details'); ?></legend>
         <div class="row">
             <div class="col-md-6">
-                <div class="form-group">
+                <div class="pure-control-group">
                     <label><?php echo lang('weight_unit'); ?></label>
                     <?php echo form_input(['name' => 'weight_unit', 'class' => 'form-control', 'value' => assign_value('weight_unit', $weight_unit)]); ?>
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="form-group">
+                <div class="pure-control-group">
                     <label><?php echo lang('dimension_unit'); ?></label>
                     <?php echo form_input(['name' => 'dimension_unit', 'class' => 'form-control', 'value' => assign_value('dimension_unit', $dimension_unit)]); ?>
                 </div>
@@ -276,7 +276,7 @@
     <fieldset>
         <legend><?php echo lang('tax_settings'); ?></legend>
 
-        <div class="form-group">
+        <div class="pure-control-group">
             <label><?php echo lang('tax_address'); ?></label>
             <?php echo form_dropdown('tax_address', ['ship' => lang('shipping_address'), 'bill' => lang('billing_address')], assign_value('tax_address', $tax_address), 'class="form-control"'); ?>
         </div>
