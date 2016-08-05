@@ -108,9 +108,9 @@
             <td>
                 <?php if ($customer->active === 1) {
                     echo lang('yes');
-} else {
-    echo lang('no');
-}
+                } else {
+                    echo lang('no');
+                }
                 ?>
             </td>
         </tr>
