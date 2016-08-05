@@ -73,7 +73,7 @@
 </form>
 <?php
 function related_items($optn, $name)
-{
+            {
                 return '
             <tr id="related_product_'.$optn.'">
                 <td>
@@ -85,7 +85,7 @@ function related_items($optn, $name)
                 </td>
             </tr>
         ';
-}
+            }
 ?>
 <script id="productTemplate" type="text/template">
     <?php echo related_items('{{id}}', '{{name}}'); ?>

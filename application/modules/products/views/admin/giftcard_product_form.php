@@ -252,7 +252,7 @@ function remove_option(id)
 
 <?php
 function add_image($photo_id, $filename, $alt, $caption, $primary = false)
-{
+                    {
                         ob_start(); ?>
     <div class="row gc_photo" id="gc_photo_<?php echo $photo_id; ?>" style="background-color:#fff; border-bottom:1px solid #ddd; padding-bottom:20px; margin-bottom:20px;">
         <div class="col-md-2">
@@ -270,8 +270,8 @@ function add_image($photo_id, $filename, $alt, $caption, $primary = false)
                     <div class="checkbox">
                         <label>
                             <input type="radio" name="primary_image" value="<?php echo $photo_id; ?>" <?php if ($primary) {
-                                echo 'checked="checked"';
-} ?>/> <?php echo lang('main_image'); ?>
+                            echo 'checked="checked"';
+                        } ?>/> <?php echo lang('main_image'); ?>
                         </label>
                     </div>
                 </div>
@@ -294,7 +294,7 @@ function add_image($photo_id, $filename, $alt, $caption, $primary = false)
                         ob_end_clean();
 
                         echo replace_newline($stuff);
-}
+                    }
 
 //this makes it easy to use the same code for initial generation of the form as well as javascript additions
 /**
