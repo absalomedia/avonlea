@@ -244,7 +244,7 @@
                 <tr>
                     <th style="width:20%;"><?php echo lang('order_status'); ?></th>
                     <th style="width:20%;"><?php echo lang('order_statuses'); ?></th>
-                    <th style="text-align:right;">
+                    <th class="text-right;">
                         <div class="col-md-4 input-group pull-right">
                         <input type="text" value="" class="form-control" id="new_order_status_field" style="margin:0px;" placeholder="<?php echo lang('status_name'); ?>"/>
                         <div class="input-group-btn">
@@ -301,7 +301,7 @@
         <td>
             {{status}}
         </td>
-        <td style="text-align:right;">
+        <td class="text-right;">
             <button type="button" class="removeOrderStatus pure-button button-danger" value="{{status}}"><i class="fa fa-close" aria-hidden="true"></i></button>
         </td>
     </tr>
