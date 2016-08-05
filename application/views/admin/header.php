@@ -30,7 +30,6 @@ $_js->addFile('jquery-3.0.0.min');
 $_js->addFile('jquery-migrate-3.0.0');
 
 ?>
-<link href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>" rel="stylesheet" type="text/css" />
 
 <?php
 

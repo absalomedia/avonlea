@@ -35,7 +35,6 @@ if (isset($additional_header_info)) {
 }
 ?>
 
-<link href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>" rel="stylesheet" type="text/css" />
 <link href="<?php echo base_url('assets/css/admin.css'); ?>" rel="stylesheet" type="text/css" />
 <link href="<?php echo base_url('assets/css/font-awesome.css'); ?>" rel="stylesheet" type="text/css" />
 <link type="text/css" href="<?php echo base_url('assets/css/redactor.css'); ?>" rel="stylesheet" />

@@ -18,7 +18,6 @@
     }
 ?>
 
-<script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap.min.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/js/trumb/trumbowyg.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/js/trumb/trumbowyg.table.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/js/trumb/trumbowyg.uploadcare.js'); ?>"></script>
