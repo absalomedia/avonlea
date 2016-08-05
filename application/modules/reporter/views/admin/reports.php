@@ -9,7 +9,7 @@
             <input class="form-control datepicker" type="text" name="best_sellers_start" placeholder="<?php echo lang('from'); ?>"/>
             <input class="form-control datepicker" type="text" name="best_sellers_end" placeholder="<?php echo lang('to'); ?>"/>
 
-            <input class="btn btn-primary" type="button" value="<?php echo lang('getBestSellers'); ?>" onclick="get_best_sellers()"/>
+            <input class="pure-button pure-button-primary" type="button" value="<?php echo lang('getBestSellers'); ?>" onclick="get_best_sellers()"/>
         </form>
     </div>
 </div>
@@ -27,11 +27,11 @@
     <div class="col-md-6">
         <form class="form-inline pull-right">
             <select name="year" id="sales_year" class="form-control">
-                <?php foreach ($years as $y):?>
+                <?php foreach ($years as $y) :?>
                     <option value="<?php echo $y; ?>"><?php echo $y; ?></option>
                 <?php endforeach; ?>
             </select>
-            <input class="btn btn-primary" type="button" value="<?php echo lang('get_monthly_sales'); ?>" onclick="get_monthly_sales()"/>
+            <input class="pure-button pure-button-primary" type="button" value="<?php echo lang('get_monthly_sales'); ?>" onclick="get_monthly_sales()"/>
         </form>
     </div>
 </div>

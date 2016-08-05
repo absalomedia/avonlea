@@ -18,7 +18,7 @@
 <?php endif; ?>
 
 <h2><?php echo lang('recent_orders') ?></h2>
-<table class="table table-striped">
+<table class="pure-table pure-table-horizontal">
     <thead>
         <tr>
             <th><?php echo lang('order'); ?></th>
@@ -82,13 +82,13 @@
 
 <div class="row">
     <div class="col-md-12" style="text-align:center;">
-        <a class="btn btn-primary btn-lg" href="<?php echo site_url('admin/orders'); ?>"><?php echo lang('view_all_orders'); ?></a>
+        <a class="pure-button pure-button-primary btn-lg" href="<?php echo site_url('admin/orders'); ?>"><?php echo lang('view_all_orders'); ?></a>
     </div>
 </div>
 
 
 <h2><?php echo lang('recent_customers') ?></h2>
-<table class="table table-striped">
+<table class="pure-table pure-table-horizontal">
     <thead>
         <tr>
             <?php /*<th>ID</th> uncomment this if you want it*/ ?>
@@ -108,9 +108,9 @@
             <td>
                 <?php if ($customer->active === 1) {
                     echo lang('yes');
-                } else {
-                    echo lang('no');
-                }
+} else {
+    echo lang('no');
+}
                 ?>
             </td>
         </tr>
@@ -121,7 +121,7 @@
 
 <div class="row">
     <div class="col-md-12" style="text-align:center;">
-        <a class="btn btn-primary btn-lg" href="<?php echo site_url('admin/customers'); ?>"><?php echo lang('view_all_customers'); ?></a>
+        <a class="pure-button pure-button-primary btn-lg" href="<?php echo site_url('admin/customers'); ?>"><?php echo lang('view_all_customers'); ?></a>
     </div>
 </div>
 

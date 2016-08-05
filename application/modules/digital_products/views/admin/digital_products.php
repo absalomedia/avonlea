@@ -7,10 +7,10 @@ function areyousure()
 }
 </script>
 
-<a class="btn btn-primary" style="float:right;" href="<?php echo site_url('admin/digital_products/form'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> <?php echo lang('add_file'); ?></a>
+<a class="pure-button pure-button-primary" style="float:right;" href="<?php echo site_url('admin/digital_products/form'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> <?php echo lang('add_file'); ?></a>
 
 
-<table class="table table-striped">
+<table class="pure-table pure-table-horizontal">
     <thead>
         <tr>
             <th><?php echo lang('filename'); ?></th>
@@ -28,8 +28,8 @@ function areyousure()
             <td><?php echo $file->size; ?> kb</td>
             <td class="text-right">
                 <div class="btn-group">
-                    <a class="btn btn-default" href="<?php echo  site_url('admin/digital_products/form/'.$file->id); ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                    <a class="btn btn-primary btn-danger" href="<?php echo  site_url('admin/digital_products/delete/'.$file->id); ?>" onclick="return areyousure();"><i class="fa fa-times " aria-hidden="true"></i></a>
+                    <a class="pure-button" href="<?php echo  site_url('admin/digital_products/form/'.$file->id); ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                    <a class="pure-button pure-button-primary btn-danger" href="<?php echo  site_url('admin/digital_products/delete/'.$file->id); ?>" onclick="return areyousure();"><i class="fa fa-times " aria-hidden="true"></i></a>
                 </div>
             </td>
         </tr>

@@ -7,33 +7,33 @@
                 <strong><?php echo sprintf(lang('times_used'), @$num_uses); ?></strong>
             </div>
 
-            <div class="form-group">
+            <div class="pure-control-group">
                 <label for="code"><?php echo lang('coupon_code'); ?></label>
                 <?php echo form_input(['name' => 'code', 'value' => assign_value('code', $code), 'class' => 'form-control']); ?>
             </div>
 
-            <div class="form-group">
+            <div class="pure-control-group">
                 <label for="max_uses"><?php echo lang('max_uses'); ?></label>
                 <?php echo form_input(['name' => 'max_uses', 'value' => assign_value('max_uses', $max_uses), 'class' => 'form-control']); ?>
             </div>
 
 
-            <div class="form-group">
+            <div class="pure-control-group">
                 <label for="max_product_instances"><?php echo lang('limit_per_order')?></label>
                 <?php echo form_input(['name' => 'max_product_instances', 'value' => assign_value('max_product_instances', $max_product_instances), 'class' => 'form-control']); ?>
             </div>
 
-            <div class="form-group">
+            <div class="pure-control-group">
                 <label for="start_date"><?php echo lang('enable_on'); ?></label>
                 <?php echo form_input(['name' => 'start_date', 'data-value' => assign_value('start_date', reverse_format($start_date)), 'class' => 'datepicker form-control']); ?>
             </div>
 
-            <div class="form-group">
+            <div class="pure-control-group">
                 <label for="end_date"><?php echo lang('disable_on'); ?></label>
                 <?php echo form_input(['name' => 'end_date', 'data-value' => assign_value('end_date', reverse_format($end_date)), 'class' => 'datepicker form-control']); ?>
             </div>
 
-            <div class="form-group">
+            <div class="pure-control-group">
                 <label for="reduction_amount"><?php echo lang('reduction_amount')?></label>
                 <div class="row">
                     <div class="col-md-6">
@@ -55,25 +55,25 @@
                 <table class="table" width="100%" border="0" style="margin-top:10px;" cellspacing="5" cellpadding="0">
                 <tbody id="product_items_container"></tbody>
                 </table>
-                <div class="form-group">
+                <div class="pure-control-group">
                     <input class="form-control" type="text" id="product_search" placeholder="Product search" />
                 </div>
-                <div class="form-group">
+                <div class="pure-control-group">
                     <select class="form-control" id="product_list" size="5" style="margin:0px;"></select>
                 </div>
-                <div class="form-group">
-                    <a href="#" onclick="add_product();return false;" class="btn btn-primary" title="Add Product">Add Product</a>
+                <div class="pure-control-group">
+                    <a href="#" onclick="add_product();return false;" class="pure-button pure-button-primary" title="Add Product">Add Product</a>
                 </div>
             </div>
         </div>
     </div>
 
-    <button type="submit" class="btn btn-primary"><?php echo lang('save'); ?></button>
+    <button type="submit" class="pure-button pure-button-primary"><?php echo lang('save'); ?></button>
     
 </form>
 <?php
 function related_items($optn, $name)
-            {
+{
                 return '
             <tr id="related_product_'.$optn.'">
                 <td>
@@ -85,7 +85,7 @@ function related_items($optn, $name)
                 </td>
             </tr>
         ';
-            }
+}
 ?>
 <script id="productTemplate" type="text/template">
     <?php echo related_items('{{id}}', '{{name}}'); ?>

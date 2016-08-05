@@ -8,12 +8,12 @@ function areyousure()
 </script>
 
 <div class="text-right">
-    <a class="btn btn-primary" href="<?php echo site_url('admin/locations/country_form'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> <?php echo lang('add_new_country'); ?></a>
-    <a class="btn btn-primary" href="<?php echo site_url('admin/locations/zone_form'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> <?php echo lang('add_new_zone'); ?></a>
-    <a class="btn btn-primary" href="<?php echo site_url('admin/locations/zone_area_form/'.$zone->id); ?>"><i class="fa fa-plus" aria-hidden="true"></i> <?php echo lang('add_new_zone_area'); ?></a>
+    <a class="pure-button pure-button-primary" href="<?php echo site_url('admin/locations/country_form'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> <?php echo lang('add_new_country'); ?></a>
+    <a class="pure-button pure-button-primary" href="<?php echo site_url('admin/locations/zone_form'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> <?php echo lang('add_new_zone'); ?></a>
+    <a class="pure-button pure-button-primary" href="<?php echo site_url('admin/locations/zone_area_form/'.$zone->id); ?>"><i class="fa fa-plus" aria-hidden="true"></i> <?php echo lang('add_new_zone_area'); ?></a>
 </div>
 
-<table class="table table-striped" cellspacing="0" cellpadding="0">
+<table class="pure-table pure-table-horizontal" cellspacing="0" cellpadding="0">
     <thead>
         <tr>
             <th><?php echo lang('code'); ?></th>
@@ -28,8 +28,8 @@ function areyousure()
             <td><?php echo $location->tax + 0; ?>%</td>
             <td class="text-right">
                 <div class="btn-group">
-                    <a class="btn btn-default" href="<?php echo  site_url('admin/locations/zone_area_form/'.$zone->id.'/'.$location->id); ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                    <a class="btn btn-danger" href="<?php echo  site_url('admin/locations/delete_zone_area/'.$location->id); ?>" onclick="return areyousure();"><i class="fa fa-times " aria-hidden="true"></i></a>
+                    <a class="pure-button" href="<?php echo  site_url('admin/locations/zone_area_form/'.$zone->id.'/'.$location->id); ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                    <a class="pure-button button-danger" href="<?php echo  site_url('admin/locations/delete_zone_area/'.$location->id); ?>" onclick="return areyousure();"><i class="fa fa-times " aria-hidden="true"></i></a>
                 </div>
             </td>
       </tr>

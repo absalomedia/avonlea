@@ -2,21 +2,21 @@
 
 <?php echo form_open('admin/pages/link_form/'.$optn); ?>
 
-    <div class="form-group">
+    <div class="pure-control-group">
         <label for="menu_title"><?php echo lang('title'); ?> </label>
         <?php echo form_input(['name' => 'title', 'value' => assign_value('title', $title), 'class' => 'form-control']); ?>
     </div>
 
     <div class="row">
         <div class="col-md-8">
-            <div class="form-group">
+            <div class="pure-control-group">
                 <label for="url"><?php echo lang('url'); ?></label>
                 <?php echo form_input(['name' => 'url', 'value' => assign_value('url', $url), 'class' => 'form-control']); ?>
                 <span class="help-block"><?php echo lang('url_example'); ?></span>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="form-group">
+            <div class="pure-control-group">
                 <label>&nbsp;</label>
                 <div class="checkbox">
                     <label>
@@ -30,7 +30,7 @@
 
     <div class="row">
         <div class="col-md-8">
-            <div class="form-group">
+            <div class="pure-control-group">
                 <label for="sequence"><?php echo lang('parent_id'); ?></label>
                 <?php
                 $options = [];
@@ -54,13 +54,13 @@
             </div>
         </div>
         <div class="col-md-4">
-            <div class="form-group">
+            <div class="pure-control-group">
                 <label for="sequence"><?php echo lang('sequence'); ?></label>
                 <?php echo form_input(['name' => 'sequence', 'value' => assign_value('sequence', $sequence), 'class' => 'form-control']); ?>
             </div>
         </div>
     </div>
     
-    <input class="btn btn-primary" type="submit" value="<?php echo lang('save'); ?>"/>
+    <input class="pure-button pure-button-primary" type="submit" value="<?php echo lang('save'); ?>"/>
     
 </form>

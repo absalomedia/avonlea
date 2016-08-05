@@ -40,7 +40,7 @@
         <?php echo form_password(['name' => 'confirm', 'class' => 'form-control']); ?>
     </div>
 
-    <input class="btn btn-primary" type="submit" value="<?php echo lang('save'); ?>"/>
+    <input class="pure-button pure-button-primary" type="submit" value="<?php echo lang('save'); ?>"/>
 
 </form>
 <script type="text/javascript">

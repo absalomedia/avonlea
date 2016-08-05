@@ -289,7 +289,7 @@
     </fieldset>
 
 
-    <input type="submit" class="btn btn-primary" value="<?php echo lang('save'); ?>" />
+    <input type="submit" class="pure-button pure-button-primary" value="<?php echo lang('save'); ?>" />
 
 </form>
 
@@ -302,7 +302,7 @@
             {{status}}
         </td>
         <td style="text-align:right;">
-            <button type="button" class="removeOrderStatus btn btn-danger" value="{{status}}"><i class="fa fa-close" aria-hidden="true"></i></button>
+            <button type="button" class="removeOrderStatus pure-button button-danger" value="{{status}}"><i class="fa fa-close" aria-hidden="true"></i></button>
         </td>
     </tr>
 </script>

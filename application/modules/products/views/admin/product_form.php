@@ -26,17 +26,17 @@
             <div class="tab-content">
                 <div class="tab-pane active" id="product_info">
 
-                    <div class="form-group">
+                    <div class="pure-control-group">
                         <label><?php echo lang('name'); ?></label>
                         <?php echo form_input(['placeholder' => lang('name'), 'name' => 'name', 'value' => assign_value('name', $name), 'class' => 'form-control']); ?>
                     </div>
 
-                    <div class="form-group">
+                    <div class="pure-control-group">
                         <label><?php echo lang('description'); ?></label>
                         <?php echo form_textarea(['name' => 'description', 'class' => 'redactor', 'value' => assign_value('description', $description)]); ?>
                     </div>
 
-                    <div class="form-group">
+                    <div class="pure-control-group">
                         <label><?php echo lang('excerpt'); ?></label>
                         <?php echo form_textarea(['name' => 'excerpt', 'value' => assign_value('excerpt', $excerpt), 'class' => 'redactor']); ?>
                     </div>
@@ -45,19 +45,19 @@
                         <legend><?php echo lang('inventory'); ?></legend>
                         <div class="row" style="padding-top:10px;">
                             <div class="col-md-4">
-                                <div class="form-group">
+                                <div class="pure-control-group">
                                     <label for="track_stock"><?php echo lang('track_stock'); ?> </label>
                                     <?php echo form_dropdown('track_stock', [1 => lang('yes'), 0 => lang('no')], assign_value('track_stock', $track_stock), 'class="form-control"'); ?>
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <div class="form-group">
+                                <div class="pure-control-group">
                                     <label for="fixed_quantity"><?php echo lang('fixed_quantity'); ?> </label>
                                     <?php echo form_dropdown('fixed_quantity', [1 => lang('yes'), 0 => lang('no')], assign_value('fixed_quantity', $fixed_quantity), 'class="form-control"'); ?>
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <div class="form-group">
+                                <div class="pure-control-group">
                                     <label for="quantity"><?php echo lang('quantity'); ?> </label>
                                     <?php echo form_input(['name' => 'quantity', 'value' => assign_value('quantity', $quantity), 'class' => 'form-control']); ?>
                                 </div>
@@ -69,17 +69,17 @@
                         <legend><?php echo lang('header_information'); ?></legend>
                         <div style="padding-top:10px;">
                             
-                            <div class="form-group">
+                            <div class="pure-control-group">
                                 <label for="slug"><?php echo lang('slug'); ?> </label>
                                 <?php echo form_input(['name' => 'slug', 'value' => assign_value('slug', $slug), 'class' => 'form-control']); ?>
                             </div>
 
-                            <div class="form-group">
+                            <div class="pure-control-group">
                                 <label for="seo_title"><?php echo lang('seo_title'); ?> </label>
                                 <?php echo form_input(['name' => 'seo_title', 'value' => assign_value('seo_title', $seo_title), 'class' => 'form-control']); ?>
                             </div>
 
-                            <div class="form-group">
+                            <div class="pure-control-group">
                                 <label for="meta"><?php echo lang('meta'); ?></label>
                                 <?php echo form_textarea(['name' => 'meta', 'value' => assign_value('meta', html_entity_decode($meta)), 'class' => 'form-control']); ?>
                                 <span class="help-block"><?php echo lang('meta_example'); ?></span>
@@ -93,7 +93,7 @@
                         <?php echo lang('digital_products_desc'); ?>
                     </div>
                     <fieldset>
-                        <table class="table table-striped">
+                        <table class="pure-table pure-table-horizontal">
                             <thead>
                                 <tr>
                                     <th><?php echo lang('filename'); ?></th>
@@ -120,7 +120,7 @@
                 <div class="tab-pane" id="product_categories">
                     <?php if (isset($categories[0])) :?>
                         <label><strong><?php echo lang('select_a_category'); ?></strong></label>
-                        <table class="table table-striped">
+                        <table class="pure-table pure-table-horizontal">
                             <thead>
                                 <tr>
                                     <th><i class="fa fa-eye-slash" aria-hidden="true"></i></th>
@@ -183,7 +183,7 @@
                                     <option value="textarea"><?php echo lang('textarea'); ?></option>
                                 </select>
                                 <span class="input-group-btn">
-                                    <button id="addOption" class="btn btn-primary" type="button"><?php echo lang('add_option'); ?></button>
+                                    <button id="addOption" class="pure-button pure-button-primary" type="button"><?php echo lang('add_option'); ?></button>
                                 </span>
                             </div>
                         </div>
@@ -213,7 +213,7 @@
                         }
                     </style>
 
-                    <table class="table table-striped">
+                    <table class="pure-table pure-table-horizontal">
                         <tbody id="optionsContainer">
                         </tbody>
                     </table>
@@ -226,7 +226,7 @@
 
                     <div class="row">
                         <div class="col-md-4">
-                            <div class="form-group">
+                            <div class="pure-control-group">
                                 <input class="form-control" type="text" id="product_search" />
                             </div>
                             <script type="text/javascript">
@@ -254,14 +254,14 @@
                             }
                             </script>
 
-                            <div class="form-group">
+                            <div class="pure-control-group">
                                 <select class="form-control" id="product_list" size="5" style="margin:0px;"></select>
                             </div>
-                            <button type="button" onclick="add_related_product();return false;" class="btn btn-primary btn-block" title="Add Related Product"><?php echo lang('add_related_product'); ?></button>
+                            <button type="button" onclick="add_related_product();return false;" class="pure-button pure-button-primary btn-block" title="Add Related Product"><?php echo lang('add_related_product'); ?></button>
                         </div>
 
                         <div class="col-md-8">
-                            <table class="table table-striped" style="margin-top:10px;">
+                            <table class="pure-table pure-table-horizontal" style="margin-top:10px;">
                                 <tbody id="product_items_container">
 
                                 </tbody>
@@ -276,24 +276,24 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary"><?php echo lang('save'); ?></button>
+            <button type="submit" class="pure-button pure-button-primary"><?php echo lang('save'); ?></button>
 
         </div>
         <div class="col-md-3">
-            <div class="form-group">
+            <div class="pure-control-group">
                 <?php echo form_dropdown('shippable', [1 => lang('shippable'), 0 => lang('not_shippable')], assign_value('shippable', $shippable), 'class="form-control"'); ?>
             </div>
 
-            <div class="form-group">
+            <div class="pure-control-group">
                 <?php echo form_dropdown('taxable', [1 => lang('taxable'), 0 => lang('not_taxable')], assign_value('taxable', $taxable), 'class="form-control"'); ?>
             </div>
 
-            <div class="form-group">
+            <div class="pure-control-group">
                 <label for="sku"><?php echo lang('sku'); ?></label>
                 <?php echo form_input(['name' => 'sku', 'value' => assign_value('sku', $sku), 'class' => 'form-control']); ?>
             </div>
 
-            <div class="form-group">
+            <div class="pure-control-group">
                 <label for="weight"><?php echo lang('weight'); ?> </label>
                 <?php echo form_input(['name' => 'weight', 'value' => assign_value('weight', $weight), 'class' => 'form-control']); ?>
             </div>
@@ -331,7 +331,7 @@
             {{name}}
         </td>
         <td class="text-right">
-            <a class="btn btn-danger" href="#" onclick="remove_related_product({{id}}); return false;"><i class="fa fa-times" aria-hidden="true"></i></a>
+            <a class="pure-button button-danger" href="#" onclick="remove_related_product({{id}}); return false;"><i class="fa fa-times" aria-hidden="true"></i></a>
         </td>
     </tr>
 </script>
@@ -345,7 +345,7 @@
         <div class="col-md-10">
             <div class="row">
                 <div class="col-md-4">
-                    <div class="form-group">
+                    <div class="pure-control-group">
                         <input name="images[{{id}}][alt]" value="{{alt}}" class="form-control" placeholder="<?php echo lang('alt_tag'); ?>"/>
                     </div>
                 </div>
@@ -357,7 +357,7 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <a onclick="return remove_image($(this));" rel="{{id}}" class="btn btn-danger pull-right"><i class="fa fa-times " aria-hidden="true"></i></a>
+                    <a onclick="return remove_image($(this));" rel="{{id}}" class="pure-button button-danger pull-right"><i class="fa fa-times " aria-hidden="true"></i></a>
                 </div>
             </div>
             <div class="row">
@@ -373,9 +373,9 @@
 <script type="text/template" id="optionTemplate">
     <tr id="option-{{id}}">
         <td>
-            <a class="handle1 btn btn-primary btn-sm"><i class="fa fa-sort" aria-hidden="true"></i></a>
+            <a class="handle1 pure-button pure-button-primary btn-sm"><i class="fa fa-sort" aria-hidden="true"></i></a>
             <strong><a class="optionTitle" href="#option-form-{{id}}">{{type}} : {{name}}</a></strong>
-            <button type="button" class="btn btn-danger btn-sm pull-right" onclick="remove_option({{id}});"><i class="fa fa-times" aria-hidden="true"></i></button>
+            <button type="button" class="pure-button button-danger btn-sm pull-right" onclick="remove_option({{id}});"><i class="fa fa-times" aria-hidden="true"></i></button>
             <input type="hidden" name="option[{{id}}][type]" value="{{type}}" />
 
             <div class="option-form" id="option-form-{{id}}">
@@ -393,7 +393,7 @@
                 </div>
                 
                 {{^isText}}
-                <a class="btn btn-primary" onclick="addOptionValue({{id}});"><?php echo lang('add_item'); ?></a>
+                <a class="pure-button pure-button-primary" onclick="addOptionValue({{id}});"><?php echo lang('add_item'); ?></a>
                 {{/isText}}
                 
                 <div style="margin-top:10px;">
@@ -418,7 +418,7 @@
         <div class="row">
             
             {{^isText}}
-                <div class="col-md-1"><a class="handle2 btn btn-primary btn-sm" style="float:left;"><i class="fa fa-sort" aria-hidden="true"></i></a></div>
+                <div class="col-md-1"><a class="handle2 pure-button pure-button-primary btn-sm" style="float:left;"><i class="fa fa-sort" aria-hidden="true"></i></a></div>
             {{/isText}}
 
             <div class="col-md-3"><input type="text" class="form-control input-sm" name="option[{{id}}][values][{{valId}}][name]" value="{{name}}" /></div>
@@ -430,7 +430,7 @@
                     <input class="form-control" type="text" name="option[{{id}}][values][{{valId}}][limit]" value="{{limit}}" />
                 {{/isText}}
                 {{^isText}}
-                    <a class="deleteOptionValue btn btn-danger btn-sm pull-right"><i class="fa fa-times" aria-hidden="true"></i></a>
+                    <a class="deleteOptionValue pure-button button-danger btn-sm pull-right"><i class="fa fa-times" aria-hidden="true"></i></a>
                 {{/isText}}
             </div>
         </div>

@@ -27,7 +27,7 @@ $(window).ready(function(){
     <div class="input-group">
         <?php echo form_upload(['name' => 'userfile', 'class' => 'form-control']); ?>
         <span class="input-group-btn">
-            <button class="btn btn-primary" name="submit" type="submit"><i class="fa fa-upload" aria-hidden="true"></i></button>
+            <button class="pure-button pure-button-primary" name="submit" type="submit"><i class="fa fa-upload" aria-hidden="true"></i></button>
         </span>
     </div>
     

@@ -6,11 +6,11 @@ function areyousure()
 }
 </script>
 <div class="text-right">
-    <a class="btn btn-primary no-barba" href="<?php echo site_url('admin/pages/form'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> <?php echo lang('add_new_page'); ?></a>
-    <a class="btn btn-primary" href="<?php echo site_url('admin/pages/link_form'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> <?php echo lang('add_new_link'); ?></a>
+    <a class="pure-button pure-button-primary no-barba" href="<?php echo site_url('admin/pages/form'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> <?php echo lang('add_new_page'); ?></a>
+    <a class="pure-button pure-button-primary" href="<?php echo site_url('admin/pages/link_form'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> <?php echo lang('add_new_link'); ?></a>
 </div>
 
-<table class="table table-striped">
+<table class="pure-table pure-table-horizontal">
     <thead>
         <tr>
             <th style="max-width:20px;"></th>
@@ -33,13 +33,13 @@ function areyousure()
                 <td class="text-right">
                     <div class="btn-group">
                         <?php if (!empty($page->url)) : ?>
-                            <a class="btn btn-default" href="<?php echo site_url('admin/pages/link_form/'.$page->id); ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                            <a class="btn btn-default" href="<?php echo $page->url; ?>" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+                            <a class="pure-button" href="<?php echo site_url('admin/pages/link_form/'.$page->id); ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                            <a class="pure-button" href="<?php echo $page->url; ?>" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
                         <?php else : ?>
-                            <a class="btn btn-default" href="<?php echo site_url('admin/pages/form/'.$page->id); ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                            <a class="btn btn-default" href="<?php echo site_url('page/'.$page->slug); ?>" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                            <a class="pure-button" href="<?php echo site_url('admin/pages/form/'.$page->id); ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                            <a class="pure-button" href="<?php echo site_url('page/'.$page->slug); ?>" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i></a>
                         <?php endif; ?>
-                        <a class="btn btn-danger" href="<?php echo site_url('admin/pages/delete/'.$page->id); ?>" onclick="return areyousure();"><i class="fa fa-times" aria-hidden="true"></i></a>
+                        <a class="pure-button button-danger" href="<?php echo site_url('admin/pages/delete/'.$page->id); ?>" onclick="return areyousure();"><i class="fa fa-times" aria-hidden="true"></i></a>
                     </div>
                 </td>
             </tr>

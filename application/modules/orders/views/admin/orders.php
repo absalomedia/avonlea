@@ -48,23 +48,23 @@ if ($term) :?>
     </div>
     <div class="col-md-8">
         <?php echo form_open('admin/orders', 'class="form-inline" style="float:right"'); ?>
-            <div class="form-group">
+            <div class="pure-control-group">
                 <label class="sr-only" for="start_date"><?php echo lang('start_date'); ?></label>
                 <input name="start_date" value="" class="datepicker form-control" type="text" placeholder="<?php echo lang('start_date'); ?>"/>
             </div>
-            <div class="form-group">
+            <div class="pure-control-group">
                 <input name="end_date" value="" class="datepicker form-control" type="text"  placeholder="<?php echo lang('end_date'); ?>"/>
             </div>
-            <div class="form-group">
+            <div class="pure-control-group">
                 <input id="top" type="text" class="form-control" name="term" placeholder="<?php echo lang('term')?>" />
             </div>
-                <button class="btn btn-default" name="submit" value="search"><i class="fa fa-search" aria-hidden="true"></i></button>
-                <button class="btn btn-default" name="submit" value="export"><i class="fa fa-download" aria-hidden="true"></i></button>
+                <button class="pure-button" name="submit" value="search"><i class="fa fa-search" aria-hidden="true"></i></button>
+                <button class="pure-button" name="submit" value="export"><i class="fa fa-download" aria-hidden="true"></i></button>
         </form>
     </div>
 </div>
 
-<table class="table table-striped">
+<table class="pure-table pure-table-horizontal">
     <thead>
         <tr>
             <th><?php echo sort_url('order', 'order_number', $sort_by, $sort_order, $code); ?></th>
@@ -121,7 +121,7 @@ if ($term) :?>
 
                     <button type="button" class="btn btn-success" onClick="save_status(<?php echo $order->id; ?>)"><i class="fa fa-check" aria-hidden="true"></i></button>
 
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <button type="button" class="pure-button dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                         <span class="caret"></span>
                         <span class="sr-only">Toggle Dropdown</span>
                     </button>

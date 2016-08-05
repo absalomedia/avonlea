@@ -44,11 +44,11 @@ function areyousure()
 </script>
 
 <div class="text-right">
-    <a class="btn btn-primary" href="<?php echo site_url('admin/banners/banner_form/'.$banner_collection_id); ?>"><i class="fa fa-plus" aria-hidden="true"></i> <?php echo lang('add_new_banner'); ?></a>
-    <a class="btn btn-primary" href="<?php echo site_url('admin/banners/'); ?>"><?php echo lang('banner_collections'); ?></a>
+    <a class="pure-button pure-button-primary" href="<?php echo site_url('admin/banners/banner_form/'.$banner_collection_id); ?>"><i class="fa fa-plus" aria-hidden="true"></i> <?php echo lang('add_new_banner'); ?></a>
+    <a class="pure-button pure-button-primary" href="<?php echo site_url('admin/banners/'); ?>"><?php echo lang('banner_collections'); ?></a>
 </div>
 
-<table class="table table-striped">
+<table class="pure-table pure-table-horizontal">
     <thead>
         <tr>
             <th><?php echo lang('sort'); ?></th>
@@ -64,7 +64,6 @@ function areyousure()
     <?php
 
     foreach ($banners as $banner) :
-
         $disabled = '';
         $enableOn = ($banner->enable_date === '0000-00-00') ? '' : date('m/d/y', strtotime($banner->enable_date));
         $disableOn = ($banner->disable_date === '0000-00-00') ? '' : date('m/d/y', strtotime($banner->disable_date));
@@ -76,18 +75,18 @@ function areyousure()
 
         ?>
         <tr id="banners-<?php echo $banner->banner_id; ?>"<?php echo $disabled; ?>>
-            <td class="handle"><a class="btn btn-primary"><span class="fa fa-sort"></span></a></td>
+            <td class="handle"><a class="pure-button pure-button-primary"><span class="fa fa-sort"></span></a></td>
             <td><?php echo $banner->name; ?></td>
             <td><?php echo $enableOn; ?></td>
             <td><?php echo $disableOn; ?></td>
             <td class="text-right">
                 <div class="btn-group">
-                    <a class="btn btn-default" href="<?php echo site_url('admin/banners/banner_form/'.$banner_collection_id.'/'.$banner->banner_id); ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                    <a class="btn btn-danger" href="<?php echo  site_url('admin/banners/delete_banner/'.$banner->banner_id); ?>" onclick="return areyousure();"><i class="fa fa-times " aria-hidden="true"></i></a>
+                    <a class="pure-button" href="<?php echo site_url('admin/banners/banner_form/'.$banner_collection_id.'/'.$banner->banner_id); ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                    <a class="pure-button button-danger" href="<?php echo  site_url('admin/banners/delete_banner/'.$banner->banner_id); ?>" onclick="return areyousure();"><i class="fa fa-times " aria-hidden="true"></i></a>
                 </div>
             </td>
         </tr>
-    <?php                                                                                                             endforeach; ?>
+    <?php                                                                                                                                                                                                                     endforeach; ?>
     </tbody>
     <?php endif; ?>
 </table>

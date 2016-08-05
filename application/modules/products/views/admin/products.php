@@ -48,8 +48,8 @@ function areyousure()
                      <div class="form-group">
                         <input type="text" class="form-control" name="term" placeholder="<?php echo lang('search_term'); ?>" />
                     </div>
-                        <button class="btn btn-default" name="submit" value="search"><?php echo lang('search')?></button>
-                        <a class="btn btn-default" href="<?php echo site_url('admin/products'); ?>">Reset</a>
+                        <button class="pure-button" name="submit" value="search"><?php echo lang('search')?></button>
+                        <a class="pure-button" href="<?php echo site_url('admin/products'); ?>">Reset</a>
                 </form>
             </div>
         </div>
@@ -58,11 +58,11 @@ function areyousure()
 
 <?php echo form_open('admin/products/bulk_save', ['id' => 'bulk_form']); ?>
 <div class="text-right form-group">
-    <button class="btn btn-primary" href="#"><i class="fa fa-ok" aria-hidden="true"></i> <?php echo lang('bulk_save'); ?></button>
-    <a class="btn btn-primary" style="font-weight:normal;"href="<?php echo site_url('admin/products/form'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> <?php echo lang('add_new_product'); ?></a>
-    <a class="btn btn-primary" style="font-weight:normal;"href="<?php echo site_url('admin/products/gift-card-form'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> <?php echo lang('add_new_gift_card'); ?></a>
+    <button class="pure-button pure-button-primary" href="#"><i class="fa fa-ok" aria-hidden="true"></i> <?php echo lang('bulk_save'); ?></button>
+    <a class="pure-button pure-button-primary" style="font-weight:normal;"href="<?php echo site_url('admin/products/form'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> <?php echo lang('add_new_product'); ?></a>
+    <a class="pure-button pure-button-primary" style="font-weight:normal;"href="<?php echo site_url('admin/products/gift-card-form'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> <?php echo lang('add_new_gift_card'); ?></a>
 </div>
-    <table class="table table-striped">
+    <table class="pure-table pure-table-horizontal">
         <thead>
             <tr>
                 <?php
@@ -110,9 +110,9 @@ function areyousure()
                 <?php endforeach; ?>
                 <td class="text-right">
                     <div class="btn-group">
-                        <a class="btn btn-default" href="<?php echo ($product->is_giftcard) ? site_url('admin/products/gift-card-form/'.$product->id) : site_url('admin/products/form/'.$product->id); ?>" alt="<?php echo lang('edit'); ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                        <a class="btn btn-default" href="<?php echo site_url('admin/products/form/'.$product->id.'/1'); ?>" alt="<?php echo lang('copy'); ?>"><i class="fa fa-copy" aria-hidden="true"></i></a>
-                        <a class="btn btn-danger" href="<?php echo site_url('admin/products/delete/'.$product->id); ?>" onclick="return areyousure();" alt="<?php echo lang('delete'); ?>"><i class="fa fa-times " aria-hidden="true"></i></a>
+                        <a class="pure-button" href="<?php echo ($product->is_giftcard) ? site_url('admin/products/gift-card-form/'.$product->id) : site_url('admin/products/form/'.$product->id); ?>" alt="<?php echo lang('edit'); ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                        <a class="pure-button" href="<?php echo site_url('admin/products/form/'.$product->id.'/1'); ?>" alt="<?php echo lang('copy'); ?>"><i class="fa fa-copy" aria-hidden="true"></i></a>
+                        <a class="pure-button button-danger" href="<?php echo site_url('admin/products/delete/'.$product->id); ?>" onclick="return areyousure();" alt="<?php echo lang('delete'); ?>"><i class="fa fa-times " aria-hidden="true"></i></a>
                     </div>
                 </td>
             </tr>

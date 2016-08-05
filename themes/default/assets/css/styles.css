@@ -1369,19 +1369,19 @@ form:after {
     border-radius: 20px;
     margin: 0.2em;
 }
-.pure-badge-error {
+.pure-badge-error, .button-error {
     background-color: #D13C38;
 }
-.pure-badge-warning {
+.pure-badge-warning, .button-warning  {
     background-color: #E78C05;
 }
-.pure-badge-success {
+.pure-badge-success, .button-success  {
     background-color: rgb(83, 180, 79);
 }
-.pure-badge-info {
+.pure-badge-info, .button-info  {
     background-color: rgb(18, 169, 218);
 }
-.pure-badge-inverse {
+.pure-badge-inverse, .button-inverse  {
     background-color: #4D370C;
 }
 
@@ -1455,4 +1455,11 @@ form:after {
 }
 .onoffswitch-checkbox:checked + .onoffswitch-label:before {
     right: 0px; 
+}
+
+/* Button group padding */
+
+.pull-right {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
 }

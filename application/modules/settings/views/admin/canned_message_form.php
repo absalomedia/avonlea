@@ -24,7 +24,7 @@
         <?php echo form_textarea(['name' => 'content', 'class' => 'redactor', 'value' => assign_value('content', $content)]); ?>
     </div>
 
-    <input class="btn btn-primary" type="submit" value="<?php echo lang('save'); ?>"/>
+    <input class="pure-button pure-button-primary" type="submit" value="<?php echo lang('save'); ?>"/>
 
 </form>
 

@@ -2,27 +2,27 @@
 
 <?php echo form_open('admin/locations/country_form/'.$optn); ?>
 
-    <div class="form-group">
+    <div class="pure-control-group">
         <label for="name"><?php echo lang('name'); ?></label>
         <?php echo form_input(['name' => 'name', 'value' => assign_value('name', $name), 'class' => 'form-control']); ?>
     </div>  
     
     <div class="row">
         <div class="col-md-6">
-            <div class="form-group">
+            <div class="pure-control-group">
                 <label for="iso_code_2"><?php echo lang('iso_code_2'); ?> / <?php echo lang('iso_code_3'); ?></label>
                 <?php echo form_input(['name' => 'iso_code_2', 'maxlength' => '2', 'value' => assign_value('iso_code_2', $iso_code_2), 'class' => 'form-control']); ?>
             </div>
         </div>
         <div class="col-md-6">
-            <div class="form-group">
+            <div class="pure-control-group">
                 <label for="iso_code_3"><?php echo lang('iso_code_3'); ?></label>
                 <?php echo form_input(['name' => 'iso_code_3', 'maxlength' => '3', 'value' => assign_value('iso_code_3', $iso_code_3), 'class' => 'form-control']); ?>
             </div>
         </div>
     </div>
 
-    <div class="form-group">
+    <div class="pure-control-group">
         <label for="address_format"><?php echo lang('address_format'); ?></label>
         <?php echo form_textarea(['name' => 'address_format', 'value' => assign_value('address_format', $address_format), 'rows' => 6, 'class' => 'form-control']); ?>
     </div>
@@ -34,11 +34,11 @@
         </label>
     </div>
 
-    <div class="form-group">
+    <div class="pure-control-group">
         <label for="tax"><?php echo lang('tax'); ?></label>
         <div class="input-group">
             <span class="input-group-addon">%</span>
-           <?php echo form_input(['class' => 'form-control', 'name' => 'tax', 'maxlength' => '10', 'value' => assign_value('tax', $tax)]); ?>
+            <?php echo form_input(['class' => 'form-control', 'name' => 'tax', 'maxlength' => '10', 'value' => assign_value('tax', $tax)]); ?>
         </div>
      </div>
 
@@ -49,7 +49,7 @@
         </label>
     </div>
 
-    <button type="submit" class="btn btn-primary"><?php echo lang('save'); ?></button>
+    <button type="submit" class="pure-button pure-button-primary"><?php echo lang('save'); ?></button>
 
 </form>
 

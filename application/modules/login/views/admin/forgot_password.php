@@ -7,12 +7,12 @@
 
     <?php echo form_open('admin/forgot-password') ?>
 
-        <div class="form-group">
+        <div class="pure-control-group">
             <label for="username"><?php echo lang('username'); ?></label>
             <?php echo form_input(['name' => 'username', 'class' => 'form-control']); ?>
         </div>
 
-        <input class="btn btn-primary" type="submit" value="<?php echo lang('reset_password'); ?>"/>
+        <input class="pure-button pure-button-primary" type="submit" value="<?php echo lang('reset_password'); ?>"/>
         
     <?php echo  form_close(); ?>
 

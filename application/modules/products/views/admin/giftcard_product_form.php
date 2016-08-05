@@ -80,15 +80,15 @@ function remove_option(id)
             <div class="tab-content">
                 <div class="tab-pane active" id="product_info">
 
-                    <div class="form-group">
+                    <div class="pure-control-group">
                         <?php echo form_input(['placeholder' => lang('name'), 'name' => 'name', 'value' => assign_value('name', $name), 'class' => 'form-control']); ?>
                     </div>
 
-                    <div class="form-group">
+                    <div class="pure-control-group">
                         <?php echo form_textarea(['name' => 'description', 'class' => 'redactor', 'value' => assign_value('description', $description)]); ?>
                     </div>
 
-                    <div class="form-group">
+                    <div class="pure-control-group">
                         <label><?php echo lang('excerpt'); ?></label>
                         <?php echo form_textarea(['name' => 'excerpt', 'value' => assign_value('excerpt', $excerpt), 'class' => 'form-control', 'rows' => 5]); ?>
                     </div>
@@ -97,17 +97,17 @@ function remove_option(id)
                         <legend><?php echo lang('header_information'); ?></legend>
                         <div style="padding-top:10px;">
                             
-                            <div class="form-group">
+                            <div class="pure-control-group">
                                 <label for="slug"><?php echo lang('slug'); ?> </label>
                                 <?php echo form_input(['name' => 'slug', 'value' => assign_value('slug', $slug), 'class' => 'form-control']); ?>
                             </div>
 
-                            <div class="form-group">
+                            <div class="pure-control-group">
                                 <label for="seo_title"><?php echo lang('seo_title'); ?> </label>
                                 <?php echo form_input(['name' => 'seo_title', 'value' => assign_value('seo_title', $seo_title), 'class' => 'form-control']); ?>
                             </div>
 
-                            <div class="form-group">
+                            <div class="pure-control-group">
                                 <label for="meta"><?php echo lang('meta'); ?></label>
                                 <?php echo form_textarea(['name' => 'meta', 'value' => assign_value('meta', html_entity_decode($meta)), 'class' => 'form-control']); ?>
                                 <span class="help-block"><?php echo lang('meta_example'); ?></span>
@@ -120,7 +120,7 @@ function remove_option(id)
 
                     <?php if (isset($categories[0])) :?>
                         <label><strong><?php echo lang('select_a_category'); ?></strong></label>
-                        <table class="table table-striped">
+                        <table class="pure-table pure-table-horizontal">
                             <thead>
                                 <tr>
                                     <th><?php echo lang('name')?></th>
@@ -165,12 +165,12 @@ function remove_option(id)
                 <div class="tab-pane" id="productValues">
                     <div class="row">
                         <div class="pull-right" style="padding:0px 0px 10px 0px;">
-                            <button type="button" class="btn btn-primary btn-default-default" name="giftcard_values btn btn-default" onclick="add_giftcard_values()">Add </button>
+                            <button type="button" class="pure-button pure-button-primary btn-default-default" name="giftcard_values pure-button" onclick="add_giftcard_values()">Add </button>
                         </div>
 
                         <div class="clearfix"></div>
 
-                        <table id="values_container" class="table table-striped">
+                        <table id="values_container" class="pure-table pure-table-horizontal">
                             <thead>
                                 <tr></th></th></tr>
                             </thead>
@@ -220,15 +220,15 @@ function remove_option(id)
 
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary"><?php echo lang('save'); ?></button>
+            <button type="submit" class="pure-button pure-button-primary"><?php echo lang('save'); ?></button>
         </div>
         <div class="col-md-3">
 
-            <div class="form-group">
+            <div class="pure-control-group">
                 <?php echo form_dropdown('taxable', [0 => lang('not_taxable'), 1 => lang('taxable')], assign_value('taxable', $taxable), 'class="form-control"'); ?>
             </div>
 
-            <div class="form-group">
+            <div class="pure-control-group">
                 <label for="sku"><?php echo lang('sku'); ?></label>
                 <?php echo form_input(['name' => 'sku', 'value' => assign_value('sku', $sku), 'class' => 'form-control']); ?>
             </div>
@@ -252,7 +252,7 @@ function remove_option(id)
 
 <?php
 function add_image($photo_id, $filename, $alt, $caption, $primary = false)
-                    {
+{
                         ob_start(); ?>
     <div class="row gc_photo" id="gc_photo_<?php echo $photo_id; ?>" style="background-color:#fff; border-bottom:1px solid #ddd; padding-bottom:20px; margin-bottom:20px;">
         <div class="col-md-2">
@@ -262,7 +262,7 @@ function add_image($photo_id, $filename, $alt, $caption, $primary = false)
         <div class="col-md-10">
             <div class="row">
                 <div class="col-md-4">
-                    <div class="form-group">
+                    <div class="pure-control-group">
                         <input name="images[<?php echo $photo_id; ?>][alt]" value="<?php echo $alt; ?>" class="form-control" placeholder="<?php echo lang('alt_tag'); ?>"/>
                     </div>
                 </div>
@@ -270,13 +270,13 @@ function add_image($photo_id, $filename, $alt, $caption, $primary = false)
                     <div class="checkbox">
                         <label>
                             <input type="radio" name="primary_image" value="<?php echo $photo_id; ?>" <?php if ($primary) {
-                            echo 'checked="checked"';
-                        } ?>/> <?php echo lang('main_image'); ?>
+                                echo 'checked="checked"';
+} ?>/> <?php echo lang('main_image'); ?>
                         </label>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <a onclick="return remove_image($(this));" rel="<?php echo $photo_id; ?>" class="btn btn-danger pull-right"><i class="fa fa-times " aria-hidden="true"></i></a>
+                    <a onclick="return remove_image($(this));" rel="<?php echo $photo_id; ?>" class="pure-button button-danger pull-right"><i class="fa fa-times " aria-hidden="true"></i></a>
                 </div>
             </div>
             <div class="row">
@@ -294,7 +294,7 @@ function add_image($photo_id, $filename, $alt, $caption, $primary = false)
                         ob_end_clean();
 
                         echo replace_newline($stuff);
-                    }
+}
 
 //this makes it easy to use the same code for initial generation of the form as well as javascript additions
 /**
@@ -334,7 +334,7 @@ function add_option_value($po, $count, $price)
             <div class="input-group">
                 <input type="text" name="option[giftcard_values][<?php echo $count; ?>]" value="<?php echo $price ?>" class="form-control"/>
                 <div class="input-group-btn">
-                    <button type="button" class="btn btn-danger" onclick="remove_giftcard_value(<?php echo $count; ?>);"><i class="fa fa-times" aria-hidden="true"></i></button>
+                    <button type="button" class="pure-button button-danger" onclick="remove_giftcard_value(<?php echo $count; ?>);"><i class="fa fa-times" aria-hidden="true"></i></button>
                 </div>
             </div>
         </td>

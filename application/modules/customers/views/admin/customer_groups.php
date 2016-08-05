@@ -8,9 +8,9 @@ function areyousure()
 
 </script>
 
-<a class="btn btn-primary" style="float:right;" href="<?php echo site_url('admin/customers/group_form'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> <?php echo lang('add_new_group'); ?></a>
+<a class="pure-button pure-button-primary" style="float:right;" href="<?php echo site_url('admin/customers/group_form'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> <?php echo lang('add_new_group'); ?></a>
     
-<table class="table table-striped">
+<table class="pure-table pure-table-horizontal">
     <thead>
         <tr>
             <th><?php echo lang('group_name'); ?></th>
@@ -24,9 +24,9 @@ function areyousure()
         <td><?php echo $group->name; ?></td>
         <td class="text-right">
             <div class="btn-group">
-                <a class="btn btn-default" href="<?php echo site_url('admin/customers/group_form/'.$group->id); ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                <a class="pure-button" href="<?php echo site_url('admin/customers/group_form/'.$group->id); ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                 <?php if ($group->id != 1) : ?>
-                <a class="btn btn-danger" href="<?php echo site_url('admin/customers/delete_group/'.$group->id); ?>" onclick="return areyousure();"><i class="fa fa-times " aria-hidden="true"></i></a>
+                <a class="pure-button button-danger" href="<?php echo site_url('admin/customers/delete_group/'.$group->id); ?>" onclick="return areyousure();"><i class="fa fa-times " aria-hidden="true"></i></a>
                 <?php endif; ?>
             </div>
         </td>

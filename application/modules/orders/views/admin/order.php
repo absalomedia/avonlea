@@ -3,10 +3,10 @@
 </div>
 <div class="row">
     <div class="col-md-6">
-        <a class="btn btn-primary" href="<?php echo site_url('admin/orders/packing_slip/'.$order->order_number); ?>" target="_blank"><i class="fa fa-file" aria-hidden="true"></i> <?php echo lang('packing_slip'); ?></a>
+        <a class="pure-button pure-button-primary" href="<?php echo site_url('admin/orders/packing_slip/'.$order->order_number); ?>" target="_blank"><i class="fa fa-file" aria-hidden="true"></i> <?php echo lang('packing_slip'); ?></a>
     </div>
     <div class="col-md-6 text-right">
-        <a class="btn btn-danger" onclick="if(!confirm('<?php echo lang('confirm_delete_order'); ?>')) { return false; }" href="<?php echo site_url('admin/orders/delete/'.$order->id); ?>" target="_blank"><i class="fa fa-cancel" aria-hidden="true"></i> <?php echo lang('delete'); ?></a>
+        <a class="pure-button button-danger" onclick="if(!confirm('<?php echo lang('confirm_delete_order'); ?>')) { return false; }" href="<?php echo site_url('admin/orders/delete/'.$order->id); ?>" target="_blank"><i class="fa fa-cancel" aria-hidden="true"></i> <?php echo lang('delete'); ?></a>
     </div>
 </div>
 
@@ -54,16 +54,16 @@
         <div class="col-md-3">
             <?php echo form_open('admin/orders/order/'.$order->order_number); ?>
 
-                <div class="form-group">
+                <div class="pure-control-group">
                     <label><?php echo lang('admin_notes'); ?></label>
                     <?php echo form_textarea(['name' => 'notes', 'class' => 'form-control', 'rows' => 2, 'value' => set_value('notes', $order->notes)]); ?>
                 </div>
-                <div class="form-group">
+                <div class="pure-control-group">
                     <label><?php echo lang('status'); ?></label>
                     <div class="input-group">
         				<?php echo form_input(['id' => 'status_form_'.$order->id, 'name' => 'status', 'class' => 'form-control', 'value' => set_value('status', $order->status)]); ?>
         				<div class="input-group-btn">
-        					<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+        					<button type="button" class="pure-button pure-button-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
         						<span class="caret"></span>
         						<span class="sr-only">Toggle Dropdown</span>
         					</button>
@@ -76,7 +76,7 @@
         			</div>
                 </div>
 
-                <input type="submit" class="btn btn-primary" value="<?php echo lang('update_order'); ?>"/>
+                <input type="submit" class="pure-button pure-button-primary" value="<?php echo lang('update_order'); ?>"/>
 
             </form>
         </div>

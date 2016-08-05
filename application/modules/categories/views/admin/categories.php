@@ -8,10 +8,10 @@ function areyousure()
 </script>
 
 <div style="text-align:right">
-    <a class="btn btn-primary" href="<?php echo site_url('admin/categories/form'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> <?php echo lang('add_new_category'); ?></a>
+    <a class="pure-button pure-button-primary" href="<?php echo site_url('admin/categories/form'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> <?php echo lang('add_new_category'); ?></a>
 </div>
 
-<table class="table table-striped">
+<table class="pure-table pure-table-horizontal">
     <thead>
         <tr>
             <th><i class="fa fa-eye-slash" aria-hidden="true"></i></th>
@@ -36,8 +36,8 @@ function areyousure()
                 <?php endforeach; ?>
                 <td class="text-right">
                     <div class="btn-group">
-                        <a class="btn btn-default" href="<?php echo  site_url('admin/categories/form/'.$cat->id); ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                        <a class="btn btn-danger" href="<?php echo  site_url('admin/categories/delete/'.$cat->id); ?>" onclick="return areyousure();"><i class="fa fa-times " aria-hidden="true"></i></a>
+                        <a class="pure-button" href="<?php echo  site_url('admin/categories/form/'.$cat->id); ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                        <a class="pure-button button-danger" href="<?php echo  site_url('admin/categories/delete/'.$cat->id); ?>" onclick="return areyousure();"><i class="fa fa-times " aria-hidden="true"></i></a>
                     </div>
                 </td>
             </tr>

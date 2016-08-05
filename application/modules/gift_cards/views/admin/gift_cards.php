@@ -8,9 +8,9 @@ function areyousure()
 <?php pageHeader(lang('gift_cards')); ?>
 
 <div class="text-right">
-    <a class="btn btn-primary" href="<?php echo site_url('admin/gift-cards/form'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> <?php echo lang('add_gift_card')?></a>
+    <a class="pure-button pure-button-primary" href="<?php echo site_url('admin/gift-cards/form'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> <?php echo lang('add_gift_card')?></a>
 </div>
-<table class="table table-striped">
+<table class="pure-table pure-table-horizontal">
     <thead>
         <tr>
             <th><?php echo lang('code'); ?></th>
@@ -32,7 +32,7 @@ function areyousure()
             <td><?php echo (float) $card->beginning_amount; ?></td>
             <td><?php echo (float) $card->amount_used; ?></td>
             <td><?php echo (float) $card->beginning_amount - (float) $card->amount_used; ?></td>
-            <td class="text-right"><a class="btn btn-danger" href="<?php echo site_url('admin/gift-cards/delete/'.$card->id); ?>" onclick="return areyousure();"><i class="fa fa-times" aria-hidden="true"></i></a>
+            <td class="text-right"><a class="pure-button button-danger" href="<?php echo site_url('admin/gift-cards/delete/'.$card->id); ?>" onclick="return areyousure();"><i class="fa fa-times" aria-hidden="true"></i></a>
       </tr>
 <?php endforeach; ?>
     </tbody>

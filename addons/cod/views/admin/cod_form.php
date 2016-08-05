@@ -10,7 +10,7 @@
     <?php echo form_dropdown('enabled', ['0' => lang('disabled'), '1' => lang('enabled')], assign_value('enabled', $enabled), 'class="form-control"'); ?>
 </div>
 <div class="form-actions">
-    <button type="submit" class="btn btn-primary"><?php echo lang('save'); ?></button>
+    <button type="submit" class="pure-button pure-button-primary"><?php echo lang('save'); ?></button>
 </div>
 </div>    
 </div>    

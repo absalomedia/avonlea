@@ -5,7 +5,7 @@ lang('january'), lang('february'), lang('march'), lang('april'), lang('may'), la
 ];
 ?>
 
-<table class="table table-striped">
+<table class="pure-table pure-table-horizontal">
 	<thead>
 		<tr>
 			<th><?php echo $year; ?></th>

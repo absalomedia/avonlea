@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-12">
-        <button class="btn btn-primary" id="generateButton" onclick="generateSitemap()">Generate Sitemap</button>
+        <button class="pure-button pure-button-primary" id="generateButton" onclick="generateSitemap()">Generate Sitemap</button>
 
         <div class="progressbarContainer">
             <div class="progressbar"></div>

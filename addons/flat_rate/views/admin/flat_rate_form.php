@@ -14,7 +14,7 @@
     <?php echo form_input(['name' => 'rate', 'value' => assign_value('rate', $rate), 'class' => 'form-control']); ?>
 </div>
     <div class="form-actions">
-        <button type="submit" class="btn btn-primary"><?php echo lang('save'); ?></button>
+        <button type="submit" class="pure-button pure-button-primary"><?php echo lang('save'); ?></button>
     </div>
 </div>   
 </form>
