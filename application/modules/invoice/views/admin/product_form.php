@@ -383,7 +383,7 @@
                     <div class="col-md-10">
                         <input type="text" class="form-control" placeholder="<?php echo lang('option_name'); ?>" name="option[{{id}}][name]" value="{{name}}"/>
                     </div>
-                    <div class="col-md-2" style="text-align:right;">
+                    <div class="col-md-2" class="text-right;">
                         <div class="checkbox">
                             <label>
                                 <input class="checkbox" type="checkbox" name="option[{{id}}][required]" value="1" {{#required}} checked="checked" {{/required}}/> <?php echo lang('required'); ?>

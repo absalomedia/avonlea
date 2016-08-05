@@ -7,7 +7,7 @@ function areyousure()
 }
 </script>
 
-<div style="text-align:right">
+<div class="text-right">
     <a class="pure-button pure-button-primary" href="<?php echo site_url('admin/categories/form'); ?>"><i class="fa fa-plus" aria-hidden="true"></i> <?php echo lang('add_new_category'); ?></a>
 </div>
 
