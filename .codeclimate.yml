@@ -5,3 +5,8 @@ exclude_paths:
 - system/*
 - docs/*
 - vendor/*
+  duplication:
+    enabled: true
+    # ... CONFIG CONTENT ...
+    exclude_fingerprints:
+      - 2e3f71ab3af9d30d04c3902ea83bcdac
