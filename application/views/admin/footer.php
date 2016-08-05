@@ -23,6 +23,7 @@
 <script type="text/javascript" src="<?php echo base_url('assets/js/trumb/trumbowyg.uploadcare.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/js/spin.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/js/mustache.min.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/js/ui.js'); ?>"></script>
 
 
 <script type="text/javascript">
