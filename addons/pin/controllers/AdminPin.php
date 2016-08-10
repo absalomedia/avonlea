@@ -55,7 +55,7 @@ class AdminPin extends Admin
         }
 
         $settings = \CI::Settings()->getSettings('pin');
-        $enabled = (isset($settings['enabled']) ?  $settings['enabled'] : null);
+        $enabled = (isset($settings['enabled']) ? $settings['enabled'] : null);
         $this->view('pin_form', ['enabled' => $enabled]);
     }
 }

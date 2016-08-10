@@ -55,7 +55,7 @@ class AdminCod extends Admin
         }
 
         $settings = \CI::Settings()->getSettings('cod');
-        $enabled = (isset($settings['enabled']) ?  $settings['enabled'] : null);
+        $enabled = (isset($settings['enabled']) ? $settings['enabled'] : null);
         $this->view('cod_form', ['enabled' => $enabled]);
     }
 }
