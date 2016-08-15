@@ -6,6 +6,7 @@ This is a very, very alpha fork/code refactor of some long standing invoicing so
 - [x] Patch to CodeIgniter 3.x branch
 - [x] Standardise database between old to new schema for migration purposes
 - [x] Apply CI code quality enforcement
+- [ ] Optimise existing codebase
 - [ ] Remove redundant modules from codebase
 - [ ] Add in new modules based on updated/revised invoicing plan
 - [ ] Make sure all modules work as planned, using Travis, etc.
