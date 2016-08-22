@@ -4,7 +4,9 @@
     "license": "OSL-3.0",
     "require": {
         "php": ">=5.4",
-        "altorouter/altorouter": "^1.1.0",
+        "guzzlehttp/guzzle": "^6.0",
+        "guzzlehttp/psr7": "dev-master",
+        "altorouter/altorouter": "^1.2.0",
         "swiftmailer/swiftmailer": "@stable",
         "twig/twig": "~1.0",
         "omnipay/common": "^2.3",
@@ -18,12 +20,11 @@
         "softcommerce/omnipay-paytrace": "~1.0",
         "meebio/omnipay-secure-trading": "dev-master",
         "justinbusschau/omnipay-secpay": "~2.0",
-        "sparkpost/php-sparkpost": "dev-master",
         "mailgun/mailgun-php": "dev-master",
         "mailchimp/mailchimp": "dev-master",
-        "filp/whoops": "^2.1"
+        "filp/whoops": "^2.1",
+        "rinvex/country": "dev-master"
     },
     "require-dev": {
-        "mikey179/vfsStream": "1.1.*"
     }
 }
