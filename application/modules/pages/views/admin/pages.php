@@ -46,7 +46,7 @@ function areyousure()
             <?php
             if (isset($pages[$page->id]) && count($pages[$page->id]) > 0) {
                 $sub2 = str_replace('&rarr;&nbsp;', '&nbsp;', $sub);
-                $sub2 .=  '&nbsp;&nbsp;&nbsp;&rarr;&nbsp;';
+                $sub2 .= '&nbsp;&nbsp;&nbsp;&rarr;&nbsp;';
                 list_pages($page->id, $pages, $sub2);
             }
             endforeach;
