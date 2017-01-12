@@ -35,22 +35,13 @@ $_css->addFile('font-awesome.min');
 $_css->addFile('styles');
 $_css->addFile('profiler');
 
-
-$_js = new JSCrunch();
-$_js->addFile('jquery-3.0.0.min');
-$_js->addFile('jquery-migrate-3.0.0');
-$_js->addFile('jquery.spin');
-
 if (true) { //Dev Mode
 //in development mode keep all the css files separate
     $_css->crunch(true);
-    $_js->crunch(true);
 } else {
     //combine all css files in live mode
     $_css->crunch();
-    $_js->crunch();
 }
-
 
 //with this I can put header data in the header instead of in the body.
 if (isset($additional_header_info)) {
