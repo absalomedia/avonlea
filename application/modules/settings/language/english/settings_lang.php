@@ -77,7 +77,6 @@ $lang['currency'] = 'Currency';
 $lang['select_homepage'] = 'Select Homepage';
 $lang['products_per_page'] = 'Products per Category Page';
 
-
 $lang['admin_folder'] = 'Admin Folder';
 $lang['require_login'] = 'Require login to checkout.';
 $lang['new_customer_status'] = 'New customers are automatically activated.';

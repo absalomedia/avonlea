@@ -70,7 +70,6 @@ class Installer extends CI_Controller
 
             $db->query($query);
 
-
             //set some basic information in settings
             $query = "INSERT INTO `{$dbCred['prefix']}settings` (`code`, `setting_key`, `setting`) VALUES
             ('avl', 'theme', 'default'),

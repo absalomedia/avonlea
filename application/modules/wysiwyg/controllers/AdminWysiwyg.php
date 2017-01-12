@@ -39,7 +39,6 @@ class AdminWysiwyg extends Admin
 
             \CI::image_lib()->resize();
 
-
             $data = ['filelink' => base_url('uploads/wysiwyg/images/'.$data['file_name']), 'filename' => $data['file_name']];
             echo stripslashes(json_encode($data));
         }

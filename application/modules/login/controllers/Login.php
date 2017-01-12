@@ -120,7 +120,6 @@ class Login extends Front
         \CI::form_validation()->set_rules('password', 'lang:account_password', 'required|min_length[6]');
         \CI::form_validation()->set_rules('confirm', 'lang:account_confirm', 'required|matches[password]');
 
-
         if (\CI::form_validation()->run() === false) {
             //if they have submitted the form already and it has returned with errors, reset the redirect
             if (\CI::input()->post('submitted')) {

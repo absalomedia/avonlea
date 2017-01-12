@@ -172,7 +172,6 @@ class AdminSettings extends Admin
             }
         }
 
-
         if (\CI::form_validation()->run() === false) {
             $data['error'] = validation_errors();
             $this->view('settings', $data);

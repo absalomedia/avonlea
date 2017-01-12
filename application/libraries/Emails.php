@@ -102,7 +102,6 @@ class Emails
         $loader = new \Twig_Loader_String();
         $twig = new \Twig_Environment($loader);
 
-
         $fields = ['site_name' => config_item('company_name'), 'password' => $password];
 
         $subject = $twig->render(lang('reset_password_subject'), $fields);

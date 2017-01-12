@@ -28,7 +28,6 @@ if (true) { //Dev Mode
     $_js->crunch();
 }
 
-
 //with this I can put header data in the header instead of in the body.
 if (isset($additional_header_info)) {
     echo $additional_header_info;

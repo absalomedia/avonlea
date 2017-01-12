@@ -148,8 +148,6 @@ class Orders extends CI_Model
             }
         }
 
-
-
         if ($limit > 0) {
             CI::db()->limit($limit, $offset);
         }

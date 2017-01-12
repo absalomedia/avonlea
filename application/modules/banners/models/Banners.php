@@ -190,7 +190,6 @@ class Banners extends CI_Model
         $data['id'] = $banner_collection_id;
         $data['banners'] = $this->banner_collection_banners($banner_collection_id, true, $quantity);
 
-
         echo \Avonlea\Libraries\View::getInstance()->get('banners/'.$theme, $data);
     }
 }

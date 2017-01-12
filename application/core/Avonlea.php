@@ -516,7 +516,6 @@ class Avonlea
             $product->id = $product_id;
             $this->items[] = $product;
 
-
             //update file downloads
             if ($downloads) {
                 foreach ($downloads as $file) {
@@ -569,7 +568,6 @@ class Avonlea
                 $coupons[] = $this->items[$i];
             }
         }
-
 
         foreach ($coupons as $code) {
             $coupon = \CI::Coupons()->getCouponByCode($code->description);

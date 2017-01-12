@@ -126,7 +126,6 @@ switch (ENVIRONMENT) {
  */
     $view_folder = '';
 
-
 /*
  * --------------------------------------------------------------------
  * DEFAULT CONTROLLER
@@ -156,7 +155,6 @@ switch (ENVIRONMENT) {
     // The controller function you wish to be called.
     $routing['function'] = 'init';
 
-
 /*
  * -------------------------------------------------------------------
  *  CUSTOM CONFIG VALUES
@@ -172,8 +170,6 @@ switch (ENVIRONMENT) {
  * Un-comment the $assign_to_config array below to use this feature
  */
     // $assign_to_config['name_of_config_item'] = 'value of config item';
-
-
 
 // --------------------------------------------------------------------
 // END OF USER CONFIGURABLE SETTINGS.  DO NOT EDIT BELOW THIS LINE

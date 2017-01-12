@@ -7,8 +7,6 @@ if ($message != '') {
     echo '<p class="error">'.$message.'</p>';
 }
 
-
-
 $this->load->view('invoices/invoice_new');
 ?>
 <h2><?php echo $page_title; ?></h2>

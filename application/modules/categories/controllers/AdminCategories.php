@@ -42,7 +42,6 @@ class AdminCategories extends Admin
         $config['encrypt_name'] = true;
         \CI::load()->library('upload', $config);
 
-
         $this->category_id = $optn;
         \CI::load()->helper('form');
         \CI::load()->library('form_validation');

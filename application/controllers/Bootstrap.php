@@ -25,7 +25,6 @@ class Bootstrap extends CI_Controller
         });
         $run->register();
 
-
         $this->load->helper('url');
         if (!file_exists(APPPATH.'/config/database.php')) {
             redirect('install');
@@ -129,7 +128,6 @@ class Bootstrap extends CI_Controller
             $router->setBasePath('/'.$base);
         }
 
-
         //set the homepage route
         $router->map('GET|POST', '/', 'Avonlea\Controller\Page#homepage');
 
@@ -153,7 +151,6 @@ class Bootstrap extends CI_Controller
         $this->load->model('Settings');
         $this->load->library(['session', 'auth', 'form_validation', 'profiler', 'console']);
         $this->load->helper(['file', 'string', 'html', 'language', 'form', 'formatting']);
-
 
         if (defined('ENVIRONMENT')) {
             if (ENVIRONMENT === 'development') {

@@ -55,7 +55,6 @@ class CSSCrunch extends Crunch
             file_put_contents(theme_path().'assets/css/'.$filename, $buffer);
         }
 
-
         echo '<link href="'.theme_css($filename).'" type="text/css" rel="stylesheet" />';
 
         $this->files = [];

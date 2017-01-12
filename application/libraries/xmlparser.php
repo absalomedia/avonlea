@@ -6,11 +6,9 @@ class xmlparser
     {
         $children = [];
 
-
         if (isset($vals[$i]['value'])) {
             $children['VALUE'] = $vals[$i]['value'];
         }
-
 
         while (++$i < count($vals)) {
             switch ($vals[$i]['type']) {
