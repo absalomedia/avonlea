@@ -10,8 +10,11 @@ echo config_item('company_name'); ?></title>
 <link rel="shortcut icon" href="<?php echo theme_img('favicon.png'); ?>" type="image/png" />
 <?php if (isset($meta)) :?>
 <?php echo (strpos($meta, '<meta') !== false) ? $meta : '<meta name="description" content="'.$meta.'" />'; ?>
-<?php else :?>
-    <meta name="keywords" content="<?php echo config_item('default_meta_keywords'); ?>" />
+<?php else {
+    :?>
+    <meta name="keywords" content="<?php echo config_item('default_meta_keywords');
+}
+?>" />
     <meta name="description" content="<?php echo config_item('default_meta_description'); ?>" />
 <?php endif; ?>
 
@@ -59,8 +62,11 @@ if (isset($additional_header_info)) {
             <?php if (CI::Login()->isLoggedIn(false, false)) :?>
                             <li class="pure-menu-item"><a href="<?php echo  site_url('my-account'); ?>" class="pure-menu-link"><?php echo lang('my_account')?></a></li>
                             <li class="pure-menu-item"><a href="<?php echo site_url('logout'); ?>" class="pure-menu-link"><?php echo lang('logout'); ?></a></li>
-                        <?php else : ?>
-                            <li class="pure-menu-item"><a href="<?php echo site_url('login'); ?>" class="pure-menu-link"><?php echo lang('login'); ?></a></li>
+                        <?php else {
+    : ?>
+                            <li class="pure-menu-item"><a href="<?php echo site_url('login');
+}
+?>" class="pure-menu-link"><?php echo lang('login'); ?></a></li>
                         <?php endif; ?>
                         <li class="pure-menu-item">
                             <a href="<?php echo site_url('checkout'); ?>" class="pure-menu-link"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>

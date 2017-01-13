@@ -30,7 +30,7 @@ class Login extends Front
 
         \CI::load()->library('form_validation');
         \CI::form_validation()->set_rules('email', 'lang:address_email', ['trim', 'required', 'valid_email']);
-        \CI::form_validation()->set_rules('password', 'Password', ['required', ['check_login_callable', function ($str) {
+        \CI::form_validation()->set_rules('password', 'Password', ['required', ['check_login_callable', function($str) {
             $email = \CI::input()->post('email');
             $password = \CI::input()->post('password');
             $remember = \CI::input()->post('remember');
@@ -60,7 +60,7 @@ class Login extends Front
         $data['page_title'] = lang('forgot_password');
 
         \CI::form_validation()->set_rules('email', 'lang:address_email', ['trim', 'required', 'valid_email',
-            ['email_callable', function ($str) {
+            ['email_callable', function($str) {
                 $reset = \CI::Customers()->resetPassword($str);
 
                 if (!$reset) {
@@ -112,7 +112,7 @@ class Login extends Front
         \CI::form_validation()->set_rules('company', 'lang:account_company', 'trim|max_length[128]');
         \CI::form_validation()->set_rules('firstname', 'lang:account_firstname', 'trim|required|max_length[32]');
         \CI::form_validation()->set_rules('lastname', 'lang:account_lastname', 'trim|required|max_length[32]');
-        \CI::form_validation()->set_rules('email', 'lang:account_email', ['trim', 'required', 'valid_email', 'max_length[128]', ['check_email_callable', function ($str) {
+        \CI::form_validation()->set_rules('email', 'lang:account_email', ['trim', 'required', 'valid_email', 'max_length[128]', ['check_email_callable', function($str) {
             return $this->checkEmail($str);
         }]]);
         \CI::form_validation()->set_rules('phone', 'lang:account_phone', 'trim|required|max_length[32]');

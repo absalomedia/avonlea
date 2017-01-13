@@ -99,8 +99,11 @@
             <?php                                                                                                                                                                                                                                                                                                                         endforeach; ?>
             </tbody>
         </table>
-        <?php else : ?>
-            <div class="alert yellow"><i class="close" aria-hidden="true"></i><?php echo lang('no_order_history'); ?></div>
+        <?php else {
+    : ?>
+            <div class="alert yellow"><i class="close" aria-hidden="true"></i><?php echo lang('no_order_history');
+}
+?></div>
         <?php endif; ?>
     </div>
 </div>

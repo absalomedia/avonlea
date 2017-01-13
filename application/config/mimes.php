@@ -86,7 +86,7 @@ return [
     'jpm'      => ['image/jp2', 'video/mj2', 'image/jpx', 'image/jpm'],
     'mj2'      => ['image/jp2', 'video/mj2', 'image/jpx', 'image/jpm'],
     'mjp2'     => ['image/jp2', 'video/mj2', 'image/jpx', 'image/jpm'],
-    'png'      => ['image/png',  'image/x-png'],
+    'png'      => ['image/png', 'image/x-png'],
     'tiff'     => 'image/tiff',
     'tif'      => 'image/tiff',
     'css'      => ['text/css', 'text/plain'],

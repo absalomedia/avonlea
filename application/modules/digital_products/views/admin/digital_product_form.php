@@ -8,8 +8,11 @@
                 <?php if ($optn == 0) : ?>
                     <label for="file"><?php echo lang('file_label'); ?> </label>
                     <?php echo form_upload(['name' => 'userfile', 'class' => 'form-control']); ?>
-                <?php else : ?>
-                    <label for="file"><?php echo lang('filename'); ?>: </label>
+                <?php else {
+    : ?>
+                    <label for="file"><?php echo lang('filename');
+}
+?>: </label>
                     <?php echo $filename ?>
                 <?php endif; ?>
             </div>

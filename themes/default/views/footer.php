@@ -25,7 +25,7 @@ if (true) { //Dev Mode
     $_js->crunch();
 }
 
- //with this I can put additional scripts in the footer instead of in the body.
+    //with this I can put additional scripts in the footer instead of in the body.
 if (isset($additional_footer_info)) {
     echo $additional_footer_info;
 } ?>

@@ -40,7 +40,7 @@ class Clients extends Admin
 
         $data['total_rows'] = \CI::Clients()->countAllClients();
 
-      // Run the limited version of the query
+        // Run the limited version of the query
         $data['all_clients'] = \CI::Clients()->getAllClients();
 
         $this->_validation_client_contact(); // validation info for id, first_name, last_name, email, phone
@@ -63,13 +63,13 @@ class Clients extends Admin
 
         $data['clientName'] = $this->input->post('newClient'); // store the name provided in a var
 
-      /*
+        /*
     * There is a bug on this page where it is passing validation when the user first loads
     * it.  As a quick workaround, I'm detecting if they came from the new invoice form with
     * the hidden form variable "newInvoice"
     */
         $newinv = $this->input->post('newInvoice');
-      /*
+        /*
     * ugh... sorry
     */
 
@@ -93,7 +93,7 @@ class Clients extends Admin
             'tax_code'    => $this->input->post('tax_code'),
             ];
 
-          // make insertion, grab insert_id
+            // make insertion, grab insert_id
             if (\CI::Clients()->addClient($clientInfo)) {
                 $this->session->set_flashdata('clientId', $this->db->insert_id());
                 $this->session->set_flashdata('clientContact', true);
