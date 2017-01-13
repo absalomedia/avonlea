@@ -36,11 +36,11 @@ $_css->addFile('styles');
 $_css->addFile('profiler');
 
 if (isset($addedCSS) && is_array($addedCSS)) {
-    foreach($addedCSS as $fileCSS) {    
-    $_css->addFile($fileCSS);
+    foreach ($addedCSS as $fileCSS) {
+        $_css->addFile($fileCSS);
     }
-}    
-    
+}
+
 if (true) { //Dev Mode
 //in development mode keep all the css files separate
     $_css->crunch(true);
