@@ -35,11 +35,8 @@ function areyousure()
                         <?php if (!empty($page->url)) : ?>
                             <a class="pure-button" href="<?php echo site_url('admin/pages/link_form/'.$page->id); ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                             <a class="pure-button" href="<?php echo $page->url; ?>" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
-                        <?php else {
-    : ?>
-                            <a class="pure-button" href="<?php echo site_url('admin/pages/form/'.$page->id);
-}
-?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                        <?php else : ?>
+                            <a class="pure-button" href="<?php echo site_url('admin/pages/form/'.$page->id); ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                             <a class="pure-button" href="<?php echo site_url('page/'.$page->slug); ?>" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i></a>
                         <?php endif; ?>
                         <a class="pure-button button-danger" href="<?php echo site_url('admin/pages/delete/'.$page->id); ?>" onclick="return areyousure();"><i class="fa fa-times" aria-hidden="true"></i></a>

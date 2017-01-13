@@ -257,12 +257,9 @@ window.onload = function() {
 				<?php endforeach; ?>
 				</table>
 
-			<?php else {
-    : ?>
+			<?php else : ?>
 
-				<?php echo $sections['console'];
-}
-?>
+				<?php echo $sections['console']; ?>
 
 			<?php endif; ?>
 		</div>
@@ -291,12 +288,9 @@ window.onload = function() {
 				<?php endforeach; ?>
 				</table>
 
-			<?php else {
-    : ?>
+			<?php else : ?>
 
-				<?php echo $sections['console'];
-}
-?>
+				<?php echo $sections['console']; ?>
 
 			<?php endif; ?>
 		</div>
@@ -315,12 +309,9 @@ window.onload = function() {
 				<?php endforeach; ?>
 				</table>
 
-			<?php else {
-    : ?>
+			<?php else : ?>
 
-				<?php echo $sections['benchmarks'];
-}
-?>
+				<?php echo $sections['benchmarks']; ?>
 
 			<?php endif; ?>
 		</div>
@@ -341,12 +332,9 @@ window.onload = function() {
 				<?php endforeach; ?>
 				</table>
 
-			<?php else {
-    : ?>
+			<?php else : ?>
 
-				<?php echo $sections['queries'];
-}
-?>
+				<?php echo $sections['queries']; ?>
 
 			<?php endif; ?>
 		</div>
@@ -406,11 +394,8 @@ window.onload = function() {
 						<?php foreach ($sections[$section] as $key => $val) : ?>
 							<tr><td class="hilight"><?php echo $key ?></td><td><?php echo htmlspecialchars($val) ?></td></tr>
 						<?php endforeach; ?>
-						<?php else {
-    : ?>
-							<tr><td><?php echo $sections[$section];
-}
-?></td></tr>
+						<?php else : ?>
+							<tr><td><?php echo $sections[$section]; ?></td></tr>
 						<?php endif; ?>
 						</table>
 				<?php endif; ?>
@@ -437,25 +422,19 @@ window.onload = function() {
 				<?php endforeach; ?>
 				</table>
 
-			<?php else {
-    : ?>
+			<?php else : ?>
 
-				<?php echo $sections['files'];
-}
-?>
+				<?php echo $sections['files']; ?>
 
 			<?php endif; ?>
 		</div>
 	<?php endif; ?>
 
 
-<?php else {
-    : ?>
+<?php else : ?>
 
 	<p class="ci-profiler-box"><?php echo lang('profiler_no_profiles') ?></p>
 
-<?php endif;
-}
-?>
+<?php endif; ?>
 
 </div>	<!-- /codeigniter_profiler -->

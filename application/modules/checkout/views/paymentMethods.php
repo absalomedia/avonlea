@@ -41,8 +41,7 @@
     }
     </script>
 
-<?php else {
-    : ?>
+<?php else : ?>
     <div class="paymentError"></div>
     <div class="col-nest">
         <div class="col" data-cols="1/3">
@@ -50,9 +49,7 @@
             <?php foreach ($modules as $key => $module) :?>
                 <?php if ($module['class']->isEnabled()) :?>
                     <tr onclick="$(this).find('input').prop('checked', true).trigger('change');">
-                        <td style="width:20px;"><input type="radio" name="paymentMethod" value="payment-<?php echo $key;
-}
-?>"></td>
+                        <td style="width:20px;"><input type="radio" name="paymentMethod" value="payment-<?php echo $key; ?>"></td>
                         <td><?php echo $module['class']->getName(); ?></td>
                     </tr>
                 <?php endif; ?>

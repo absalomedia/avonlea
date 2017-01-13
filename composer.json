@@ -23,7 +23,9 @@
         "mailgun/mailgun-php": "dev-master",
         "mailchimp/mailchimp": "dev-master",
         "filp/whoops": "^2.1",
-        "rinvex/country": "dev-master"
+        "rinvex/country": "dev-master",
+        "chargebee/chargebee-php": ">=2, <3",
+        "lonnieezell/codeigniter-forensics": "dev-master"
     },
     "require-dev": {
     }

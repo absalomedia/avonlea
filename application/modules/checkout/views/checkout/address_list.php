@@ -38,14 +38,11 @@
     </div>
 </div>
 
-<?php else {
-    :?>
+<?php else :?>
 
 <script>
 $('.checkoutAddress').spin();
-$('.checkoutAddress').load('<?php echo site_url('addresses/form');
-}
-?>');
+$('.checkoutAddress').load('<?php echo site_url('addresses/form'); ?>');
 getCartSummary();
 </script>
 

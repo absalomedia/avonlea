@@ -49,11 +49,8 @@
             <?php if ($product->saleprice > 0) :?>
                 <small class="sale"><?php echo lang('on_sale'); ?></small>
                 <?php echo format_currency($product->saleprice); ?>
-            <?php else {
-    :?>
-                <?php echo format_currency($product->price);
-}
-?>
+            <?php else :?>
+                <?php echo format_currency($product->price); ?>
             <?php endif; ?>
             </div>
         <?php endif; ?>
@@ -117,10 +114,8 @@
                                     <?php if ($product->is_giftcard) :?>
                                         <?php echo($values->price != 0) ? ' (+'.format_currency($values->price).') ' : '';
                                         echo lang($values->name); ?>
-                                    <?php else {
-    :?>
+                                    <?php else :?>
                                         <?php echo($values->price != 0) ? ' (+'.format_currency($values->price).') ' : '';
-}
                                         echo $values->name; ?>
                                     <?php endif; ?>
                                     

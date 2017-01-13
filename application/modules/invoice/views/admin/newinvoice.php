@@ -72,11 +72,8 @@ rest of the itemized items. -->
   <p><?php echo $tax2_desc; ?> (<?php echo $tax2_rate; ?>%) <?php echo \CI::Settings()->getSettings('currency_symbol'); ?><span id="item_tax2amount">0.00</span></p>
     <?php endif; ?>
   <p><?php echo $this->lang->line('invoice_total'); ?> <?php echo \CI::Settings()->getSettings('currency_symbol'); ?><span id="item_total_amount">0.00</span></p>
-<?php else {
-    :?>
-  <p class="error"><?php echo $this->lang->line('invoice_tax_exempt');
-}
-?></p>
+<?php else :?>
+  <p class="error"><?php echo $this->lang->line('invoice_tax_exempt'); ?></p>
 <?php endif; ?>
 </div>
 
