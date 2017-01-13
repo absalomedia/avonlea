@@ -23,7 +23,6 @@ function sort_url($lang, $by, $sort, $sorder, $code)
         $icon = '';
     }
 
-
     $return = site_url('admin/orders/index/'.$by.'/'.$sort.'/'.$code);
 
     echo '<a href="'.$return.'">'.lang($lang).$icon.'</a>';

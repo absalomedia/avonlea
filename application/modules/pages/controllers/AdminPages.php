@@ -59,7 +59,6 @@ class AdminPages extends Admin
                 redirect('admin/pages');
             }
 
-
             //set values to db values
             $data['id'] = $page->id;
             $data['parent_id'] = $page->parent_id;
@@ -137,7 +136,6 @@ class AdminPages extends Admin
         $data['sequence'] = 0;
         $data['parent_id'] = 0;
 
-
         $data['page_title'] = lang('link_form');
         $data['pages'] = \CI::Pages()->get_pages();
         if ($optn) {
@@ -148,7 +146,6 @@ class AdminPages extends Admin
                 \CI::session()->set_flashdata('error', lang('error_link_not_found'));
                 redirect('admin/pages');
             }
-
 
             //set values to db values
             $data['id'] = $page->id;

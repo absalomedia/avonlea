@@ -149,7 +149,6 @@ class AdminCustomers extends Admin
             \CI::form_validation()->set_rules('confirm', 'lang:confirm_password', 'required|matches[password]');
         }
 
-
         if (\CI::form_validation()->run() === false) {
             $this->view('customer_form', $data);
         } else {
@@ -162,7 +161,6 @@ class AdminCustomers extends Admin
             $save['company'] = \CI::input()->post('company');
             $save['active'] = (bool) \CI::input()->post('active');
             $save['email_subscribe'] = (bool) \CI::input()->post('email_subscribe');
-
 
             if (\CI::input()->post('password') != '' || !$optn) {
                 $save['password'] = \CI::input()->post('password');
@@ -344,7 +342,6 @@ class AdminCustomers extends Admin
             $a['field_data']['address2'] = \CI::input()->post('address2');
             $a['field_data']['city'] = \CI::input()->post('city');
             $a['field_data']['zip'] = \CI::input()->post('zip');
-
 
             $a['field_data']['zone_id'] = \CI::input()->post('zone_id');
             $a['field_data']['country_id'] = \CI::input()->post('country_id');

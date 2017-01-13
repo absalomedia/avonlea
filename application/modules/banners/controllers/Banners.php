@@ -105,7 +105,6 @@ class Banners extends Admin
         $config['encrypt_name'] = true;
         \CI::load()->library('upload', $config);
 
-
         \CI::load()->helper(['form', 'date']);
         \CI::load()->library('form_validation');
 

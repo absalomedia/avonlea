@@ -294,7 +294,6 @@ function generatePdf() {
     $FOOTER_SIGNED_PHP = null;
 }
 
-
 if ($CLIENT_SIGNATURE == null) {
     if ($selfDelete && file_exists($htmlName)) {
         header('Location: '.$htmlName.'#hk');

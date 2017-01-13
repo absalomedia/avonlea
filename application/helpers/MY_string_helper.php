@@ -33,7 +33,6 @@ function my_character_limiter($str, $num = 500, $end_char = '&#8230;')
     return $output;
 }
 
-
 //used by the gift_card feature
 function generate_code($length = 16)
 {

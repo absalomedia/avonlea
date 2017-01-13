@@ -150,7 +150,6 @@ function remove_option(id)
                             endforeach;
                         }
 
-
                         listCategories(0, $categories, '', $productCat, $primaryCat);
 
                         ?>

@@ -588,7 +588,6 @@ class Invoices extends Admin
 
         $data['total_with_tax'] = $this->lang->line('invoice_total').': '.\CI::Settings()->getSettings('currency_symbol').number_format($data['row']->total_with_tax, 2, $this->config->item('currency_decimal'), '')."<br />\n";
 
-
         if ($data['row']->amount_paid > 0) {
             $data['total_paid'] = $this->lang->line('invoice_amount_paid').': '.\CI::Settings()->getSettings('currency_symbol').number_format($data['row']->amount_paid, 2, $this->config->item('currency_decimal'), '')."<br />\n";
 
@@ -712,7 +711,6 @@ class Invoices extends Admin
         $data['tax_info'] = $this->_tax_info($data['row']);
 
         $data['total_with_tax'] = $this->lang->line('invoice_total').': '.\CI::Settings()->getSettings('currency_symbol').number_format($data['row']->total_with_tax, 2, $this->config->item('currency_decimal'), '')."<br />\n";
-
 
         if ($data['row']->amount_paid > 0) {
             $data['total_paid'] = $this->lang->line('invoice_amount_paid').': '.\CI::Settings()->getSettings('currency_symbol').number_format($data['row']->amount_paid, 2, $this->config->item('currency_decimal'), '')."<br />\n";

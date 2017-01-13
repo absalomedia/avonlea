@@ -113,7 +113,6 @@ class Checkout extends Front
 
             \AVL::saveCart();
 
-
             echo json_encode(['success' => true]);
         }
     }
@@ -148,7 +147,6 @@ class Checkout extends Front
                 return false;
             }
         }
-
 
         echo json_encode(['error' => lang('shipping_method_is_no_longer_valid')]);
     }

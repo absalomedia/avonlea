@@ -92,7 +92,6 @@ class MyAccount extends Front
             \CI::form_validation()->set_rules('confirm', 'Confirm Password');
         }
 
-
         if (\CI::form_validation()->run() === false) {
             $this->view('my_account', $data);
         } else {

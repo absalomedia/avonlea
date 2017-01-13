@@ -57,7 +57,6 @@ class AdminProducts extends Admin
         //total number of products
         $data['total'] = \CI::Products()->products(['term' => $term, 'order_by' => $order_by, 'sort_order' => $sort_order], true);
 
-
         \CI::load()->library('pagination');
 
         $config['base_url'] = site_url('admin/products/'.$rows.'/'.$order_by.'/'.$sort_order.'/'.$code.'/');
@@ -173,7 +172,6 @@ class AdminProducts extends Admin
             $data['saleprice_'.$group->id] = '';
         }
 
-
         //create the photos array for later use
         $data['photos'] = [];
 
@@ -241,7 +239,6 @@ class AdminProducts extends Admin
             $data['product_categories'] = [];
         }
 
-
         //no error checking on these
         \CI::form_validation()->set_rules('caption', 'Caption');
         \CI::form_validation()->set_rules('primary_photo', 'Primary');
@@ -304,7 +301,6 @@ class AdminProducts extends Admin
             //validate the slug
             $slug = ($optn) ? \CI::Products()->validateSlug($slug, $product->id) : \CI::Products()->validateSlug($slug);
 
-
             $save['id'] = $optn;
             $save['sku'] = \CI::input()->post('sku');
             $save['name'] = \CI::input()->post('name');
@@ -329,7 +325,6 @@ class AdminProducts extends Admin
 
             $save['slug'] = $slug;
 
-
             if ($primary = \CI::input()->post('primary_image')) {
                 if ($post_images) {
                     foreach ($post_images as $key => &$pi) {
@@ -342,7 +337,6 @@ class AdminProducts extends Admin
             }
 
             $save['images'] = json_encode($post_images);
-
 
             if (\CI::input()->post('related_products')) {
                 $save['related_products'] = json_encode(\CI::input()->post('related_products'));
@@ -364,7 +358,6 @@ class AdminProducts extends Admin
             } else {
                 $save['primary_category'] = \CI::input()->post('primary_category');
             }
-
 
             // format options
             $options = [];
@@ -478,7 +471,6 @@ class AdminProducts extends Admin
             $data['product_categories'] = [];
         }
 
-
         //no error checking on these
         \CI::form_validation()->set_rules('caption', 'Caption');
         \CI::form_validation()->set_rules('primary_photo', 'Primary');
@@ -533,7 +525,6 @@ class AdminProducts extends Admin
             //validate the slug
             $slug = ($optn) ? \CI::Products()->validateSlug($slug, $product->id) : \CI::Products()->validateSlug($slug);
 
-
             $save['id'] = $optn;
             $save['sku'] = \CI::input()->post('sku');
             $save['name'] = \CI::input()->post('name');
@@ -555,7 +546,6 @@ class AdminProducts extends Admin
 
             $save['slug'] = $slug;
 
-
             if ($primary = \CI::input()->post('primary_image')) {
                 if ($post_images) {
                     foreach ($post_images as $key => &$pi) {
@@ -568,7 +558,6 @@ class AdminProducts extends Admin
             }
 
             $save['images'] = json_encode($post_images);
-
 
             if (\CI::input()->post('related_products')) {
                 $save['related_products'] = json_encode(\CI::input()->post('related_products'));
@@ -590,7 +579,6 @@ class AdminProducts extends Admin
             } else {
                 $save['primary_category'] = \CI::input()->post('primary_category');
             }
-
 
             // format options
             $options = [];
@@ -643,7 +631,6 @@ class AdminProducts extends Admin
                 }
             }
 
-
             array_push($options, [
                                     'type'     => 'droplist',
                                     'name'     => 'beginning_amount',
@@ -651,10 +638,8 @@ class AdminProducts extends Admin
                                     'values'   => $giftcard_values,
                                 ]);
 
-
             // save product
             $product_id = \CI::Products()->save($save, $options, $categories);
-
 
             \CI::session()->set_flashdata('message', lang('message_saved_giftcard_product'));
 

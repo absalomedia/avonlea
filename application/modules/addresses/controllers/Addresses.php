@@ -50,7 +50,6 @@ class Addresses extends Front
         $data['zone_id'] = '';
         $data['zip'] = '';
 
-
         if ($optn != 0) {
             $a = \CI::Customers()->getAddress($optn);
 

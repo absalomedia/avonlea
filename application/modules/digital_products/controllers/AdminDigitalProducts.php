@@ -50,7 +50,6 @@ class AdminDigitalProducts extends Admin
         \CI::form_validation()->set_rules('max_downloads', 'lang:max_downloads', 'numeric');
         \CI::form_validation()->set_rules('title', 'lang:title', 'trim|required');
 
-
         if (\CI::form_validation()->run() === false) {
             $this->view('digital_product_form', $data);
         } else {

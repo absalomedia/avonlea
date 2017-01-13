@@ -46,6 +46,5 @@ function format_mdy($date)
     }
 }
 
-
 /* End of file welcome.php */
 /* Location: ./system/application/helpers/MY_date_helper.php */
