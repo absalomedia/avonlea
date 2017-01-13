@@ -121,7 +121,7 @@ class Categories
     {
         $cats = $this->getCategoryTier(true);
         $options = [-1 => lang('hidden'), 0 => lang('top_level_category')];
-        $listCategories = function ($parent_id, $sub = '') use (&$options, $cats, &$listCategories, $hideId) {
+        $listCategories = function($parent_id, $sub = '') use (&$options, $cats, &$listCategories, $hideId) {
             if (isset($cats[$parent_id])) {
                 foreach ($cats[$parent_id] as $cat) {
                     //if this matches the hide id, skip it and all it's children

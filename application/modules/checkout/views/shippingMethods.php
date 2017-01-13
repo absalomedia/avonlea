@@ -45,8 +45,11 @@
             $('.shippingError').html('<div class="alert red">'+error+'</div>');
         }
     </script>
-<?php else : ?>
+<?php else {
+    : ?>
     <div class="alert">
-        <?php echo lang('no_shipping_needed'); ?>
+        <?php echo lang('no_shipping_needed');
+}
+?>
     </div>
 <?php endif; ?>

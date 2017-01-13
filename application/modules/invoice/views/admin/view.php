@@ -77,10 +77,13 @@ if ($row->amount_paid < $row->total_with_tax) :
 
         <p><?php echo $this->lang->line('invoice_email_quote_to').' '.anchor('clients', $this->lang->line('menu_clients')); ?></p>
 
-        <?php else :?>
+        <?php else {
+    :?>
 
       <fieldset id="recipients">
-        <legend><?php echo $this->lang->line('invoice_send_quote_to'); ?>:</legend>
+        <legend><?php echo $this->lang->line('invoice_send_quote_to');
+}
+?>:</legend>
         <p>
             <?php foreach ($clientContacts->result() as $contactRow) : ?>
           <label for="<?php echo 'recipient'.$contactRow->id; ?>"><input name="recipients[]" id="<?php echo 'recipient'.$contactRow->id; ?>" type="checkbox" value="<?php echo $contactRow->id; ?>" /><?php echo $contactRow->first_name.' '.$contactRow->last_name; ?></label><br />
@@ -116,10 +119,13 @@ if ($row->amount_paid < $row->total_with_tax) :
 
         <p><?php echo $this->lang->line('invoice_email_invoice_to').' '.anchor('clients', $this->lang->line('menu_clients')); ?></p>
 
-        <?php else :?>
+        <?php else {
+    :?>
 
       <fieldset id="recipients">
-        <legend><?php echo $this->lang->line('invoice_send_to'); ?>:</legend>
+        <legend><?php echo $this->lang->line('invoice_send_to');
+}
+?>:</legend>
         <p>
             <?php foreach ($clientContacts->result() as $contactRow) : ?>
           <label for="<?php echo 'recipient'.$contactRow->id; ?>"><input name="recipients[]" id="<?php echo 'recipient'.$contactRow->id; ?>" type="checkbox" value="<?php echo $contactRow->id; ?>" /><?php echo $contactRow->first_name.' '.$contactRow->last_name; ?></label><br />
@@ -294,11 +300,14 @@ if ($row->amount_paid < $row->total_with_tax) :
         <li><?php echo $this->lang->line('invoice_history_comments'); ?></li>
       </ul>
 
-    <?php else :
+    <?php else {
+    :
     foreach ($invoiceHistory->result() as $row) : ?>
         <div style="margin: 10px 0;">
 
-          <p class="dateHolder"><?php echo formatted_invoice_date($row->date_sent); ?></p>
+          <p class="dateHolder"><?php echo formatted_invoice_date($row->date_sent);
+}
+?></p>
 
             <?php if ($row->contact_type === 1) : ?>
             <div class="comment"><p class="commentintro"><?php echo $this->lang->line('invoice_sent_to'); ?> <?php echo implode(', ', unserialize($row->clientcontacts_id)); ?></p><?php echo auto_typography(str_replace('\n', "\n", $row->email_body)); ?></p></div>

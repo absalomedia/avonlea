@@ -64,7 +64,7 @@ class AdminLogin extends \Avonlea\Controller
             'username',
             'lang:username',
             ['trim', 'required',
-                ['username_callable', function ($str) {
+                ['username_callable', function($str) {
                     $success = \CI::auth()->resetPassword($str);
                     if (!$success) {
                         \CI::form_validation()->set_message('username_callable', lang('username_doesnt_exist'));
