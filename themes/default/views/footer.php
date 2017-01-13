@@ -17,6 +17,13 @@ $_js->addFile('jquery-migrate-3.0.0');
 $_js->addFile('jquery.spin');
 $_js->addFile('barba');
 
+if (isset($addedJS) && is_array($addedJS)) {
+    foreach($addedJS as $fileJS) {    
+    $_js->addFile($fileJS);
+    }
+}
+
+
 if (true) { //Dev Mode
 //in development mode keep all the css files separate
     $_js->crunch(true);
