@@ -165,11 +165,8 @@
                         <strong>Quantity&nbsp;</strong>
                         <input type="text" name="quantity" value="1" style="width:50px; display:inline"/>&nbsp;
                         <button class="blue" type="button" value="submit" onclick="addToCart($(this));"><i class="fa fa-cart" aria-hidden="true"></i> <?php echo lang('form_add_to_cart'); ?></button>
-                <?php else {
-    : ?>
-                        <button class="blue" type="button" value="submit" onclick="addToCart($(this));"><i class="fa fa-cart" aria-hidden="true"></i> <?php echo lang('form_add_to_cart');
-}
-?></button>
+                <?php else : ?>
+                        <button class="blue" type="button" value="submit" onclick="addToCart($(this));"><i class="fa fa-cart" aria-hidden="true"></i> <?php echo lang('form_add_to_cart'); ?></button>
                 <?php endif; ?>
 
             <?php endif; ?>
