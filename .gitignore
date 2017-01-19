@@ -23,6 +23,7 @@ application/cache/*
 .Spotlight-V100
 .TemporaryItems
 .Trashes
+.git
 .VolumeIcon.icns
 
 # Directories potentially created on remote AFP share
