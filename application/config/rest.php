@@ -1,4 +1,6 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
+<?php
+
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 |--------------------------------------------------------------------------
@@ -10,7 +12,7 @@
 |	Default: FALSE
 |
 */
-$config['force_https'] = FALSE;
+$config['force_https'] = false;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,8 +36,7 @@ $config['rest_default_format'] = 'json';
 |	Default: false
 |
 */
-$config['enable_emulate_request'] = TRUE;
-
+$config['enable_emulate_request'] = true;
 
 /*
 |--------------------------------------------------------------------------
@@ -106,7 +107,7 @@ $config['auth_source'] = 'ldap';
 |	array('admin' => '1234')
 |
 */
-$config['rest_valid_logins'] = array('admin' => '1234');
+$config['rest_valid_logins'] = ['admin' => '1234'];
 
 /*
 |--------------------------------------------------------------------------
@@ -175,26 +176,26 @@ $config['rest_keys_table'] = 'keys';
 |
 |	FALSE
 
-	CREATE TABLE `keys` (
-	  `id` int(11) NOT NULL AUTO_INCREMENT,
-	  `key` varchar(40) NOT NULL,
-	  `level` int(2) NOT NULL,
-	  `ignore_limits` tinyint(1) NOT NULL DEFAULT '0',
-	  `is_private_key` tinyint(1)  NOT NULL DEFAULT '0',
-	  `ip_addresses` TEXT NULL DEFAULT NULL,
-	  `date_created` int(11) NOT NULL,
-	  PRIMARY KEY (`id`)
-	) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+    CREATE TABLE `keys` (
+      `id` int(11) NOT NULL AUTO_INCREMENT,
+      `key` varchar(40) NOT NULL,
+      `level` int(2) NOT NULL,
+      `ignore_limits` tinyint(1) NOT NULL DEFAULT '0',
+      `is_private_key` tinyint(1)  NOT NULL DEFAULT '0',
+      `ip_addresses` TEXT NULL DEFAULT NULL,
+      `date_created` int(11) NOT NULL,
+      PRIMARY KEY (`id`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 |
 */
-$config['rest_enable_keys'] = FALSE;
+$config['rest_enable_keys'] = false;
 
 /*
 |--------------------------------------------------------------------------
 | REST Table Key Column Name
 |--------------------------------------------------------------------------
 |
-| If you are not using the default table schema as shown above, what is the 
+| If you are not using the default table schema as shown above, what is the
 | name of the db column that holds the api key value?
 |
 */
@@ -248,20 +249,20 @@ $config['rest_logs_table'] = 'logs';
 |
 |	FALSE
 |
-	CREATE TABLE `logs` (
-	  `id` int(11) NOT NULL AUTO_INCREMENT,
-	  `uri` varchar(255) NOT NULL,
-	  `method` varchar(6) NOT NULL,
-	  `params` text DEFAULT NULL,
-	  `api_key` varchar(40) NOT NULL,
-	  `ip_address` varchar(45) NOT NULL,
-	  `time` int(11) NOT NULL,
-	  `authorized` tinyint(1) NOT NULL
-	  PRIMARY KEY (`id`)
-	) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+    CREATE TABLE `logs` (
+      `id` int(11) NOT NULL AUTO_INCREMENT,
+      `uri` varchar(255) NOT NULL,
+      `method` varchar(6) NOT NULL,
+      `params` text DEFAULT NULL,
+      `api_key` varchar(40) NOT NULL,
+      `ip_address` varchar(45) NOT NULL,
+      `time` int(11) NOT NULL,
+      `authorized` tinyint(1) NOT NULL
+      PRIMARY KEY (`id`)
+    ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 |
 */
-$config['rest_enable_logging'] = FALSE;
+$config['rest_enable_logging'] = false;
 
 /*
 |--------------------------------------------------------------------------
@@ -286,17 +287,17 @@ $config['rest_limits_table'] = 'limits';
 |
 |	FALSE
 |
-	CREATE TABLE `limits` (
-	  `id` int(11) NOT NULL AUTO_INCREMENT,
-	  `uri` varchar(255) NOT NULL,
-	  `count` int(10) NOT NULL,
-	  `hour_started` int(11) NOT NULL,
-	  `api_key` varchar(40) NOT NULL,
-	  PRIMARY KEY (`id`)
-	) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+    CREATE TABLE `limits` (
+      `id` int(11) NOT NULL AUTO_INCREMENT,
+      `uri` varchar(255) NOT NULL,
+      `count` int(10) NOT NULL,
+      `hour_started` int(11) NOT NULL,
+      `api_key` varchar(40) NOT NULL,
+      PRIMARY KEY (`id`)
+    ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 |
 */
-$config['rest_enable_limits'] = FALSE;
+$config['rest_enable_limits'] = false;
 
 /*
 |--------------------------------------------------------------------------
@@ -309,7 +310,7 @@ $config['rest_enable_limits'] = FALSE;
 |	FALSE
 |
 */
-$config['rest_ignore_http_accept'] = FALSE;
+$config['rest_ignore_http_accept'] = false;
 
 /*
 |--------------------------------------------------------------------------
@@ -324,7 +325,7 @@ $config['rest_ignore_http_accept'] = FALSE;
 |	FALSE
 |
 */
-$config['rest_ajax_only'] = FALSE;
+$config['rest_ajax_only'] = false;
 
 /* End of file config.php */
 /* Location: ./system/application/config/rest.php */

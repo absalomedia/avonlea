@@ -58,7 +58,7 @@ class Login extends CI_Model
                         where('active', 1)->
                         limit(1)->
                         get('customers')->row();
-        
+
         if (isset($customer) && password_verify($password, $customer->password) === true) {
             // Set up any group discount
             if ($customer->group_id != 0) {
