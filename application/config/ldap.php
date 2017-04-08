@@ -11,11 +11,10 @@ $config['bindpw'] = 'E984asdy2';
 */
 
 $config['server'] = 'ldapserver1.example.org ldapserver2.example.org';
-$config['port'] = NULL;
+$config['port'] = null;
 
 /*
  * Controls the LDAP_OPT_NETWORK_TIMEOUT option, this is how long the code will attempt to talk to the primary server if it is unreachable.
  */
 
 $config['timeout'] = 5;
-?>

@@ -170,12 +170,12 @@ class Bootstrap extends CI_Controller
 
             if ($key === 'timezone') {
                 date_default_timezone_set($setting);
-            }              
-            
+            }
+
             //other config items get set directly to the config class
             $this->config->set_item($key, $setting);
         }
-        
+
         //if SSL is enabled in config force it here.
         if (config_item('ssl_support') && (!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] === 'off')) {
             $this->config->set_item('base_url', str_replace('http://', 'https://', config_item('base_url')));

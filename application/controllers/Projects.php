@@ -1,22 +1,23 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
+<?php
 
-class Projects extends CI_Controller {
+defined('BASEPATH') or exit('No direct script access allowed');
 
-	public function index()
-	{
-		$this->load->view('layout');
-	}
+class Projects extends CI_Controller
+{
+    public function index()
+    {
+        $this->load->view('layout');
+    }
 
-	public function template_list()
-	{
-		$this->load->view('list');
-	}
+    public function template_list()
+    {
+        $this->load->view('list');
+    }
 
-	public function template_detail()
-	{
-		$this->load->view('detail');
-	}
-
+    public function template_detail()
+    {
+        $this->load->view('detail');
+    }
 }
 
 /* End of file Projects.php */
