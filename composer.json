@@ -21,7 +21,6 @@
         "meebio/omnipay-secure-trading": "dev-master",
         "justinbusschau/omnipay-secpay": "~2.0",
         "mailgun/mailgun-php": "dev-master",
-        "mailchimp/mailchimp": "dev-master",
         "filp/whoops": "^2.1",
         "rinvex/country": "dev-master",
         "chargebee/chargebee-php": ">=2, <3",
