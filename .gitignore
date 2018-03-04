@@ -1,37 +1,31 @@
-# Ignore vendor -> must generate with composer
-vendor
+.DS_Store
 
-# Ignore uploaded folder -> this folder contains file uploaded by an user
-assets/uploaded/*
-!assets/uploaded/index.html
-!assets/uploaded/.htaccess
-
-# Ignore cache folders
-assets/cache/*
-!assets/cache/index.html
-!assets/cache/.htaccess
 application/cache/*
 !application/cache/index.html
-!application/cache/.htaccess
 
-# Thumbnails
-._*
+application/logs/*
+!application/logs/index.html
 
-# Files that might appear in the root of a volume
-.DocumentRevisions-V100
-.fseventsd
-.Spotlight-V100
-.TemporaryItems
-.Trashes
-.git
-.VolumeIcon.icns
+!application/*/.htaccess
 
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
-### END SPECIAL MAC ###
-application/config/manifest.php
-application/config/database.php
+composer.lock
+
+user_guide_src/build/*
+user_guide_src/cilexer/build/*
+user_guide_src/cilexer/dist/*
+user_guide_src/cilexer/pycilexer.egg-info/*
+/vendor/
+
+# IDE Files
+#-------------------------
+/nbproject/
+.idea/*
+
+## Sublime Text cache files
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+*.sublime-workspace
+*.sublime-project
+/tests/tests/
+/tests/results/
